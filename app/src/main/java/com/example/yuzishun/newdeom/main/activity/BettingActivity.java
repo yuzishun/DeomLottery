@@ -61,6 +61,7 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
     private List<String> list_two = new ArrayList<>();
     private List<String> list_three = new ArrayList<>();
     private List<String> list_four = new ArrayList<>();
+    //tttttt
     private int count=0;
     @BindView(R.id.image_back)
     LinearLayout image_back;
