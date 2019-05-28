@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yuzishun.newdeom.login.activity.LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:background="@color/login_red"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1.4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </LinearLayout>
+
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_weight="1.7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+            </RelativeLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/d15"
+            android:layout_marginRight="@dimen/d15"
+            android:layout_marginBottom="@dimen/d20"
+            android:layout_centerVertical="true"
+
+            android:layout_height="300dp">
+
+            <LinearLayout
+                android:id="@+id/layout_login"
+                android:layout_centerHorizontal="true"
+                android:layout_width="350dp"
+                android:background="@mipmap/background_login"
+                android:orientation="vertical"
+
+                android:layout_height="240dp">
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/d10"
+                    android:layout_marginRight="@dimen/d10"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                        android:inputType="number"
+                        android:id="@+id/login_phone"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/d5"
+                        android:maxLength="11"
+                        android:layout_marginLeft="35dp"
+                        android:background="@null"
+                        android:hint="@string/Phone_Number"
+                        android:textColorHint="@color/edittext_hintcolor"
+                        android:textSize="@dimen/f12"
+                        android:drawableBottom="@drawable/line"
+                        android:layout_marginRight="35dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d50" />
+
+                    <ImageView
+                        android:checked="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/login_user"
+                        android:button="@null"
+                        android:layout_marginRight="60dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/d20"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/d10"
+                    android:layout_marginRight="@dimen/d10"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                        android:inputType="textPassword"
+                        android:id="@+id/login_password"
+
+                        android:paddingLeft="@dimen/d5"
+                        android:maxLength="11"
+                        android:layout_marginLeft="35dp"
+                        android:background="@null"
+                        android:hint="@string/Login_Password"
+                        android:textColorHint="@color/edittext_hintcolor"
+                        android:textSize="@dimen/f12"
+                        android:drawableBottom="@drawable/line"
+                        android:layout_marginRight="35dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d50" />
+                    <CheckBox
+                        android:checked="false"
+                        android:id="@+id/cbDisplayPassword"
+                        android:layout_width="13dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/selector_password"
+                        android:button="@null"
+                        android:layout_marginRight="60dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/d20"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="160dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="60dp"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_height="40dp">
+
+                <Button
+                    android:id="@+id/button_sure"
+                    android:background="@drawable/login_select"
+                    android:text="@string/login"
+                    android:enabled="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f13"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:text="@string/Hurry_Resign"
+                android:id="@+id/resignTextView"
+                android:textColor="@color/gray_Overall_hint"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/layout_login"
+                android:layout_marginTop="@dimen/d20"
+                android:textSize="@dimen/f12"
+                android:layout_marginLeft="@dimen/d10"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="@string/Forgot_Password"
+                android:id="@+id/findTextView"
+                android:textColor="@color/gray_Overall_hint"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/f12"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/layout_login"
+                android:layout_marginTop="@dimen/d20"
+                android:layout_marginRight="@dimen/d10"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

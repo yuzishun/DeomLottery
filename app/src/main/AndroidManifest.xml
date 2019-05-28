@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.yuzishun.newdeom">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许程序打开网络套接字 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 允许程序设置内置sd卡的写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!-- 用于android 8.0不自动跳转安装 -->
+
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <application
+        android:name=".base.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- 屏幕适配 -->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640" />
+
+        <activity android:name=".MainActivity" />
+        <!-- 登陆界面 -->
+        <activity android:name=".login.activity.LoginActivity" />
+        <!-- 注册界面 -->
+        <activity
+            android:name=".login.activity.ResignActivity"
+            android:screenOrientation="portrait" />
+        <!-- 密码找回界面 -->
+
+        <activity
+            android:name=".login.activity.FindPasswordActivity"
+            android:screenOrientation="portrait" />
+        <!-- 银行卡管理界面 -->
+
+        <activity android:name=".SplachActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 启动页面 -->
+
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".my.activity.BankCradManagementActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".my.activity.BandingPayActivity" />
+        <activity android:name=".my.activity.PersonalInformationActivity" />
+        <activity android:name=".WebViewCustomerActivity" />
+        <activity android:name=".my.activity.SettingActivity" />
+        <activity android:name=".my.activity.RechargeActivity" />
+        <activity android:name=".main.activity.LotteryActivity" />
+        <activity android:name=".main.activity.LotterywangqiActivity" />
+        <activity android:name=".documentary.activity.EveryListActivity" />
+        <activity android:name=".documentary.activity.OkamiActivity" />
+        <activity android:name=".documentary.activity.CopydocumentActivity" />
+        <activity android:name=".documentary.activity.DocumentdetailsActivity" />
+        <activity android:name=".main.activity.MixedbetActivity" />
+        <activity android:name=".my.activity.BetteyAndWinningActivity" />
+        <activity android:name=".my.activity.MyDetailedActivity" />
+        <activity android:name=".my.activity.Details_mingxiActivity" />
+        <activity android:name=".my.activity.IdentityVerificationActivity" />
+        <activity android:name=".my.activity.BindingBankActivity" />
+        <activity android:name=".my.activity.LineMoneyActivity" />
+        <activity android:name=".my.activity.SendDocumentActivity" />
+        <activity android:name=".main.activity.MixedSureActivity" />
+        <activity android:name=".main.activity.BettingActivity" />
+        <activity android:name=".main.activity.BasketBallMixedActivity" />
+        <activity android:name=".main.adapter.baskball.BasketballSureActivity"></activity>
+    </application>
+
+</manifest>

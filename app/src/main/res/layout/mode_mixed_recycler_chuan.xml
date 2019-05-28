@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/d10"
+    android:layout_height="wrap_content">
+
+    <Button
+
+        android:text="你好"
+        android:textSize="@dimen/f11"
+        android:id="@+id/item"
+        android:textColor="@color/font_black"
+
+        android:background="@drawable/login_radios_border_sure_red"
+        android:layout_width="67dp"
+        android:layout_height="23dp" />
+</LinearLayout>

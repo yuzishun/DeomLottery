@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--所有的大按钮合集-->
+
+    <item android:drawable="@drawable/login_change" android:state_enabled="false"></item>
+    <item android:drawable="@drawable/login_radios_border_sure_red" android:state_pressed="false"/>
+    <!--按下变色，暂时去掉-->
+    <item android:drawable="@drawable/login_shap" android:state_pressed="true"/>
+</selector>

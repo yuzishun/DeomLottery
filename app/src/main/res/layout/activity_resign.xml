@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yuzishun.newdeom.login.activity.ResignActivity">
+
+    <include layout="@layout/title_text"></include>
+
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="10dp"></View>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_weight="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="@string/User"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginLeft="@dimen/d15"
+                        android:textColor="@color/gray_Overall_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                        android:id="@+id/usernameEditText"
+                        android:paddingLeft="@dimen/d5"
+                        android:maxLength="11"
+                        android:maxLines="1"
+                        android:layout_toLeftOf="@+id/user_change"
+                        android:ellipsize="end"
+                        android:background="@null"
+                        android:layout_marginLeft="@dimen/d15"
+                        android:hint="@string/Please_write_User_Phone"
+                        android:textColorHint="@color/edittext_hintcolor"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginRight="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:text="*用户名不能更改"
+                        android:id="@+id/user_change"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/f9"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/d25"
+
+                        android:textColor="@color/login_red"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+            <View
+                android:background="@color/gray_Overall_hint"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"></View>
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_weight="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="@string/Password"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginLeft="@dimen/d15"
+                        android:textColor="@color/gray_Overall_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                    android:layout_weight="1"
+                    android:inputType="textPassword"
+                    android:paddingLeft="@dimen/d5"
+                    android:maxLength="11"
+                    android:maxLines="1"
+                    android:id="@+id/passwordEditText"
+                    android:ellipsize="end"
+                    android:background="@null"
+                    android:layout_marginLeft="@dimen/d15"
+                    android:hint="@string/Please_write_Password"
+                    android:textColorHint="@color/edittext_hintcolor"
+                    android:textSize="@dimen/f12"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <View
+                android:background="@color/gray_Overall_hint"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"></View>
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_weight="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="@string/Phone_Number"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginLeft="@dimen/d15"
+                        android:textColor="@color/gray_Overall_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                    android:inputType="number"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/d5"
+                    android:maxLength="11"
+                    android:id="@+id/phoneEditText"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:background="@null"
+                    android:layout_marginLeft="@dimen/d15"
+                    android:hint="@string/Please_Phone_Number"
+                    android:textColorHint="@color/edittext_hintcolor"
+                    android:textSize="@dimen/f12"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <View
+                android:background="@color/gray_Overall_hint"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"></View>
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_weight="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="@string/Message_yanzheng"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginLeft="@dimen/d15"
+                        android:textColor="@color/gray_Overall_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                        android:inputType="number"
+                        android:layout_weight="1"
+                        android:paddingLeft="@dimen/d5"
+                        android:maxLength="11"
+                        android:id="@+id/phonecodeEditText"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:background="@null"
+                        android:layout_marginLeft="@dimen/d15"
+                        android:hint="@string/Please_Write_Message"
+                        android:textColorHint="@color/edittext_hintcolor"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginRight="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+
+                    <Button
+                        android:id="@+id/Hou_Code"
+                        android:background="@drawable/login_select"
+                        android:layout_width="80dp"
+                        android:text="@string/Obtain_Message"
+                        android:enabled="true"
+                        android:textSize="@dimen/f12"
+                        android:textColor="@color/white"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/d10"
+                        android:layout_height="30dp" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            <View
+                android:background="@color/gray_Overall_hint"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"></View>
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_weight="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="@string/yaoqing_Number"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginLeft="@dimen/d15"
+                        android:textColor="@color/gray_Overall_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                    android:inputType="number"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/d5"
+                    android:maxLength="11"
+                    android:id="@+id/yaoqingEditText"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:background="@null"
+                    android:layout_marginLeft="@dimen/d15"
+                    android:hint="@string/Please_write_yaoqing_number"
+                    android:textColorHint="@color/edittext_hintcolor"
+                    android:textSize="@dimen/f12"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:background="@drawable/selector_xieyi"
+                    android:button="@null"
+                    android:id="@+id/check_xieyi"
+                    android:layout_marginLeft="@dimen/d15"
+                    android:layout_marginTop="@dimen/d15"
+                    android:layout_width="@dimen/d10"
+                    android:layout_height="@dimen/d10" />
+                    <TextView
+                        android:text="@string/agreen"
+                        android:textColor="@color/gray_Overall_hint"
+                        android:textSize="@dimen/f10"
+                        android:layout_marginLeft="@dimen/d4"
+                        android:layout_marginTop="@dimen/d10"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="@string/User_xieyi"
+                        android:layout_marginTop="@dimen/d10"
+                        android:textSize="@dimen/f10"
+                        android:textColor="@color/edittext_hintcolor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button_resign"
+                    android:background="@drawable/login_select"
+                    android:text="@string/Resign"
+                    android:layout_centerHorizontal="true"
+                    android:enabled="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f12"
+                    android:layout_width="280dp"
+                    android:layout_height="40dp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

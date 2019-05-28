@@ -1,0 +1,642 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.example.yuzishun.newdeom.main.activity.MainFragment">
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+
+        android:id="@+id/Home_Refresh"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+   <ScrollView
+       android:fillViewport="true"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:id="@+id/layout_scroll"
+           android:visibility="gone"
+
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+            
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="350dp">
+
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="230dp">
+                   <com.jude.rollviewpager.RollPagerView
+                       app:rollviewpager_hint_paddingBottom="55dp"
+                       android:id="@+id/mainRollPagerView"
+                       android:layout_width="match_parent"
+                       android:layout_height="230dp">
+
+
+
+                   </com.jude.rollviewpager.RollPagerView>
+
+
+               </RelativeLayout>
+                <LinearLayout
+                    android:background="@mipmap/mainflower"
+                    android:orientation="vertical"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp">
+
+                    <RelativeLayout
+                        android:id="@+id/layout"
+                        android:background="@color/transparent"
+                        android:gravity="bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:text="@string/hot_caizhong"
+                            android:id="@+id/hot_text"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="@dimen/d5"
+                            android:textColor="@color/login_red"
+                            android:textSize="12sp"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:src="@mipmap/hot"
+                            android:layout_marginLeft="@dimen/d5"
+                            android:layout_toRightOf="@id/hot_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_alignParentBottom="true"
+                        android:layout_height="90dp">
+
+                        <LinearLayout
+                            android:id="@+id/layout_football"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_marginBottom="@dimen/d10"
+
+                                android:background="@mipmap/football_main"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:text="@string/hot_football"
+                                android:textSize="9sp"
+                                android:textColor="#606060"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/layout_baskball"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_marginBottom="@dimen/d10"
+
+                                android:background="@mipmap/basketball_main"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:text="@string/hot_baskball"
+
+                                android:textSize="9sp"
+                                android:textColor="#606060"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_marginBottom="@dimen/d10"
+
+                                android:background="@mipmap/choosenine_main"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:text="@string/choose_nine"
+
+                                android:textSize="9sp"
+                                android:textColor="#606060"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_marginBottom="@dimen/d10"
+
+                                android:background="@mipmap/successloser_main"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:text="@string/victory_shisi"
+
+                                android:textSize="9sp"
+                                android:textColor="#606060"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+           </RelativeLayout>
+           
+           <RelativeLayout
+               android:background="#F7F7F7"
+               android:layout_width="match_parent"
+               android:layout_height="30dp">
+
+               <ImageView
+                   android:background="@mipmap/gonggao"
+                   android:id="@+id/image"
+                    android:layout_centerVertical="true"
+                   android:layout_marginLeft="@dimen/d25"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+               <TextView
+                   android:text="@string/Notice"
+                   android:id="@+id/te"
+                   android:textSize="@dimen/f12"
+                   android:layout_toRightOf="@+id/image"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="@dimen/d10"
+                   android:textColor="@color/login_red"
+
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+
+              <com.paradoxie.autoscrolltextview.VerticalTextview
+                  android:id="@+id/VerticaTextView"
+                  android:layout_width="wrap_content"
+
+                  android:layout_toRightOf="@+id/te"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="@dimen/d10"
+                  android:layout_height="wrap_content">
+
+              </com.paradoxie.autoscrolltextview.VerticalTextview>
+
+
+           </RelativeLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="500dp">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/Image_lottery"
+                        android:src="@mipmap/huodong"
+                        android:layout_marginLeft="@dimen/d20"
+                        android:layout_marginRight="@dimen/d20"
+                        android:layout_marginTop="@dimen/d10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_weight="1.1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="@string/Sufficient_relevance"
+                        android:textColor="@color/login_red"
+                        android:id="@+id/jingzu"
+                        android:textSize="@dimen/f12"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:background="@mipmap/footballxiangguan"
+                        android:layout_width="wrap_content"
+                        android:layout_toRightOf="@+id/jingzu"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/d5"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:text="@string/More"
+                        android:textColor="@color/login_red"
+                        android:textSize="@dimen/f12"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/d15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_weight="1.1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:src="@mipmap/football_red"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:text="@string/data"
+                            android:textSize="@dimen/f13"
+                            android:textColor="#A2A2A2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:text="@string/End"
+                            android:textSize="@dimen/f11"
+
+                            android:layout_marginTop="@dimen/d5"
+                            android:textColor="#A2A2A2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <RelativeLayout
+                        android:layout_weight="1"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/football_blue"
+                            android:layout_alignParentLeft="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_weight="1.5"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="@string/Barcelona"
+                            android:textSize="@dimen/f11"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="@color/login_red"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                        <TextView
+                            android:text="@string/Manchester_United"
+                            android:gravity="center"
+                            android:textSize="@dimen/f11"
+                            android:layout_weight="1"
+                            android:textColor="@color/login_red"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                    <RelativeLayout
+                        android:layout_marginRight="@dimen/d20"
+                        android:layout_marginLeft="@dimen/d20"
+                        android:layout_weight="1"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <Button
+                            android:id="@+id/Button_victory"
+                            android:text="@string/win"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/f11"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/main_victory_shape_red"
+                            android:layout_width="100dp"
+                            android:layout_height="40dp" />
+                        <Button
+                            android:text="@string/flat"
+                            android:id="@+id/Button_ping"
+                            android:layout_marginLeft="@dimen/d5"
+                            android:layout_marginRight="@dimen/d5"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/login_red"
+                            android:textSize="@dimen/f11"
+                            android:background="@drawable/main_victory_shape"
+                            android:layout_width="100dp"
+                            android:layout_height="40dp" />
+                        <Button
+                            android:text="@string/negative"
+                            android:id="@+id/Button_loser"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:textColor="@color/login_red"
+                            android:textSize="@dimen/f11"
+                            android:background="@drawable/main_victory_shape"
+                            android:layout_width="100dp"
+                            android:layout_height="40dp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:text="@string/Betting_money"
+                            android:textColor="#606060"
+                            android:textSize="@dimen/f14"
+                            android:id="@+id/touzhu"
+                            android:layout_marginLeft="@dimen/d20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <LinearLayout
+                            android:layout_marginRight="@dimen/d20"
+                            android:layout_marginLeft="@dimen/d20"
+                            android:layout_below="@+id/touzhu"
+                            android:orientation="horizontal"
+                            android:layout_alignParentBottom="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <Button
+                                    android:layout_weight="1"
+                                    android:id="@+id/Button_wushi"
+                                    android:text="@string/five_money"
+                                    android:textSize="@dimen/f11"
+                                    android:textColor="@color/white"
+                                    android:layout_marginBottom="@dimen/d5"
+                                    android:layout_marginTop="@dimen/d5"
+                                    android:background="@drawable/main_victory_shape_red"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+                                <Button
+                                    android:layout_weight="1"
+                                    android:text="@string/Two_hundred"
+                                    android:id="@+id/Button_erbai"
+
+                                    android:textSize="@dimen/f11"
+                                    android:textColor="@color/login_red"
+                                    android:layout_marginLeft="@dimen/d5"
+                                    android:layout_marginBottom="@dimen/d5"
+                                    android:layout_marginTop="@dimen/d5"
+                                    android:background="@drawable/main_victory_shape"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+                                <Button
+                                    android:id="@+id/Button_wubai"
+                                    android:layout_weight="1"
+                                    android:layout_marginBottom="@dimen/d5"
+                                    android:layout_marginLeft="@dimen/d5"
+                                    android:layout_marginTop="@dimen/d5"
+                                    android:text="@string/wubaiyuan"
+                                    android:textSize="@dimen/f11"
+                                    android:textColor="@color/login_red"
+                                    android:background="@drawable/main_victory_shape"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+
+                            </LinearLayout>
+
+                            <RelativeLayout
+                                android:layout_weight="2.5"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:src="@mipmap/jiangjin"
+                                    android:id="@+id/jiangjin"
+                                    android:layout_marginLeft="@dimen/d10"
+                                    android:layout_centerVertical="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:gravity="center"
+
+                                    android:layout_toRightOf="@+id/jiangjin"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <TextView
+                                        android:text="@string/Forecast_bonus"
+                                        android:textSize="@dimen/f11"
+                                        android:textColor="#606060"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+                                    <TextView
+                                        android:text="@string/zero"
+                                        android:textSize="@dimen/f11"
+                                        android:textColor="@color/login_red"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.1"
+                        android:orientation="horizontal">
+
+                        <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                            android:layout_marginLeft="@dimen/d20"
+                            android:layout_marginTop="@dimen/d10"
+                            android:layout_marginBottom="@dimen/d10"
+                            android:hint="@string/Please_write_money"
+                            android:textColorHint="@color/edittext_hintcolor"
+                            android:textSize="@dimen/f11"
+                            android:maxLength="11"
+                            android:paddingLeft="@dimen/d12"
+                            android:layout_weight="1"
+                            android:background="@drawable/main_victory_shape"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                        <Button
+                            android:layout_weight="2.5"
+                            android:layout_marginTop="@dimen/d12"
+                            android:layout_marginLeft="@dimen/d5"
+                            android:text="@string/Immediate_bet"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/f11"
+                            android:layout_marginBottom="@dimen/d12"
+                            android:background="@drawable/main_victory_shape_red"
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="@dimen/d20"
+                            android:layout_height="match_parent" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:background="@color/white"
+                    android:layout_marginLeft="@dimen/d15"
+                    android:layout_marginRight="@dimen/d15"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp">
+
+                    <Button
+                        android:id="@+id/news"
+                        android:layout_width="80dp"
+
+                        android:background="@drawable/main_radio_righttop_shape"
+                        android:text="@string/new_"
+                        android:textColor="@color/login_red"
+                        android:textSize="@dimen/f11"
+                        android:layout_height="match_parent" />
+                    <Button
+                        android:id="@+id/match"
+                        android:layout_width="80dp"
+                        android:background="@color/transparent"
+
+                        android:text="@string/match"
+                        android:textColor="@color/font_black"
+                        android:textSize="@dimen/f11"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:src="@mipmap/zixun"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/d10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:text="@string/More"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="right"
+                        android:visibility="gone"
+                        android:textColor="@color/login_red"
+                        android:textSize="@dimen/f11"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+                <com.example.yuzishun.newdeom.main.custom.MyRecyclerView
+                    android:id="@+id/newsRecycleriView"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </com.example.yuzishun.newdeom.main.custom.MyRecyclerView>
+
+
+
+            </LinearLayout>
+
+       </LinearLayout>
+
+   </ScrollView>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <TextView
+        android:visibility="visible"
+        android:id="@+id/Text_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="正在加载..."
+        android:textColor="@color/font_black"
+        />
+</LinearLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clipChildren="false"
+    tools:context="com.example.yuzishun.newdeom.MainActivity">
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/Lacontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="11"
+        android:layout_width="match_parent"
+        android:clipChildren="false"
+        android:layout_height="match_parent">
+
+
+        <RadioGroup
+            android:clipChildren="false"
+
+            android:id="@+id/rg_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/id_tab_01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:button="@null"
+                android:drawablePadding="@dimen/d4"
+                android:drawableTop="@drawable/main_button_selector"
+                android:gravity="center"
+                android:text="@string/Colourful_Hall"
+                android:textColor="@color/color_main_text"
+                android:textSize="@dimen/f10" />
+            <RadioButton
+                android:id="@+id/id_tab_02"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:button="@null"
+                android:drawablePadding="@dimen/d4"
+                android:drawableTop="@drawable/documentary_button_selector"
+                android:gravity="center"
+                android:text="@string/documentary"
+                android:textColor="@color/color_main_text"
+                android:textSize="@dimen/f10" />
+            <RadioButton
+                android:id="@+id/id_tab_03"
+                android:drawableTop="@mipmap/midkefu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="-5dp"
+                android:button="@null"
+                android:drawablePadding="@dimen/d4"
+                android:gravity="center"
+                android:textSize="@dimen/f10" />
+
+
+
+            <RadioButton
+                android:id="@+id/id_tab_04"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawablePadding="@dimen/d4"
+                android:gravity="center"
+                android:text="@string/score"
+                android:drawableTop="@drawable/score_button_selector"
+
+                android:textColor="@color/color_main_text"
+                android:textSize="@dimen/f10" />
+            <RadioButton
+                android:id="@+id/id_tab_05"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawablePadding="@dimen/d4"
+                android:gravity="center"
+                android:text="@string/my"
+                android:drawableTop="@drawable/my_button_selector"
+
+                android:textColor="@color/color_main_text"
+                android:textSize="@dimen/f10" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+</LinearLayout>

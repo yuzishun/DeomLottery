@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yuzishun.newdeom.my.activity.IdentityVerificationActivity">
+    <include layout="@layout/title_text"></include>
+
+
+    <View
+        android:background="@color/empt_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d10"></View>
+
+    <LinearLayout
+        android:layout_weight="3.5"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/seticon"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/d20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="@string/RealName"
+                        android:layout_marginLeft="@dimen/d10"
+                        android:textColor="@color/font_black"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/f12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                    android:id="@+id/name_edittext"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/d5"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:hint="请填写真实姓名"
+                    android:textColorHint="@color/edittext_hintcolor"
+                    android:textSize="@dimen/f10"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d50" />
+
+            </RelativeLayout>
+        </LinearLayout>
+        <View
+            android:background="@color/empt_color"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"></View>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/id_card"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/d20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="@string/Id_NumBer"
+                        android:layout_marginLeft="@dimen/d10"
+                        android:textColor="@color/font_black"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/f12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                    android:id="@+id/id_edittext"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/d5"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:hint="请填写身份证号码"
+                    android:textColorHint="@color/edittext_hintcolor"
+                    android:textSize="@dimen/f10"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d50" />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+        <View
+            android:background="@color/empt_color"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"></View>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/button_bao"
+            android:layout_marginTop="@dimen/d30"
+            android:background="@drawable/login_select"
+            android:text="保存"
+            android:layout_centerHorizontal="true"
+            android:enabled="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/f12"
+            android:layout_width="280dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+</LinearLayout>

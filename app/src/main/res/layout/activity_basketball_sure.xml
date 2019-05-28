@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yuzishun.newdeom.main.adapter.baskball.BasketballSureActivity">
+
+    <include layout="@layout/title_text"></include>
+
+    <RelativeLayout
+        android:background="@color/empt_color"
+        android:layout_weight="6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/Button_goon"
+            android:background="@drawable/document_copy_edittext_shape_white"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="140dp"
+            android:text="+继续添加/编辑比赛"
+            android:textSize="@dimen/f12"
+            android:textColor="@color/login_red"
+            android:layout_height="26dp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.RecyclerView
+
+            android:layout_above="@+id/layout_bottom"
+            android:id="@+id/Sure_RecyclerView"
+            android:layout_marginBottom="@dimen/d4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="@dimen/d100">
+            <View
+                android:background="#cccccc"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"></View>
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/bunch_TextView"
+                        android:text="2串1"
+                        android:textSize="@dimen/f12"
+                        android:textColor="@color/font_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:id="@+id/Text_More"
+                        android:background="@drawable/recharge_item_button"
+                        android:text="更多过关"
+                        android:layout_marginLeft="@dimen/d5"
+                        android:enabled="true"
+                        android:textColor="@color/login_red"
+                        android:textSize="@dimen/f10"
+                        android:layout_width="55dp"
+                        android:layout_height="20dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="投"
+                        android:textSize="@dimen/f12"
+                        android:textColor="@color/font_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/edit_Multiple"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:maxLength="5"
+                        android:background="@drawable/document_copy_edittext_shape_white"
+                        android:text="1"
+                        android:inputType="number"
+                        android:layout_marginLeft="@dimen/d5"
+                        android:textColor="@color/gray_Overall_hint"
+                        android:textSize="@dimen/f12"
+                        android:layout_width="50dp"
+                        android:layout_height="20dp" />
+                    <TextView
+                        android:text="倍"
+                        android:layout_marginLeft="@dimen/d5"
+
+                        android:textSize="@dimen/f12"
+                        android:textColor="@color/font_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <View
+                android:background="#cccccc"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"></View>
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/Text_money"
+                        android:text="3注 共  6  元"
+                        android:textSize="@dimen/f12"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/login_red"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="理论奖金：8.2~48.0元"
+                        android:layout_marginTop="@dimen/d4"
+                        android:textSize="@dimen/f10"
+                        android:textColor="@color/font_black"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/Text_money"
+
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/button_sure"
+                        android:background="@drawable/login_select"
+                        android:text="确定"
+                        android:enabled="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/f13"
+                        android:layout_width="@dimen/d60"
+                        android:layout_height="26dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

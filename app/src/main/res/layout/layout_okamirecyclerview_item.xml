@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/d20"
+    android:layout_marginRight="@dimen/d20"
+    android:layout_height="200dp">
+
+    <LinearLayout
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="推荐时间：  04-09  22:04"
+                android:textSize="@dimen/f11"
+                android:textColor="@color/font_black_shen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="已跟单"
+                android:layout_centerVertical="true"
+                android:id="@+id/yigendan"
+                android:textSize="@dimen/f10"
+                android:textColor="@color/font_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="1858.0元"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/yigendan"
+                android:layout_marginLeft="@dimen/d10"
+                android:textSize="@dimen/f10"
+                android:textColor="@color/login_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="04-09  23:59 截止"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/f10"
+                android:textColor="@color/font_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/MyTable"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:orientation="vertical"
+            />
+        <Button
+            android:background="@drawable/login_select"
+            android:layout_width="70dp"
+            android:text="跟单"
+            android:enabled="true"
+            android:id="@+id/Button_Okami_gen"
+            android:textColor="@color/white"
+            android:textSize="@dimen/f10"
+            android:layout_marginBottom="@dimen/d10"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_height="30dp" />
+        <ImageView
+            android:id="@+id/jiang_state"
+            android:src="@mipmap/readyjiang"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/d20"
+            android:layout_marginRight="@dimen/d50"
+            android:layout_width="@dimen/d30"
+            android:layout_height="@dimen/d30" />
+    </RelativeLayout>
+
+    <View
+        android:background="@color/empt_color"
+
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        ></View>
+
+</LinearLayout>

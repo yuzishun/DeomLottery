@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.example.yuzishun.newdeom.documentary.activity.OkamiActivity">
+    <include layout="@layout/title_text"></include>
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_weight="1.2"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:background="@color/login_red"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_weight="1.5"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_weight="1.7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <RelativeLayout
+                                android:layout_weight="1.5"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <ImageView
+                                    android:layout_centerHorizontal="true"
+                                    android:src="@mipmap/gray_icon"
+                                    android:layout_centerVertical="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                            </RelativeLayout>
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:text="猴子理财团"
+                                    android:layout_width="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/f12"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:layout_marginTop="@dimen/d10"
+                                    android:text="粉丝：154    关注：5"
+                                    android:layout_width="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/f10"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <RelativeLayout
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <Button
+                                android:id="@+id/button_sure"
+                                android:background="@drawable/okami_guanzhu"
+                                android:text="+ 关注"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="@dimen/d20"
+                                android:enabled="false"
+                                android:textColor="@color/login_red"
+                                android:textSize="@dimen/f10"
+                                android:layout_width="60dp"
+                                android:layout_height="25dp" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_alignParentBottom="true"
+                    android:background="@mipmap/okami"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:text="144.0%"
+                                android:textSize="@dimen/f12"
+                                android:textColor="@color/login_red"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:text="近7天盈利率"
+                                android:textSize="@dimen/f10"
+                                android:textColor="@color/font_gray"
+                                android:layout_marginTop="@dimen/d5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:text="16中7"
+                                android:textSize="@dimen/f12"
+                                android:textColor="@color/login_red"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:text="近7天中奖率"
+                                android:textSize="@dimen/f10"
+                                android:textColor="@color/font_gray"
+                                android:layout_marginTop="@dimen/d5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:text="47"
+                                android:textSize="@dimen/f12"
+                                android:textColor="@color/login_red"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:text="累计带红（人）"
+                                android:textSize="@dimen/f10"
+                                android:textColor="@color/font_gray"
+                                android:layout_marginTop="@dimen/d5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/empt_color"
+                        android:layout_marginLeft="@dimen/d20"
+                        android:layout_marginRight="@dimen/d20"
+                        android:layout_height="0.1dp">
+
+                    </View>
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/d25"
+                        android:layout_marginRight="@dimen/d25"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:text="状态:"
+                            android:id="@+id/state"
+                            android:textSize="@dimen/f11"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/font_yellew"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                            <ImageView
+                                android:id="@+id/state_one"
+                                android:src="@mipmap/state_zhong"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@+id/state"
+                                android:layout_marginLeft="@dimen/d15"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:text="- - - -"
+                                android:id="@+id/state_one_heng"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@+id/state_one"
+                                android:textSize="@dimen/f12"
+                                android:layout_marginLeft="@dimen/d5"
+                                android:textColor="@color/font_yellew"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        <ImageView
+                            android:id="@+id/state_two"
+                            android:src="@mipmap/state_zhong"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/state_one_heng"
+                            android:layout_marginLeft="@dimen/d5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:text="- - - -"
+                            android:id="@+id/state_two_heng"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/state_two"
+                            android:textSize="@dimen/f12"
+                            android:layout_marginLeft="@dimen/d5"
+                            android:textColor="@color/font_yellew"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:id="@+id/state_three"
+                            android:src="@mipmap/state_wei"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/state_two_heng"
+                            android:layout_marginLeft="@dimen/d5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:text="- - - -"
+                            android:id="@+id/state_three_heng"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/state_three"
+                            android:textSize="@dimen/f12"
+                            android:layout_marginLeft="@dimen/d5"
+                            android:textColor="@color/font_yellew"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:id="@+id/state_four"
+                            android:src="@mipmap/state_zhong"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/state_three_heng"
+                            android:layout_marginLeft="@dimen/d5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:text="- - - -"
+                            android:id="@+id/state_four_heng"
+
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/state_four"
+                            android:textSize="@dimen/f12"
+                            android:layout_marginLeft="@dimen/d5"
+                            android:textColor="@color/font_yellew"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:id="@+id/state_five"
+                            android:src="@mipmap/state_zhong"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/state_four_heng"
+                            android:layout_marginLeft="@dimen/d5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+        <View
+            android:background="@color/empt_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d10">
+
+        </View>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_weight="8"
+                android:layout_marginLeft="@dimen/d20"
+                android:layout_marginRight="@dimen/d20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="跟单列表"
+                    android:textSize="@dimen/f12"
+                    android:textColor="@color/font_black_shen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <View
+                android:background="@color/empt_color"
+                android:layout_marginLeft="@dimen/d20"
+                android:layout_marginRight="@dimen/d20"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"></View>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/OkamiRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

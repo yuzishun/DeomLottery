@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yuzishun.newdeom.my.activity.Details_mingxiActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/login_red"
+        android:layout_height="@dimen/d40">
+
+        <LinearLayout
+            android:id="@+id/layout_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text=""
+                android:id="@+id/title_text"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:maxLines="1"
+
+                android:layout_marginLeft="@dimen/d40"
+                android:layout_marginRight="@dimen/d40"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/image_back_left"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@mipmap/back"
+                android:layout_width="@dimen/d15"
+                android:layout_height="@dimen/d15" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/image_back_right"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@mipmap/question"
+                android:layout_width="@dimen/d15"
+                android:layout_height="@dimen/d15" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="流水号:"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="2019043020004001110072004"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="@color/empt_color"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp">
+
+        </View>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="类型"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="在线支付"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="@color/empt_color"
+
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp">
+
+        </View>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="支出:"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="39.8元"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/d20"
+                android:textColor="@color/login_red"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="@color/empt_color"
+
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp">
+
+        </View>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="支付方式:"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="支付宝"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="@color/empt_color"
+
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp">
+
+        </View>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="时间:"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="2019-05-03  20:08:32"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="@color/empt_color"
+
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp">
+
+        </View>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="余额:"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="0.20元"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="@color/empt_color"
+
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp">
+
+        </View>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="备注:"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="购买了xxxxxxxx"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/d20"
+                android:textColor="@color/font_black"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1.3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </LinearLayout>
+</LinearLayout>

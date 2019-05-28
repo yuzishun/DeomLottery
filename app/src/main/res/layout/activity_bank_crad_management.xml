@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yuzishun.newdeom.my.activity.BankCradManagementActivity">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/login_red"
+        android:layout_height="@dimen/d40">
+
+        <LinearLayout
+            android:id="@+id/layout_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text=""
+                android:id="@+id/title_text"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:maxLines="1"
+
+                android:layout_marginLeft="@dimen/d40"
+                android:layout_marginRight="@dimen/d40"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/image_back_left"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@mipmap/back"
+                android:layout_width="@dimen/d15"
+                android:layout_height="@dimen/d15" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/image_back_right"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@mipmap/add"
+                android:layout_width="@dimen/d15"
+                android:layout_height="@dimen/d15" />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d10">
+
+    </View>
+
+    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+        android:id="@+id/BankRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>
+
+
+
+</LinearLayout>

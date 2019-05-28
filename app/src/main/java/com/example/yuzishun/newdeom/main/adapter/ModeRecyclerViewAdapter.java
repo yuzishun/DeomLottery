@@ -1,0 +1,140 @@
+package com.example.yuzishun.newdeom.main.adapter;
+
+import android.app.Activity;
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.example.yuzishun.newdeom.R;
+import com.example.yuzishun.newdeom.base.MyApplication;
+import com.example.yuzishun.newdeom.model.SureguanBean;
+import com.example.yuzishun.newdeom.my.adapter.BankCradAdapter;
+import com.example.yuzishun.newdeom.utils.ToastUtil;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by yuzishun on 2019/5/24.
+ */
+
+public class ModeRecyclerViewAdapter extends RecyclerView.Adapter<ModeRecyclerViewAdapter.ViewHolde> {
+    private Context context;
+    private List<SureguanBean> list;
+    private int length;
+    private boolean[] isCheck;
+    public ModeRecyclerViewAdapter(Context context, List<SureguanBean> list,int length) {
+        this.context = context;
+        this.list = list;
+        this.length = length;
+
+    }
+    // 采用接口回调的方式实现RecyclerView的ItemClick
+    public OnRecyclerViewListener mOnRecyclerViewListener;
+
+
+    // 接口回调第一步: 定义接口和接口中的方法
+    public interface OnRecyclerViewListener {
+
+        void onItemClick(int position);
+    }
+    // 接口回调第二步: 初始化接口的引用
+    public void setOnRecyclerViewListener(OnRecyclerViewListener l) {
+        this.mOnRecyclerViewListener = l;
+    }
+
+
+    @Override
+    public ModeRecyclerViewAdapter.ViewHolde onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new ViewHolde(LayoutInflater.from(context).inflate(R.layout.mode_mixed_recycler_chuan,parent,false));
+    }
+
+    @Override
+    public void onBindViewHolder(ModeRecyclerViewAdapter.ViewHolde holder, final int position) {
+
+        holder.item.setText(list.get(position).getName());
+
+
+        if(list.size()==1){
+
+            holder.item.setTextColor(context.getResources().getColor(R.color.white));
+            holder.item.setBackgroundResource(R.drawable.login_radios_border_sure_red);
+
+        }else {
+
+
+
+        if(list.get(position).isIsselect()){
+
+            holder.item.setTextColor(context.getResources().getColor(R.color.white));
+            holder.item.setBackgroundResource(R.drawable.login_radios_border_sure_red);
+
+
+        }else {
+            holder.item.setTextColor(context.getResources().getColor(R.color.font_black));
+            holder.item.setBackgroundResource(R.drawable.login_radios_border_sure_white);
+
+        }
+        }
+
+
+
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                if (mOnRecyclerViewListener != null) {
+////                    mOnRecyclerViewListener.onItemClick(position);
+////                }
+//
+//                Toast.makeText(context, "111", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               choiceState(position);
+            }
+        });
+
+    }
+    /**
+     * 改变某一个选项的状态
+     * @param post
+     */
+    public void choiceState(int post) {
+        /**
+         *  传递过来所点击的position,如果是本身已经是选中状态,就让他变成不是选中状态,
+         *  如果本身不是选中状态,就让他变成选中状态
+         */
+        if(list.size()==1){
+            ToastUtil.showToast(context,"只有一个不能不选");
+        }else {
+            list.get(post).isselect = list.get(post).isselect == true ? false : true;
+
+            this.notifyDataSetChanged();
+
+        }
+
+
+    }
+
+
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+    public class ViewHolde extends RecyclerView.ViewHolder {
+        Button item;
+        public ViewHolde(View itemView) {
+            super(itemView);
+            item = itemView.findViewById(R.id.item);
+        }
+    }
+}

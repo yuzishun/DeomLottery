@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yuzishun.newdeom.my.activity.BindingBankActivity">
+    <include layout="@layout/title_text"></include>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/bandingbank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="即可享受安全便捷的移动支付体验"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/f9"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/tianjia_bank"
+                android:layout_marginBottom="@dimen/d10"
+
+                android:textColor="@color/font_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="添加银行卡"
+                android:layout_marginBottom="@dimen/d5"
+                android:layout_above="@+id/tianjia_bank"
+                android:layout_centerHorizontal="true"
+
+                android:textSize="@dimen/f9"
+                android:textColor="@color/font_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_weight="4"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_weight="1.05"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="!  请绑定持卡人本人的银行卡"
+                        android:textColor="@color/login_red"
+                        android:textSize="@dimen/f9"
+                        android:layout_marginLeft="@dimen/d30"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_weight="4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="@string/Bank_number"
+
+                            android:layout_centerVertical="true"
+                            android:textSize="@dimen/f11"
+                            android:layout_marginLeft="@dimen/d30"
+                            android:textColor="@color/gray_Overall_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_weight="1.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                            android:layout_weight="1"
+                            android:id="@+id/Edittext_bannumber"
+                            android:paddingLeft="@dimen/d5"
+                            android:maxLines="1"
+                            android:inputType="number"
+                            android:ellipsize="end"
+                            android:background="@null"
+                            android:layout_marginLeft="@dimen/d15"
+                            android:hint="请填写银行卡号"
+                            android:textColorHint="@color/edittext_hintcolor"
+                            android:textSize="@dimen/f10"
+                            android:layout_marginRight="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+
+                <View
+                    android:background="@color/empt_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"></View>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_weight="4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="@string/Phone_Number"
+                            android:layout_centerVertical="true"
+                            android:textSize="@dimen/f11"
+                            android:layout_marginLeft="@dimen/d30"
+                            android:textColor="@color/gray_Overall_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_weight="1.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                            android:inputType="number"
+                            android:layout_weight="1"
+                            android:paddingLeft="@dimen/d5"
+                            android:maxLines="1"
+                            android:id="@+id/Edittext_phonenumber"
+
+                            android:ellipsize="end"
+                            android:background="@null"
+                            android:layout_marginLeft="@dimen/d15"
+                            android:hint="@string/Please_Phone_Number"
+                            android:textColorHint="@color/edittext_hintcolor"
+                            android:textSize="@dimen/f10"
+                            android:layout_marginRight="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <View
+                    android:background="@color/empt_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"></View>
+                <LinearLayout
+                    android:layout_weight="0.95"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_weight="4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="@string/Message_yanzheng"
+                            android:layout_centerVertical="true"
+                            android:textSize="@dimen/f11"
+                            android:layout_marginLeft="@dimen/d30"
+                            android:textColor="@color/gray_Overall_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_weight="1.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                            android:inputType="number"
+                            android:layout_weight="1"
+                            android:paddingLeft="@dimen/d5"
+                            android:id="@+id/phonecodeEditText"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:background="@null"
+                            android:layout_marginLeft="@dimen/d15"
+                            android:hint="@string/Please_Write_Message"
+                            android:textColorHint="@color/edittext_hintcolor"
+                            android:textSize="@dimen/f10"
+                            android:layout_marginRight="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+
+                        <Button
+                            android:id="@+id/hou_code"
+                            android:background="@drawable/login_select"
+                            android:layout_width="80dp"
+                            android:text="@string/Obtain_Message"
+                            android:textSize="@dimen/f12"
+                            android:textColor="@color/white"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/d10"
+                            android:layout_height="30dp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="4"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button_bingd"
+                    android:background="@drawable/login_select"
+                    android:text="确认绑定"
+                    android:layout_centerHorizontal="true"
+                    android:enabled="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f12"
+                    android:layout_width="280dp"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

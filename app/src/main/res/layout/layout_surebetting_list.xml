@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="@dimen/d80">
+
+    <LinearLayout
+        android:layout_weight="1.2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/Text_name"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="周三001    鹿岛鲁角     vs     庆南FC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/cancle"
+                android:id="@+id/cancle"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/d20"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button_choose"
+            android:background="@drawable/login_radios_border_sure_red"
+            android:layout_marginLeft="@dimen/d20"
+            android:layout_marginRight="@dimen/d20"
+            android:layout_marginTop="@dimen/d5"
+            android:textSize="@dimen/f12"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:paddingLeft="@dimen/d5"
+            android:paddingRight="@dimen/d5"
+
+            android:textColor="@color/white"
+            android:text="胜平负：主平/让球胜平负：主胜"
+            android:layout_marginBottom="@dimen/d5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <View
+        android:background="@color/edittext_hintcolor"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"></View>
+
+</LinearLayout>

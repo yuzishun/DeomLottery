@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yuzishun.newdeom.documentary.activity.CopydocumentActivity">
+
+    <include layout="@layout/title_text"></include>
+    <View
+        android:background="@color/empt_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d10"></View>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_weight="1.05"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/d30"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="跟单金额(元)"
+                    android:textSize="@dimen/f12"
+                    android:textColor="@color/font_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="100"
+                    android:layout_marginTop="@dimen/d10"
+                    android:textSize="@dimen/f15"
+                    android:textColor="@color/font_black"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <View
+                android:background="@color/empt_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp">
+
+            </View>
+            <RelativeLayout
+                android:layout_weight="1.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="跟单倍数"
+                    android:textColor="@color/font_black"
+                    android:textSize="@dimen/f12"
+                    android:layout_centerVertical="true"
+
+                    android:layout_marginLeft="@dimen/d30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/d30"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.example.yuzishun.newdeom.documentary.custom.AmountView
+                        android:id="@+id/amountView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </com.example.yuzishun.newdeom.documentary.custom.AmountView>
+
+                </RelativeLayout>
+            </RelativeLayout>
+            <View
+                android:background="@color/empt_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp">
+
+            </View>
+            <RelativeLayout
+                android:layout_weight="1.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="跟单金额"
+                    android:textColor="@color/font_black"
+                    android:textSize="@dimen/f12"
+                    android:layout_centerVertical="true"
+
+                    android:layout_marginLeft="@dimen/d30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="猴子理财团"
+
+                    android:textColor="@color/login_red"
+                    android:textSize="@dimen/f12"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/d30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <View
+                android:background="@color/empt_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp">
+
+            </View>
+            <RelativeLayout
+                android:layout_weight="1.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="跟单金额"
+                    android:textColor="@color/font_black"
+                    android:textSize="@dimen/f12"
+                    android:layout_centerVertical="true"
+
+                    android:layout_marginLeft="@dimen/d30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="100"
+                    android:textColor="@color/font_black"
+                    android:textSize="@dimen/f12"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/d30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <View
+                android:background="@color/empt_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp">
+
+            </View>
+            <RelativeLayout
+                android:layout_weight="1.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="佣金比例"
+                    android:textColor="@color/font_black"
+                    android:textSize="@dimen/f12"
+                    android:layout_centerVertical="true"
+
+                    android:layout_marginLeft="@dimen/d30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="10%"
+                    android:textColor="@color/font_black"
+                    android:textSize="@dimen/f12"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/d30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <View
+                android:background="@color/empt_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp">
+
+            </View>
+            <RelativeLayout
+                android:layout_weight="1.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="截止时间"
+                    android:textColor="@color/font_black"
+                    android:textSize="@dimen/f12"
+                    android:layout_centerVertical="true"
+
+                    android:layout_marginLeft="@dimen/d30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="04-18  08:00"
+                    android:textColor="@color/font_black"
+                    android:textSize="@dimen/f12"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/d30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <Button
+                android:id="@+id/button_resign"
+                android:background="@drawable/login_select"
+                android:text="提交订单"
+                android:layout_centerHorizontal="true"
+                android:enabled="true"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/d30"
+                android:textSize="@dimen/f12"
+                android:layout_marginLeft="@dimen/d30"
+                android:layout_marginRight="@dimen/d30"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="80dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="80dp">
+
+        <LinearLayout
+            android:layout_weight="3"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:src="@mipmap/jianhang"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/Text_card_bank"
+                android:text="@string/jianhang"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/Text_card_no"
+                android:text="@string/weihao"
+                android:layout_marginTop="@dimen/d15"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_alignParentBottom="true"
+        android:background="@color/edittext_hintcolor"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp">
+
+    </View>
+
+</RelativeLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="login_red">#F94848</color>
+    <color name="white">#ffffff</color>
+    <color name="gray_Overall_hint">#B1B1B1</color>
+    <color name="edittext_hintcolor">#D1D1D1</color>
+    <color name="font_black">#606060</color>
+    <color name="empt_color">#F4F4F4</color>
+    <color name="transparent">#00000000</color>
+    <color name="font_black_shen">#191919</color>
+    <color name="font_gray">#959193</color>
+    <color name="font_yellew">#FFCA28</color>
+    <color name="divider">#ffd2d2d2</color>
+    <color name="font_green">#71D79D</color>
+
+
+    <color name="c23">#337e90a7</color>
+    <color name="c3">#FFFFFFFF</color>
+</resources>

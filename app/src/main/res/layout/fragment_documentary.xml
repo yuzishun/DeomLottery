@@ -1,0 +1,203 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.example.yuzishun.newdeom.documentary.activity.DocumentaryFragment">
+
+    <include layout="@layout/title_text"></include>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/Document_Refresh"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/layout_document"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
+
+                    <LinearLayout
+                        android:id="@+id/layout_profitlist"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:src="@mipmap/profitlist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:text="盈利榜"
+                            android:layout_marginTop="@dimen/d5"
+                            android:textColor="@color/font_black_shen"
+                            android:textSize="@dimen/f11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_biggolist"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:src="@mipmap/biggolist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:text="命中榜"
+                            android:layout_marginTop="@dimen/d5"
+
+                            android:textColor="@color/font_black_shen"
+                            android:textSize="@dimen/f11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:id="@+id/layout_moneylist"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:src="@mipmap/moneylist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:text="奖金榜"
+                            android:layout_marginTop="@dimen/d5"
+
+                            android:textColor="@color/font_black_shen"
+                            android:textSize="@dimen/f11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:id="@+id/layout_followlist"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:src="@mipmap/followlist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:text="我的关注"
+                            android:layout_marginTop="@dimen/d5"
+                            android:textColor="@color/font_black_shen"
+                            android:textSize="@dimen/f11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <View
+                    android:background="@color/empt_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"></View>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="热门大神"
+                        android:id="@+id/hot"
+                        android:textColor="@color/login_red"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginTop="@dimen/d10"
+                        android:layout_marginLeft="@dimen/d20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <com.example.yuzishun.newdeom.documentary.custom.MyGridView
+                        android:layout_below="@+id/hot"
+                        android:id="@+id/Hot_GridView"
+                        android:gravity="center"
+                        android:numColumns="4"
+                        android:layout_marginBottom="@dimen/d10"
+                        android:verticalSpacing="@dimen/d5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                    </com.example.yuzishun.newdeom.documentary.custom.MyGridView>
+
+                </RelativeLayout>
+
+                <View
+                    android:background="@color/empt_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"></View>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="跟单列表"
+                        android:layout_marginTop="@dimen/d10"
+                        android:layout_marginLeft="@dimen/d20"
+                        android:textColor="@color/login_red"
+                        android:textSize="@dimen/f12"
+                        android:id="@+id/id_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <com.example.yuzishun.newdeom.main.custom.MyRecyclerView
+                        android:id="@+id/Document_RecyclerView"
+                        android:layout_below="@+id/id_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                    </com.example.yuzishun.newdeom.main.custom.MyRecyclerView>
+
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <TextView
+        android:visibility="visible"
+        android:id="@+id/Text_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="正在加载..."
+        android:textColor="@color/font_black"
+        />
+
+</LinearLayout>

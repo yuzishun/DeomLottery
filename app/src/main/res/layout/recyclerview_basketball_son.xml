@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_weight="4"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="澳超"
+                android:id="@+id/Text_diqu"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_weight="1.6"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="布里斯班狮吼"
+                    android:id="@+id/Text_left"
+                    android:textSize="@dimen/f12"
+                    android:textColor="@color/font_black"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="2.1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:text="vs"
+                    android:textSize="@dimen/f9"
+                    android:textColor="@color/font_black"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_weight="1.5"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/Text_right"
+
+                    android:text="布里斯班狮吼"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/f12"
+                    android:textColor="@color/font_black"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_weight="5"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/Text_bianhao"
+                    android:text="001"
+                    android:textSize="@dimen/f14"
+                    android:textColor="@color/font_black"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="截止11:50"
+                    android:id="@+id/Text_data"
+                    android:textSize="@dimen/f11"
+                    android:layout_marginTop="@dimen/d20"
+                    android:textColor="@color/edittext_hintcolor"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_weight="4"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:background="@drawable/basket_yellow"
+                        android:gravity="center"
+                        android:layout_width="20dp"
+                        android:layout_height="28dp">
+                        <TextView
+                            android:textSize="@dimen/f9"
+                            android:ems="1"
+                            android:text="胜负"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:background="@drawable/basket_bule"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/d5"
+
+                        android:layout_width="20dp"
+                        android:layout_height="28dp">
+
+                        <TextView
+                            android:textSize="@dimen/f9"
+                            android:text="让分"
+                            android:ems="1"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="@drawable/basket_red"
+                        android:layout_marginTop="@dimen/d5"
+                        android:gravity="center"
+
+                        android:layout_width="20dp"
+                        android:layout_height="28dp">
+                        <TextView
+                            android:textSize="@dimen/f9"
+                            android:text="大小"
+                            android:ems="1"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/button_zero"
+                        android:text="你好"
+                        android:textSize="@dimen/f11"
+                        android:textColor="@color/font_black"
+
+                        android:background="@drawable/login_radios_border_sure_red"
+                        android:layout_width="70dp"
+                        android:layout_height="23dp" />
+                    <Button
+                        android:id="@+id/button_two"
+
+                        android:text="你好"
+                        android:textSize="@dimen/f11"
+                        android:textColor="@color/font_black"
+                        android:layout_marginTop="@dimen/d7"
+
+                        android:background="@drawable/login_radios_border_sure_white"
+                        android:layout_width="70dp"
+                        android:layout_height="23dp" />
+                    <Button
+                        android:id="@+id/button_four"
+
+                        android:text="你好"
+                        android:textSize="@dimen/f11"
+                        android:textColor="@color/font_black"
+                        android:layout_marginTop="@dimen/d7"
+
+                        android:background="@drawable/login_radios_border_sure_white"
+                        android:layout_width="70dp"
+                        android:layout_height="23dp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_weight="1.5"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+
+                    android:text="主3.5"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/f10"
+                    android:id="@+id/home_socre"
+                    android:textColor="@color/login_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="主3.5"
+                    android:id="@+id/let_socre"
+
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/d20"
+                    android:textSize="@dimen/f10"
+                    android:textColor="@color/login_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/button_one"
+                        android:text="你好"
+                        android:textSize="@dimen/f11"
+                        android:textColor="@color/font_black"
+
+                        android:background="@drawable/login_radios_border_sure_red"
+                        android:layout_width="70dp"
+                        android:layout_height="23dp" />
+                    <Button
+                        android:id="@+id/button_three"
+
+                        android:text="你好"
+                        android:textSize="@dimen/f11"
+                        android:textColor="@color/font_black"
+                        android:layout_marginTop="@dimen/d7"
+
+                        android:background="@drawable/login_radios_border_sure_white"
+                        android:layout_width="70dp"
+                        android:layout_height="23dp" />
+                    <Button
+                        android:id="@+id/button_fire"
+
+                        android:text="你好"
+                        android:textSize="@dimen/f11"
+                        android:textColor="@color/font_black"
+                        android:layout_marginTop="@dimen/d7"
+
+                        android:background="@drawable/login_radios_border_sure_white"
+                        android:layout_width="70dp"
+                        android:layout_height="23dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:background="@drawable/login_radios_border_sure_white"
+                        android:gravity="center"
+                        android:id="@+id/layout_victorcha"
+                        android:layout_width="30dp"
+                        android:layout_height="90dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:ems="1"
+
+                            android:text="胜分差"
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/f11"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:background="@color/empt_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d10">
+
+
+    </View>
+</LinearLayout>

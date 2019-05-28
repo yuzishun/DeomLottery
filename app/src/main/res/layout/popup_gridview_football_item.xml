@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="80dp"
+    android:gravity="center"
+    android:layout_height="35dp">
+    <RelativeLayout
+        android:id="@+id/layout_relat"
+        android:layout_width="@dimen/d70"
+        android:gravity="center"
+        android:background="@drawable/mexbet_item"
+
+        android:layout_height="25dp">
+
+        <TextView
+            android:text="你好"
+
+            android:textSize="@dimen/f12"
+            android:id="@+id/item"
+            android:textColor="@color/gray_Overall_hint"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</LinearLayout>

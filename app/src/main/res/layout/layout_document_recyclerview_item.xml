@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+
+    android:background="@color/white"
+    android:layout_height="250dp">
+
+    <LinearLayout
+        android:layout_weight="1.1"
+        android:layout_marginLeft="@dimen/d20"
+        android:layout_marginRight="@dimen/d20"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:src="@mipmap/gray_icon"
+                android:id="@+id/icon"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:text="我们仍然未知"
+
+                android:textColor="@color/font_black_shen"
+                android:textSize="@dimen/f11"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/icon"
+                android:layout_marginLeft="@dimen/d10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="04-15  23:50 截止"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/gray_Overall_hint"
+                android:textSize="@dimen/f9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="周一低调一点，本单sp3+最近几天总是一红一黑，该连红了，不多比比，战绩说话 !"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/f11"
+                android:textColor="@color/font_black_shen"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/d20"
+        android:layout_marginRight="@dimen/d20"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/MyTable"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:orientation="vertical"
+            />
+        <Button
+            android:background="@drawable/login_shap"
+            android:layout_width="70dp"
+            android:text="跟单"
+            android:id="@+id/document_shou_button_"
+            android:textColor="@color/white"
+            android:textSize="@dimen/f10"
+            android:layout_marginBottom="@dimen/d10"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_height="30dp" />
+
+    </RelativeLayout>
+    <View
+        android:background="@color/empt_color"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp">
+
+    </View>
+</LinearLayout>

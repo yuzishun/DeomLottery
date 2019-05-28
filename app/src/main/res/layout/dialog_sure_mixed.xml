@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="236dp"
+        android:orientation="vertical"
+        android:layout_height="207dp">
+
+
+        <LinearLayout
+            android:layout_weight="1.4"
+            android:background="@drawable/dialog_mixed_shape_white_top"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="确认购买"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="*注：提交后不支持撤单，若出现流单"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/d4"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="资金将退回到现金账户"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/d4"
+
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/dialog_mixed_shape_white"
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="认购金额"
+                        android:textColor="@color/font_black"
+
+                        android:layout_marginTop="@dimen/d10"
+                        android:layout_alignParentRight="true"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginRight="@dimen/d5"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="认购注数"
+                        android:textColor="@color/font_black"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginRight="@dimen/d5"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="认购倍数"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:textColor="@color/font_black"
+                        android:layout_marginBottom="@dimen/d10"
+                        android:layout_marginRight="@dimen/d5"
+                        android:textSize="@dimen/f12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="8元"
+                        android:id="@+id/pop_money"
+                        android:textColor="@color/login_red"
+
+                        android:layout_marginTop="@dimen/d10"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginLeft="@dimen/d10"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="4注"
+                        android:id="@+id/pop_bunch"
+                        android:textColor="@color/login_red"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginLeft="@dimen/d10"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="1倍"
+                        android:id="@+id/text_bei"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:textColor="@color/login_red"
+                        android:layout_marginBottom="@dimen/d10"
+                        android:layout_marginLeft="@dimen/d10"
+                        android:textSize="@dimen/f12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button_cancle"
+                    android:background="@drawable/document_copy_edittext_shape_white"
+                    android:text="取消"
+                    android:enabled="true"
+                    android:textColor="@color/edittext_hintcolor"
+                    android:textSize="@dimen/f10"
+                    android:layout_width="55dp"
+                    android:layout_height="25dp" />
+                <Button
+                    android:background="@drawable/recharge_item_button"
+                    android:text="确定"
+                    android:id="@+id/submit_order"
+                    android:layout_marginLeft="@dimen/d40"
+                    android:enabled="true"
+                    android:textColor="@color/login_red"
+                    android:textSize="@dimen/f10"
+                    android:layout_width="55dp"
+                    android:layout_height="25dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
