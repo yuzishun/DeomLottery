@@ -74,6 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/money_Textview"
                     android:text="跟单金额 50倍 共2元"
                     android:layout_marginLeft="@dimen/d25"
                     android:textSize="@dimen/f12"
@@ -247,12 +248,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <com.example.yuzishun.newdeom.login.custom.ClearEditText
-                    android:inputType="number"
+
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/d10"
                     android:id="@+id/phoneEditText"
                     android:paddingTop="@dimen/d10"
-
                     android:background="@color/empt_color"
                     android:layout_marginLeft="@dimen/d15"
                     android:textColorHint="@color/edittext_hintcolor"
@@ -269,7 +269,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <Button
-                    android:id="@+id/button_resign"
+                    android:id="@+id/button_send"
                     android:background="@drawable/login_select"
                     android:text="立即发单"
                     android:layout_centerHorizontal="true"

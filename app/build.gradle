@@ -37,9 +37,6 @@ dependencies {
     //屏幕适配AndroidAutoSize
     implementation 'me.jessyan:autosize:0.9.1'
     //oom检测工具
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     //轮播图
     compile 'com.jude:rollviewpager:1.2.9'
 

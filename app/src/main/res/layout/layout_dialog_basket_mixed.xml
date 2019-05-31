@@ -10,7 +10,7 @@
         android:background="@drawable/dialog_mixed_border"
         android:layout_width="300dp"
         android:orientation="vertical"
-        android:layout_height="300dp">
+        android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/d40">
@@ -49,7 +49,7 @@
             android:layout_marginRight="@dimen/d10"
             android:layout_marginBottom="@dimen/d5"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -96,7 +96,7 @@
             android:layout_marginLeft="@dimen/d10"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:background="#B8B8B8"

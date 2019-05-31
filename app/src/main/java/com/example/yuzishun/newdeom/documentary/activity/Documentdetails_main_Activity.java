@@ -2,6 +2,7 @@ package com.example.yuzishun.newdeom.documentary.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -11,13 +12,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
 import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.documentary.custom.AmountView;
 import com.example.yuzishun.newdeom.model.BasketballOrderBean;
+import com.example.yuzishun.newdeom.model.CodeBean;
 import com.example.yuzishun.newdeom.model.FootBallOrderBean;
+import com.example.yuzishun.newdeom.model.MainOrderBasketBean;
+import com.example.yuzishun.newdeom.model.MainOrderFootBean;
 import com.example.yuzishun.newdeom.my.activity.SendDocumentActivity;
 import com.example.yuzishun.newdeom.my.custom.MyTableTextView;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
@@ -28,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -37,10 +43,10 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /***
- * 我的页面订单的详情界面
+ * 跟单大厅里面的的详情界面
  *
  */
-public class DocumentdetailsActivity extends BaseActivity implements View.OnClickListener {
+public class Documentdetails_main_Activity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.image_back)
     LinearLayout image_back;
@@ -116,9 +122,15 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
     TextView plan_profits;
     @BindView(R.id.gendan_bumber)
     TextView gendan_bumber;
+    private int flag,type,plan_id,multiple;
+    private Double multiple_price;
+    @BindView(R.id.text_pluc)
+    TextView text_pluc;
+    @BindView(R.id.buttom_money)
+    TextView buttom_money;
 
-    private int flag,type,order_id,multiple_price,multiple;
-
+    @BindView(R.id.text_gen)
+    TextView text_gen;
     @Override
     public int intiLayout() {
         return R.layout.activity_documentdetails;
@@ -130,16 +142,24 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
         Intent intent = getIntent();
         flag = intent.getIntExtra("flag",0);
         type = intent.getIntExtra("type",0);
-        order_id = intent.getIntExtra("order_id",0);
-        //0就是订单详情，1的话就是跟单详情
-            Layout_genbottom.setVisibility(View.GONE);
-            layout_publicv.setVisibility(View.GONE);
+        plan_id = intent.getIntExtra("plan_id",0);
+
+
+
+        //0就是大厅里面的详情，1的话就是大神首页里面的详情
+        if(flag==0){
             layout_buttonv.setVisibility(View.GONE);
 
-            title_text.setText("订单详情");
+            title_text.setText("跟单详情");
 
+        }else {
+            layout_buttonv.setVisibility(View.GONE);
 
+            title_text.setText("跟单详情");
+
+        }
         image_back.setOnClickListener(this);
+        text_gen.setOnClickListener(this);
         button_senddocument.setOnClickListener(this);
         initnet();
         //倍数选择
@@ -147,7 +167,9 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
         amountView.setOnAmountChangeListener(new AmountView.OnAmountChangeListener() {
             @Override
             public void onAmountChange(View view, int amount) {
-                Toast.makeText(getApplicationContext(), "Amount=>  " + amount, Toast.LENGTH_SHORT).show();
+                multiple = amount;
+                buttom_money.setText(amount*multiple_price+"元");
+//                Toast.makeText(getApplicationContext(), "Amount=>  " + amount, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -155,7 +177,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
     private void initnet() {
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.GetAsynMap(Url.baseUrl + "order/getOrderInfo?order_id=" + order_id, new Callback() {
+        okhttpUtlis.GetAsynMap(Url.baseUrl + "order_plan/getOrderPlanInfo?plan_id=" + plan_id, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -174,64 +196,68 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                             String msg = jsonObject.getString("msg");
 
                             if(code==10000){
-                                Glide.with(DocumentdetailsActivity.this).load(Content.userurl).asBitmap().centerCrop().into(usericon);
-                                username.setText(Content.username);
-
-
 
                                 //type是0的时候是足球不是0则是篮球
                                 if(type==0){
+                                    MainOrderFootBean mainOrderFootBean = com.alibaba.fastjson.JSONObject.parseObject(result,MainOrderFootBean.class);
 
-
-
-
-
-                                    FootBallOrderBean footBallOrderBean = com.alibaba.fastjson.JSONObject.parseObject(result,FootBallOrderBean.class);
-
-
-                                    switch (footBallOrderBean.getData().getOrder_status()){
+                                    Glide.with(Documentdetails_main_Activity.this).load(mainOrderFootBean.getData().getImg_head()).asBitmap().centerCrop().into(usericon);
+                                    username.setText(mainOrderFootBean.getData().getUname());
+                                    buttom_money.setText(mainOrderFootBean.getData().getMultiple_price()+"");
+                                    switch (mainOrderFootBean.getData().getOrder_status()){
                                         case -1:
                                             state.setText("申请退款");
-                                            order_money.setText(footBallOrderBean.getData().getOrder_price());
-                                            Winning_money.setText(footBallOrderBean.getData().getBonus_price());
+                                            order_money.setText(mainOrderFootBean.getData().getOrder_price());
+                                            Winning_money.setText(mainOrderFootBean.getData().getBonus_price());
                                             add_money.setText("0");
                                             break;
                                         case 0:
                                             state.setText("待出票");
-                                            order_money.setText(footBallOrderBean.getData().getOrder_price());
-                                            Winning_money.setText(footBallOrderBean.getData().getBonus_price());
+                                            order_money.setText(mainOrderFootBean.getData().getOrder_price());
+                                            Winning_money.setText(mainOrderFootBean.getData().getBonus_price());
                                             add_money.setText("0");
                                             break;
                                         case 1:
-                                            state.setText("待开奖");
-                                            order_money.setText(footBallOrderBean.getData().getOrder_price());
-                                            Winning_money.setText(footBallOrderBean.getData().getBonus_price());
+                                            state.setText(mainOrderFootBean.getData().getCut_off_time()+"截止");
+                                            order_money.setText(mainOrderFootBean.getData().getOrder_price());
+                                            Winning_money.setText("未开奖");
+
                                             add_money.setText("0");
-                                            if(Double.parseDouble(footBallOrderBean.getData().getOrder_price())>=100){
-                                                layout_buttonv.setVisibility(View.VISIBLE);
+                                            if(mainOrderFootBean.getData().getPlan_status()==0){
+                                                text_pluc.setText("完全公开");
+                                                layout_publicv.setVisibility(View.GONE);
+                                                MyTable.setVisibility(View.VISIBLE);
+                                            }else if(mainOrderFootBean.getData().getPlan_status()==1){
+                                                text_pluc.setText("跟单后公开");
+                                                layout_publicv.setVisibility(View.VISIBLE);
+                                                MyTable.setVisibility(View.GONE);
 
                                             }else {
-                                                layout_buttonv.setVisibility(View.GONE);
+                                                text_pluc.setText("截止后公开");
+                                                layout_publicv.setVisibility(View.VISIBLE);
+                                                MyTable.setVisibility(View.GONE);
 
                                             }
+
+
                                             break;
                                         case 2:
                                             state.setText("恭喜中奖");
-                                            order_money.setText(footBallOrderBean.getData().getOrder_price());
-                                            Winning_money.setText(footBallOrderBean.getData().getBonus_price());
-                                            add_money.setText(Double.parseDouble(footBallOrderBean.getData().getBonus_price())*0.05+"");
+                                            order_money.setText(mainOrderFootBean.getData().getOrder_price());
+                                            Winning_money.setText(mainOrderFootBean.getData().getBonus_price());
+                                            add_money.setText(Double.parseDouble(mainOrderFootBean.getData().getBonus_price())*0.05+"");
                                             break;
                                         case 3:
                                             state.setText("再接再厉");
-                                            order_money.setText(footBallOrderBean.getData().getOrder_price());
-                                            Winning_money.setText(footBallOrderBean.getData().getBonus_price());
+                                            order_money.setText(mainOrderFootBean.getData().getOrder_price());
+                                            Winning_money.setText(mainOrderFootBean.getData().getBonus_price());
                                             add_money.setText("0");
                                             break;
 
                                         case -2:
                                             state.setText("已取消");
-                                            order_money.setText(footBallOrderBean.getData().getOrder_price());
-                                            Winning_money.setText(footBallOrderBean.getData().getBonus_price());
+                                            order_money.setText(mainOrderFootBean.getData().getOrder_price());
+                                            Winning_money.setText(mainOrderFootBean.getData().getBonus_price());
                                             add_money.setText("0");
                                             break;
 
@@ -242,43 +268,26 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
 
 
-                                    switch (footBallOrderBean.getData().getOrder_type()){
-                                        case 0:
-                                            layout_dec.setVisibility(View.GONE);
-                                            layout_genv.setVisibility(View.GONE);
-                                            layout_genlistv.setVisibility(View.GONE);
-                                            View_genv.setVisibility(View.GONE);
 
-
-                                            break;
-                                        case 1:
                                             layout_buttonv.setVisibility(View.GONE);
-                                            layout_dec.setVisibility(View.GONE);
                                             View_genv.setVisibility(View.VISIBLE);
 
-                                            multiple_pric.setText("单倍金额:"+footBallOrderBean.getData().getMultiple_price());
-                                            plan_profits.setText("方案提成:"+footBallOrderBean.getData().getOrder_plan().getPlan_profits());
-                                            gendan_bumber.setText("跟单人数（"+footBallOrderBean.getData().getOrder_plan().getPlan_follow_person()+"，共"+footBallOrderBean.getData().getOrder_plan().getPlan_follow_price()+"元）");
-
-                                            break;
-                                        case 2:
-                                            View_genv.setVisibility(View.GONE);
-                                            layout_genlistv.setVisibility(View.GONE);
-                                            layout_buttonv.setVisibility(View.GONE);
-
-                                            multiple_pric.setText("单倍金额:"+footBallOrderBean.getData().getMultiple_price());
-
-                                            plan_profits.setText("方案提成:"+footBallOrderBean.getData().getOrder_follow_plan().getPlan_profits());
-                                            text_dec.setText("跟单于:"+footBallOrderBean.getData().getOrder_follow_plan().getUname());
-
-                                            break;
-
-                                    }
+                                    gendan_bumber.setText("跟单人数（"+mainOrderFootBean.getData().getPlan_follow_person()+"，共"+mainOrderFootBean.getData().getPlan_follow_price()+"元）");
 
 
-                                    Text_Scene.setText(footBallOrderBean.getData().getOrder_odds_info().size()+"场");
-                                    Text_Multiple.setText(footBallOrderBean.getData().getMultiple()+"倍");
-                                    List<String> bunch = footBallOrderBean.getData().getBunch();
+                                    layout_genlistv.setVisibility(View.VISIBLE);
+
+                                            multiple_pric.setText("单倍金额:"+mainOrderFootBean.getData().getMultiple_price());
+
+                                            plan_profits.setText("方案提成:"+Double.parseDouble(mainOrderFootBean.getData().getPlan_profits())*100+"%");
+                                            text_dec.setText(""+mainOrderFootBean.getData().getPlan_desc());
+
+
+
+
+                                    Text_Scene.setText(mainOrderFootBean.getData().getOrder_odds_info().size()+"场");
+                                    Text_Multiple.setText(mainOrderFootBean.getData().getMultiple()+"倍");
+                                    List<String> bunch = mainOrderFootBean.getData().getBunch();
                                     if(bunch.size()>2){
                                         layout_bunch.setVisibility(View.VISIBLE);
 
@@ -360,33 +369,32 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                             break;
 
                                     }
-                                    List<FootBallOrderBean.DataBean.OrderOddsInfoBean> order_odds_info = footBallOrderBean.getData().getOrder_odds_info();
+                                    List<MainOrderFootBean.DataBean.OrderOddsInfoBean> order_odds_info = mainOrderFootBean.getData().getOrder_odds_info();
                                     if(order_odds_info.size()==0){
-                                        layout_publicv.setVisibility(View.VISIBLE);
+
                                     }else {
-                                        initdata_details(DocumentdetailsActivity.this,MyTable,order_odds_info);
+                                        initdata_details(Documentdetails_main_Activity.this,MyTable,order_odds_info);
 
                                     }
-                                    usedr_id.setText("ID:"+footBallOrderBean.getData().getUser_id());
-                                    multiple_price  = footBallOrderBean.getData().getMultiple_price();
-                                    multiple = footBallOrderBean.getData().getMultiple();
-                                    Text_order_id.setText("订单编号："+footBallOrderBean.getData().getOrder_id());
-                                    Text_order_data.setText("下单时间："+footBallOrderBean.getData().getCreate_time());
+
+                                    multiple_price  = Double.parseDouble(mainOrderFootBean.getData().getMultiple_price());
+                                    Text_order_id.setText("订单编号："+mainOrderFootBean.getData().getOrder_id());
+                                    Text_order_data.setText("下单时间："+mainOrderFootBean.getData().getCut_off_time());
 
 
 
                                 }else {
                                     //篮球
-                                    BasketballOrderBean basketballOrderBean = com.alibaba.fastjson.JSONObject.parseObject(result,BasketballOrderBean.class);
+                                    MainOrderBasketBean mainOrderBasketBean = com.alibaba.fastjson.JSONObject.parseObject(result,MainOrderBasketBean.class);
 
-                                    usedr_id.setText("ID:"+basketballOrderBean.getData().getUser_id());
+                                    Glide.with(Documentdetails_main_Activity.this).load(mainOrderBasketBean.getData().getImg_head()).asBitmap().centerCrop().into(usericon);
+                                    username.setText(mainOrderBasketBean.getData().getUname());
+                                    multiple_price  = Double.parseDouble(mainOrderBasketBean.getData().getMultiple_price());
+                                    basketball(mainOrderBasketBean);
+                                    buttom_money.setText(mainOrderBasketBean.getData().getMultiple_price()+"");
 
-                                    multiple_price  = basketballOrderBean.getData().getMultiple_price();
-                                    multiple = basketballOrderBean.getData().getMultiple();
-                                    basketball(basketballOrderBean);
-
-                                    Text_order_id.setText("订单编号："+basketballOrderBean.getData().getOrder_id());
-                                    Text_order_data.setText("下单时间："+basketballOrderBean.getData().getCreate_time());
+                                    Text_order_id.setText("订单编号："+mainOrderBasketBean.getData().getOrder_id());
+                                    Text_order_data.setText("下单时间："+mainOrderBasketBean.getData().getCut_off_time());
 
                                 }
 
@@ -394,7 +402,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
                             }else {
 
-                                ToastUtil.showToast1(DocumentdetailsActivity.this,msg+"");
+                                ToastUtil.showToast1(Documentdetails_main_Activity.this,msg+"");
 
                             }
 
@@ -421,7 +429,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
     }
     //足球
-    private void initdata_details(Context context, LinearLayout linearLayout,List<FootBallOrderBean.DataBean.OrderOddsInfoBean> order_odds_info) {
+    private void initdata_details(Context context, LinearLayout linearLayout,List<MainOrderFootBean.DataBean.OrderOddsInfoBean> order_odds_info) {
 
         //初始化内容
         for (int i = 0; i < order_odds_info.size(); i++) {
@@ -460,7 +468,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
     }
 
     //篮球
-    private void initdata_details_basketball(Context context, LinearLayout linearLayout,List<BasketballOrderBean.DataBean.OrderOddsInfoBean> order_odds_info) {
+    private void initdata_details_basketball(Context context, LinearLayout linearLayout,List<MainOrderBasketBean.DataBean.OrderOddsInfoBean> order_odds_info) {
 
         //初始化内容
         for (int i = 0; i < order_odds_info.size(); i++) {
@@ -551,18 +559,64 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 finish();
                 break;
             case R.id.button_senddocument:
-                Intent intent = new Intent(this, SendDocumentActivity.class);
-                intent.putExtra("order_id",order_id);
-                intent.putExtra("multiple_price",multiple_price);
-                intent.putExtra("multiple",multiple);
-                startActivity(intent);
+
+                break;
+            case R.id.text_gen:
+                send();
                 break;
 
         }
     }
 
+    private void send() {
+        HashMap<String,String> hashMap = new HashMap<>();
+        hashMap.put("plan_id",plan_id+"");
+        hashMap.put("multiple",multiple+"");
+        OkhttpUtlis okhttpUtlis  = new OkhttpUtlis();
 
-    public void basketball(BasketballOrderBean basketballOrderBean){
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "order/installFollowOrder", hashMap, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(final Call call, Response response) throws IOException {
+                final String result = response.body().string();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        CodeBean codeBean = JSON.parseObject(result,CodeBean.class);
+                        if(codeBean.getCode()==10000){
+                            finish();
+
+                            ToastUtil.showToast1(Documentdetails_main_Activity.this,codeBean.getMsg()+"");
+
+                        }else {
+                            ToastUtil.showToast1(Documentdetails_main_Activity.this,codeBean.getMsg()+"");
+
+                        }
+
+
+
+                    }
+                });
+
+
+
+            }
+        });
+
+
+
+    }
+
+
+
+
+
+
+    public void basketball(MainOrderBasketBean basketballOrderBean){
 
         switch (basketballOrderBean.getData().getOrder_status()){
             case -1:
@@ -581,12 +635,21 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 state.setText("待开奖");
                 order_money.setText(basketballOrderBean.getData().getOrder_price());
                 Winning_money.setText("未开奖");
+
                 add_money.setText("0");
-                if(Double.parseDouble(basketballOrderBean.getData().getOrder_price())>=100){
-                    layout_buttonv.setVisibility(View.VISIBLE);
+                if(basketballOrderBean.getData().getPlan_status()==0){
+                    text_pluc.setText("完全公开");
+                    layout_publicv.setVisibility(View.GONE);
+                    MyTable.setVisibility(View.VISIBLE);
+                }else if(basketballOrderBean.getData().getPlan_status()==1){
+                    text_pluc.setText("跟单后公开");
+                    layout_publicv.setVisibility(View.VISIBLE);
+                    MyTable.setVisibility(View.GONE);
 
                 }else {
-                    layout_buttonv.setVisibility(View.GONE);
+                    text_pluc.setText("截止后公开");
+                    layout_publicv.setVisibility(View.VISIBLE);
+                    MyTable.setVisibility(View.GONE);
 
                 }
                 break;
@@ -615,39 +678,19 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
         }
 
-        switch (basketballOrderBean.getData().getOrder_type()){
-            case 0:
-                layout_dec.setVisibility(View.GONE);
-                layout_genv.setVisibility(View.GONE);
-                layout_genlistv.setVisibility(View.GONE);
-                View_genv.setVisibility(View.GONE);
+//
+        layout_buttonv.setVisibility(View.GONE);
+        View_genv.setVisibility(View.VISIBLE);
+
+        gendan_bumber.setText("跟单人数（"+basketballOrderBean.getData().getPlan_follow_person()+"，共"+basketballOrderBean.getData().getPlan_follow_price()+"元）");
 
 
-                break;
-            case 1:
-                layout_buttonv.setVisibility(View.GONE);
-                layout_dec.setVisibility(View.GONE);
-                View_genv.setVisibility(View.VISIBLE);
+        layout_genlistv.setVisibility(View.VISIBLE);
 
-                multiple_pric.setText("单倍金额:"+basketballOrderBean.getData().getMultiple_price());
-                plan_profits.setText("方案提成:"+basketballOrderBean.getData().getOrder_plan().getPlan_profits());
-                gendan_bumber.setText("跟单人数（"+basketballOrderBean.getData().getOrder_plan().getPlan_follow_person()+"，共"+basketballOrderBean.getData().getOrder_plan().getPlan_follow_price()+"元）");
-                layout_genlistv.setVisibility(View.GONE);
+        multiple_pric.setText("单倍金额:"+basketballOrderBean.getData().getMultiple_price());
 
-                break;
-            case 2:
-                View_genv.setVisibility(View.GONE);
-                layout_genlistv.setVisibility(View.GONE);
-                layout_buttonv.setVisibility(View.GONE);
-
-                multiple_pric.setText("单倍金额:"+basketballOrderBean.getData().getMultiple_price());
-
-                plan_profits.setText("方案提成:"+basketballOrderBean.getData().getOrder_follow_plan().getPlan_profits());
-                text_dec.setText("跟单于:"+basketballOrderBean.getData().getOrder_follow_plan().getUname());
-
-                break;
-
-        }
+        plan_profits.setText("方案提成:"+Double.parseDouble(basketballOrderBean.getData().getPlan_profits())*100+"%");
+        text_dec.setText(""+basketballOrderBean.getData().getPlan_desc());
 
 
         Text_Scene.setText(basketballOrderBean.getData().getOrder_odds_info().size()+"场");
@@ -736,15 +779,16 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
         }
 
 
-        List<BasketballOrderBean.DataBean.OrderOddsInfoBean> order_odds_info = basketballOrderBean.getData().getOrder_odds_info();
+        List<MainOrderBasketBean.DataBean.OrderOddsInfoBean> order_odds_info = basketballOrderBean.getData().getOrder_odds_info();
 
         if(order_odds_info.size()==0){
-            layout_publicv.setVisibility(View.VISIBLE);
-        }else {
-            initdata_details_basketball(DocumentdetailsActivity.this,MyTable,order_odds_info);
 
+
+        }else {
+            initdata_details_basketball(Documentdetails_main_Activity.this,MyTable,order_odds_info);
 
         }
+
 
 
 

@@ -62,12 +62,15 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
     RecyclerView baskball_RecyCLerView;
     @BindView(R.id.Text_clear)
     TextView Text_clear;
+    @BindView(R.id.layout_empt)
+    LinearLayout layout_empt;
     private BaskballAdapter adapter;
     private String[] string_one= {"主负","主负","主负","主胜","大分","小分"};
     private String[] string_two= {"1-5","6-10","11-15","16-20","21-25","26+"};
     private List<String> list_one = new ArrayList<>();
     private List<String> list_two = new ArrayList<>();
     private List<String> list_three = new ArrayList<>();
+    private BasketBallBean basketBallBean;
     @Override
     public int intiLayout() {
         return R.layout.activity_basket_ball_mixed;
@@ -166,9 +169,17 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
 
 
             case R.id.button_sure:
-                Intent intent = new Intent(this,BasketballSureActivity.class);
-                Content.list_chooe_bask = adapter.getList();
-                startActivity(intent);
+
+                if(adapter.getnumber()==0){
+                    ToastUtil.showToast1(this,"至少选择一场");
+
+                }else {
+                    Intent intent = new Intent(this,BasketballSureActivity.class);
+                    Content.list_chooe_bask = adapter.getList();
+                    startActivity(intent);
+                }
+
+
                 break;
 
 
@@ -210,11 +221,20 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(android.os.Message msg) {
-            Text_loading.setVisibility(View.GONE);
-            baskball_RecyCLerView.setVisibility(View.VISIBLE);
-            layout_bottom.setVisibility(View.VISIBLE);
-            layout_swipe.setVisibility(View.VISIBLE);
-            adapter.expandAll();
+            if(basketBallBean.getData().size()==0){
+                baskball_RecyCLerView.setVisibility(View.GONE);
+                layout_bottom.setVisibility(View.GONE);
+                layout_swipe.setVisibility(View.GONE);
+                layout_empt.setVisibility(View.VISIBLE);
+            }else {
+                layout_empt.setVisibility(View.GONE);
+                Text_loading.setVisibility(View.GONE);
+                baskball_RecyCLerView.setVisibility(View.VISIBLE);
+                layout_bottom.setVisibility(View.VISIBLE);
+                layout_swipe.setVisibility(View.VISIBLE);
+                adapter.expandAll();
+            }
+
 
 
         }
@@ -245,10 +265,11 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
                             String msg = jsonObject.getString("msg");
                             if(code==10000){
 
-                                BasketBallBean basketBallBean = JSON.parseObject(result,BasketBallBean.class);
+                                basketBallBean = JSON.parseObject(result,BasketBallBean.class);
                                 List<ChooseBaskBean> list_choose = new ArrayList<>();
 
                                 for (int i = 0; i <basketBallBean.getData().size() ; i++) {
+
                                     ExpandItem_bask item = new ExpandItem_bask(basketBallBean.getData().get(i).getGame_week()+""+basketBallBean.getData().get(i).getGame_group_time()+"共有"+basketBallBean.getData().get(i).getGame_info().size()+"场比赛可投");
                                     for (int j = 0; j < basketBallBean.getData().get(i).getGame_info().size(); j++) {
                                         ChooseBaskBean chooseBaskBean = new ChooseBaskBean();

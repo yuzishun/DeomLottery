@@ -6,6 +6,7 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -23,6 +24,7 @@ import com.example.yuzishun.newdeom.main.adapter.Expand1Item;
 import com.example.yuzishun.newdeom.model.ChooseBaskBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
+import com.example.yuzishun.newdeom.model.SubMixBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +37,9 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
     public static final int  BASKET_TYPE_LEVEL_0 = 0;
     public static final int  BASKET_TYPE_LEVEL_1 = 1;
     public static List<ChooseBaskBean> list_choose = new ArrayList<>();
-
+    //判断选择的有几场，傻瓜方法
+    private static List<String> list_adds;
+    private static List<SubMixBean> list_subMixBean = new ArrayList<>();
 
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
@@ -308,6 +312,69 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
 
 
     }
+
+
+
+    public  int getnumber(){
+
+        list_subMixBean.clear();
+        final List<ChooseBaskBean> list_chooe = list_choose;
+
+        for (int i = 0; i <list_chooe.size(); i++) {
+            list_adds = new ArrayList<>();
+            List<ItemPoint> onelist = list_chooe.get(i).getOnelist();
+            List<ItemPoint> twolist = list_chooe.get(i).getTwolist();
+            List<ItemPoint> threelist = list_chooe.get(i).getThreelist();
+            for (int j = 0; j <onelist.size() ; j++) {
+                if(onelist.get(j).isselect){
+                    list_adds.add(onelist.get(j).getGame_odds_id());
+                }else {
+
+                }
+
+            }
+            for (int j = 0; j <twolist.size() ; j++) {
+                if(twolist.get(j).isselect){
+                    list_adds.add(twolist.get(j).getGame_odds_id());
+
+                }else {
+
+                }
+
+            }
+            for (int j = 0; j <threelist.size() ; j++) {
+                if(threelist.get(j).isselect){
+                    list_adds.add(threelist.get(j).getGame_odds_id());
+
+                }else {
+
+                }
+
+            }
+
+            if(list_adds.size()==0){
+
+
+            }else {
+                SubMixBean subMixBean = new SubMixBean();
+                subMixBean.setGame_id(list_chooe.get(i).getGame_id());
+                subMixBean.setList(list_adds);
+
+                list_subMixBean.add(subMixBean);
+
+
+
+
+            }
+
+
+
+
+        }
+        Log.e("YZS",list_subMixBean.toString());
+        return list_subMixBean.size();
+    }
+
 
 
 }

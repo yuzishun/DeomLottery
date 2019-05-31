@@ -265,7 +265,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                 Toast.makeText(getContext(), "刷新完成", Toast.LENGTH_SHORT).show();
 
             }
-        },5000);
+        },2000);
 
 
     }

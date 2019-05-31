@@ -43,7 +43,6 @@
         </LinearLayout>
         <LinearLayout
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
             android:background="@drawable/dialog_mixed_shape_white"
 
             android:orientation="vertical"

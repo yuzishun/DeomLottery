@@ -98,6 +98,9 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
         initlist();
         list = generateData();
         adapter = new BettingListAdapter(list);
+        Lottery_RecyCLerView.setAdapter(adapter);
+        Lottery_RecyCLerView.setNestedScrollingEnabled(false);
+        Lottery_RecyCLerView.setLayoutManager(new LinearLayoutManager(BettingActivity.this));
         //下拉刷新的圆圈是否显示
         layout_swipe.setRefreshing(false);
 
@@ -177,6 +180,7 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
+        if(adapter!=null){
 
         if(Content.order_flag==0){
             adapter.notifyDataSetChanged();
@@ -187,6 +191,8 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
             adapter.notifyDataSetChanged();
 
         }
+        }
+
         EventBus.getDefault().post(new MainMessage(BettingListAdapter.getnumber()+""));
 
     }
@@ -199,8 +205,7 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
                 //异步处理加载数据
                 //...
 
-                Lottery_RecyCLerView.setAdapter(adapter);
-                Lottery_RecyCLerView.setLayoutManager(new LinearLayoutManager(BettingActivity.this));
+
 
                 //完成后，通知主线程更新UI
                 handler.sendEmptyMessageDelayed(1, 2000);
@@ -247,7 +252,7 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
         super.onDestroy();
         EventBus.getDefault().unregister(this);
         handler.sendEmptyMessage(1);
-
+        handler.removeCallbacksAndMessages(null);
 
     }
 

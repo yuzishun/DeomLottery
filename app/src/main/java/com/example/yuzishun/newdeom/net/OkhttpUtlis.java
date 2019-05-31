@@ -91,9 +91,10 @@ public class OkhttpUtlis {
     public void GetAsynMap(String url,Callback callback){
 
 
-        Request request = new Request.Builder()
+        Request request = new Request.Builder().addHeader("token", Content.ToKen)
                 .url(url)
                 .get()
+
                 .build();
         mOkHttpClient.newCall(request).enqueue(callback);
 

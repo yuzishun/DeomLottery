@@ -65,12 +65,12 @@ public class BasketBallSureRecyclerView extends RecyclerView.Adapter<BasketBallS
     public void onBindViewHolder(BasketBallSureRecyclerView.ViewHolder holder, final int position) {
 
         holder.Text_name.setText(list_SubMixListBean.get(position).getGame_id());
-        for (int i = 0; i <list_SubMixListBean.size() ; i++) {
             button_name = list_SubMixListBean.get(position).getList().toString();
 
-        }
+        String substring = button_name.substring(1, list_SubMixListBean.get(position).getList().toString().length() - 1);
 
-        holder.button_choose.setText(button_name);
+
+        holder.button_choose.setText(substring);
 
 
         holder.cancle.setOnClickListener(new View.OnClickListener() {

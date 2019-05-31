@@ -83,23 +83,24 @@ public class ModeRecyclerViewAdapter extends RecyclerView.Adapter<ModeRecyclerVi
 
 
 
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                if (mOnRecyclerViewListener != null) {
-////                    mOnRecyclerViewListener.onItemClick(position);
-////                }
-//
-//                Toast.makeText(context, "111", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               choiceState(position);
+                if (mOnRecyclerViewListener != null) {
+                    mOnRecyclerViewListener.onItemClick(position);
+                }
+
             }
         });
+
+//        holder.item.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                choiceState(position);
+//            }
+//        });
+
+
 
     }
     /**
@@ -111,14 +112,18 @@ public class ModeRecyclerViewAdapter extends RecyclerView.Adapter<ModeRecyclerVi
          *  传递过来所点击的position,如果是本身已经是选中状态,就让他变成不是选中状态,
          *  如果本身不是选中状态,就让他变成选中状态
          */
-        if(list.size()==1){
-            ToastUtil.showToast(context,"只有一个不能不选");
-        }else {
-            list.get(post).isselect = list.get(post).isselect == true ? false : true;
 
-            this.notifyDataSetChanged();
 
-        }
+            if(list.size()==1){
+                ToastUtil.showToast(context,"只有一个不能不选");
+            }else {
+                list.get(post).isselect = list.get(post).isselect == true ? false : true;
+
+                this.notifyDataSetChanged();
+
+            }
+
+
 
 
     }

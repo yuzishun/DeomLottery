@@ -36,6 +36,7 @@ import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.CodeBean;
 import com.example.yuzishun.newdeom.model.FootballBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
+import com.example.yuzishun.newdeom.model.MinAndMaxBean;
 import com.example.yuzishun.newdeom.model.SubMixBean;
 import com.example.yuzishun.newdeom.model.SubMixListBean;
 import com.example.yuzishun.newdeom.model.SureguanBean;
@@ -50,6 +51,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -86,6 +88,18 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
     TextView bunch_TextView;
     private int length;
     private String format;
+    @BindView(R.id.money)
+    TextView money;
+    private List<Double> one_mix_and_min;
+    private List<Double> two_mix_and_min;
+    private List<Double> three_mix_and_min;
+    private List<Double> four_mix_and_min;
+    private List<Double> fire_mix_and_min;
+    private List<Double> minlist;
+    private List<Double> list_max_end;
+
+    private List<MinAndMaxBean> list_min_and_max = new ArrayList<>();
+    private List<Double> list_min_end = new ArrayList<>();
     //参数集合和需要展示的集合
     private List<String> list_adds;
     private  List<String> list_id;
@@ -150,14 +164,56 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
         for (int i = 0; i <list_chooe.size(); i++) {
             list_adds = new ArrayList<>();
             list_id = new ArrayList<>();
+            minlist = new ArrayList<>();
+            one_mix_and_min = new ArrayList<>();
+            two_mix_and_min = new ArrayList<>();
+            three_mix_and_min = new ArrayList<>();
+            four_mix_and_min = new ArrayList<>();
+            fire_mix_and_min = new ArrayList<>();
+            list_max_end = new ArrayList<>();
             List<ItemPoint> onelist = list_chooe.get(i).getOnelist();
             List<ItemPoint> twolist = list_chooe.get(i).getTwolist();
             List<ItemPoint> threelist = list_chooe.get(i).getThreelist();
             for (int j = 0; j <onelist.size() ; j++) {
                 if(onelist.get(j).isselect){
                     list_adds.add(onelist.get(j).getGame_odds_id());
-                    list_id.add(onelist.get(j).getId());
-//                    list_chooe_adapter.get(i).setOnelist(onelist);
+                    minlist.add(Double.parseDouble(onelist.get(j).getOdds()));
+
+                    switch (j){
+                        case 0:
+                            list_id.add("胜负:"+onelist.get(j).getId());
+                            one_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+
+                            break;
+                        case 1:
+                            list_id.add("胜负:"+onelist.get(j).getId());
+                            one_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+
+                            break;
+                        case 2:
+                            list_id.add("让分:"+onelist.get(j).getId());
+                            two_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+
+                            break;
+                        case 3:
+                            list_id.add("让分:"+onelist.get(j).getId());
+                            two_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+
+                            break;
+                        case 4:
+                            list_id.add("大小:"+onelist.get(j).getId());
+                            three_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+
+                            break;
+                        case 5:
+                            list_id.add("大小:"+onelist.get(j).getId());
+                            three_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+
+                            break;
+
+
+                    }
+
 
 
                 }else {
@@ -168,7 +224,9 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
             for (int j = 0; j <twolist.size() ; j++) {
                 if(twolist.get(j).isselect){
                     list_adds.add(twolist.get(j).getGame_odds_id());
-                    list_id.add(twolist.get(j).getId());
+                    list_id.add("客胜:"+twolist.get(j).getId());
+                    four_mix_and_min.add(Double.parseDouble(twolist.get(j).getOdds()));
+                    minlist.add(Double.parseDouble(twolist.get(j).getOdds()));
 //                    list_chooe_adapter.get(i).setTwolist(twolist);
                 }else {
 
@@ -178,7 +236,9 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
             for (int j = 0; j <threelist.size() ; j++) {
                 if(threelist.get(j).isselect){
                     list_adds.add(threelist.get(j).getGame_odds_id());
-                    list_id.add(threelist.get(j).getId());
+                    list_id.add("主胜:"+threelist.get(j).getId());
+                    fire_mix_and_min.add(Double.parseDouble(threelist.get(j).getOdds()));
+                    minlist.add(Double.parseDouble(threelist.get(j).getOdds()));
 //                    list_chooe_adapter.get(i).setThreelist(threelist);
 
                 }else {
@@ -203,13 +263,82 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
                 subMixListBean.setList(list_id);
                 list_stbMixListBean.add(subMixListBean);
 
+                MinAndMaxBean minAndMaxBean  = new MinAndMaxBean();
 
+
+//                if(one_mix_and_min.size()!=0){
+                minAndMaxBean.setOne_mix_and_min(one_mix_and_min);
+//                Double one_min = Double.valueOf(Collections.min(one_mix_and_min));
+//                }
+//                if(two_mix_and_min.size()!=0){
+                minAndMaxBean.setTwo_mix_and_min(two_mix_and_min);
+
+//                Double two_min = Double.valueOf(Collections.min(two_mix_and_min));
+
+//                }
+//                if(three_mix_and_min.size()!=0){
+                minAndMaxBean.setThree_mix_and_min(three_mix_and_min);
+
+//                Double three_min = Double.valueOf(Collections.min(three_mix_and_min));
+
+//                }
+//                if(four_mix_and_min.size()!=0){
+                minAndMaxBean.setFour_mix_and_min(four_mix_and_min);
+
+//                Double four_min = Double.valueOf(Collections.min(four_mix_and_min));
+                minAndMaxBean.setMinlist(minlist);
+
+//                }
+//                if(fire_mix_and_min.size()!=0){
+                minAndMaxBean.setFire_mix_and_min(fire_mix_and_min);
+
+//                Double fire_min = Double.valueOf(Collections.min(fire_mix_and_min));
+
+//                }
+
+                list_min_and_max.add(minAndMaxBean);
             }
 
 
 
 
+
+
+
         }
+
+        for (int i = 0; i < list_min_and_max.size(); i++) {
+            double max=0,aDouble = 0,bDouble = 0,cDouble = 0,dDouble= 0,eDouble = 0;
+
+            if (list_min_and_max.get(i).getOne_mix_and_min().size() != 0) {
+                aDouble = Double.valueOf(Collections.max(list_min_and_max.get(i).getOne_mix_and_min()));
+            }
+            if (list_min_and_max.get(i).getTwo_mix_and_min().size() != 0) {
+                bDouble = Double.valueOf(Collections.max(list_min_and_max.get(i).getTwo_mix_and_min()));
+
+            }
+            if (list_min_and_max.get(i).getThree_mix_and_min().size() != 0) {
+                cDouble = Double.valueOf(Collections.max(list_min_and_max.get(i).getThree_mix_and_min()));
+
+            }
+            if (list_min_and_max.get(i).getFour_mix_and_min().size() != 0) {
+                dDouble = Double.valueOf(Collections.max(list_min_and_max.get(i).getFour_mix_and_min()));
+
+            }
+            if (list_min_and_max.get(i).getFire_mix_and_min().size() != 0) {
+                eDouble = Double.valueOf(Collections.max(list_min_and_max.get(i).getFire_mix_and_min()));
+
+            }
+            list_min_end.add(Double.valueOf(Collections.min(list_min_and_max.get(i).getMinlist())));
+
+
+            max += aDouble+bDouble+cDouble+dDouble+eDouble;
+            list_max_end.add(max);
+        }
+
+        Log.e("YZS",list_max_end.toString());
+
+
         Log.e("YZS",list_subMixBean.toString());
         Log.e("YZS",list_stbMixListBean.toString());
 
@@ -224,7 +353,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
             public void onItemClick(int position) {
 
 
-                if(list_sureguanBean.size()>=1){
+                if(list_sureguanBean.size()>1){
 
 
                 for (int i = 0; i <list_chooe.size() ; i++) {
@@ -256,8 +385,10 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
                 bettingSureRecyclerView.notifyDataSetChanged();
                 listSureguanBean();
 
-                String getbunch = getbunch();
-                Text_money.setText(getbunch);
+                    List<String> getbunch = getbunch();
+                    Text_money.setText(getbunch.get(0));
+                    money.setText(getbunch.get(1));
+
                 }else {
                     ToastUtil.showToast1(BasketballSureActivity.this,"不可以删除");
 
@@ -267,8 +398,9 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
         });
 
         listSureguanBean();
-        String getbunch = getbunch();
-        Text_money.setText(getbunch);
+        List<String> getbunch = getbunch();
+        Text_money.setText(getbunch.get(0));
+        money.setText(getbunch.get(1));
         edit_Multiple.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -287,8 +419,9 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
                 multiple = edit_Multiple.getText().toString();
 
 
-                String getbunch = getbunch();
-                Text_money.setText(getbunch);
+                List<String> getbunch1 = getbunch();
+                Text_money.setText(getbunch1.get(0));
+                money.setText(getbunch1.get(1));
 
 
             }
@@ -383,8 +516,10 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
         return  pour;
     }
 
-    public String getbunch(){
+    public List<String> getbunch(){
+        List<String> list_retun = new ArrayList<>();
         String bunch="";
+        String bunchminandmax ="";
         Double pour=Double.valueOf(0);;
         List<Double> list_index = new ArrayList<>();
         for (int i = 0; i < list_subMixBean.size(); i++) {
@@ -410,7 +545,60 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
 
         Log.e("YZS",bunch+"");
 
-        return bunch;
+
+        //最小值
+        Double pourmin=Double.valueOf(1);;
+
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i <list_sureguanBean.size() ; i++) {
+            if(list_sureguanBean.get(i).isIsselect()){
+
+                list.add(Integer.parseInt(list_sureguanBean.get(i).getBunch()));
+            }else {
+
+
+
+            }
+
+        }
+
+        Collections.sort(list_min_end);
+        for (int j = 0; j <list.get(0) ; j++) {
+
+
+            pourmin *=list_min_end.get(j);
+        }
+
+
+
+
+        NumberFormat nfmin = new DecimalFormat("0.00");
+        String pmin = nfmin.format(pourmin);
+        String smin = edit_Multiple.getText().toString();
+        if(smin.equals("")){
+            smin="1";
+
+        }
+        //最大值
+        Double maxbunch=0.0;
+        for (int i = 0; i <list_sureguanBean.size() ; i++) {
+            if(list_sureguanBean.get(i).isselect){
+                maxbunch +=getpour(list_max_end, Integer.parseInt(list_sureguanBean.get(i).getBunch()));
+
+            }
+
+        }
+        String maxbunch_end = nfmin.format(maxbunch);
+
+        bunchminandmax =  "理论奖金："+Double.parseDouble(pmin)*Integer.parseInt(smin)*2+"元~"+Double.parseDouble(maxbunch_end)*Integer.parseInt(smin)*2;
+
+        Log.e("YZS",bunchminandmax+"");
+
+
+        list_retun.add(bunch);
+        list_retun.add(bunchminandmax);
+
+        return list_retun;
 
     }
 
@@ -505,9 +693,45 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
 
 
 
-        text_mode.setText(list_stbMixListBean.size()-1+"场比赛过关方式");
+        text_mode.setText(list_stbMixListBean.size()+"场比赛过关方式");
         final ModeRecyclerViewAdapter modeRecyclerViewAdapter = new ModeRecyclerViewAdapter(BasketballSureActivity.this,list_sureguanBean,length);
+
+
         recyclerView.setAdapter(modeRecyclerViewAdapter);
+        modeRecyclerViewAdapter.setOnRecyclerViewListener(new ModeRecyclerViewAdapter.OnRecyclerViewListener() {
+            @Override
+            public void onItemClick(int position) {
+                int flag_0 = 0,flag_1=0;
+                if(list_sureguanBean.get(position).isIsselect()){
+                    for (int i = 0; i < list_sureguanBean.size(); i++) {
+                        if(list_sureguanBean.get(i).isIsselect()){
+                            flag_0++;
+                        }else {
+                            flag_1++;
+
+                        }
+
+
+                    }
+                    if(list_sureguanBean.size()-1==flag_1){
+
+                        ToastUtil.showToast1(BasketballSureActivity.this,"必须选择一个");
+
+                    }else {
+                        modeRecyclerViewAdapter.choiceState(position);
+
+                    }
+
+                }else {
+
+                    modeRecyclerViewAdapter.choiceState(position);
+
+                }
+
+
+
+            }
+        });
         Text_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -530,13 +754,20 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
                 }
                 Text_More.setText(ii-1+"个方式");
                 popupWindow.dismiss();
-                String getbunch = getbunch();
-                Text_money.setText(getbunch);
+                List<String> getbunch = getbunch();
+                Text_money.setText(getbunch.get(0));
+                money.setText(getbunch.get(1));
                 if(list_sureguanBean.size()==0){
 
                     ToastUtil.showToast1(BasketballSureActivity.this,"请重新选择比赛");
                 }else {
-                    bunch_TextView.setText(list_sureguanBean.get(list_sureguanBean.size()-1).getName());
+                    for (int i = 0; i <list_sureguanBean.size() ; i++) {
+                        if(list_sureguanBean.get(i).isselect){
+                            bunch_TextView.setText(list_sureguanBean.get(i).getName());
+
+                        }
+
+                    }
 
                 }
 

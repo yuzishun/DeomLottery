@@ -31,6 +31,20 @@ public class BetteyRecyclerViewAdapter extends RecyclerView.Adapter<BetteyRecycl
         this.data = data;
         this.flag = flag;
     }
+    // 采用接口回调的方式实现RecyclerView的ItemClick
+    public OnRecyclerViewListener mOnRecyclerViewListener;
+
+
+    // 接口回调第一步: 定义接口和接口中的方法
+    public interface OnRecyclerViewListener {
+
+        void onItemClick(int position,int type,int order_id);
+    }
+    // 接口回调第二步: 初始化接口的引用
+    public void setOnRecyclerViewListener(OnRecyclerViewListener l) {
+        this.mOnRecyclerViewListener = l;
+    }
+
 
     @Override
     public BetteyRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -39,7 +53,7 @@ public class BetteyRecyclerViewAdapter extends RecyclerView.Adapter<BetteyRecycl
 
     @SuppressLint("ResourceAsColor")
     @Override
-    public void onBindViewHolder(BetteyRecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(BetteyRecyclerViewAdapter.ViewHolder holder, final int position) {
 
             if(data.get(position).getGame_type()==0){
                 holder.gmae_type.setText("竞彩足球-普通投注");
@@ -81,6 +95,9 @@ public class BetteyRecyclerViewAdapter extends RecyclerView.Adapter<BetteyRecycl
             @Override
             public void onClick(View v) {
                 //跳到订单详情
+                if (mOnRecyclerViewListener != null) {
+                    mOnRecyclerViewListener.onItemClick(position,data.get(position).getGame_type(),data.get(position).getOrder_id());
+                }
             }
         });
 

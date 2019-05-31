@@ -19,6 +19,14 @@ public class Content {
     //token
     public static String ToKen="";
 
+    //用户头像
+    public static String userurl = "";
+
+
+    //用户姓名
+    public static String username = "";
+
+
     //身份是否认证
     public static int authentication;
 
@@ -26,6 +34,8 @@ public class Content {
     public  static List<ChooseMixedBean> list_chooe;
     //没办法的静态的篮球数据
     public  static List<ChooseBaskBean> list_chooe_bask;
+
+    //篮球选择的场次
 
     //订单状态
     public static int order_flag = 0;

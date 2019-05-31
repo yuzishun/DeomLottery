@@ -28,13 +28,12 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="240dp">
+            android:layout_height="wrap_content">
             <LinearLayout
-                android:layout_weight="2.3"
-                android:layout_marginLeft="@dimen/d25"
-                android:layout_marginRight="@dimen/d25"
+                android:layout_marginLeft="@dimen/d20"
+                android:layout_marginRight="@dimen/d20"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="80dp">
 
                 <LinearLayout
                     android:layout_weight="1"
@@ -46,7 +45,8 @@
                         android:gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                        <ImageView
+                        <com.example.yuzishun.newdeom.my.custom.XCRoundImageView
+                            android:id="@+id/usericon"
                             android:src="@mipmap/gray_icon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -60,12 +60,14 @@
                         android:layout_height="match_parent">
                         <TextView
                             android:text="一拳超人"
+                            android:id="@+id/username"
                             android:textSize="@dimen/f12"
                             android:textColor="@color/font_black_shen"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
-                            android:text="25319"
+                            android:id="@+id/usedr_id"
+                            android:text=""
                             android:textSize="@dimen/f12"
                             android:layout_marginTop="@dimen/d5"
                             android:textColor="@color/login_red"
@@ -79,8 +81,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView
+                        android:id="@+id/state"
                         android:text="04-15  23:50 截止"
-                        android:textSize="@dimen/f9"
+                        android:textSize="@dimen/f11"
                         android:textColor="@color/edittext_hintcolor"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
@@ -96,36 +99,37 @@
             <View
                 android:background="@color/empt_color"
                 android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/d10"
                 android:layout_height="0.1dp">
 
             </View>
             <LinearLayout
-                android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:layout_weight="2"
+                    android:id="@+id/layout_dec"
+
                     android:gravity="center_vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="30dp">
                     <TextView
+                        android:id="@+id/text_dec"
                         android:text="曼城真的是！早场见着是缘分的三倍。"
                         android:textColor="@color/font_black_shen"
                         android:textSize="@dimen/f12"
-                        android:layout_marginLeft="@dimen/d25"
+                        android:layout_marginLeft="@dimen/d20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_weight="1"
                     android:orientation="horizontal"
-                    android:layout_marginLeft="@dimen/d25"
-                    android:layout_marginRight="@dimen/d25"
+                    android:layout_marginLeft="@dimen/d20"
+                    android:layout_marginRight="@dimen/d20"
                     android:layout_marginBottom="@dimen/d4"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="80dp">
 
                     <LinearLayout
                         android:gravity="center"
@@ -136,6 +140,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:id="@+id/order_money"
                             android:text="100.0元"
                             android:textColor="@color/login_red"
                             android:textSize="@dimen/f12"
@@ -160,6 +165,7 @@
 
                         <TextView
                             android:text="100.0元"
+                            android:id="@+id/Winning_money"
                             android:textColor="@color/login_red"
                             android:textSize="@dimen/f12"
                             android:layout_width="wrap_content"
@@ -184,6 +190,7 @@
 
                         <TextView
                             android:text="10"
+                            android:id="@+id/add_money"
                             android:textColor="@color/login_red"
                             android:textSize="@dimen/f12"
                             android:layout_width="wrap_content"
@@ -201,24 +208,26 @@
 
                 </LinearLayout>
                 <RelativeLayout
-                    android:layout_weight="2"
+                    android:id="@+id/layout_genv"
                     android:gravity="center_vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="30dp">
                     <TextView
+                        android:id="@+id/multiple_price"
                         android:text="单倍金额 ：100.0元"
                         android:textColor="@color/font_gray"
                         android:textSize="@dimen/f12"
-                        android:layout_marginLeft="@dimen/d25"
+                        android:layout_marginLeft="@dimen/d20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
                         android:text="方案提成：10%"
+                        android:id="@+id/plan_profits"
                         android:textColor="@color/font_gray"
                         android:textSize="@dimen/f12"
                         android:layout_alignParentRight="true"
-                        android:layout_marginLeft="@dimen/d25"
-                        android:layout_marginRight="@dimen/d25"
+                        android:layout_marginLeft="@dimen/d20"
+                        android:layout_marginRight="@dimen/d20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
@@ -245,46 +254,128 @@
                     android:text="方案详情"
                     android:textColor="@color/font_black_shen"
                     android:textSize="@dimen/f12"
-                    android:layout_marginLeft="@dimen/d25"
+                    android:layout_marginLeft="@dimen/d20"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 
                 <TextView
+                    android:id="@+id/Text_Scene"
                     android:background="@drawable/order_details_red"
                     android:text="2场"
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/f12"
-                    android:layout_marginLeft="@dimen/d25"
+                    android:layout_marginLeft="@dimen/d20"
+                    android:layout_width="50dp"
+                    android:layout_height="22dp" />
+
+                <TextView
+                    android:background="@drawable/order_details_green"
+                    android:text="50倍"
+                    android:id="@+id/Text_Multiple"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f12"
+                    android:layout_marginLeft="@dimen/d10"
+                    android:layout_width="50dp"
+                    android:layout_height="22dp" />
+
+                <TextView
+                    android:background="@drawable/order_details_yellow"
+                    android:text="2串1"
+                    android:id="@+id/Text_bunch_two"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f12"
+                    android:layout_marginLeft="@dimen/d10"
                     android:layout_width="50dp"
                     android:layout_height="22dp" />
                 <TextView
                     android:background="@drawable/order_details_yellow"
-                    android:text="2串1"
+                    android:text="3串1"
+                    android:id="@+id/Text_bunch_three"
+                    android:visibility="gone"
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/f12"
                     android:layout_marginLeft="@dimen/d10"
                     android:layout_width="50dp"
                     android:layout_height="22dp" />
-                <TextView
-                    android:background="@drawable/order_details_green"
-                    android:text="50倍"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/f12"
-                    android:layout_marginLeft="@dimen/d10"
-                    android:layout_width="50dp"
-                    android:layout_height="22dp" />
-
 
             </LinearLayout>
             <LinearLayout
-                android:layout_marginLeft="@dimen/d25"
+                android:visibility="gone"
+                android:id="@+id/layout_bunch"
                 android:orientation="horizontal"
-                android:layout_marginRight="@dimen/d25"
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/d30">
+
+                <TextView
+                    android:background="@drawable/order_details_yellow"
+                    android:text="4串1"
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:id="@+id/Text_bunch_four"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f12"
+                    android:layout_marginLeft="@dimen/d45"
+                    android:layout_width="50dp"
+                    android:layout_height="22dp" />
+
+                <TextView
+                    android:background="@drawable/order_details_yellow"
+                    android:text="5串1"
+                    android:id="@+id/Text_bunch_fire"
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f12"
+                    android:layout_marginLeft="@dimen/d10"
+                    android:layout_width="50dp"
+                    android:layout_height="22dp" />
+
+                <TextView
+                    android:background="@drawable/order_details_yellow"
+                    android:text="6串1"
+                    android:visibility="gone"
+                    android:id="@+id/Text_bunch_six"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f12"
+                    android:layout_marginLeft="@dimen/d10"
+                    android:layout_width="50dp"
+                    android:layout_height="22dp" />
+
+                <TextView
+                android:background="@drawable/order_details_yellow"
+                android:text="7串1"
+                    android:visibility="gone"
+                    android:id="@+id/Text_bunch_seven"
+                    android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f12"
+                android:layout_marginLeft="@dimen/d10"
+                android:layout_width="50dp"
+                android:layout_height="22dp" />
+                <TextView
+                    android:background="@drawable/order_details_yellow"
+                    android:text="8串1"
+                    android:visibility="gone"
+                    android:id="@+id/Text_bunch_entry"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f12"
+                    android:layout_marginLeft="@dimen/d10"
+                    android:layout_width="50dp"
+                    android:layout_height="22dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="@dimen/d20"
+                android:orientation="horizontal"
+                android:layout_marginRight="@dimen/d20"
+                android:layout_width="320dp"
                 android:layout_height="40dp">
                 <LinearLayout
                     android:background="@drawable/document_details__shape_left"
@@ -342,9 +433,10 @@
 
             </LinearLayout>
             <RelativeLayout
+                android:id="@+id/layout_publicv"
                 android:background="@drawable/document_details__shape_right"
-                android:layout_marginRight="@dimen/d25"
-                android:layout_marginLeft="@dimen/d25"
+                android:layout_marginRight="@dimen/d20"
+                android:layout_marginLeft="@dimen/d20"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d40">
                 <TextView
@@ -355,6 +447,7 @@
                     android:layout_height="match_parent" />
                 <TextView
                     android:text="禁止后公开"
+                    android:id="@+id/text_pluc"
                     android:textColor="@color/edittext_hintcolor"
                     android:textSize="@dimen/f9"
                     android:layout_below="@+id/luck"
@@ -372,9 +465,9 @@
             </RelativeLayout>
             <LinearLayout
                 android:id="@+id/MyTable"
-                android:layout_width="fill_parent"
-                android:layout_marginLeft="@dimen/d25"
-                android:layout_marginRight="@dimen/d25"
+                android:layout_marginLeft="@dimen/d20"
+                android:layout_marginRight="@dimen/d20"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="9dp"
                 android:orientation="vertical"
@@ -387,6 +480,7 @@
                 android:layout_height="@dimen/d10"></View>
 
             <LinearLayout
+                android:id="@+id/layout_genlistv"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -397,24 +491,27 @@
                     android:layout_height="@dimen/d40">
 
                     <TextView
-                        android:text="跟单列表（63人，共14500.0元）"
+                        android:id="@+id/gendan_bumber"
+                        android:text="跟单人数（63人，共14500.0元）"
                         android:textColor="@color/font_black_shen"
                         android:textSize="@dimen/f12"
-                        android:layout_marginLeft="@dimen/d25"
+                        android:layout_marginLeft="@dimen/d20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/MyTable_gen"
                     android:layout_width="fill_parent"
-                    android:layout_marginLeft="@dimen/d25"
-                    android:layout_marginRight="@dimen/d25"
+                    android:layout_marginLeft="@dimen/d20"
+                    android:layout_marginRight="@dimen/d20"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     />
                 <LinearLayout
-                    android:layout_marginLeft="@dimen/d25"
-                    android:layout_marginRight="@dimen/d25"
+                    android:visibility="gone"
+                    android:layout_marginLeft="@dimen/d20"
+                    android:layout_marginRight="@dimen/d20"
                     android:background="@drawable/document_details__shape_right"
                     android:layout_width="match_parent"
                     android:gravity="center"
@@ -431,19 +528,24 @@
 
             </LinearLayout>
             <View
+                android:id="@+id/View_genv"
                 android:background="@color/empt_color"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d10"></View>
 
             <LinearLayout
+
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <RelativeLayout
+                    android:id="@+id/layout_buttonv"
+                    android:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d50">
                     <Button
+
                         android:id="@+id/button_senddocument"
                         android:background="@drawable/login_select"
                         android:text="发起跟单"
@@ -463,24 +565,27 @@
                     android:gravity="center_vertical"
                     android:layout_height="@dimen/d80">
                     <TextView
+                        android:id="@+id/Text_order_id"
                         android:text="订单编号：685426"
                         android:textSize="@dimen/f12"
-                        android:layout_marginLeft="@dimen/d25"
+                        android:layout_marginLeft="@dimen/d20"
                         android:textColor="@color/font_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/Text_order_data"
                         android:text="下单时间：2019-04-18  05:18:43"
                         android:textSize="@dimen/f12"
                         android:layout_marginTop="@dimen/d10"
                         android:textColor="@color/font_black"
-                        android:layout_marginLeft="@dimen/d25"
+                        android:layout_marginLeft="@dimen/d20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+
                         android:text="*方案中的赔率为提交参考赔率！计算奖金以实际出票赔率为准！"
                         android:textSize="@dimen/f9"
-                        android:layout_marginLeft="@dimen/d25"
+                        android:layout_marginLeft="@dimen/d20"
                         android:layout_marginTop="@dimen/d10"
 
                         android:textColor="@color/login_red"
@@ -496,6 +601,7 @@
     </ScrollView>
 
         <RelativeLayout
+            android:id="@+id/Layout_genbottom"
             android:background="@color/white"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
@@ -528,17 +634,18 @@
                 android:textColor="@color/font_black"
                 android:layout_width="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/d25"
+                android:layout_marginRight="@dimen/d20"
                 android:textSize="@dimen/f12"
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:id="@+id/buttom_money"
                 android:text="共100.00元"
                 android:textColor="@color/font_black"
                 android:layout_width="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/text_gen"
-                android:layout_marginRight="@dimen/d25"
+                android:layout_marginRight="@dimen/d20"
                 android:textSize="@dimen/f12"
                 android:layout_height="wrap_content" />
 

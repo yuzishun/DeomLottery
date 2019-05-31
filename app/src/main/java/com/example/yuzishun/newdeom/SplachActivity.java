@@ -56,4 +56,10 @@ public class SplachActivity extends BaseActivity {
         },2000);
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+    }
 }

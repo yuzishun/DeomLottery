@@ -28,7 +28,6 @@ import com.example.yuzishun.newdeom.login.activity.LoginActivity;
 import com.example.yuzishun.newdeom.model.UserInfoBean;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
-import com.example.yuzishun.newdeom.score.utils.ContentFragmentScore;
 import com.example.yuzishun.newdeom.utils.SpUtil;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 
@@ -97,6 +96,8 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
                                 UserInfoBean userInfoBean = JSON.parseObject(result,UserInfoBean.class);
                                 Username.setText(userInfoBean.getData().getUname());
                                 Content.authentication = userInfoBean.getData().getAuthentication();
+                                Content.userurl = userInfoBean.getData().getImg_head();
+                                Content.username = userInfoBean.getData().getUname();
                                 Glide.with(getContext()).load(userInfoBean.getData().getImg_head()).asBitmap().centerCrop().into(icon);
                                 text_yue.setText(userInfoBean.getData().getAccount().getBalance());;
                                 text_caijin.setText(userInfoBean.getData().getAccount().getFrozen_account());
@@ -106,6 +107,7 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
                                 startActivity(new Intent(getContext(), LoginActivity.class));
                                 SpUtil spUtil = new SpUtil(getContext(),"token");
                                 spUtil.putString("token","");
+
                                 ToastUtil.showToast(getContext(),msg+"");
 
                             }else {
@@ -258,7 +260,7 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
 
 
             }
-        },1000);
+        },2000);
 
     }
 

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.yuzishun.newdeom">
-
+    <uses-permission android:name="android.permission.INJECT_EVENTS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 允许程序打开网络套接字 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -44,6 +46,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
 
         <!-- 屏幕适配 -->
@@ -97,7 +100,6 @@
         <activity android:name=".documentary.activity.OkamiActivity" />
         <activity android:name=".documentary.activity.CopydocumentActivity" />
         <activity android:name=".documentary.activity.DocumentdetailsActivity" />
-        <activity android:name=".main.activity.MixedbetActivity" />
         <activity android:name=".my.activity.BetteyAndWinningActivity" />
         <activity android:name=".my.activity.MyDetailedActivity" />
         <activity android:name=".my.activity.Details_mingxiActivity" />
@@ -109,6 +111,7 @@
         <activity android:name=".main.activity.BettingActivity" />
         <activity android:name=".main.activity.BasketBallMixedActivity" />
         <activity android:name=".main.adapter.baskball.BasketballSureActivity"></activity>
+        <activity android:name=".documentary.activity.Documentdetails_main_Activity"></activity>
     </application>
 
 </manifest>

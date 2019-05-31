@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
+import com.example.yuzishun.newdeom.documentary.activity.DocumentdetailsActivity;
 import com.example.yuzishun.newdeom.main.activity.BettingActivity;
 import com.example.yuzishun.newdeom.main.adapter.BettingListAdapter;
 import com.example.yuzishun.newdeom.model.OrderBean;
@@ -57,6 +58,7 @@ public class BetteyAndWinningActivity extends BaseActivity implements View.OnCli
     TextView Text_loading;
     @BindView(R.id.swipe_refresh)
     TwinklingRefreshLayout swipe_refresh;
+
     private int flag,index=0;
     private List<OrderBean.DataBean> data = new ArrayList<>();
     private BetteyRecyclerViewAdapter betteyRecyclerViewAdapter;
@@ -68,7 +70,7 @@ public class BetteyAndWinningActivity extends BaseActivity implements View.OnCli
     @Override
     public void initView() {
         ButterKnife.bind(this);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         flag = intent.getIntExtra("flag",0);
         if(flag==1){
 
@@ -130,6 +132,23 @@ public class BetteyAndWinningActivity extends BaseActivity implements View.OnCli
         });
 
         initnet(0);
+
+        betteyRecyclerViewAdapter.setOnRecyclerViewListener(new BetteyRecyclerViewAdapter.OnRecyclerViewListener() {
+            @Override
+            public void onItemClick(int position,int type,int order_id) {
+
+                Intent intent1 = new Intent(BetteyAndWinningActivity.this,DocumentdetailsActivity.class);
+                //这里传0代表的是订单
+                intent1.putExtra("flag",0);
+
+                intent1.putExtra("type",type);
+                intent1.putExtra("order_id",order_id);
+                startActivity(intent1);
+
+
+
+            }
+        });
 
     }
 
@@ -211,11 +230,7 @@ public class BetteyAndWinningActivity extends BaseActivity implements View.OnCli
     @Override
     public void initData() {
 
-        ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i <4 ; i++) {
-            list.add("");
 
-        }
 
 
 

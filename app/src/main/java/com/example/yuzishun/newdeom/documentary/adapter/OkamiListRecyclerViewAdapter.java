@@ -14,7 +14,8 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.documentary.activity.CopydocumentActivity;
-import com.example.yuzishun.newdeom.documentary.activity.DocumentdetailsActivity;
+//import com.example.yuzishun.newdeom.documentary.activity.Documentdetails_main_Activity;
+import com.example.yuzishun.newdeom.my.activity.BetteyAndWinningActivity;
 import com.example.yuzishun.newdeom.my.custom.MyTableTextView;
 
 import java.util.ArrayList;
@@ -62,7 +63,15 @@ public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiList
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, DocumentdetailsActivity.class));
+//                Intent intent1 = new Intent(context,Documentdetails_main_Activity.class);
+//
+//                //这里传0代表的是订单
+//                intent1.putExtra("flag",0);
+//
+//                intent1.putExtra("type",type);
+//                intent1.putExtra("order_id",order_id);
+//
+//                context.startActivity(intent1);
 
             }
         });

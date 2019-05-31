@@ -22,17 +22,17 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
+            <com.example.yuzishun.newdeom.my.custom.XCRoundImageView
                 android:src="@mipmap/gray_icon"
                 android:id="@+id/icon"
                 android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="@dimen/d40"
+                android:layout_height="@dimen/d40" />
 
 
             <TextView
                 android:text="我们仍然未知"
-
+                android:id="@+id/username"
                 android:textColor="@color/font_black_shen"
                 android:textSize="@dimen/f11"
                 android:layout_centerVertical="true"
@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:text="04-15  23:50 截止"
+                android:id="@+id/text_time"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/gray_Overall_hint"
@@ -52,10 +53,11 @@
         <LinearLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/text_dec"
                 android:text="周一低调一点，本单sp3+最近几天总是一红一黑，该连红了，不多比比，战绩说话 !"
                 android:layout_width="wrap_content"
                 android:textSize="@dimen/f11"
@@ -76,13 +78,107 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <LinearLayout
-            android:id="@+id/MyTable"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="9dp"
-            android:orientation="vertical"
-            />
+            android:id="@+id/layout_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_1_1"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/list_1_2"
+                android:layout_alignTop="@+id/list_1_2"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_1_2"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@+id/list_1_1"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_1_3"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/list_1_2"
+                android:layout_alignTop="@+id/list_1_2"
+                android:layout_toRightOf="@+id/list_1_2"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_1_4"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/list_1_3"
+                android:layout_alignTop="@+id/list_1_3"
+                android:layout_toRightOf="@+id/list_1_3"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/layout_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_2_1"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/list_1_2"
+                android:layout_alignTop="@+id/list_1_2"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_2_2"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@+id/list_1_1"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_2_3"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/list_1_2"
+                android:layout_alignTop="@+id/list_1_2"
+                android:layout_toRightOf="@+id/list_1_2"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_2_4"
+
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/list_1_3"
+                android:layout_alignTop="@+id/list_1_3"
+                android:layout_toRightOf="@+id/list_1_3"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+                android:textSize="10sp" />
+        </LinearLayout>
+
         <Button
             android:background="@drawable/login_shap"
             android:layout_width="70dp"

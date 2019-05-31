@@ -93,6 +93,22 @@ public class GridView_sendorder_Adapter extends BaseAdapter {
         this.notifyDataSetChanged();
     }
 
+    public int getSelection(){
+        int selection=0;
+
+
+
+                selection=mSelectorPosition+1;
+
+
+
+
+
+
+
+        return  selection;
+    }
+
 
     class ViewHolder {
         Button name;

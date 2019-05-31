@@ -9,69 +9,19 @@
     <include layout="@layout/title_text"></include>
     <LinearLayout
         android:id="@+id/layout_ye"
-        android:visibility="gone"
+        android:visibility="visible"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_weight="3"
-            android:orientation="vertical"
+
+
+        <WebView
+            android:id="@+id/webView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_weight="1.5"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-            </LinearLayout>
-            <View
-                android:background="@color/empt_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp">
-
-            </View>
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tab_lyout"
-                    app:tabGravity="fill"
-                    app:tabIndicatorColor="@color/colorPrimaryDark"
-                    app:tabSelectedTextColor="@color/font_black"
-                    app:tabMode="fixed"
-                    app:tabTextColor="@color/login_red"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                </android.support.design.widget.TabLayout>
-
-
-            </LinearLayout>
-        </LinearLayout>
-        <View
-            android:background="@color/empt_color"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/d10">
-
-        </View>
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/ViewPager_score"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-            </android.support.v4.view.ViewPager>
-        </LinearLayout>
+        </WebView>
 
     </LinearLayout>
 
