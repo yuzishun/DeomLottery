@@ -217,12 +217,15 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                             break;
                                         case 2:
                                             state.setText("恭喜中奖");
+                                            state.setTextColor(getResources().getColor(R.color.login_red));
                                             order_money.setText(footBallOrderBean.getData().getOrder_price());
                                             Winning_money.setText(footBallOrderBean.getData().getBonus_price());
                                             add_money.setText(Double.parseDouble(footBallOrderBean.getData().getBonus_price())*0.05+"");
                                             break;
                                         case 3:
                                             state.setText("再接再厉");
+                                            state.setTextColor(getResources().getColor(R.color.font_gray));
+
                                             order_money.setText(footBallOrderBean.getData().getOrder_price());
                                             Winning_money.setText(footBallOrderBean.getData().getBonus_price());
                                             add_money.setText("0");
@@ -276,7 +279,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                     }
 
 
-                                    Text_Scene.setText(footBallOrderBean.getData().getOrder_odds_info().size()+"场");
+                                    Text_Scene.setText(footBallOrderBean.getData().getGame_sum()+"场");
                                     Text_Multiple.setText(footBallOrderBean.getData().getMultiple()+"倍");
                                     List<String> bunch = footBallOrderBean.getData().getBunch();
                                     if(bunch.size()>2){
@@ -650,7 +653,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
         }
 
 
-        Text_Scene.setText(basketballOrderBean.getData().getOrder_odds_info().size()+"场");
+        Text_Scene.setText(basketballOrderBean.getData().getGame_sum()+"场");
         Text_Multiple.setText(basketballOrderBean.getData().getMultiple()+"倍");
         List<String> bunch = basketballOrderBean.getData().getBunch();
         if(bunch.size()>2){
@@ -664,18 +667,18 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
         switch (bunch.size()){
             case 1:
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText("单关");
                 break;
             case 2:
                 Text_bunch_three.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText(bunch.get(0)+"串一");
                 Text_bunch_three.setText(bunch.get(1)+"串一");
 
                 break;
             case 3:
                 Text_bunch_three.setVisibility(View.VISIBLE);
                 Text_bunch_four.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText(bunch.get(0)+"串一");
                 Text_bunch_three.setText(bunch.get(1)+"串一");
                 Text_bunch_four.setText(bunch.get(2)+"串一");
 
@@ -684,7 +687,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 Text_bunch_three.setVisibility(View.VISIBLE);
                 Text_bunch_four.setVisibility(View.VISIBLE);
                 Text_bunch_fire.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText(bunch.get(0)+"串一");
                 Text_bunch_three.setText(bunch.get(1)+"串一");
                 Text_bunch_four.setText(bunch.get(2)+"串一");
                 Text_bunch_fire.setText(bunch.get(3)+"串一");
@@ -695,7 +698,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 Text_bunch_four.setVisibility(View.VISIBLE);
                 Text_bunch_fire.setVisibility(View.VISIBLE);
                 Text_bunch_six.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText(bunch.get(0)+"串一");
                 Text_bunch_three.setText(bunch.get(1)+"串一");
                 Text_bunch_four.setText(bunch.get(2)+"串一");
                 Text_bunch_fire.setText(bunch.get(3)+"串一");
@@ -708,7 +711,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 Text_bunch_fire.setVisibility(View.VISIBLE);
                 Text_bunch_six.setVisibility(View.VISIBLE);
                 Text_bunch_seven.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText(bunch.get(0)+"串一");
                 Text_bunch_three.setText(bunch.get(1)+"串一");
                 Text_bunch_four.setText(bunch.get(2)+"串一");
                 Text_bunch_fire.setText(bunch.get(3)+"串一");
@@ -723,7 +726,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 Text_bunch_six.setVisibility(View.VISIBLE);
                 Text_bunch_seven.setVisibility(View.VISIBLE);
                 Text_bunch_entry.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText(bunch.get(0)+"串一");
                 Text_bunch_three.setText(bunch.get(1)+"串一");
                 Text_bunch_four.setText(bunch.get(2)+"串一");
                 Text_bunch_fire.setText(bunch.get(3)+"串一");

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,6 +65,8 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
     TextView Text_clear;
     @BindView(R.id.layout_empt)
     LinearLayout layout_empt;
+    @BindView(R.id.play_messag)
+    ImageView play_messag;
     private BaskballAdapter adapter;
     private String[] string_one= {"主负","主负","主负","主胜","大分","小分"};
     private String[] string_two= {"1-5","6-10","11-15","16-20","21-25","26+"};
@@ -82,6 +85,7 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
         image_back.setOnClickListener(this);
         button_sure.setOnClickListener(this);
         Text_clear.setOnClickListener(this);
+        play_messag.setOnClickListener(this);
         initlist();
         ArrayList<MultiItemEntity> multiItemEntities = generateData();
         adapter =  new BaskballAdapter(multiItemEntities);
@@ -167,7 +171,11 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
 
                 break;
 
-
+            case R.id.play_messag:
+                Intent intent1 = new Intent(this,Play_MessageActivity.class);
+                intent1.putExtra("flag",1);
+                startActivity(intent1);
+                break;
             case R.id.button_sure:
 
                 if(adapter.getnumber()==0){

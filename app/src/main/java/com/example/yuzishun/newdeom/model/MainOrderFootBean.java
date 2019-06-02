@@ -72,6 +72,7 @@ public class MainOrderFootBean {
         private String img_head;
         private int order_status;
         private int see;
+        private int game_sum;
         private String order_price;
         private String bonus_price;
         private int multiple;
@@ -85,6 +86,14 @@ public class MainOrderFootBean {
         private String cut_off_time;
         private List<String> bunch;
         private List<OrderOddsInfoBean> order_odds_info;
+
+        public int getGame_sum() {
+            return game_sum;
+        }
+
+        public void setGame_sum(int game_sum) {
+            this.game_sum = game_sum;
+        }
 
         public int getPlan_id() {
             return plan_id;

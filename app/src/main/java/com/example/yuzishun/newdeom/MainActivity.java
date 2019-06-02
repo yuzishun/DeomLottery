@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
+
     //加载fragment页面
     private void initFragment() {
         Fragment mTab_01 = new MainFragment();
@@ -70,6 +72,7 @@ public class MainActivity extends BaseActivity {
 
 
     }
+
 
     private void setIndexSelected(int index) {
 

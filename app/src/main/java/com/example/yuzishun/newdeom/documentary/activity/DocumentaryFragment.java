@@ -21,18 +21,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.example.yuzishun.newdeom.MainActivity;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.Basefragment;
 import com.example.yuzishun.newdeom.base.LazyFragment;
 import com.example.yuzishun.newdeom.documentary.adapter.DocumHotGridViewAdapter;
 import com.example.yuzishun.newdeom.documentary.adapter.DocumRecyclerViewAdapter;
 import com.example.yuzishun.newdeom.documentary.custom.MyGridView;
+import com.example.yuzishun.newdeom.login.activity.LoginActivity;
 import com.example.yuzishun.newdeom.main.custom.MyRecyclerView;
 import com.example.yuzishun.newdeom.model.DocumentaryBean;
 import com.example.yuzishun.newdeom.model.OrderBean;
 import com.example.yuzishun.newdeom.my.activity.BetteyAndWinningActivity;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
+import com.example.yuzishun.newdeom.utils.SpUtil;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 import com.lcodecore.tkrefreshlayout.Footer.LoadingView;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
@@ -211,6 +214,12 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
 
 
 
+                            }else if(code==1004) {
+                                MainActivity.intentsat.finish();
+                                startActivity(new Intent(getContext(), LoginActivity.class));
+                                SpUtil spUtil = new SpUtil(getContext(),"token");
+                                spUtil.putString("token","");
+                                ToastUtil.showToast(getContext(),msg+"");
                             }else {
                                 ToastUtil.showToast(getContext(),msg+"");
 

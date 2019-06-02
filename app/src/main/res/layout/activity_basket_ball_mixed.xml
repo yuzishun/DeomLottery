@@ -59,8 +59,8 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/play_messag"
             android:src="@mipmap/wenhao"
-            android:visibility="gone"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/d15"

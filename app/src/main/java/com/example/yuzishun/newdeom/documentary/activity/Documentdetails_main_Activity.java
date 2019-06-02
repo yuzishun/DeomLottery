@@ -122,7 +122,7 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
     TextView plan_profits;
     @BindView(R.id.gendan_bumber)
     TextView gendan_bumber;
-    private int flag,type,plan_id,multiple;
+    private int flag,type,plan_id,multiple=1;
     private Double multiple_price;
     @BindView(R.id.text_pluc)
     TextView text_pluc;
@@ -285,7 +285,7 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
 
 
 
-                                    Text_Scene.setText(mainOrderFootBean.getData().getOrder_odds_info().size()+"场");
+                                    Text_Scene.setText(mainOrderFootBean.getData().getGame_sum()+"场");
                                     Text_Multiple.setText(mainOrderFootBean.getData().getMultiple()+"倍");
                                     List<String> bunch = mainOrderFootBean.getData().getBunch();
                                     if(bunch.size()>2){
@@ -693,7 +693,7 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
         text_dec.setText(""+basketballOrderBean.getData().getPlan_desc());
 
 
-        Text_Scene.setText(basketballOrderBean.getData().getOrder_odds_info().size()+"场");
+        Text_Scene.setText(basketballOrderBean.getData().getGame_sum()+"场");
         Text_Multiple.setText(basketballOrderBean.getData().getMultiple()+"倍");
         List<String> bunch = basketballOrderBean.getData().getBunch();
         if(bunch.size()>2){
@@ -707,18 +707,18 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
 
         switch (bunch.size()){
             case 1:
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText("单关");
                 break;
             case 2:
                 Text_bunch_three.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText(bunch.get(0)+"串一");
                 Text_bunch_three.setText(bunch.get(1)+"串一");
 
                 break;
             case 3:
                 Text_bunch_three.setVisibility(View.VISIBLE);
                 Text_bunch_four.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText(bunch.get(0)+"串一");
                 Text_bunch_three.setText(bunch.get(1)+"串一");
                 Text_bunch_four.setText(bunch.get(2)+"串一");
 
@@ -727,7 +727,7 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
                 Text_bunch_three.setVisibility(View.VISIBLE);
                 Text_bunch_four.setVisibility(View.VISIBLE);
                 Text_bunch_fire.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText(bunch.get(0)+"串一");
                 Text_bunch_three.setText(bunch.get(1)+"串一");
                 Text_bunch_four.setText(bunch.get(2)+"串一");
                 Text_bunch_fire.setText(bunch.get(3)+"串一");
@@ -738,7 +738,7 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
                 Text_bunch_four.setVisibility(View.VISIBLE);
                 Text_bunch_fire.setVisibility(View.VISIBLE);
                 Text_bunch_six.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText(bunch.get(0)+"串一");
                 Text_bunch_three.setText(bunch.get(1)+"串一");
                 Text_bunch_four.setText(bunch.get(2)+"串一");
                 Text_bunch_fire.setText(bunch.get(3)+"串一");
@@ -751,7 +751,7 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
                 Text_bunch_fire.setVisibility(View.VISIBLE);
                 Text_bunch_six.setVisibility(View.VISIBLE);
                 Text_bunch_seven.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText(bunch.get(0)+"串一");
                 Text_bunch_three.setText(bunch.get(1)+"串一");
                 Text_bunch_four.setText(bunch.get(2)+"串一");
                 Text_bunch_fire.setText(bunch.get(3)+"串一");
@@ -766,7 +766,7 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
                 Text_bunch_six.setVisibility(View.VISIBLE);
                 Text_bunch_seven.setVisibility(View.VISIBLE);
                 Text_bunch_entry.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText(bunch.get(0)+"单关");
+                Text_bunch_two.setText(bunch.get(0)+"串一");
                 Text_bunch_three.setText(bunch.get(1)+"串一");
                 Text_bunch_four.setText(bunch.get(2)+"串一");
                 Text_bunch_fire.setText(bunch.get(3)+"串一");

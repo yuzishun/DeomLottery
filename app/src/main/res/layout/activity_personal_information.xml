@@ -136,6 +136,7 @@
                     android:layout_height="match_parent">
                     <TextView
                         android:text="@string/lalala"
+                        android:id="@+id/name"
                         android:textSize="@dimen/f12"
                         android:textColor="@color/edittext_hintcolor"
                         android:layout_centerVertical="true"
@@ -201,6 +202,7 @@
                     <TextView
                         android:text="@string/Phone_number"
                         android:textSize="@dimen/f12"
+                        android:id="@+id/phone"
                         android:textColor="@color/edittext_hintcolor"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"

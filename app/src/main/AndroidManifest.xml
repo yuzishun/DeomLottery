@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.yuzishun.newdeom">
-    <uses-permission android:name="android.permission.INJECT_EVENTS"
+
+    <uses-permission
+        android:name="android.permission.INJECT_EVENTS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 允许程序打开网络套接字 -->
@@ -42,11 +44,11 @@
     <application
         android:name=".base.MyApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
 
         <!-- 屏幕适配 -->
@@ -110,8 +112,9 @@
         <activity android:name=".main.activity.MixedSureActivity" />
         <activity android:name=".main.activity.BettingActivity" />
         <activity android:name=".main.activity.BasketBallMixedActivity" />
-        <activity android:name=".main.adapter.baskball.BasketballSureActivity"></activity>
-        <activity android:name=".documentary.activity.Documentdetails_main_Activity"></activity>
+        <activity android:name=".main.adapter.baskball.BasketballSureActivity" />
+        <activity android:name=".documentary.activity.Documentdetails_main_Activity" />
+        <activity android:name=".main.activity.Play_MessageActivity"></activity>
     </application>
 
 </manifest>

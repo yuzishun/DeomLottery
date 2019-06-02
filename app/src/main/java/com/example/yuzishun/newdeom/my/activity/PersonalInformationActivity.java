@@ -78,6 +78,10 @@ public class PersonalInformationActivity extends BaseActivity implements View.On
     TextView Text_ren;
     private   byte[] bytes;
     private File imagefile;
+    @BindView(R.id.phone)
+    TextView phone;
+    @BindView(R.id.name)
+    TextView name;
     @Override
     public int intiLayout() {
         return R.layout.activity_personal_information;
@@ -91,6 +95,8 @@ public class PersonalInformationActivity extends BaseActivity implements View.On
         layout_id.setOnClickListener(this);
         layout_seticon.setOnClickListener(this);
 
+        phone.setText(Content.userphone);
+        name.setText(Content.username);
     }
 
     @Override

@@ -27,6 +27,9 @@ public class Content {
     public static String username = "";
 
 
+    //用户手机号
+    public static String userphone="";
+
     //身份是否认证
     public static int authentication;
 

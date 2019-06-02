@@ -72,7 +72,7 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
                 finish();
                 break;
             case R.id.layout_lineMoney:
-                startActivity(new Intent(this,LineMoneyActivity.class));
+//                startActivity(new Intent(this,LineMoneyActivity.class));
                 break;
         }
     }

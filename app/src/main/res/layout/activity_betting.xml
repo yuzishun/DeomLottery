@@ -58,6 +58,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/play_messag"
             android:src="@mipmap/wenhao"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"

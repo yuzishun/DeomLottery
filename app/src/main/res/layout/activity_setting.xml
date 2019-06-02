@@ -189,12 +189,14 @@
                 android:layout_height="@dimen/d10"></View>
 
             <LinearLayout
+                android:background="@color/empt_color"
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">

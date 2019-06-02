@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +56,7 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
     private String[] string_two= {"1:0","2:0","2:1","3:0","3:1","3:2","4:0","4:1","4:2","5:0","5:1","5:2","胜其他","0:0","1:1","2:2"
             ,"3:3","平其他","0:1","0:2","1:2","0:3","1:3","2:3","0:4","1:4","2:4","0:5","1:5","2:5","负其他"};
     private String[] string_three= {"0球","1球","2球","3球","4球","5球","6球","7+球"};
-    private String[] string_one= {"胜","平","负","胜","平","负"};
+    private String[] string_one= {"主胜","平","主负","让胜","让平","让负"};
 
     private List<String> list_one = new ArrayList<>();
     private List<String> list_two = new ArrayList<>();
@@ -73,6 +74,8 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
     LinearLayout layout_bottom;
     @BindView(R.id.button_sure)
     Button button_sure;
+    @BindView(R.id.play_messag)
+    ImageView play_messag;
     @BindView(R.id.Scene_TextView)
     TextView Scene_TextView;
     @BindView(R.id.Lottery_RecyCLerView)
@@ -91,6 +94,7 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
     public void initView() {
         ButterKnife.bind(this);
         image_back.setOnClickListener(this);
+        play_messag.setOnClickListener(this);
         button_sure.setOnClickListener(this);
         Scene_TextView.setOnClickListener(this);
         Text_clear.setOnClickListener(this);
@@ -240,6 +244,12 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
                 EventBus.getDefault().post(new MainMessage(BettingListAdapter.getnumber()+""));
 
                 ToastUtil.showToast1(this,"清空完成");
+                break;
+            case R.id.play_messag:
+                Intent intent = new Intent(this,Play_MessageActivity.class);
+                intent.putExtra("flag",0);
+                startActivity(intent);
+
                 break;
         }
     }

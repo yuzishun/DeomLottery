@@ -77,6 +77,8 @@ public class FootBallOrderBean {
         private int order_status;
         private int pay_status;
         private int see;
+        private int game_sum;
+
         private int game_type;
         private String create_time;
         private String update_time;
@@ -85,6 +87,14 @@ public class FootBallOrderBean {
         private OrderFollowPlanBean order_follow_plan;
         private List<String> bunch;
         private List<OrderOddsInfoBean> order_odds_info;
+
+        public int getGame_sum() {
+            return game_sum;
+        }
+
+        public void setGame_sum(int game_sum) {
+            this.game_sum = game_sum;
+        }
 
         public int getOrder_id() {
             return order_id;
