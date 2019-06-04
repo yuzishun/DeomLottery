@@ -7,7 +7,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -60,4 +60,6 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
 
     compile 'com.lcodecorex:tkrefreshlayout:1.0.3'
+    compile 'com.contrarywind:Android-PickerView:4.1.8'
+    implementation 'com.azhon:appupdate:2.1.0'
 }

@@ -91,7 +91,7 @@ public class OkhttpUtlis {
     public void GetAsynMap(String url,Callback callback){
 
 
-        Request request = new Request.Builder().addHeader("token", Content.ToKen)
+        Request request = new Request.Builder().addHeader("token", Content.ToKen).removeHeader("User-Agent").addHeader("User-Agent",getSystemModel()+"Android")
                 .url(url)
                 .get()
 

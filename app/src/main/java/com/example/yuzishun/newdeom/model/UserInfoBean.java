@@ -10,7 +10,7 @@ public class UserInfoBean {
     /**
      * code : 10000
      * msg : 查询成功
-     * data : {"id":3,"phone":"15801693719","uname":"ashun","img_head":"","create_time":"2019-05-16 10:29:16","update_time":"2019-05-16 10:29:16","authentication":0,"compellation":"","identity_card":"","player":0,"god":0,"account":{"id":2,"user_id":3,"balance":"0.00","available_balance":"0.00","no_available_balance":"0.00","frozen_account":"0.00","update_time":""}}
+     * data : {"user_id":2,"phone":"17557280734","uname":"xiele","img_head":"http:192.168.1.9/upload/20190517/6d0de43986de392a63d7b186b13c2b0d.png","create_time":"2019-05-13 17:49:15","update_time":"2019-05-17 10:17:20","authentication":1,"compellation":"谢勇","identity_card":"430422199711291010","player":0,"god":0,"alipay":"17557280734","account":{"balance":"0.00","available_balance":"0.00","no_available_balance":"0.00","frozen_account":"0.00","update_time":"2019-05-13 17:49:15"}}
      */
 
     private int code;
@@ -43,21 +43,22 @@ public class UserInfoBean {
 
     public static class DataBean {
         /**
-         * id : 3
-         * phone : 15801693719
-         * uname : ashun
-         * img_head :
-         * create_time : 2019-05-16 10:29:16
-         * update_time : 2019-05-16 10:29:16
-         * authentication : 0
-         * compellation :
-         * identity_card :
+         * user_id : 2
+         * phone : 17557280734
+         * uname : xiele
+         * img_head : http:192.168.1.9/upload/20190517/6d0de43986de392a63d7b186b13c2b0d.png
+         * create_time : 2019-05-13 17:49:15
+         * update_time : 2019-05-17 10:17:20
+         * authentication : 1
+         * compellation : 谢勇
+         * identity_card : 430422199711291010
          * player : 0
          * god : 0
-         * account : {"id":2,"user_id":3,"balance":"0.00","available_balance":"0.00","no_available_balance":"0.00","frozen_account":"0.00","update_time":""}
+         * alipay : 17557280734
+         * account : {"balance":"0.00","available_balance":"0.00","no_available_balance":"0.00","frozen_account":"0.00","update_time":"2019-05-13 17:49:15"}
          */
 
-        private int id;
+        private int user_id;
         private String phone;
         private String uname;
         private String img_head;
@@ -68,14 +69,15 @@ public class UserInfoBean {
         private String identity_card;
         private int player;
         private int god;
+        private String alipay;
         private AccountBean account;
 
-        public int getId() {
-            return id;
+        public int getUser_id() {
+            return user_id;
         }
 
-        public void setId(int id) {
-            this.id = id;
+        public void setUser_id(int user_id) {
+            this.user_id = user_id;
         }
 
         public String getPhone() {
@@ -158,6 +160,14 @@ public class UserInfoBean {
             this.god = god;
         }
 
+        public String getAlipay() {
+            return alipay;
+        }
+
+        public void setAlipay(String alipay) {
+            this.alipay = alipay;
+        }
+
         public AccountBean getAccount() {
             return account;
         }
@@ -168,38 +178,18 @@ public class UserInfoBean {
 
         public static class AccountBean {
             /**
-             * id : 2
-             * user_id : 3
              * balance : 0.00
              * available_balance : 0.00
              * no_available_balance : 0.00
              * frozen_account : 0.00
-             * update_time :
+             * update_time : 2019-05-13 17:49:15
              */
 
-            private int id;
-            private int user_id;
             private String balance;
             private String available_balance;
             private String no_available_balance;
             private String frozen_account;
             private String update_time;
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public int getUser_id() {
-                return user_id;
-            }
-
-            public void setUser_id(int user_id) {
-                this.user_id = user_id;
-            }
 
             public String getBalance() {
                 return balance;

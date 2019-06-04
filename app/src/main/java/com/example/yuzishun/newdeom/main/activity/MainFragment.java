@@ -22,19 +22,29 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.Basefragment;
 import com.example.yuzishun.newdeom.base.LazyFragment;
 import com.example.yuzishun.newdeom.main.adapter.NewsRecyclerViewAdapter;
+import com.example.yuzishun.newdeom.model.VerticaBean;
+import com.example.yuzishun.newdeom.net.OkhttpUtlis;
+import com.example.yuzishun.newdeom.net.Url;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.paradoxie.autoscrolltextview.VerticalTextview;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,13 +70,66 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     private NewsRecyclerViewAdapter newsRecyclerViewAdapter;
     private ArrayList<String> titleList = new ArrayList<String>();
     private LinearLayout layout_football,layout_baskball;
-
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
         setContentView(R.layout.fragment_main);
         initView();
         initData();
+    }
+
+    private void getVerticaList() {
+
+
+        HashMap<String,String> hashMap = new HashMap<>();
+        OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "order/getWinPriceByOrder", hashMap, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                final String result = response.body().string();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        VerticaBean verticaBean = JSON.parseObject(result,VerticaBean.class);
+                        if(verticaBean.getCode()==10000){
+
+                            for (int i = 0; i <verticaBean.getData().size() ; i++) {
+                                titleList.add("恭喜用户"+verticaBean.getData().get(i).getUname()+"**中奖"+verticaBean.getData().get(i).getBonus_price()+"元");
+                            }
+//                            titleList.add("我们现在是咩有中奖");
+//                            titleList.add("如果有人中奖的话");
+//                            titleList.add("那一定是你");
+//                            titleList.add("没错，就是你，look");
+//                            titleList.add("不管你是躺着还是坐着还是站着");
+//                            titleList.add("你现在已经是上帝光环附体一样");
+//                            titleList.add("然后你踏着七彩祥云离去");
+//                            titleList.add("而后我被留在这里");
+                            VerticaTextView.setTextList(titleList);
+//                            VerticaTextView.notifyAll();
+//                            VerticaTextView.startAutoScroll();
+
+                        }else {
+
+
+                        }
+
+
+                    }
+                });
+
+
+            }
+        });
+
+
+
     }
 
 
@@ -102,24 +165,16 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         Image_lottery.setOnClickListener(this);
         newsRecycleriView.setLayoutManager(new LinearLayoutManager(getContext()));
         //这是后来要删除的集合，所以就不用在strings里面去写了
-        titleList.add("你是天上最受宠的一架钢琴");
-        titleList.add("我是丑人脸上的鼻涕");
-        titleList.add("你发出完美的声音");
-        titleList.add("我被默默揩去");
-        titleList.add("你冷酷外表下藏着诗情画意");
-        titleList.add("我已经够胖还吃东西");
-        titleList.add("你踏着七彩祥云离去");
-        titleList.add("我被留在这里");
-        VerticaTextView.setTextList(titleList);
         VerticaTextView.setText(11, 0, Color.parseColor("#C08FA6"));//设置属性
         VerticaTextView.setTextStillTime(3000);//设置停留时长间隔
         VerticaTextView.setAnimTime(300);//设置进入和退出的时间间隔
         VerticaTextView.setOnItemClickListener(new VerticalTextview.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(getContext(), "点击了 : " + titleList.get(position), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "点击了 : " + titleList.get(position), Toast.LENGTH_SHORT).show();
             }
         });
+        getVerticaList();
 
 
     }
@@ -272,21 +327,17 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
     //适配器
     private class ImageNormalAdapter extends StaticPagerAdapter {
+
+
         //本地图片资源
-        int[] imgs = new int[]{
-                R.mipmap.banner,
-                R.mipmap.banner,
-                R.mipmap.banner,
-                R.mipmap.banner,
-                R.mipmap.banner,
-        };
+        String[] imgs = new String[]{"http://192.168.1.9/banner/banner1.jpg","http://192.168.1.9/banner/banner2.jpg"};
 
         @Override
         public View getView(ViewGroup container, int position) {
             ImageView view = new ImageView(container.getContext());
             view.setScaleType(ImageView.ScaleType.CENTER_CROP);
             view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            view.setImageResource(imgs[position]);
+            Glide.with(getActivity()).load(imgs[position]).into(view);
             return view;
         }
 

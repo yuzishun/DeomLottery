@@ -246,7 +246,7 @@ public class FindPasswordActivity extends BaseActivity implements View.OnClickLi
         @Override
         public void onFinish() {
             //重新给Button设置文字
-            snd_code.setText("重新获取验证码");
+            snd_code.setText("重新获取");
             snd_code.setEnabled(true);
             //设置可点击
             snd_code.setClickable(true);

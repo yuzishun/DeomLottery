@@ -6,8 +6,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.model.BankMangmentBean;
 
@@ -50,7 +52,7 @@ public class BankCradAdapter extends RecyclerView.Adapter<BankCradAdapter.ViewHo
         if (!TextUtils.isEmpty(list.get(0).get(position).getCard_no()) && list.get(0).get(position).getCard_no().length()>=4){
             holder.Text_card_no.setText("尾号"+list.get(0).get(position).getCard_no().substring(list.get(0).get(position).getCard_no().length()-4,list.get(0).get(position).getCard_no().length())+"的储蓄卡");
         }
-
+        Glide.with(context).load(list.get(0).get(position).getCard_img()).into(holder.image_bank);
         holder.Text_card_bank.setText(list.get(0).get(position).getCard_bank());
 
 
@@ -64,11 +66,12 @@ public class BankCradAdapter extends RecyclerView.Adapter<BankCradAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView Text_card_bank,Text_card_no;
+        ImageView image_bank;
         public ViewHolder(View itemView) {
             super(itemView);
             Text_card_bank = itemView.findViewById(R.id.Text_card_bank);
             Text_card_no = itemView.findViewById(R.id.Text_card_no);
-
+            image_bank = itemView.findViewById(R.id.image_bank);
 
         }
     }

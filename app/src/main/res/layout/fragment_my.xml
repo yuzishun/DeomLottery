@@ -78,7 +78,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                             <TextView
-                                android:textSize="@dimen/f12"
+                                android:textSize="@dimen/f13"
                                 android:layout_marginLeft="@dimen/d10"
                                 android:textColor="@color/font_black"
                                 android:text="@string/Recharge"
@@ -90,6 +90,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/layout_tixian"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -104,7 +105,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                             <TextView
-                                android:textSize="@dimen/f12"
+                                android:textSize="@dimen/f13"
                                 android:layout_marginLeft="@dimen/d10"
                                 android:textColor="@color/font_black"
                                 android:text="@string/Cash_withdrawal"
@@ -149,7 +150,7 @@
                         android:layout_marginLeft="@dimen/d10"
                         android:textColor="@color/font_black"
                         android:layout_centerVertical="true"
-                        android:textSize="@dimen/f12"
+                        android:textSize="@dimen/f13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -187,7 +188,7 @@
                             android:layout_height="wrap_content" />
                         <TextView
                             android:text="@string/Betting"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:textColor="@color/font_black"
                             android:layout_marginTop="@dimen/d10"
                             android:layout_width="wrap_content"
@@ -206,7 +207,7 @@
                             android:layout_height="wrap_content" />
                         <TextView
                             android:text="@string/Already_won_the_prize"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:textColor="@color/font_black"
                             android:layout_marginTop="@dimen/d10"
                             android:layout_width="wrap_content"
@@ -235,6 +236,7 @@
                     android:layout_height="@dimen/d40">
 
                     <RelativeLayout
+
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -253,11 +255,12 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
                         <ImageView
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -316,7 +319,7 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -367,7 +370,7 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -379,7 +382,7 @@
                         <TextView
                             android:id="@+id/text_yue"
                             android:text="@string/zero"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:textColor="@color/edittext_hintcolor"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
@@ -422,7 +425,7 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -434,7 +437,7 @@
                         <TextView
                             android:id="@+id/text_caijin"
                             android:text="@string/zero"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:textColor="@color/edittext_hintcolor"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
@@ -478,7 +481,7 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -530,7 +533,7 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 

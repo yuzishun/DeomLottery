@@ -60,7 +60,7 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -123,7 +123,7 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -137,7 +137,7 @@
                     <TextView
                         android:text="@string/lalala"
                         android:id="@+id/name"
-                        android:textSize="@dimen/f12"
+                        android:textSize="@dimen/f13"
                         android:textColor="@color/edittext_hintcolor"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
@@ -187,7 +187,7 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -201,7 +201,7 @@
                     android:layout_height="match_parent">
                     <TextView
                         android:text="@string/Phone_number"
-                        android:textSize="@dimen/f12"
+                        android:textSize="@dimen/f13"
                         android:id="@+id/phone"
                         android:textColor="@color/edittext_hintcolor"
                         android:layout_centerVertical="true"
@@ -254,7 +254,7 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -278,7 +278,7 @@
                         android:id="@+id/Text_ren"
                         android:text="*已认证"
                         android:layout_toLeftOf="@id/right"
-                        android:textSize="@dimen/f12"
+                        android:textSize="@dimen/f13"
                         android:layout_marginRight="@dimen/d5"
                         android:textColor="@color/login_red"
                         android:layout_centerVertical="true"

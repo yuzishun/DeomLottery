@@ -2,6 +2,7 @@ package com.example.yuzishun.newdeom.base;
 
 
 import com.example.yuzishun.newdeom.main.adapter.Expand1Item;
+import com.example.yuzishun.newdeom.model.BankMangmentBean;
 import com.example.yuzishun.newdeom.model.ChooseBaskBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 
@@ -44,5 +45,7 @@ public class Content {
     public static int order_flag = 0;
     //订单状态
     public static int order_flag_bask = 0;
+    //银行卡列表
+    public static  List<BankMangmentBean.DataBean> list_bank = new ArrayList<>();
 
 }

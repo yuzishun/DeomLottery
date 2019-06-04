@@ -1,23 +1,36 @@
 package com.example.yuzishun.newdeom.my.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
+import com.example.yuzishun.newdeom.login.custom.ClearEditText;
+import com.example.yuzishun.newdeom.model.PayBean;
 import com.example.yuzishun.newdeom.my.adapter.GridView_Recharge_Adapter;
+import com.example.yuzishun.newdeom.net.OkhttpUtlis;
+import com.example.yuzishun.newdeom.net.Url;
+import com.example.yuzishun.newdeom.utils.ToastUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class RechargeActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.title_text)
@@ -28,6 +41,12 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
     GridView GridView_recharge_Money;
     @BindView(R.id.layout_lineMoney)
     LinearLayout layout_lineMoney;
+    @BindView(R.id.layout_pay)
+    LinearLayout layout_pay;
+    @BindView(R.id.money_edit)
+    ClearEditText money_edit;
+    @BindView(R.id.money)
+    TextView money;
     private String[] list1=new String[]{"98元","198元","498元","998元","2998元","4998元",};
     private List<String> list = new ArrayList<>();
     private GridView_Recharge_Adapter gridView_recharge_adapter;
@@ -40,8 +59,12 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
     public void initView() {
         ButterKnife.bind(this);
         title_text.setText("充值");
+        Intent intent =getIntent();
+        String balance = intent.getStringExtra("balance");
+        money.setText(balance);
         image_back.setOnClickListener(this);
         layout_lineMoney.setOnClickListener(this);
+        layout_pay.setOnClickListener(this);
 
     }
 
@@ -74,6 +97,81 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
             case R.id.layout_lineMoney:
 //                startActivity(new Intent(this,LineMoneyActivity.class));
                 break;
+            case R.id.layout_pay:
+                if(money_edit.getText().toString().equals("")){
+                    ToastUtil.showToast1(this,"金额不能为空");
+
+                }else {
+
+                if(Double.parseDouble(money_edit.getText().toString().trim())<10||Double.parseDouble(money_edit.getText().toString().trim())>5000){
+
+                    ToastUtil.showToast1(this,"输入金额，不符合规定");
+                }else {
+
+                pay();
+                }
+                }
+
+
+                break;
         }
     }
+
+    private void pay() {
+        HashMap<String,String> hashMap = new HashMap<>();
+        hashMap.put("amount",money_edit.getText().toString().trim());
+        OkhttpUtlis okhttpUtlis= new OkhttpUtlis();
+
+        okhttpUtlis.PostAsynMap(Url.payUrl, hashMap, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                final String result = response.body().string();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.e("YZS",result.toString());
+
+                        PayBean payBean = JSON.parseObject(result,PayBean.class);
+                        if(payBean.getCode()==10000){
+//                            String url = "http://" + payBean.getData().getPay();
+//                            String orderid = payBean.getData().getOrderid();
+//                            String amount = payBean.getData().getAmount();
+                            Intent intent  = new Intent(RechargeActivity.this,WebViewPayActivity.class);
+                            intent.putExtra("url","http://"+payBean.getData().getPay());
+                            intent.putExtra("orderid",payBean.getData().getOrderid());
+                            intent.putExtra("amount",payBean.getData().getAmount());
+                            startActivity(intent);
+
+
+
+//                            Uri uri = Uri.parse(url+"?orderid="+orderid+"&amount="+amount);
+//                            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                            startActivity(intent);
+
+
+
+                        }else {
+                            ToastUtil.showToast1(RechargeActivity.this,payBean.getMsg()+"");
+
+                        }
+
+
+
+                    }
+                });
+
+
+            }
+        });
+
+
+    }
+
+
 }

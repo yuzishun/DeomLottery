@@ -57,6 +57,15 @@ public class BankMangmentBean {
         private String card_no;
         private String card_bank;
         private String card_abbreviation;
+        private String card_img;
+
+        public String getCard_img() {
+            return card_img;
+        }
+
+        public void setCard_img(String card_img) {
+            this.card_img = card_img;
+        }
 
         public int getId() {
             return id;

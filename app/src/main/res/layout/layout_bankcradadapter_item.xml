@@ -17,10 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
+                android:id="@+id/image_bank"
                 android:src="@mipmap/jianhang"
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="@dimen/d30"
+                android:layout_height="@dimen/d30" />
         </LinearLayout>
         <LinearLayout
             android:layout_weight="1"
@@ -33,7 +34,7 @@
                 android:id="@+id/Text_card_bank"
                 android:text="@string/jianhang"
                 android:textColor="@color/font_black"
-                android:textSize="@dimen/f12"
+                android:textSize="@dimen/f13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
@@ -41,7 +42,7 @@
                 android:text="@string/weihao"
                 android:layout_marginTop="@dimen/d15"
                 android:textColor="@color/font_black"
-                android:textSize="@dimen/f12"
+                android:textSize="@dimen/f13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>

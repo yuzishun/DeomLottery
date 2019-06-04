@@ -220,7 +220,7 @@ public class BindingBankActivity extends BaseActivity implements View.OnClickLis
         @Override
         public void onFinish() {
             //重新给Button设置文字
-            hou_code.setText("重新获取验证码");
+            hou_code.setText("重新获取");
             hou_code.setEnabled(true);
             //设置可点击
             hou_code.setClickable(true);

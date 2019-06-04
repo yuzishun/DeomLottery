@@ -58,7 +58,7 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -111,7 +111,7 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -164,7 +164,7 @@
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>

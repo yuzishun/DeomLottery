@@ -26,7 +26,7 @@
             <TextView
                 android:id="@+id/yue"
                 android:text="账户余额"
-                android:textSize="@dimen/f12"
+                android:textSize="@dimen/f13"
                 android:textColor="@color/font_black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -82,12 +82,11 @@
                             android:gravity="center_vertical"
                             android:text="充值金额"
                             android:textColor="@color/font_black"
-                            android:textSize="@dimen/f12"
+                            android:textSize="@dimen/f13"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                         <com.example.yuzishun.newdeom.login.custom.ClearEditText
-                            android:inputType="number"
-                            android:id="@+id/login_phone"
+                            android:id="@+id/money_edit"
                             android:maxLines="1"
                             android:layout_weight="1"
                             android:paddingLeft="@dimen/d5"
@@ -139,6 +138,7 @@
 
                     </View>
                     <LinearLayout
+                        android:id="@+id/layout_pay"
                         android:orientation="horizontal"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -162,7 +162,7 @@
                                 android:layout_marginLeft="@dimen/d10"
                                 android:textColor="@color/font_black"
                                 android:layout_centerVertical="true"
-                                android:textSize="@dimen/f12"
+                                android:textSize="@dimen/f13"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
 
@@ -190,11 +190,13 @@
                     </View>
                     <LinearLayout
                         android:layout_weight="1"
+                        android:background="@color/empt_color"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <RelativeLayout
                             android:layout_weight="1"
+                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
@@ -222,6 +224,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <ImageView
+                                android:visibility="gone"
                                 android:layout_centerVertical="true"
                                 android:layout_alignParentRight="true"
                                 android:layout_marginRight="@dimen/d20"
@@ -233,6 +236,7 @@
                         </RelativeLayout>
                     </LinearLayout>
                     <View
+                        android:visibility="gone"
                         android:background="@color/empt_color"
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp">

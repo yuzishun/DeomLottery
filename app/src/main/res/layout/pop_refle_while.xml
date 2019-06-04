@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d40">
+
+        <TextView
+            android:id="@+id/Text_cancel"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/d20"
+            android:text="取消"
+            android:textColor="@color/font_black"
+            android:textSize="@dimen/f14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/Text_sure"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/d20"
+            android:text="确定"
+            android:textColor="@color/font_black"
+            android:textSize="@dimen/f14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <com.contrarywind.view.WheelView
+        android:id="@+id/wheel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -231,7 +231,7 @@ public class ResignActivity extends BaseActivity implements View.OnClickListener
         @Override
         public void onFinish() {
             //重新给Button设置文字
-            Hou_Code.setText("重新获取验证码");
+            Hou_Code.setText("重新获取");
             Hou_Code.setEnabled(true);
             //设置可点击
             Hou_Code.setClickable(true);

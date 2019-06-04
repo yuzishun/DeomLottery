@@ -214,7 +214,7 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
 
 
 
-                            }else if(code==1004) {
+                            }else if(code==10004) {
                                 MainActivity.intentsat.finish();
                                 startActivity(new Intent(getContext(), LoginActivity.class));
                                 SpUtil spUtil = new SpUtil(getContext(),"token");
@@ -268,7 +268,8 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
                 Hot_GridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        startActivity(new Intent(getActivity(),OkamiActivity.class));
+                        //跳转到大神首页，先不开
+//                        startActivity(new Intent(getActivity(),OkamiActivity.class));
 
                     }
                 });
@@ -336,9 +337,10 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
     }
 
     private void jump(int flag){
-        Intent intent = new Intent(getContext(),EveryListActivity.class);
-        intent.putExtra("flag",flag);
-        startActivity(intent);
+        //跳转到列表页面，先不开
+//        Intent intent = new Intent(getContext(),EveryListActivity.class);
+//        intent.putExtra("flag",flag);
+//        startActivity(intent);
     }
 
     @Override
