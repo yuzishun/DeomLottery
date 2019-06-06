@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.JavascriptInterface;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
@@ -68,6 +69,7 @@ public class WebViewPayActivity extends BaseActivity {
         byte[] bytes = data.getBytes();
 
         Webview_pay.postUrl(url,bytes);
+//        Webview_pay.loadUrl("http://192.168.1.9/plugins/pay/goBack.php");
         Webview_pay.setWebViewClient(new WebViewClient());
         //声明WebSettings子类
         WebSettings webSettings = Webview_pay.getSettings();
@@ -84,7 +86,8 @@ public class WebViewPayActivity extends BaseActivity {
 
 //设置自适应屏幕，两者合用
         webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
-        webSettings.setLoadWithOverviewMode(false); // 缩放至屏幕的大小
+        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
+        Webview_pay.addJavascriptInterface(this, "Android");
 
 //缩放操作
         webSettings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
@@ -127,10 +130,29 @@ public class WebViewPayActivity extends BaseActivity {
             return super.onJsConfirm(view, url, message, result);
         }
 
+
+
+
     }
 
     @Override
     public void initData() {
 
     }
+
+
+
+        @JavascriptInterface
+        public void comment(){
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    finish();
+
+                }
+            });
+        }
+
+
 }

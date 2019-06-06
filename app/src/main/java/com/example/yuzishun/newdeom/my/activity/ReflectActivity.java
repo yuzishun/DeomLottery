@@ -220,7 +220,7 @@ public class ReflectActivity extends BaseActivity implements View.OnClickListene
                     CodeBean codeBean  = JSON.parseObject(result,CodeBean.class);
                     if(codeBean.getCode()==10000){
                         finish();
-                        ToastUtil.showToast1(ReflectActivity.this,"提现成功");
+                        ToastUtil.showToast1(ReflectActivity.this,"提交成功");
                     }else {
                         ToastUtil.showToast1(ReflectActivity.this,codeBean.getMsg()+"");
 

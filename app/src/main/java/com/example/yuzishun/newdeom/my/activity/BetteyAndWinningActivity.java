@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
+import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.documentary.activity.DocumentdetailsActivity;
 import com.example.yuzishun.newdeom.main.activity.BettingActivity;
 import com.example.yuzishun.newdeom.main.adapter.BettingListAdapter;
@@ -153,6 +155,8 @@ public class BetteyAndWinningActivity extends BaseActivity implements View.OnCli
     }
 
     private void initnet(final int i) {
+        Log.e("YZSYZS", Content.ToKen+"");
+
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("pagination",index+"");
         hashMap.put("order_type","0");

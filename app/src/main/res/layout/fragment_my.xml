@@ -44,7 +44,7 @@
 
                     <TextView
                         android:id="@+id/Username"
-                        android:text="Username"
+                        android:text="请登陆"
                         android:layout_centerHorizontal="true"
                         android:layout_below="@+id/icon"
                         android:layout_marginTop="@dimen/d5"

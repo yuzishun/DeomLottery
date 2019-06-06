@@ -183,8 +183,8 @@ public class BettingSureRecyclerView extends RecyclerView.Adapter<BettingSureRec
                 TextView loser = dialog.findViewById(R.id.loser);
 
 
-                name_right.setText(Content.list_chooe.get(postion).getHome_team());
-                name_left.setText(Content.list_chooe.get(postion).getGuest_team());
+                name_right.setText(Content.list_chooe.get(postion).getGuest_team());
+                name_left.setText(Content.list_chooe.get(postion).getHome_team());
 
 
 

@@ -28,6 +28,7 @@ import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.Basefragment;
 import com.example.yuzishun.newdeom.base.LazyFragment;
 import com.example.yuzishun.newdeom.main.adapter.NewsRecyclerViewAdapter;
+import com.example.yuzishun.newdeom.model.MainInfomationBean;
 import com.example.yuzishun.newdeom.model.VerticaBean;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
@@ -35,6 +36,9 @@ import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.paradoxie.autoscrolltextview.VerticalTextview;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -70,6 +74,8 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     private NewsRecyclerViewAdapter newsRecyclerViewAdapter;
     private ArrayList<String> titleList = new ArrayList<String>();
     private LinearLayout layout_football,layout_baskball;
+    private List<MainInfomationBean.DataBean> list = new ArrayList<>();
+
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
@@ -174,6 +180,13 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 //                Toast.makeText(getContext(), "点击了 : " + titleList.get(position), Toast.LENGTH_SHORT).show();
             }
         });
+        newsRecycleriView.setNestedScrollingEnabled(false);
+
+
+
+        Home_Refresh.setColorSchemeResources(
+                R.color.login_red, R.color.login_red, R.color.login_red, R.color.login_red);
+        Home_Refresh.setOnRefreshListener(this);
         getVerticaList();
 
 
@@ -212,22 +225,59 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
 
 
-    public void recycl(int flag){
+    public void recycl(final int flag){
+        list.clear();
+
         //有接口时在这里做更新recyclerview的操作
-        List<String> list = new ArrayList<>();
+        HashMap<String,String> hashMap = new HashMap<>();
+        hashMap.put("type",flag+"");
 
-        newsRecycleriView.setNestedScrollingEnabled(false);
+        OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "information/getBallInformationList", hashMap, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
 
-        for (int i = 0; i <10 ; i++) {
-            list.add(""+i);
+            }
 
-        }
-        newsRecyclerViewAdapter = new NewsRecyclerViewAdapter(getContext(),list);
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String result = response.body().string();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
 
-        newsRecycleriView.setAdapter(newsRecyclerViewAdapter);
-        Home_Refresh.setColorSchemeResources(
-                R.color.login_red, R.color.login_red, R.color.login_red, R.color.login_red);
-        Home_Refresh.setOnRefreshListener(this);
+                        try {
+                            JSONObject jsonObject = new JSONObject(result);
+                            int code = jsonObject.getInt("code");
+                            String msg = jsonObject.getString("msg");
+                            if(code==10000){
+
+                                MainInfomationBean mainInfomationBean = JSON.parseObject(result,MainInfomationBean.class);
+                                list.addAll(mainInfomationBean.getData());
+                                newsRecyclerViewAdapter = new NewsRecyclerViewAdapter(getContext(),list,flag);
+
+                                newsRecycleriView.setAdapter(newsRecyclerViewAdapter);
+
+                            }else {
+
+                                Toast.makeText(getActivity(), msg+"", Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+
+
+            }
+        });
+
+
+
+
 
 
     }
@@ -264,13 +314,13 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
             case R.id.news:
                 changeRecyclerView(news,match);
                 recycl(0);
-                Toast.makeText(getContext(), "这是最新咨询", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "这是足球咨询", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.match:
                 changeRecyclerView(match,news);
                 recycl(1);
-                Toast.makeText(getContext(), "这是赛事咨询", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "这是篮球咨询", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Image_lottery:
                 startActivity(new Intent(getContext(),LotteryActivity.class));
@@ -330,7 +380,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
 
         //本地图片资源
-        String[] imgs = new String[]{"http://192.168.1.9/banner/banner1.jpg","http://192.168.1.9/banner/banner2.jpg"};
+        String[] imgs = new String[]{"http://103.9.195.242/banner/banner1.jpg","http://103.9.195.242/banner/banner2.jpg"};
 
         @Override
         public View getView(ViewGroup container, int position) {

@@ -5,6 +5,8 @@ import com.example.yuzishun.newdeom.main.adapter.Expand1Item;
 import com.example.yuzishun.newdeom.model.BankMangmentBean;
 import com.example.yuzishun.newdeom.model.ChooseBaskBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
+import com.example.yuzishun.newdeom.my.activity.SettingActivity;
+import com.example.yuzishun.newdeom.utils.SpUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ public class Content {
 
 
     //token
+
     public static String ToKen="";
 
     //用户头像

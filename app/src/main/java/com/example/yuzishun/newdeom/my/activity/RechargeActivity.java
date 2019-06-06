@@ -142,6 +142,7 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
 //                            String url = "http://" + payBean.getData().getPay();
 //                            String orderid = payBean.getData().getOrderid();
 //                            String amount = payBean.getData().getAmount();
+                            finish();
                             Intent intent  = new Intent(RechargeActivity.this,WebViewPayActivity.class);
                             intent.putExtra("url","http://"+payBean.getData().getPay());
                             intent.putExtra("orderid",payBean.getData().getOrderid());

@@ -172,6 +172,7 @@ public class BankCradManagementActivity extends BaseActivity implements View.OnC
     }
 
     private void showlist() {
+
         HashMap<String,String> hashMap = new HashMap<>();
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
         okhttpUtlis.PostAsynMap(Url.baseUrl + "user/getUserBankCardList", hashMap, new Callback() {

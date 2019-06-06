@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -80,6 +81,7 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
     }
 
     private void refresh() {
+
         HashMap<String,String> hashMap = new HashMap<>();
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
         okhttpUtlis.PostAsynMap(Url.baseUrl + "user/refreshUserInfo", hashMap, new Callback() {
@@ -116,6 +118,7 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
                                 text_caijin.setText(userInfoBean.getData().getAccount().getFrozen_account());
 
                             }else if(code==10004){
+
                                 MainActivity.intentsat.finish();
                                 startActivity(new Intent(getContext(), LoginActivity.class));
                                 SpUtil spUtil = new SpUtil(getContext(),"token");

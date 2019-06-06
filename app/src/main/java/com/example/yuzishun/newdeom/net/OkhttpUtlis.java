@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.base.MyApplication;
+import com.example.yuzishun.newdeom.utils.SpUtil;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 import com.google.gson.Gson;
 
@@ -41,7 +42,7 @@ import okhttp3.ResponseBody;
 public class OkhttpUtlis {
     private static OkhttpUtlis mInstance;
     private OkHttpClient mOkHttpClient;
-
+    private String token;
     public OkhttpUtlis() {
         OkHttpClient.Builder ClientBuilder = new OkHttpClient.Builder();
         ClientBuilder.readTimeout(20, TimeUnit.SECONDS);//读取超时
@@ -58,7 +59,8 @@ public class OkhttpUtlis {
         });
 
         mOkHttpClient=ClientBuilder.build();
-
+        SpUtil spUtil = new SpUtil(MyApplication.getContext(),"token");
+        token = spUtil.getString("token","");
     }
 
 
@@ -78,20 +80,19 @@ public class OkhttpUtlis {
                 .url(url)
                 .removeHeader("User-Agent").addHeader("User-Agent","Android:"+getSystemModel())
 
-                .addHeader("token", Content.ToKen)
+                .addHeader("token", token)
                 .post(body)
 
                 .build();
         mOkHttpClient.newCall(request).enqueue(callback);
 
 
-            Log.e("YZS",Content.ToKen+"");
     }
 
     public void GetAsynMap(String url,Callback callback){
 
 
-        Request request = new Request.Builder().addHeader("token", Content.ToKen).removeHeader("User-Agent").addHeader("User-Agent",getSystemModel()+"Android")
+        Request request = new Request.Builder().addHeader("token", token).removeHeader("User-Agent").addHeader("User-Agent",getSystemModel()+"Android")
                 .url(url)
                 .get()
 

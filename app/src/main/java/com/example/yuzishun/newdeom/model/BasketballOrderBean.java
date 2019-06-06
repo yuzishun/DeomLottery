@@ -64,7 +64,7 @@ public class BasketballOrderBean {
          * order_plan : {"plan_follow_price":"0.00","plan_follow_person":"0","cut_off_time":"2019-05-27 21:15:00","plan_profits":"0.02","plan_status":0}
          * order_follow_plan : {"plan_status":2,"plan_profits":"0.02","uname":"ashun"}
          */
-
+        private int in_plan;
         private int order_id;
         private String order_no;
         private int user_id;
@@ -85,6 +85,14 @@ public class BasketballOrderBean {
         private OrderFollowPlanBean order_follow_plan;
         private List<String> bunch;
         private List<OrderOddsInfoBean> order_odds_info;
+
+        public int getIn_plan() {
+            return in_plan;
+        }
+
+        public void setIn_plan(int in_plan) {
+            this.in_plan = in_plan;
+        }
 
         public int getGame_sum() {
             return game_sum;
