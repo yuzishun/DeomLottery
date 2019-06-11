@@ -42,42 +42,72 @@ public class Detailed_RecyclerView_Adapter extends RecyclerView.Adapter<Detailed
             case 0:
 
                 holder.text_state.setText("充值");
+                if(data.get(position).getPay_status().equals("0")){
+                    holder.text_money.setText("未支付");
+
+                }else {
+                    holder.text_money.setText("充值成功 余额"+data.get(position).getUser_account());
+
+
+                }
+
+
                 break;
             case 1:
                 holder.text_state.setText("提现");
+                if(data.get(position).getWithdraw_status().equals("0")){
+                    holder.text_money.setText("提现中");
+
+                }else if(data.get(position).getWithdraw_status().equals("2"))
+                {
+                    holder.text_money.setText("提现成功 余额"+data.get(position).getUser_account());
+
+                }else {
+                    holder.text_money.setText("提现失败 余额"+data.get(position).getUser_account());
+
+                }
+
+
 
                 break;
             case 2:
                 holder.text_state.setText("投注");
+                holder.text_money.setText("余额"+data.get(position).getUser_account());
+
 
                 break;
             case 3:
                 holder.text_state.setText("中奖金额");
+                holder.text_money.setText("余额"+data.get(position).getUser_account());
 
                 break;
             case 4:
                 holder.text_state.setText("奖励金额");
+                holder.text_money.setText("余额"+data.get(position).getUser_account());
 
                 break;
             case 5:
                 holder.text_state.setText("退款");
+                holder.text_money.setText("余额"+data.get(position).getUser_account());
 
                 break;
             case 6:
                 holder.text_state.setText("跟单佣金");
+                holder.text_money.setText("余额"+data.get(position).getUser_account());
 
                 break;
             case 7:
-                holder.text_state.setText("下分");
+                holder.text_state.setText("扣款");
+                holder.text_money.setText("余额"+data.get(position).getUser_account());
 
                 break;
             case 8:
-                holder.text_state.setText("上分");
+                holder.text_state.setText("充值");
+                holder.text_money.setText("余额"+data.get(position).getUser_account());
 
                 break;
         }
 
-        holder.text_money.setText("余额"+data.get(position).getUser_account());
         holder.text_data.setText(data.get(position).getCreate_time()+"");
 
         if(data.get(position).getDetail_type()==1){
@@ -92,6 +122,7 @@ public class Detailed_RecyclerView_Adapter extends RecyclerView.Adapter<Detailed
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 //                context.startActivity(new Intent(context, Details_mingxiActivity.class));
 
             }

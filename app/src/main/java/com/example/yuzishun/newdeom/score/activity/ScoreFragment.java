@@ -4,6 +4,7 @@ package com.example.yuzishun.newdeom.score.activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -64,7 +66,14 @@ public class ScoreFragment extends LazyFragment implements View.OnClickListener 
                 view.loadUrl(url);
                 return true;
             }
-        });
+                                     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                                     @Override
+                                     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                view.loadUrl(request.getUrl().toString());
+                                         return super.shouldOverrideUrlLoading(view, request);
+                                     }
+                                 }
+        );
 
 //声明WebSettings子类
         WebSettings webSettings = webView.getSettings();
@@ -81,7 +90,7 @@ public class ScoreFragment extends LazyFragment implements View.OnClickListener 
 //设置自适应屏幕，两者合用
         webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
         webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
-
+        webSettings.setDatabaseEnabled(true);
 //缩放操作
         webSettings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
         webSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。若为false，则该WebView不可缩放

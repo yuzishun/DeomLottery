@@ -380,7 +380,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
 
         //本地图片资源
-        String[] imgs = new String[]{"http://103.9.195.242/banner/banner1.jpg","http://103.9.195.242/banner/banner2.jpg"};
+        String[] imgs = new String[]{"http://103.9.195.242/banner/banner1.png","http://103.9.195.242/banner/banner2.jpg"};
 
         @Override
         public View getView(ViewGroup container, int position) {

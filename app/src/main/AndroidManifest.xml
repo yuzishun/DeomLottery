@@ -128,7 +128,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".main.activity.InfomationWebViewActivity"></activity>
+        <activity android:name=".main.activity.InfomationWebViewActivity" />
+        <activity android:name=".documentary.activity.SeachActivity"></activity>
     </application>
 
 </manifest>

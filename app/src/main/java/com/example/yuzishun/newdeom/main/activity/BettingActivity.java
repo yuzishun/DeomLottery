@@ -357,7 +357,12 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
                                             itemPoint.setIsselect(false);
                                             itemPoint.setId(list_four.get(k));
                                             itemPoint.setGame_odds_id(half_odds.get(k).getGame_odds_id());
+//                                            if(half_odds.get(k).getOdds().equals("")){
+//                                                itemPoint.setOdds("暂未开售");
+//
+//                                            }
                                             itemPoint.setOdds(half_odds.get(k).getOdds());
+
                                             listfour.add(itemPoint);
 
                                         }

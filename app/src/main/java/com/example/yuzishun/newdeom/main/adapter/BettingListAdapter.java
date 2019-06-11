@@ -151,11 +151,6 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
                 });
 
 
-
-
-
-
-
                 break;
 
         }
@@ -196,12 +191,7 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
             }
         }
 
-
-
     }
-
-
-
 
     @SuppressLint("NewApi")
     public void dialog_m(final Expand1Item item, Context context,int postion) {
@@ -237,11 +227,7 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
             public void onClick(View v) {
                 dialog.dismiss();
 
-
                 EventBus.getDefault().post(new MainMessage(getnumber()+""));
-
-
-
 
             }
         });

@@ -12,7 +12,7 @@ public class DetailedBean {
     /**
      * code : 10000
      * msg : 查询成功
-     * data : [{"id":47,"detail_type":0,"deal_type":2,"deal_price":"6.00","user_account":"531.40","create_time":"2019-05-26 16:03:42"},{"id":19,"detail_type":1,"deal_type":3,"deal_price":"0.00","user_account":"396.70","create_time":"2019-05-24 16:26:15"},{"id":20,"detail_type":1,"deal_type":3,"deal_price":"0.00","user_account":"396.70","create_time":"2019-05-24 16:26:15"},{"id":21,"detail_type":1,"deal_type":3,"deal_price":"0.00","user_account":"396.70","create_time":"2019-05-24 16:26:15"},{"id":22,"detail_type":1,"deal_type":3,"deal_price":"0.00","user_account":"396.70","create_time":"2019-05-24 16:26:15"},{"id":23,"detail_type":1,"deal_type":3,"deal_price":"0.00","user_account":"396.70","create_time":"2019-05-24 16:26:15"},{"id":24,"detail_type":1,"deal_type":3,"deal_price":"0.00","user_account":"396.70","create_time":"2019-05-24 16:26:15"},{"id":25,"detail_type":1,"deal_type":3,"deal_price":"0.00","user_account":"396.70","create_time":"2019-05-24 16:26:15"},{"id":26,"detail_type":1,"deal_type":3,"deal_price":"0.00","user_account":"396.70","create_time":"2019-05-24 16:26:15"},{"id":17,"detail_type":1,"deal_type":3,"deal_price":"140.70","user_account":"390.00","create_time":"2019-05-24 16:26:15"},{"id":18,"detail_type":1,"deal_type":3,"deal_price":"0.00","user_account":"396.70","create_time":"2019-05-24 16:26:15"},{"id":15,"detail_type":1,"deal_type":5,"deal_price":"32.00","user_account":"256.00","create_time":"2019-05-22 18:43:47"},{"id":14,"detail_type":0,"deal_type":2,"deal_price":"32.00","user_account":"224.00","create_time":"2019-05-22 18:43:41"},{"id":13,"detail_type":1,"deal_type":5,"deal_price":"32.00","user_account":"256.00","create_time":"2019-05-22 18:42:19"},{"id":12,"detail_type":0,"deal_type":2,"deal_price":"32.00","user_account":"224.00","create_time":"2019-05-22 18:41:17"}]
+     * data : [{"id":1166,"detail_type":0,"deal_type":2,"deal_price":"0.00","user_account":"151923171.38","create_time":"2019-06-05 19:57:41","pay_status":"","withdraw_status":""}]
      */
 
     private int code;
@@ -45,12 +45,14 @@ public class DetailedBean {
 
     public static class DataBean {
         /**
-         * id : 47
+         * id : 1166
          * detail_type : 0
          * deal_type : 2
-         * deal_price : 6.00
-         * user_account : 531.40
-         * create_time : 2019-05-26 16:03:42
+         * deal_price : 0.00
+         * user_account : 151923171.38
+         * create_time : 2019-06-05 19:57:41
+         * pay_status :
+         * withdraw_status :
          */
 
         private int id;
@@ -59,6 +61,8 @@ public class DetailedBean {
         private String deal_price;
         private String user_account;
         private String create_time;
+        private String pay_status;
+        private String withdraw_status;
 
         public int getId() {
             return id;
@@ -106,6 +110,22 @@ public class DetailedBean {
 
         public void setCreate_time(String create_time) {
             this.create_time = create_time;
+        }
+
+        public String getPay_status() {
+            return pay_status;
+        }
+
+        public void setPay_status(String pay_status) {
+            this.pay_status = pay_status;
+        }
+
+        public String getWithdraw_status() {
+            return withdraw_status;
+        }
+
+        public void setWithdraw_status(String withdraw_status) {
+            this.withdraw_status = withdraw_status;
         }
     }
 }

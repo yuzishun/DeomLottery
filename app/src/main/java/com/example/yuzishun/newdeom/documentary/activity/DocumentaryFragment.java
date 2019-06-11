@@ -68,11 +68,12 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
     private LinearLayout layout_document;
     private TextView hot_empt;
     private TextView screen;
+    private LinearLayout image_seach;
     private List<DocumentaryBean.DataBean> data = new ArrayList<>();
     private DocumRecyclerViewAdapter documRecyclerViewAdapter;
     private String[] name={"方案金额","单倍金额","跟单人数","跟单金额"};
     private List<String> list_name = new ArrayList<>();
-    private String[] list1=new String[]{"林俊杰","林俊杰","林俊杰","林俊杰","林俊杰","林俊杰","林俊杰","林俊杰","林俊杰","林俊杰","林俊杰"};
+    private String[] list1=new String[]{"阿斯顿","ashun","you","篮球之夜","灭绝师太","艾瑞莉娅","跟我买","我爱刀妹","红单王者","跟着红单走",""};
     private ArrayList<String> list = new ArrayList<>();
     private int index=0;
     private LinearLayout layout_profitlist,layout_biggolist,layout_moneylist,layout_followlist;
@@ -94,6 +95,7 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
         Document_Refresh = (TwinklingRefreshLayout) findViewById(R.id.Document_Refresh);
         title_text = (TextView) findViewById(R.id.title_text);
         screen = (TextView) findViewById(R.id.screen);
+        image_seach = (LinearLayout) findViewById(R.id.image_seach);
         layout_profitlist = (LinearLayout) findViewById(R.id.layout_profitlist);
         layout_biggolist = (LinearLayout) findViewById(R.id.layout_biggolist);
         layout_moneylist = (LinearLayout) findViewById(R.id.layout_moneylist);
@@ -114,7 +116,14 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
         layout_followlist.setOnClickListener(this);
         Document_Refresh.setHeaderView(new SinaRefreshView(getActivity()));
         Document_Refresh.setBottomView(new LoadingView(getContext()));
+        image_seach.setVisibility(View.VISIBLE);
+        image_seach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
 
+            }
+        });
         Document_Refresh.setOnRefreshListener(new TwinklingRefreshLayout.OnRefreshListener(){
             @Override
             public void onRefresh(TwinklingRefreshLayout refreshLayout) {

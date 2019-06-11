@@ -27,11 +27,18 @@ class QuickAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
 
     @Override
     protected void convert(final BaseViewHolder helper, final ItemPoint item) {
-        helper.setText(R.id.item,item.id).setText(R.id.item_right,item.getOdds());
+        final LinearLayout layout_relat = helper.getView(R.id.layout_relat);
+
+        if(item.getOdds().equals("")){
+            helper.setText(R.id.item,"暂未开售").setText(R.id.item_right,item.getOdds());
+
+        }else {
+            helper.setText(R.id.item,item.id).setText(R.id.item_right,item.getOdds());
+        }
+
 
         final TextView item_name = helper.getView(R.id.item);
         final TextView item_right_name = helper.getView(R.id.item_right);
-        final LinearLayout layout_relat = helper.getView(R.id.layout_relat);
 
 
         if(flag_click==1){
@@ -61,8 +68,12 @@ class QuickAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
             @Override
             public void onClick(View v) {
                 if(item.isIsclick()){
+                    if(item.getOdds().equals("")) {
+                        layout_relat.setOnClickListener(null);
 
-                    item.isonclick=1;
+                    }else {
+
+                        item.isonclick=1;
                     if(item.isIsselect()){
                         notifyDataSetChanged();
 
@@ -78,6 +89,8 @@ class QuickAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
 
 
                     }
+                    }
+
                 }else {
 
                     layout_relat.setOnClickListener(null);
