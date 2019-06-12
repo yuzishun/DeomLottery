@@ -14,6 +14,8 @@ import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.model.OrderBean;
 import com.example.yuzishun.newdeom.my.activity.Details_mingxiActivity;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +71,9 @@ public class BetteyRecyclerViewAdapter extends RecyclerView.Adapter<BetteyRecycl
 
                     break;
                 case 2:
-                    String winning_money = String.valueOf(Double.parseDouble(data.get(position).getBonus_price()) + Double.parseDouble(data.get(position).getBonus_price()) * 0.05);
+                    NumberFormat nfmin = new DecimalFormat("#.##");
+
+                    String winning_money = nfmin.format(Double.parseDouble(data.get(position).getBonus_price()) + Double.parseDouble(data.get(position).getBonus_price()) * 0.05);
 
                     holder.state_betteyandwinnit.setText("中"+winning_money+"元奖");
 

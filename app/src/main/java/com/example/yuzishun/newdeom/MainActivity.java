@@ -136,7 +136,7 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
                                         .setShowNewerToast(true)
                                         .setConfiguration(configuration)
 //                .setDownloadPath(Environment.getExternalStorageDirectory() + "/AppUpdate")
-                                        .setApkVersionCode(2)
+                                        .setApkVersionCode(updataBean.getData().getCode())
                                         .setApkVersionName(updataBean.getData().getVersion())
                                         .setAuthorities(getPackageName())
                                         .setApkDescription(updataBean.getData().getMsg())

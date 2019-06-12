@@ -28,6 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 import butterknife.BindView;
@@ -222,7 +224,9 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                             state.setText("恭喜中奖");
                                             state.setTextColor(getResources().getColor(R.color.login_red));
                                             order_money.setText(footBallOrderBean.getData().getOrder_price());
-                                            String winning_money = String.valueOf(Double.parseDouble(footBallOrderBean.getData().getBonus_price()) + Double.parseDouble(footBallOrderBean.getData().getBonus_price()) * 0.05);
+                                            NumberFormat nfmin = new DecimalFormat("#.##");
+
+                                            String winning_money = nfmin.format(Double.parseDouble(footBallOrderBean.getData().getBonus_price()) + Double.parseDouble(footBallOrderBean.getData().getBonus_price()) * 0.05);
                                             Winning_money.setText(winning_money);
                                             add_money.setText(Double.parseDouble(footBallOrderBean.getData().getBonus_price())*0.05+"");
                                             break;
@@ -607,7 +611,10 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
             case 2:
                 state.setText("恭喜中奖");
                 order_money.setText(basketballOrderBean.getData().getOrder_price());
-                Winning_money.setText(basketballOrderBean.getData().getBonus_price());
+                NumberFormat nfmin = new DecimalFormat("#.##");
+
+                String winning_money = nfmin.format(Double.parseDouble(basketballOrderBean.getData().getBonus_price()) + Double.parseDouble(basketballOrderBean.getData().getBonus_price()) * 0.05);
+                Winning_money.setText(winning_money);
                 add_money.setText(Double.parseDouble(basketballOrderBean.getData().getBonus_price())*0.05+"");
                 break;
             case 3:
