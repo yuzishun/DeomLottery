@@ -69,7 +69,9 @@ public class BetteyRecyclerViewAdapter extends RecyclerView.Adapter<BetteyRecycl
 
                     break;
                 case 2:
-                    holder.state_betteyandwinnit.setText("中"+data.get(position).getBonus_price()+"元奖");
+                    String winning_money = String.valueOf(Double.parseDouble(data.get(position).getBonus_price()) + Double.parseDouble(data.get(position).getBonus_price()) * 0.05);
+
+                    holder.state_betteyandwinnit.setText("中"+winning_money+"元奖");
 
                     break;
                 case 3:

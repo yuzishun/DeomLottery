@@ -102,6 +102,7 @@ public class BettingSureRecyclerView extends RecyclerView.Adapter<BettingSureRec
 
 
 
+
     @SuppressLint("NewApi")
     private void dialog(int postion) {
         AlertDialog.Builder alterDiaglog = new AlertDialog.Builder(context);
@@ -175,7 +176,7 @@ public class BettingSureRecyclerView extends RecyclerView.Adapter<BettingSureRec
                 List<ItemPoint> threelist = Content.list_chooe.get(i).getThreelist();
                 List<ItemPoint> fourlist = Content.list_chooe.get(i).getFourlist();
 
-                one_rv.setAdapter(new QuickAdapter(onelist,0));
+                one_rv.setAdapter(new QuickAdapter(onelist,0,0,name_left,1));
                 two_rv.setAdapter(new QuickAdapter_two(twolist,0));
                 three_rv.setAdapter(new QuickAdapter_three(threelist,0));
                 four_rv.setAdapter(new QuickAdapter_four(fourlist,0));

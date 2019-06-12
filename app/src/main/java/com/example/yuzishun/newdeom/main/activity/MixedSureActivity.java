@@ -433,7 +433,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
 
             }
             Log.e("YZS",pour+"");
-            NumberFormat nf = new DecimalFormat("#.#");
+            NumberFormat nf = new DecimalFormat("#.##");
             format = nf.format(pour);
             String s = edit_Multiple.getText().toString();
             if(s.equals("")){
@@ -470,9 +470,10 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
 
 
 
-            NumberFormat nfmin = new DecimalFormat("0.00");
+            NumberFormat nfmin = new DecimalFormat("#.##");
             String pmin = nfmin.format(pourmin);
-            String smin = edit_Multiple.getText().toString();
+
+        String smin = edit_Multiple.getText().toString();
             if(smin.equals("")){
                 smin="1";
 
@@ -505,6 +506,31 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
         return list_retun;
 
     }
+    /**
+     * double转String,保留小数点后两位
+     * @param num
+     * @return
+     */
+    public String doubleToString(double num){
+        String strNum = String.valueOf(num);
+        int n = strNum.indexOf(".");
+        if(n>0){
+            //截取小数点后的数字
+            String dotNum = strNum.substring(n+1);
+            if("0".equals(dotNum)){
+                return strNum+"0";
+            }else{
+                if(dotNum.length()==1){
+                    return strNum +"0";
+                }else{
+                    return strNum;
+                }
+            }
+        }else{
+            return strNum+".00";
+        }
+    }
+
 
 
 

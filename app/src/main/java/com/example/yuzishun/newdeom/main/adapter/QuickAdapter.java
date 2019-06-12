@@ -19,10 +19,14 @@ import java.util.List;
  * Created by yuzishun on 2019/5/26.
  */
 class QuickAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
-    private int flag_click;
-    public QuickAdapter(List<ItemPoint> itemPoint, int flag_click) {
+    private int flag_click,postion,flag_type;
+    private TextView text_low;
+    public QuickAdapter(List<ItemPoint> itemPoint, int flag_click,int postion,TextView text_low,int flag_type) {
         super(R.layout.dialog_recycler_one,itemPoint);
         this.flag_click = flag_click;
+        this.postion = postion;
+        this.text_low = text_low;
+        this.flag_type = flag_type;
     }
 
     @Override
@@ -80,14 +84,24 @@ class QuickAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
                         item.setIsselect(false);
 
                         EventBus.getDefault().post(new MainMessage(BettingListAdapter.getnumber()+""));
+                        if(flag_type==0){
+                            BettingListAdapter.setMore(postion,text_low,helper.itemView.getContext());
+
+                        }else {
+
+                        }
 
                     }else {
                         item.setIsselect(true);
 
                         notifyDataSetChanged();
                         EventBus.getDefault().post(new MainMessage(BettingListAdapter.getnumber()+""));
+                        if(flag_type==0){
+                            BettingListAdapter.setMore(postion,text_low,helper.itemView.getContext());
 
+                        }else {
 
+                        }
                     }
                     }
 

@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
@@ -70,6 +71,7 @@ public class SendDocumentActivity extends BaseActivity implements View.OnClickLi
         ButterKnife.bind(this);
         title_text.setText("发起跟单");
         Intent intent = getIntent();
+
         order_id = intent.getIntExtra("order_id",0);
         multiple_price = intent.getIntExtra("multiple_price",0);
 

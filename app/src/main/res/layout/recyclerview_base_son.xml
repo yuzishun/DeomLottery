@@ -205,6 +205,8 @@
                     android:id="@+id/text_low"
                     android:textColor="@color/edittext_hintcolor"
                     android:text="展开更多选项"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textSize="@dimen/f9"
 
                     android:layout_width="wrap_content"

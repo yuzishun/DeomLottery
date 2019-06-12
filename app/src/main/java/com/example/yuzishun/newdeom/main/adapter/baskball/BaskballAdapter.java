@@ -80,8 +80,8 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
 
                 final Expand1Item_bask item2 = (Expand1Item_bask) item;
                 helper.setText(R.id.Text_diqu,item2.play_name)
-                        .setText(R.id.Text_left,item2.home_team)
-                        .setText(R.id.Text_right,item2.guest_team)
+                        .setText(R.id.Text_left,item2.guest_team)
+                        .setText(R.id.Text_right,item2.home_team)
                         .setText(R.id.Text_bianhao,item2.sequence_no)
                         .setText(R.id.Text_data,"截止"+item2.begin_time)
                         .setText(R.id.home_socre,item2.let_score)
@@ -234,7 +234,7 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
     public void gettext(String id,String odds,Button button){
 
         if(odds.equals("")){
-            button.setText("--");
+            button.setText("暂未开售");
             button.setEnabled(false);
 
         }else {
@@ -272,8 +272,8 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
         TextView name_right = dialog.findViewById(R.id.name_right);
 
 
-        name_left.setText(item.home_team);
-        name_right.setText(item.guest_team);
+        name_left.setText(item.guest_team);
+        name_right.setText(item.home_team);
 
 
 

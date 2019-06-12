@@ -139,12 +139,13 @@ public class BasketBallSureRecyclerView extends RecyclerView.Adapter<BasketBallS
         two_rv.setLayoutManager(new GridLayoutManager(MyApplication.getContext(),3));
 
 
-
         for (int i = 0; i <Content.list_chooe_bask.size() ; i++) {
             if(list_SubMixbean.get(postion).game_id.equals(Content.list_chooe_bask.get(i).getGame_id())){
                 List<ItemPoint> twolist = Content.list_chooe_bask.get(i).getTwolist();
                 List<ItemPoint> threelist = Content.list_chooe_bask.get(i).getThreelist();
 
+                name_left.setText(Content.list_chooe_bask.get(i).getGuest_team());
+                name_right.setText(Content.list_chooe_bask.get(i).getHome_team());
 
                 one_rv.setAdapter(new QuickAdapter_basket(twolist,0));
                 two_rv.setAdapter(new QuickAdapter_basket(threelist,0));

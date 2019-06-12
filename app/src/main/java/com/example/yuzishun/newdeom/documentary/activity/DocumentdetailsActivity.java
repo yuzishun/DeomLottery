@@ -222,7 +222,8 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                             state.setText("恭喜中奖");
                                             state.setTextColor(getResources().getColor(R.color.login_red));
                                             order_money.setText(footBallOrderBean.getData().getOrder_price());
-                                            Winning_money.setText(footBallOrderBean.getData().getBonus_price());
+                                            String winning_money = String.valueOf(Double.parseDouble(footBallOrderBean.getData().getBonus_price()) + Double.parseDouble(footBallOrderBean.getData().getBonus_price()) * 0.05);
+                                            Winning_money.setText(winning_money);
                                             add_money.setText(Double.parseDouble(footBallOrderBean.getData().getBonus_price())*0.05+"");
                                             break;
                                         case 3:

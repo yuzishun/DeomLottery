@@ -196,7 +196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <Button
-                        android:id="@+id/button_zero"
+                        android:id="@+id/button_one"
                         android:text="你好"
                         android:textSize="@dimen/f11"
                         android:textColor="@color/font_black"
@@ -205,7 +205,7 @@
                         android:layout_width="70dp"
                         android:layout_height="23dp" />
                     <Button
-                        android:id="@+id/button_two"
+                        android:id="@+id/button_three"
 
                         android:text="你好"
                         android:textSize="@dimen/f11"
@@ -216,7 +216,7 @@
                         android:layout_width="70dp"
                         android:layout_height="23dp" />
                     <Button
-                        android:id="@+id/button_four"
+                        android:id="@+id/button_fire"
 
                         android:text="你好"
                         android:textSize="@dimen/f11"
@@ -273,7 +273,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <Button
-                        android:id="@+id/button_one"
+                        android:id="@+id/button_zero"
                         android:text="你好"
                         android:textSize="@dimen/f11"
                         android:textColor="@color/font_black"
@@ -282,7 +282,7 @@
                         android:layout_width="70dp"
                         android:layout_height="23dp" />
                     <Button
-                        android:id="@+id/button_three"
+                        android:id="@+id/button_two"
 
                         android:text="你好"
                         android:textSize="@dimen/f11"
@@ -293,7 +293,7 @@
                         android:layout_width="70dp"
                         android:layout_height="23dp" />
                     <Button
-                        android:id="@+id/button_fire"
+                        android:id="@+id/button_four"
 
                         android:text="你好"
                         android:textSize="@dimen/f11"

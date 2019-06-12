@@ -68,7 +68,7 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
     @BindView(R.id.play_messag)
     ImageView play_messag;
     private BaskballAdapter adapter;
-    private String[] string_one= {"主负","主负","主负","主胜","大分","小分"};
+    private String[] string_one= {"主胜","主负","主胜","主负","大分","小分"};
     private String[] string_two= {"1-5","6-10","11-15","16-20","21-25","26+"};
     private List<String> list_one = new ArrayList<>();
     private List<String> list_two = new ArrayList<>();
@@ -326,8 +326,8 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
                                         chooseBaskBean.setHome_team(basketBallBean.getData().get(i).getGame_info().get(j).getGame_home_team_name());
 
                                         chooseBaskBean.setGuest_team(basketBallBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name());
-                                        chooseBaskBean.setName(basketBallBean.getData().get(i).getGame_week()+basketBallBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+basketBallBean.getData().get(i).getGame_info().get(j).getGame_home_team_name()
-                                                +"        "+"vs"+"        "+basketBallBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name());
+                                        chooseBaskBean.setName(basketBallBean.getData().get(i).getGame_week()+basketBallBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+basketBallBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name()
+                                                +"        "+"vs"+"        "+basketBallBean.getData().get(i).getGame_info().get(j).getGame_home_team_name());
 
                                         list_choose.add(chooseBaskBean);
 
