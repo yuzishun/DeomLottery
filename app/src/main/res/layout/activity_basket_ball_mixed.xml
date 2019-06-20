@@ -84,6 +84,7 @@
             <android.support.v7.widget.RecyclerView
                 android:visibility="gone"
                 android:layout_above="@+id/layout_bottom"
+                android:layout_marginBottom="@dimen/d40"
                 android:id="@+id/baskball_RecyCLerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

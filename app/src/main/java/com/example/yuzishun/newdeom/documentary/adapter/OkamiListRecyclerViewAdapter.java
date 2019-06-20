@@ -2,6 +2,7 @@ package com.example.yuzishun.newdeom.documentary.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,15 +11,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.documentary.activity.CopydocumentActivity;
 //import com.example.yuzishun.newdeom.documentary.activity.Documentdetails_main_Activity;
+import com.example.yuzishun.newdeom.documentary.activity.Documentdetails_main_Activity;
+import com.example.yuzishun.newdeom.model.OkamiListBean;
 import com.example.yuzishun.newdeom.my.activity.BetteyAndWinningActivity;
 import com.example.yuzishun.newdeom.my.custom.MyTableTextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yuzishun on 2019/5/7.
@@ -30,11 +35,11 @@ import java.util.ArrayList;
  */
 public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiListRecyclerViewAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<String> list = new ArrayList<>();
+    private List<OkamiListBean.DataBean> list = new ArrayList<>();
     private String[] name={"订单金额","单倍金额","参与人数","中奖金额"};
 
 
-    public OkamiListRecyclerViewAdapter(Context context, ArrayList<String> list) {
+    public OkamiListRecyclerViewAdapter(Context context, List<OkamiListBean.DataBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -45,18 +50,64 @@ public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiList
     }
 
     @Override
-    public void onBindViewHolder(OkamiListRecyclerViewAdapter.ViewHolder holder, int position) {
-        initdata(context,holder.MyTable);
-        if(position==2){
-            Glide.with(context).load(R.mipmap.weijiang).asBitmap().into(holder.jiang_state);
+    public void onBindViewHolder(OkamiListRecyclerViewAdapter.ViewHolder holder, final int position) {
+
+        holder.Text_data.setText("截止时间:"+list.get(position).getCut_off_time());
+        holder.Text_money.setText(list.get(position).getPlan_follow_price());
+
+        holder.list_1_1.setText(name[0]);
+        holder.list_1_2.setText(name[1]);
+        holder.list_1_3.setText(name[2]);
+        holder.list_1_4.setText(name[3]);
+        holder.list_2_1.setText(list.get(position).getOrder_price()+"");
+        holder.list_2_2.setText(list.get(position).getMultiple_price()+"");
+        holder.list_2_3.setText(list.get(position).getPlan_follow_person()+"");
+        holder.list_2_4.setText(list.get(position).getBonus_price()+"");
+
+        switch (list.get(position).getOrder_status()){
+            case 1:
+                holder.jiang_state.setVisibility(View.GONE);
+
+
+                break;
+            case 2:
+                holder.jiang_state.setVisibility(View.VISIBLE);
+
+                Glide.with(context).load(R.mipmap.readyjiang).asBitmap().into(holder.jiang_state);
+                break;
+            case 3:
+                holder.jiang_state.setVisibility(View.VISIBLE);
+
+                Glide.with(context).load(R.mipmap.weijiang).asBitmap().into(holder.jiang_state);
+                break;
+        }
+        if(list.get(position).getCut_off()==0){
+
             holder.Button_Okami_gen.setEnabled(false);
 
+
+        }else {
+            holder.Button_Okami_gen.setEnabled(true);
+
         }
+
+
+
+
         holder.Button_Okami_gen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                context.startActivity(new Intent(context, CopydocumentActivity.class));
+                Intent intent1 = new Intent(context,Documentdetails_main_Activity.class);
+
+
+                intent1.putExtra("flag",1);
+
+                intent1.putExtra("type",list.get(position).getGame_type());
+                intent1.putExtra("plan_id",list.get(position).getPlan_id());
+                intent1.putExtra("Cut_off",list.get(position).getCut_off());
+
+                context.startActivity(intent1);
 
             }
         });
@@ -73,69 +124,90 @@ public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiList
 //
 //                context.startActivity(intent1);
 
+                Intent intent1 = new Intent(context,Documentdetails_main_Activity.class);
+
+
+                intent1.putExtra("flag",1);
+
+                intent1.putExtra("type",list.get(position).getGame_type());
+                intent1.putExtra("plan_id",list.get(position).getPlan_id());
+                intent1.putExtra("Cut_off",list.get(position).getCut_off());
+                context.startActivity(intent1);
             }
         });
 
 
 
     }
-    private void initdata(Context context,LinearLayout linearLayout) {
-        RelativeLayout relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.table, null);
-        MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-        title.setText(name[0]);
-        title.setTextColor(context.getResources().getColor(R.color.font_gray));
-
-        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
-        title.setText(name[1]);
-        title.setTextColor(context.getResources().getColor(R.color.font_gray));
-        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
-        title.setText(name[2]);
-        title.setTextColor(context.getResources().getColor(R.color.font_gray));
-        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
-        title.setText(name[3]);
-        title.setTextColor(context.getResources().getColor(R.color.font_gray));
-
-
-        linearLayout.addView(relativeLayout);
-        //初始化内容
-        for (int i = 0; i < 1; i++) {
-            relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.table, null);
-            MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-            txt.setText("5000.0元");
-            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
-            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
-            txt.setText("2.0元");
-            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
-
-            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
-            txt.setText("11人");
-            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
-
-            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
-            txt.setText("14050.0元");
-            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
-
-
-            linearLayout.addView(relativeLayout);
-        }
-
-
-
-    }
+//    private void initdata(Context context,LinearLayout linearLayout,List<OkamiListBean.DataBean> list,int postion) {
+//        RelativeLayout relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.table, null);
+//        MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
+//        title.setText(name[0]);
+//        title.setTextColor(context.getResources().getColor(R.color.font_gray));
+//
+//        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
+//        title.setText(name[1]);
+//        title.setTextColor(context.getResources().getColor(R.color.font_gray));
+//        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
+//        title.setText(name[2]);
+//        title.setTextColor(context.getResources().getColor(R.color.font_gray));
+//        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
+//        title.setText(name[3]);
+//        title.setTextColor(context.getResources().getColor(R.color.font_gray));
+//
+//
+//        linearLayout.addView(relativeLayout);
+//        //初始化内容
+//        for (int i = 0; i < 1; i++) {
+//            relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.table, null);
+//            MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
+//            txt.setText(list.get(postion).getOrder_price()+"");
+//            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+//            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
+//            txt.setText(list.get(postion).getMultiple_price()+"");
+//            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+//
+//            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
+//            txt.setText(list.get(postion).getPlan_follow_person()+"");
+//            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+//
+//            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
+//            txt.setText(list.get(postion).getBonus_price()+"");
+//            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+//
+//
+//            linearLayout.addView(relativeLayout);
+//        }
+//
+//
+//
+//    }
     @Override
     public int getItemCount() {
         return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout MyTable;
         Button Button_Okami_gen;
         ImageView jiang_state;
+        TextView Text_data,Text_money;
+        MyTableTextView list_1_1,list_1_2,list_1_3,list_1_4,list_2_1,list_2_2,list_2_3,list_2_4;
         public ViewHolder(View itemView) {
             super(itemView);
-            MyTable = itemView.findViewById(R.id.MyTable);
+            list_1_1 = itemView.findViewById(R.id.list_1_1);
+            list_1_2 = itemView.findViewById(R.id.list_1_2);
+
+            list_1_3 = itemView.findViewById(R.id.list_1_3);
+            list_1_4 = itemView.findViewById(R.id.list_1_4);
+            list_2_1 = itemView.findViewById(R.id.list_2_1);
+            list_2_2 = itemView.findViewById(R.id.list_2_2);
+            list_2_3 = itemView.findViewById(R.id.list_2_3);
+            list_2_4 = itemView.findViewById(R.id.list_2_4);
+
             Button_Okami_gen = itemView.findViewById(R.id.Button_Okami_gen);
+            Text_money = itemView.findViewById(R.id.Text_money);
             jiang_state = itemView.findViewById(R.id.jiang_state);
+            Text_data = itemView.findViewById(R.id.Text_data);
         }
     }
 }

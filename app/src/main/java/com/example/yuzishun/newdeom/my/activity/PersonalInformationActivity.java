@@ -174,7 +174,7 @@ public class PersonalInformationActivity extends BaseActivity implements View.On
             requestBody.addFormDataPart("userImage", path, body);
         }
 
-        Request request = new Request.Builder().url(Url.baseUrl+"user/editUserHeadImg").addHeader("token",Content.ToKen).post(requestBody.build()).build();
+        Request request = new Request.Builder().url(Url.baseUrl+"app/user/editUserHeadImg").addHeader("token",Content.ToKen).post(requestBody.build()).build();
 // readTimeout("请求超时时间" , 时间单位);
         client.newBuilder().readTimeout(5000, TimeUnit.MILLISECONDS).build().newCall(request).enqueue(new Callback() {
             @Override

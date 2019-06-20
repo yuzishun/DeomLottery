@@ -23,6 +23,8 @@ public class ChooseMixedBean {
     public String home_score;
     public String guest_score;
 
+
+
     public String getHome_score() {
         return home_score;
     }

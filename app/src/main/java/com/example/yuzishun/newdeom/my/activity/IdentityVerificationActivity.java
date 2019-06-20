@@ -102,7 +102,7 @@ public class IdentityVerificationActivity extends BaseActivity implements View.O
         hashMap.put("compellation",name);
         hashMap.put("identity_card",id);
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "user/bindUserIdentityCard", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/user/bindUserIdentityCard", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

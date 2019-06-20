@@ -21,6 +21,9 @@ import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -122,7 +125,7 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
         hashMap.put("amount",money_edit.getText().toString().trim());
         OkhttpUtlis okhttpUtlis= new OkhttpUtlis();
 
-        okhttpUtlis.PostAsynMap(Url.payUrl, hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl+"pay/muck/payment", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -136,31 +139,39 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
                     @Override
                     public void run() {
                         Log.e("YZS",result.toString());
+                        try {
+                            JSONObject jsonObject = new JSONObject(result);
 
-                        PayBean payBean = JSON.parseObject(result,PayBean.class);
-                        if(payBean.getCode()==10000){
+                            int code = jsonObject.getInt("code");
+                            String msg = jsonObject.getString("msg");
+                            if(code==10000){
+                                PayBean payBean = JSON.parseObject(result,PayBean.class);
 //                            String url = "http://" + payBean.getData().getPay();
 //                            String orderid = payBean.getData().getOrderid();
 //                            String amount = payBean.getData().getAmount();
-                            finish();
-                            Intent intent  = new Intent(RechargeActivity.this,WebViewPayActivity.class);
-                            intent.putExtra("url","http://"+payBean.getData().getPay());
-                            intent.putExtra("orderid",payBean.getData().getOrderid());
-                            intent.putExtra("amount",payBean.getData().getAmount());
-                            startActivity(intent);
+                                    finish();
+                                    Intent intent  = new Intent(RechargeActivity.this,WebViewPayActivity.class);
+                                    intent.putExtra("url","http://"+payBean.getData().getPay());
+                                    intent.putExtra("orderid",payBean.getData().getOrderid());
+                                    intent.putExtra("amount",payBean.getData().getAmount());
+                                    startActivity(intent);
+                            }else {
+                                ToastUtil.showToast1(RechargeActivity.this,msg+"");
+
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
 
 
 
 //                            Uri uri = Uri.parse(url+"?orderid="+orderid+"&amount="+amount);
 //                            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 //                            startActivity(intent);
-
-
-
-                        }else {
-                            ToastUtil.showToast1(RechargeActivity.this,payBean.getMsg()+"");
-
-                        }
 
 
 

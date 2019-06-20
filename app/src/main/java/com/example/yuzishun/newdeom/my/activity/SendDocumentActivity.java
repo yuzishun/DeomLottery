@@ -151,7 +151,7 @@ public class SendDocumentActivity extends BaseActivity implements View.OnClickLi
         hashMap.put("plan_status",plan_status+"");
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
 
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "order/initiateOrderPlan", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/order/initiateOrderPlan", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

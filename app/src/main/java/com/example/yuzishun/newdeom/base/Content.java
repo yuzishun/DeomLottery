@@ -51,4 +51,7 @@ public class Content {
     //银行卡列表
     public static  List<BankMangmentBean.DataBean> list_bank = new ArrayList<>();
 
+
+    public static int Text_postion =0;
+
 }

@@ -58,7 +58,7 @@ public class DocumentaryBean {
          * plan_follow_person : 1
          * cut_off_time : 2019-05-28 18:15:00
          */
-
+        private String user_id;
         private int plan_id;
         private String uname;
         private String img_head;
@@ -71,6 +71,14 @@ public class DocumentaryBean {
         private String plan_follow_price;
         private String plan_follow_person;
         private String cut_off_time;
+
+        public String getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(String user_id) {
+            this.user_id = user_id;
+        }
 
         public int getPlan_id() {
             return plan_id;

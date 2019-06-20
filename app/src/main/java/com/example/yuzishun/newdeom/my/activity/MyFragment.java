@@ -84,7 +84,7 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
 
         HashMap<String,String> hashMap = new HashMap<>();
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "user/refreshUserInfo", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/user/refreshUserInfo", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -153,7 +153,7 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
 
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "order/getWinPriceByOrder",hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/order/getWinPriceByOrder",hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -347,7 +347,7 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
         final List<BankMangmentBean.DataBean> list = new ArrayList<>();
         HashMap<String,String> hashMap = new HashMap<>();
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "user/getUserBankCardList", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/user/getUserBankCardList", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

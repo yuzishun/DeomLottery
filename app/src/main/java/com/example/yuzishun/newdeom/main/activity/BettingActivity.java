@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.yuzishun.newdeom.R;
@@ -30,6 +29,7 @@ import com.example.yuzishun.newdeom.model.FootballBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
+import com.example.yuzishun.newdeom.utils.AdapterMessage;
 import com.example.yuzishun.newdeom.utils.MainMessage;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -180,6 +180,18 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
 
         }
     }
+    /**
+     * 主线程中执行
+     *
+     * @param msg
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMainEventBus(AdapterMessage msg) {
+        Log.e("YZSYZSYZS", msg.getPostion()+"");
+        Content.Text_postion = msg.getPostion();
+        adapter.notifyItemChanged(msg.getPostion());
+
+    }
 
     @Override
     protected void onResume() {
@@ -228,7 +240,11 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
             case R.id.button_sure:
                     if(count<2){
                     ToastUtil.showToast1(this,"至少选择两场");
-                    }else {
+                    }else if(count>15){
+                        ToastUtil.showToast1(this,"至多选择15场");
+
+
+                    }else  {
 
                     Intent intent = new Intent(this,MixedSureActivity.class);
                     Content.list_chooe = adapter.getList();
@@ -282,7 +298,7 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
     private ArrayList<MultiItemEntity> generateData() {
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
         final ArrayList<MultiItemEntity> res = new ArrayList<>();
-        okhttpUtlis.GetAsynMap(Url.baseUrl + "ball/getFootballList", new Callback() {
+        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getFootballList", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -375,7 +391,7 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
                                         chooseMixedBean.setHome_team(footballBean.getData().get(i).getGame_info().get(j).getGame_home_team_name());
 
                                         chooseMixedBean.setGuest_team(footballBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name());
-                                        chooseMixedBean.setName(footballBean.getData().get(i).getGame_week()+footballBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+footballBean.getData().get(i).getGame_info().get(j).getGame_home_team_name()
+                                        chooseMixedBean.setName(footballBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+footballBean.getData().get(i).getGame_info().get(j).getGame_home_team_name()
                                                 +"        "+"vs"+"        "+footballBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name());
                                         chooseMixedBean.setHome_score(footballBean.getData().get(i).getGame_info().get(j).getGame_home_score());
                                         chooseMixedBean.setGuest_score(footballBean.getData().get(i).getGame_info().get(j).getGame_let_score());
@@ -385,8 +401,8 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
                                                 footballBean.getData().get(i).getGame_info().get(j).getGame_home_team_name()
                                         ,footballBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name(),footballBean.getData().get(i).getGame_info().get(j).getGame_home_score(),
                                                 footballBean.getData().get(i).getGame_info().get(j).getGame_let_score(),footballBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()
-                                        ,footballBean.getData().get(i).getGame_info().get(j).getGame_begin_time(),footballBean.getData()
-                                        ,listone,listtwo,listthree,listfour,list_choose);
+                                        ,footballBean.getData().get(i).getGame_info().get(j).getGame_begin_time()
+                                        ,listone,listtwo,listthree,listfour,list_choose,"展开更多选项");
 
 
                                         item.addSubItem(item1);

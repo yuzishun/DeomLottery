@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -75,15 +76,24 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
         initFragment();
         packagecode = packageCode(this);
 
-        updata();
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                updata();
+
+
+            }
+        });
 
         intentsat = this;
     }
 
     private void updata() {
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.GetAsynMap(Url.baseUrl + "version_up/getVersionUp?code=" + packagecode, new Callback() {
-            @Override
+        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/version_up/getVersionUp?code=" + packagecode, new Callback() {
+//                    okhttpUtlis.GetAsynMap("http://192.168.1.9/app/version_up/getVersionUp?code=" + packagecode, new Callback() {
+
+                @Override
             public void onFailure(Call call, IOException e) {
 
             }

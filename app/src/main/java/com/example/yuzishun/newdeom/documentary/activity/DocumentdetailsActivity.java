@@ -2,6 +2,12 @@ package com.example.yuzishun.newdeom.documentary.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.annotation.StringDef;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -22,14 +28,17 @@ import com.example.yuzishun.newdeom.my.activity.SendDocumentActivity;
 import com.example.yuzishun.newdeom.my.custom.MyTableTextView;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
+import com.example.yuzishun.newdeom.utils.StringDesignUtil;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -118,7 +127,12 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
     TextView plan_profits;
     @BindView(R.id.gendan_bumber)
     TextView gendan_bumber;
-
+    @BindView(R.id.Theory_Text)
+    TextView Theory_Text;
+    @BindView(R.id.Relate_Theory)
+    RelativeLayout Relate_Theory;
+    @BindView(R.id.gendan_price)
+    TextView gendan_price;
     private int flag,type,order_id,multiple_price,multiple;
 
     @Override
@@ -157,7 +171,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
     private void initnet() {
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.GetAsynMap(Url.baseUrl + "order/getOrderInfo?order_id=" + order_id, new Callback() {
+        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/order/getOrderInfo?order_id=" + order_id, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -191,6 +205,12 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
                                     }else {
                                         layout_buttonv.setVisibility(View.GONE);
+
+                                    }
+                                    if(footBallOrderBean.getData().getTheory_bonus().equals("")){
+                                        Relate_Theory.setVisibility(View.GONE);
+                                    }else {
+                                        Theory_Text.setText(footBallOrderBean.getData().getTheory_bonus());
 
                                     }
 
@@ -228,7 +248,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
                                             String winning_money = nfmin.format(Double.parseDouble(footBallOrderBean.getData().getBonus_price()) + Double.parseDouble(footBallOrderBean.getData().getBonus_price()) * 0.05);
                                             Winning_money.setText(winning_money);
-                                            add_money.setText(Double.parseDouble(footBallOrderBean.getData().getBonus_price())*0.05+"");
+                                            add_money.setText(nfmin.format(Double.parseDouble(footBallOrderBean.getData().getBonus_price())*0.05)+"");
                                             break;
                                         case 3:
                                             state.setText("再接再厉");
@@ -270,7 +290,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                             multiple_pric.setText("单倍金额:"+footBallOrderBean.getData().getMultiple_price());
                                             plan_profits.setText("方案提成:"+footBallOrderBean.getData().getOrder_plan().getPlan_profits());
                                             gendan_bumber.setText("跟单人数（"+footBallOrderBean.getData().getOrder_plan().getPlan_follow_person()+"，共"+footBallOrderBean.getData().getOrder_plan().getPlan_follow_price()+"元）");
-
+                                            gendan_price.setText("佣金:"+footBallOrderBean.getData().getOrder_plan().getPlan_profit_price());
                                             break;
                                         case 2:
                                             View_genv.setVisibility(View.GONE);
@@ -378,27 +398,41 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                         initdata_details(DocumentdetailsActivity.this,MyTable,order_odds_info);
 
                                     }
-                                    usedr_id.setText("ID:"+footBallOrderBean.getData().getUser_id());
+//                                    usedr_id.setText("ID:"+footBallOrderBean.getData().getUser_id());
                                     multiple_price  = footBallOrderBean.getData().getMultiple_price();
                                     multiple = footBallOrderBean.getData().getMultiple();
-                                    Text_order_id.setText("订单编号："+footBallOrderBean.getData().getOrder_id());
+                                    Text_order_id.setText("订单编号："+footBallOrderBean.getData().getOrder_no());
                                     Text_order_data.setText("下单时间："+footBallOrderBean.getData().getCreate_time());
+                                    List<FootBallOrderBean.DataBean.OrderPlanInfoBean> order_plan_info = footBallOrderBean.getData().getOrder_plan_info();
+                                    if(order_plan_info.size()==0){
+                                        MyTable_gen.setVisibility(View.GONE);
 
+                                    }else {
+                                        MyTable_gen.setVisibility(View.VISIBLE);
+                                        initdata_documentary(DocumentdetailsActivity.this,MyTable_gen,order_plan_info);
+                                    }
 
 
                                 }else {
                                     //篮球
                                     BasketballOrderBean basketballOrderBean = com.alibaba.fastjson.JSONObject.parseObject(result,BasketballOrderBean.class);
 
-                                    usedr_id.setText("ID:"+basketballOrderBean.getData().getUser_id());
+//                                    usedr_id.setText("ID:"+basketballOrderBean.getData().getUser_id());
 
                                     multiple_price  = basketballOrderBean.getData().getMultiple_price();
                                     multiple = basketballOrderBean.getData().getMultiple();
                                     basketball(basketballOrderBean);
 
-                                    Text_order_id.setText("订单编号："+basketballOrderBean.getData().getOrder_id());
+                                    Text_order_id.setText("订单编号："+basketballOrderBean.getData().getOrder_no());
                                     Text_order_data.setText("下单时间："+basketballOrderBean.getData().getCreate_time());
+                                    List<BasketballOrderBean.DataBean.OrderPlanInfoBean> order_plan_info = basketballOrderBean.getData().getOrder_plan_info();
+                                    if(order_plan_info.size()==0){
+                                        MyTable_gen.setVisibility(View.GONE);
 
+                                    }else {
+                                        MyTable_gen.setVisibility(View.VISIBLE);
+                                        initdata_documentary_bask(DocumentdetailsActivity.this,MyTable_gen,order_plan_info);
+                                    }
                                 }
 
 
@@ -446,8 +480,11 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
             txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
             if(order_odds_info.get(i).getGame_status()>=2){
-                txt.setText(order_odds_info.get(i).getWin_odds_list().get(0)+"\n"+order_odds_info.get(i).getWin_odds_list().get(1)+"\n"+order_odds_info.get(i).getWin_odds_list().get(2)+
-                        "\n"+order_odds_info.get(i).getWin_odds_list().get(3)+"\n"+order_odds_info.get(i).getWin_odds_list().get(4));
+                String ss="";
+                for (int j = 0; j <order_odds_info.get(i).getWin_odds_list().size() ; j++) {
+                    ss +=order_odds_info.get(i).getWin_odds_list().get(j)+"\n";
+                }
+                txt.setText(ss);
 
             }else {
                 txt.setText("暂无赛果");
@@ -457,13 +494,47 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
             txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
             String zhi = "";
+            List<String> list_color = new ArrayList<>();
+            ArrayList<String> list_color_red = new ArrayList<>();
+
             for (int j = 0; j <order_odds_info.get(i).getBet_info().size() ; j++) {
-                zhi +=order_odds_info.get(i).getBet_info().get(j).getBet_name()+"("+order_odds_info.get(i).getBet_info().get(j).getBet_odds()+")"+"\n";
+
+                if(order_odds_info.get(i).getBet_info().get(j).getStatus()==1){
+
+
+
+                    list_color_red.add(order_odds_info.get(i).getBet_info().get(j).getBet_name());
+
+                }else {
+//
+
+                }
+                list_color.add(order_odds_info.get(i).getBet_info().get(j).getBet_name());
+
+//
 
             }
 
-            txt.setText(zhi);
-            txt.setTextColor(context.getResources().getColor(R.color.login_red));
+            for (int j = 0; j < list_color.size(); j++) {
+                zhi +=list_color.get(j)+"\n";
+
+            }
+            Log.e("YZS",zhi+"");
+
+
+
+
+            if(order_odds_info.get(i).getGame_status()>=2){
+
+                txt.setText(StringDesignUtil.getSpannableStringBuilder(zhi,list_color_red, context.getResources().getColor(R.color.login_red)));
+
+            }else {
+                txt.setText(zhi);
+                txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+            }
+
+
+
 
 
             linearLayout.addView(relativeLayout);
@@ -485,8 +556,11 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
             txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
             if(order_odds_info.get(i).getGame_status()>=2){
-                txt.setText(order_odds_info.get(i).getWin_odds_list().get(0)+"\n"+order_odds_info.get(i).getWin_odds_list().get(1)+"\n"+order_odds_info.get(i).getWin_odds_list().get(2)+
-                        "\n"+order_odds_info.get(i).getWin_odds_list().get(3));
+                String ss="";
+                for (int j = 0; j <order_odds_info.get(i).getWin_odds_list().size() ; j++) {
+                    ss +=order_odds_info.get(i).getWin_odds_list().get(j)+"\n";
+                }
+                txt.setText(ss);
 
             }else {
                 txt.setText("暂无赛果");
@@ -496,13 +570,36 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
             txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
             String zhi = "";
+            List<String> list_color = new ArrayList<>();
+            ArrayList<String> list_color_red = new ArrayList<>();
             for (int j = 0; j <order_odds_info.get(i).getBet_info().size() ; j++) {
-                zhi +=order_odds_info.get(i).getBet_info().get(j).getBet_name()+"("+order_odds_info.get(i).getBet_info().get(j).getBet_odds()+")"+"\n";
+                if(order_odds_info.get(i).getBet_info().get(j).getStatus()==1){
+
+
+
+                    list_color_red.add(order_odds_info.get(i).getBet_info().get(j).getBet_name());
+
+                }else {
+//
+
+                }
+                list_color.add(order_odds_info.get(i).getBet_info().get(j).getBet_name());
 
             }
+            for (int j = 0; j < list_color.size(); j++) {
+                zhi +=list_color.get(j)+"\n";
 
-            txt.setText(zhi);
-            txt.setTextColor(context.getResources().getColor(R.color.login_red));
+            }
+            if(order_odds_info.get(i).getGame_status()>=2){
+
+                txt.setText(StringDesignUtil.getSpannableStringBuilder(zhi,list_color_red, context.getResources().getColor(R.color.login_red)));
+
+            }else {
+                txt.setText(zhi);
+                txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+            }
+
+
 
 
             linearLayout.addView(relativeLayout);
@@ -512,48 +609,94 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
 
 //跟单列表
-//    private void initdata_documentary(Context context,LinearLayout linearLayout) {
-//        RelativeLayout relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.table, null);
-//        MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-//        title.setText(name[0]);
-//        title.setTextColor(context.getResources().getColor(R.color.font_gray));
-//
-//        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
-//        title.setText(name[1]);
-//        title.setTextColor(context.getResources().getColor(R.color.font_gray));
-//        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
-//        title.setText(name[2]);
-//        title.setTextColor(context.getResources().getColor(R.color.font_gray));
-//        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
-//        title.setText(name[3]);
-//        title.setTextColor(context.getResources().getColor(R.color.font_gray));
-//
-//
-//        linearLayout.addView(relativeLayout);
-//        //初始化内容
-//        for (int i = 0; i < 2; i++) {
-//            relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.table, null);
-//            MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-//            txt.setText("k**w");
-//            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
-//            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
-//            txt.setText("2800.00元");
-//            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
-//
-//            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
-//            txt.setText("08:36:45");
-//            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
-//
-//            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
-//            txt.setText("----");
-//            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
-//
-//
-//            linearLayout.addView(relativeLayout);
-//
-//
-//        }
-//    }
+    private void initdata_documentary(Context context,LinearLayout linearLayout,List<FootBallOrderBean.DataBean.OrderPlanInfoBean> order_plan_info) {
+        RelativeLayout relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.table, null);
+        MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
+        title.setText(name[0]);
+        title.setTextColor(context.getResources().getColor(R.color.font_gray));
+
+        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
+        title.setText(name[1]);
+        title.setTextColor(context.getResources().getColor(R.color.font_gray));
+        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
+        title.setText(name[2]);
+        title.setTextColor(context.getResources().getColor(R.color.font_gray));
+        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
+        title.setText(name[3]);
+        title.setTextColor(context.getResources().getColor(R.color.font_gray));
+
+
+        linearLayout.addView(relativeLayout);
+        //初始化内容
+        for (int i = 0; i < order_plan_info.size(); i++) {
+            relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.table, null);
+            MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
+
+            txt.setText(order_plan_info.get(i).getUname()+"");
+            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
+            txt.setText(order_plan_info.get(i).getOrder_price()+"");
+            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+
+            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
+            txt.setText(order_plan_info.get(i).getCreate_time()+"");
+            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+
+            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
+            txt.setText(order_plan_info.get(i).getBonus_price()+"");
+            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+
+
+            linearLayout.addView(relativeLayout);
+
+
+        }
+    }
+
+    //跟单列表
+    private void initdata_documentary_bask(Context context,LinearLayout linearLayout,List<BasketballOrderBean.DataBean.OrderPlanInfoBean> order_plan_info) {
+        RelativeLayout relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.table, null);
+        MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
+        title.setText(name[0]);
+        title.setTextColor(context.getResources().getColor(R.color.font_gray));
+
+        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
+        title.setText(name[1]);
+        title.setTextColor(context.getResources().getColor(R.color.font_gray));
+        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
+        title.setText(name[2]);
+        title.setTextColor(context.getResources().getColor(R.color.font_gray));
+        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
+        title.setText(name[3]);
+        title.setTextColor(context.getResources().getColor(R.color.font_gray));
+
+
+        linearLayout.addView(relativeLayout);
+        //初始化内容
+        for (int i = 0; i < order_plan_info.size(); i++) {
+            relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.table, null);
+            MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
+
+            txt.setText(order_plan_info.get(i).getUname()+"");
+            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
+            txt.setText(order_plan_info.get(i).getOrder_price()+"");
+            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+
+            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
+            txt.setText(order_plan_info.get(i).getCreate_time()+"");
+            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+
+            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
+            txt.setText(order_plan_info.get(i).getBonus_price()+"");
+            txt.setTextColor(context.getResources().getColor(R.color.font_gray));
+
+
+            linearLayout.addView(relativeLayout);
+
+
+        }
+    }
 
     @Override
     public void onClick(View v) {
@@ -574,6 +717,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
 
     public void basketball(BasketballOrderBean basketballOrderBean){
+        Log.e("YZS",basketballOrderBean.toString()+"");
 
         if(basketballOrderBean.getData().getIn_plan()==0){
             layout_buttonv.setVisibility(View.VISIBLE);
@@ -582,6 +726,13 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
             layout_buttonv.setVisibility(View.GONE);
 
         }
+        if(basketballOrderBean.getData().getTheory_bonus().equals("")){
+            Relate_Theory.setVisibility(View.GONE);
+        }else {
+            Theory_Text.setText(basketballOrderBean.getData().getTheory_bonus());
+
+        }
+
         switch (basketballOrderBean.getData().getOrder_status()){
             case -1:
                 state.setText("申请退款");
@@ -615,7 +766,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
                 String winning_money = nfmin.format(Double.parseDouble(basketballOrderBean.getData().getBonus_price()) + Double.parseDouble(basketballOrderBean.getData().getBonus_price()) * 0.05);
                 Winning_money.setText(winning_money);
-                add_money.setText(Double.parseDouble(basketballOrderBean.getData().getBonus_price())*0.05+"");
+                add_money.setText(nfmin.format(Double.parseDouble(basketballOrderBean.getData().getBonus_price())*0.05));
                 break;
             case 3:
                 state.setText("再接再厉");
@@ -653,7 +804,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 multiple_pric.setText("单倍金额:"+basketballOrderBean.getData().getMultiple_price());
                 plan_profits.setText("方案提成:"+basketballOrderBean.getData().getOrder_plan().getPlan_profits());
                 gendan_bumber.setText("跟单人数（"+basketballOrderBean.getData().getOrder_plan().getPlan_follow_person()+"，共"+basketballOrderBean.getData().getOrder_plan().getPlan_follow_price()+"元）");
-                layout_genlistv.setVisibility(View.GONE);
+                gendan_price.setText("佣金:"+basketballOrderBean.getData().getOrder_plan().getPlan_profit_price());
 
                 break;
             case 2:

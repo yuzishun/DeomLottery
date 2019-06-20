@@ -108,6 +108,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
     private List<SureguanBean> list_sureguanBean = new ArrayList<>();
     private List<SubMixListBean> list_stbMixListBean = new ArrayList<>();
     private String multiple="1";
+    private String theory_bonus;
 
     @Override
     public int intiLayout() {
@@ -534,7 +535,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
 
         }
         Log.e("YZS",pour+"");
-        NumberFormat nf = new DecimalFormat("#.#");
+        NumberFormat nf = new DecimalFormat("#.##");
         format = nf.format(pour);
         String s = edit_Multiple.getText().toString();
         if(s.equals("")){
@@ -572,7 +573,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
 
 
 
-        NumberFormat nfmin = new DecimalFormat("0.00");
+        NumberFormat nfmin = new DecimalFormat("#.##");
         String pmin = nfmin.format(pourmin);
         String smin = edit_Multiple.getText().toString();
         if(smin.equals("")){
@@ -594,6 +595,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
 
         Log.e("YZS",bunchminandmax+"");
 
+        theory_bonus = bunchminandmax;
 
         list_retun.add(bunch);
         list_retun.add(bunchminandmax);
@@ -873,6 +875,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
             jsonObject.put("bunch",jsonArray);
             jsonObject.put("game_type","1");
             jsonObject.put("game_bet",jsonArray1);
+            jsonObject.put("theory_bonus",theory_bonus);
             String data = jsonObject.toString();
             Log.e("YZS",data.toString());
 
@@ -881,7 +884,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
 
             RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"), data);
             final Request request = new Request.Builder()
-                    .url(Url.baseUrl+"order/addOrder")
+                    .url(Url.baseUrl+"app/order/addOrder")
                     .addHeader("token", Content.ToKen)
                     .post(body)
 

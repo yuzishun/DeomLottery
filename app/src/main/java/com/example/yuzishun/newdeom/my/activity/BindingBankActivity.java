@@ -118,7 +118,7 @@ public class BindingBankActivity extends BaseActivity implements View.OnClickLis
         hashMap.put("auth_code",phonecode);
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "user/bindBankCard", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/user/bindBankCard", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -160,7 +160,7 @@ public class BindingBankActivity extends BaseActivity implements View.OnClickLis
         hashMap.put("code_type","2");
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "auth_code/sendCode", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/auth_code/sendCode", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

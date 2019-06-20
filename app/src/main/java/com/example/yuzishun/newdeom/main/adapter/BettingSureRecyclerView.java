@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.base.MyApplication;
@@ -175,8 +176,10 @@ public class BettingSureRecyclerView extends RecyclerView.Adapter<BettingSureRec
                 List<ItemPoint> twolist = Content.list_chooe.get(i).getTwolist();
                 List<ItemPoint> threelist = Content.list_chooe.get(i).getThreelist();
                 List<ItemPoint> fourlist = Content.list_chooe.get(i).getFourlist();
+                Expand1Item item = new Expand1Item("","","","","",
+                        "","",onelist,twolist,threelist,fourlist,Content.list_chooe,"");
 
-                one_rv.setAdapter(new QuickAdapter(onelist,0,0,name_left,1));
+                one_rv.setAdapter(new QuickAdapter(onelist,0,item,1,0));
                 two_rv.setAdapter(new QuickAdapter_two(twolist,0));
                 three_rv.setAdapter(new QuickAdapter_three(threelist,0));
                 four_rv.setAdapter(new QuickAdapter_four(fourlist,0));

@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.MyApplication;
 import com.example.yuzishun.newdeom.model.ItemPoint;
+import com.example.yuzishun.newdeom.utils.AdapterMessage;
 import com.example.yuzishun.newdeom.utils.MainMessage;
 
 import org.greenrobot.eventbus.EventBus;
@@ -19,13 +20,14 @@ import java.util.List;
  * Created by yuzishun on 2019/5/26.
  */
 class QuickAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
-    private int flag_click,postion,flag_type;
-    private TextView text_low;
-    public QuickAdapter(List<ItemPoint> itemPoint, int flag_click,int postion,TextView text_low,int flag_type) {
+    private int flag_click,flag_type;
+    private Expand1Item item2;
+    private int id;
+    public QuickAdapter(List<ItemPoint> itemPoint, int flag_click, final Expand1Item item2,int flag_type,int id) {
         super(R.layout.dialog_recycler_one,itemPoint);
         this.flag_click = flag_click;
-        this.postion = postion;
-        this.text_low = text_low;
+        this.item2 = item2;
+        this.id= id;
         this.flag_type = flag_type;
     }
 
@@ -85,8 +87,11 @@ class QuickAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
 
                         EventBus.getDefault().post(new MainMessage(BettingListAdapter.getnumber()+""));
                         if(flag_type==0){
-                            BettingListAdapter.setMore(postion,text_low,helper.itemView.getContext());
+//                            BettingListAdapter.setMore(text_low,helper.itemView.getContext(),item2,id);
+                            String s =  BettingListAdapter.setMore(helper.itemView.getContext(), item2);
+                            EventBus.getDefault().post(new AdapterMessage(id));
 
+                            item2.desc=s;
                         }else {
 
                         }
@@ -97,7 +102,11 @@ class QuickAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
                         notifyDataSetChanged();
                         EventBus.getDefault().post(new MainMessage(BettingListAdapter.getnumber()+""));
                         if(flag_type==0){
-                            BettingListAdapter.setMore(postion,text_low,helper.itemView.getContext());
+//                            BettingListAdapter.setMore(text_low,helper.itemView.getContext(),item2,id);
+                            String s =  BettingListAdapter.setMore(helper.itemView.getContext(), item2);
+                            EventBus.getDefault().post(new AdapterMessage(id));
+
+                            item2.desc=s;
 
                         }else {
 

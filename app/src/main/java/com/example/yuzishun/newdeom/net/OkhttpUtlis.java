@@ -160,7 +160,7 @@ public class OkhttpUtlis {
 
             }else {
                 Looper.prepare();
-                ToastUtil.showToast(MyApplication.getContext(),"网络错误");
+                ToastUtil.showToast(MyApplication.getContext(),"网络错误Code值为:"+response.code());
                 Looper.loop();
             }
 

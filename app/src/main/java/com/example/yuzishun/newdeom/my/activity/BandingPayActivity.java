@@ -79,7 +79,7 @@ public class BandingPayActivity extends BaseActivity implements View.OnClickList
         hashMap.put("pay_phone",pay_phone.getText().toString().trim());
 
         OkhttpUtlis okhttpUtlis= new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "user/bindUserAliPay", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/user/bindUserAliPay", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

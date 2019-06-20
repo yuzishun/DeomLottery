@@ -17,6 +17,7 @@ import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.documentary.activity.CopydocumentActivity;
 //import com.example.yuzishun.newdeom.documentary.activity.Documentdetails_main_Activity;
 import com.example.yuzishun.newdeom.documentary.activity.Documentdetails_main_Activity;
+import com.example.yuzishun.newdeom.documentary.activity.OkamiActivity;
 import com.example.yuzishun.newdeom.model.DocumentaryBean;
 import com.example.yuzishun.newdeom.my.custom.MyTableTextView;
 
@@ -45,8 +46,20 @@ public class DocumRecyclerViewAdapter extends RecyclerView.Adapter<DocumRecycler
     public void onBindViewHolder(DocumRecyclerViewAdapter.ViewHolder holder, final int position) {
 
         Glide.with(context).load(list.get(position).getImg_head()).asBitmap().centerCrop().into(holder.icon);
+
         holder.username.setText(list.get(position).getUname());
         holder.text_dec.setText(list.get(position).getPlan_desc());
+        holder.icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentokmin = new Intent(context, OkamiActivity.class);
+                intentokmin.putExtra("user_id",list.get(position).getUser_id());
+
+                context.startActivity(intentokmin);
+
+
+            }
+        });
 
         holder.document_shou_button_.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +92,8 @@ public class DocumRecyclerViewAdapter extends RecyclerView.Adapter<DocumRecycler
 
                 intent1.putExtra("type",list.get(position).getGame_type());
                 intent1.putExtra("plan_id",list.get(position).getPlan_id());
+                intent1.putExtra("Cut_off",1);
+
                 context.startActivity(intent1);
             }
         });

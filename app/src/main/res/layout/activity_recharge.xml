@@ -88,6 +88,7 @@
                         <com.example.yuzishun.newdeom.login.custom.ClearEditText
                             android:id="@+id/money_edit"
                             android:maxLines="1"
+                            android:inputType="numberDecimal"
                             android:layout_weight="1"
                             android:paddingLeft="@dimen/d5"
                             android:maxLength="11"

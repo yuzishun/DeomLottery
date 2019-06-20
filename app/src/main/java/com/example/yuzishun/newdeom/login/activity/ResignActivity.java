@@ -130,7 +130,7 @@ public class ResignActivity extends BaseActivity implements View.OnClickListener
         hashMap.put("auth_code",auth_code);
         hashMap.put("invite_code",invite_code);
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "user/register", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/user/register", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -170,7 +170,7 @@ public class ResignActivity extends BaseActivity implements View.OnClickListener
         hashMap.put("code_type","0");
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "auth_code/sendCode", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/auth_code/sendCode", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

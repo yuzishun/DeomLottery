@@ -243,6 +243,21 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/Relate_Theory"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d25">
+                <TextView
+                    android:id="@+id/Theory_Text"
+                    android:text="理论奖金:100 ~ 500"
+                    android:textColor="@color/font_black"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/d20"
+                    android:textSize="@dimen/f12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -485,12 +500,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:gravity="center_vertical"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d40">
 
                     <TextView
+                        android:layout_centerVertical="true"
                         android:id="@+id/gendan_bumber"
                         android:text="跟单人数（63人，共14500.0元）"
                         android:textColor="@color/font_black_shen"
@@ -498,7 +513,18 @@
                         android:layout_marginLeft="@dimen/d20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                </LinearLayout>
+                    <TextView
+                        android:id="@+id/gendan_price"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="佣金:"
+                        android:layout_marginRight="@dimen/d20"
+                        android:textColor="@color/font_black_shen"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginLeft="@dimen/d20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
                 <LinearLayout
                     android:visibility="gone"
                     android:id="@+id/MyTable_gen"

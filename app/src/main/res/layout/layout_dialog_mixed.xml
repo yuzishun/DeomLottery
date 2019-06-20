@@ -157,7 +157,7 @@
                     <TextView
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
-                        android:text="总决赛"
+                        android:text="总进球"
                         android:textSize="@dimen/f9"
                         android:ems="1"
 
@@ -192,7 +192,7 @@
                     <TextView
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
-                        android:text="半决赛"
+                        android:text="半全场"
                         android:ems="1"
                         android:textSize="@dimen/f9"
                         android:textColor="@color/white"

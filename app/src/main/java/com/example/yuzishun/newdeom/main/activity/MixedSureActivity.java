@@ -83,7 +83,8 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
     TextView money;
     private int length;
     private String format;
-    //参数集合和需要展示的集合
+    private long mLastClickTime = 0;
+    public static final long TIME_INTERVAL = 1000L;    //参数集合和需要展示的集合
     private  List<String> list_adds;
     private  List<String> list_id;
     private List<Double> one_mix_and_min;
@@ -104,6 +105,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
     private List<SureguanBean> list_sureguanBean = new ArrayList<>();
     private List<SubMixListBean> list_stbMixListBean = new ArrayList<>();
     private String multiple="1";
+    private String theory_bonus;
     @Override
     public int intiLayout() {
         return R.layout.activity_mixed_sure;
@@ -195,7 +197,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
             for (int j = 0; j <threelist.size() ; j++) {
                 if(threelist.get(j).isselect){
                     list_adds.add(threelist.get(j).getGame_odds_id());
-                    list_id.add("总决赛:"+threelist.get(j).getId());
+                    list_id.add("总进球:"+threelist.get(j).getId());
 //                    list_chooe_adapter.get(i).setThreelist(threelist);
                     four_mix_and_min.add(Double.parseDouble(threelist.get(j).getOdds()));
                     minlist.add(Double.parseDouble(threelist.get(j).getOdds()));
@@ -489,11 +491,11 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
             }
         String maxbunch_end = nfmin.format(maxbunch);
 
-        bunchminandmax =  "理论奖金："+Double.parseDouble(pmin)*Integer.parseInt(smin)*2+"元~"+Double.parseDouble(maxbunch_end)*Integer.parseInt(smin)*2;
+        bunchminandmax =  "理论奖金:"+Double.parseDouble(pmin)*Integer.parseInt(smin)*2+"元~"+Double.parseDouble(maxbunch_end)*Integer.parseInt(smin)*2;
 
             Log.e("YZS",bunchminandmax+"");
 
-
+        theory_bonus = bunchminandmax;
 
 
 
@@ -876,8 +878,15 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
         submit_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                suborder();
+                long nowTime = System.currentTimeMillis();
+                if (nowTime - mLastClickTime > TIME_INTERVAL) {
+                    suborder();
 
+                    // do something
+                    mLastClickTime = nowTime;
+                } else {
+                   ToastUtil.showToast1(MixedSureActivity.this,"不要重复点击");
+                }
             }
         });
 
@@ -929,6 +938,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
             jsonObject.put("bunch",jsonArray);
             jsonObject.put("game_type","0");
             jsonObject.put("game_bet",jsonArray1);
+            jsonObject.put("theory_bonus",theory_bonus);
             String data = jsonObject.toString();
             Log.e("YZS",data.toString());
 
@@ -937,7 +947,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
 
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"), data);
         final Request request = new Request.Builder()
-                .url(Url.baseUrl+"order/addOrder")
+                .url(Url.baseUrl+"app/order/addOrder")
                 .addHeader("token", Content.ToKen)
                 .post(body)
 

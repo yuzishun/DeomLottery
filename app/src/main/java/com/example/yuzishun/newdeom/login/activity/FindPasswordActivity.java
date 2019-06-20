@@ -137,7 +137,7 @@ public class FindPasswordActivity extends BaseActivity implements View.OnClickLi
         hashMap.put("tag",flag+"");
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "user/forgetPwd", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/user/forgetPwd", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -188,7 +188,7 @@ public class FindPasswordActivity extends BaseActivity implements View.OnClickLi
         hashMap.put("code_type","1");
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "auth_code/sendCode", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/auth_code/sendCode", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

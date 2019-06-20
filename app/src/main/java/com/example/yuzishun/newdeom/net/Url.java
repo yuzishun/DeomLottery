@@ -6,16 +6,11 @@ package com.example.yuzishun.newdeom.net;
 
 public class Url {
 
-    public static String football="http://103.9.195.242/app/ball/getFootballList";
     //本地服务器
-//    public static String baseUrl = "http://192.168.1.9/app/";
+    public static String baseUrl = "http://192.168.1.9/";
 //    正式服务器
-//
-    public static String baseUrl = "http://103.9.195.242/app/";
 
+//    public static String baseUrl = "http://103.9.195.242/";
 
-    //充值接口
-    public static String payUrl = "http://103.9.195.242/pay/muck/payment";
-    public static String muckUrl = "http://103.9.195.242/pay/muck/withdraw";
 
 }

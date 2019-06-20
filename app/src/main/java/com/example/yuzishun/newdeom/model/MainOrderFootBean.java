@@ -86,6 +86,15 @@ public class MainOrderFootBean {
         private String cut_off_time;
         private List<String> bunch;
         private List<OrderOddsInfoBean> order_odds_info;
+        private List<OrderPlanInfoBean> order_plan_info;
+
+        public List<OrderPlanInfoBean> getOrder_plan_info() {
+            return order_plan_info;
+        }
+
+        public void setOrder_plan_info(List<OrderPlanInfoBean> order_plan_info) {
+            this.order_plan_info = order_plan_info;
+        }
 
         public int getGame_sum() {
             return game_sum;
@@ -367,6 +376,53 @@ public class MainOrderFootBean {
                     this.bet_odds = bet_odds;
                 }
             }
+
+
+        }
+        public static class OrderPlanInfoBean {
+            /**
+             * uname : 红领巾
+             * follow_price : 2
+             */
+
+            private String uname;
+            private String order_price;
+            private String bonus_price;
+            private String create_time;
+
+            public String getOrder_price() {
+                return order_price;
+            }
+
+            public void setOrder_price(String order_price) {
+                this.order_price = order_price;
+            }
+
+            public String getBonus_price() {
+                return bonus_price;
+            }
+
+            public void setBonus_price(String bonus_price) {
+                this.bonus_price = bonus_price;
+            }
+
+            public String getCreate_time() {
+                return create_time;
+            }
+
+            public void setCreate_time(String create_time) {
+                this.create_time = create_time;
+            }
+
+            public String getUname() {
+                return uname;
+            }
+
+            public void setUname(String uname) {
+                this.uname = uname;
+            }
+
+
         }
     }
 }

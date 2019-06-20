@@ -138,7 +138,7 @@ public class BankCradManagementActivity extends BaseActivity implements View.OnC
         hashMap.put("id",id+"");
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
 
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "user/delUserBankCard", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/user/delUserBankCard", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -175,7 +175,7 @@ public class BankCradManagementActivity extends BaseActivity implements View.OnC
 
         HashMap<String,String> hashMap = new HashMap<>();
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "user/getUserBankCardList", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/user/getUserBankCardList", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

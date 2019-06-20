@@ -177,7 +177,7 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
         hashMap.put("pagination",index+"");
         hashMap.put("game_type",type);
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "order_plan/getOrderPlanList", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/order_plan/getOrderPlanList", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -198,16 +198,15 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
                                 DocumentaryBean documentaryBean = JSON.parseObject(result,DocumentaryBean.class);
 
                                 if(i==0){
+                                    data.addAll(documentaryBean.getData());
 
-
-                                if(documentaryBean.getData().size()==0){
+                                if(data.size()==0){
 
                                     hot_empt.setVisibility(View.VISIBLE);
                                     Document_RecyclerView.setVisibility(View.GONE);
 
                                 }else {
 
-                                    data.addAll(documentaryBean.getData());
                                     documRecyclerViewAdapter.notifyDataSetChanged();
 
 

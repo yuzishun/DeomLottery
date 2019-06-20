@@ -253,8 +253,10 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
 
-        okhttpUtlis.GetAsynMap(Url.baseUrl + "ball/getBasketballList", new Callback() {
-            @Override
+        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getBasketballList", new Callback() {
+//                    okhttpUtlis.GetAsynMap("http://192.168.1.9/app/ball/getBasketballList", new Callback() {
+
+                @Override
             public void onFailure(Call call, IOException e) {
 
             }
@@ -326,7 +328,7 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
                                         chooseBaskBean.setHome_team(basketBallBean.getData().get(i).getGame_info().get(j).getGame_home_team_name());
 
                                         chooseBaskBean.setGuest_team(basketBallBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name());
-                                        chooseBaskBean.setName(basketBallBean.getData().get(i).getGame_week()+basketBallBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+basketBallBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name()
+                                        chooseBaskBean.setName(basketBallBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+basketBallBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name()
                                                 +"        "+"vs"+"        "+basketBallBean.getData().get(i).getGame_info().get(j).getGame_home_team_name());
 
                                         list_choose.add(chooseBaskBean);

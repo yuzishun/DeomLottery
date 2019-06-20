@@ -17,7 +17,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:layout_weight="1.2"
+            android:layout_weight="1.3"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -61,12 +61,13 @@
 
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
-                                <ImageView
+                                <com.example.yuzishun.newdeom.my.custom.XCRoundImageView
+                                    android:id="@+id/Okami_icon"
                                     android:layout_centerHorizontal="true"
                                     android:src="@mipmap/gray_icon"
                                     android:layout_centerVertical="true"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_width="@dimen/d40"
+                                    android:layout_height="@dimen/d40" />
 
                             </RelativeLayout>
                             <LinearLayout
@@ -76,12 +77,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
                                 <TextView
+                                    android:id="@+id/Okami_Name"
                                     android:text="猴子理财团"
                                     android:layout_width="wrap_content"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/f12"
                                     android:layout_height="wrap_content" />
                                 <TextView
+                                    android:id="@+id/Okami_Fans"
                                     android:layout_marginTop="@dimen/d10"
                                     android:text="粉丝：154    关注：5"
                                     android:layout_width="wrap_content"
@@ -105,7 +108,6 @@
                                 android:layout_centerVertical="true"
                                 android:layout_alignParentRight="true"
                                 android:layout_marginRight="@dimen/d20"
-                                android:enabled="false"
                                 android:textColor="@color/login_red"
                                 android:textSize="@dimen/f10"
                                 android:layout_width="60dp"
@@ -149,6 +151,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <TextView
+                                android:id="@+id/Okami_profit"
                                 android:text="144.0%"
                                 android:textSize="@dimen/f12"
                                 android:textColor="@color/login_red"
@@ -169,6 +172,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <TextView
+                                android:id="@+id/Okami_Winning"
                                 android:text="16中7"
                                 android:textSize="@dimen/f12"
                                 android:textColor="@color/login_red"
@@ -189,12 +193,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <TextView
+                                android:id="@+id/Okami_Reddish"
                                 android:text="47"
                                 android:textSize="@dimen/f12"
                                 android:textColor="@color/login_red"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                             <TextView
+
                                 android:text="累计带红（人）"
                                 android:textSize="@dimen/f10"
                                 android:textColor="@color/font_gray"
@@ -228,7 +234,7 @@
                             android:layout_height="wrap_content" />
                             <ImageView
                                 android:id="@+id/state_one"
-                                android:src="@mipmap/state_zhong"
+                                android:background="@mipmap/state_zhong"
                                 android:layout_centerVertical="true"
                                 android:layout_toRightOf="@+id/state"
                                 android:layout_marginLeft="@dimen/d15"
@@ -247,7 +253,7 @@
                                 android:layout_height="wrap_content" />
                         <ImageView
                             android:id="@+id/state_two"
-                            android:src="@mipmap/state_zhong"
+                            android:background="@mipmap/state_zhong"
                             android:layout_centerVertical="true"
                             android:layout_toRightOf="@+id/state_one_heng"
                             android:layout_marginLeft="@dimen/d5"
@@ -266,7 +272,7 @@
                             android:layout_height="wrap_content" />
                         <ImageView
                             android:id="@+id/state_three"
-                            android:src="@mipmap/state_wei"
+                            android:background="@mipmap/state_wei"
                             android:layout_centerVertical="true"
                             android:layout_toRightOf="@+id/state_two_heng"
                             android:layout_marginLeft="@dimen/d5"
@@ -285,7 +291,7 @@
                             android:layout_height="wrap_content" />
                         <ImageView
                             android:id="@+id/state_four"
-                            android:src="@mipmap/state_zhong"
+                            android:background="@mipmap/state_zhong"
                             android:layout_centerVertical="true"
                             android:layout_toRightOf="@+id/state_three_heng"
                             android:layout_marginLeft="@dimen/d5"
@@ -305,7 +311,7 @@
                             android:layout_height="wrap_content" />
                         <ImageView
                             android:id="@+id/state_five"
-                            android:src="@mipmap/state_zhong"
+                            android:background="@mipmap/state_zhong"
                             android:layout_centerVertical="true"
                             android:layout_toRightOf="@+id/state_four_heng"
                             android:layout_marginLeft="@dimen/d5"

@@ -54,7 +54,7 @@
         android:layout_alignTop="@+id/list_1_3"
         android:layout_toRightOf="@+id/list_1_3"
         android:gravity="center"
-        android:textColor="#000"
+        android:textColor="@color/font_gray"
         android:textSize="10sp" />
 
 

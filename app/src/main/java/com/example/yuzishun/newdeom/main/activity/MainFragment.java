@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.Basefragment;
 import com.example.yuzishun.newdeom.base.LazyFragment;
 import com.example.yuzishun.newdeom.main.adapter.NewsRecyclerViewAdapter;
+import com.example.yuzishun.newdeom.model.BananBean;
 import com.example.yuzishun.newdeom.model.MainInfomationBean;
 import com.example.yuzishun.newdeom.model.VerticaBean;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
@@ -72,8 +74,10 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     private TextView Text_loading;
     private LinearLayout layout_scroll;
     private NewsRecyclerViewAdapter newsRecyclerViewAdapter;
-    private ArrayList<String> titleList = new ArrayList<String>();
+    private ArrayList<String> titleList;
     private LinearLayout layout_football,layout_baskball;
+    private  int flag=0;
+    private List<String>  imgs;
     private List<MainInfomationBean.DataBean> list = new ArrayList<>();
 
     @Override
@@ -85,11 +89,10 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     }
 
     private void getVerticaList() {
-
-
+        titleList = new ArrayList<>();
         HashMap<String,String> hashMap = new HashMap<>();
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "order/getWinPriceByOrder", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/order/getWinPriceByOrder", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -107,16 +110,9 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                         if(verticaBean.getCode()==10000){
 
                             for (int i = 0; i <verticaBean.getData().size() ; i++) {
-                                titleList.add("恭喜用户"+verticaBean.getData().get(i).getUname()+"**中奖"+verticaBean.getData().get(i).getBonus_price()+"元");
+                                titleList.add("恭喜用户"+verticaBean.getData().get(i).getUname()+"中奖"+verticaBean.getData().get(i).getBonus_price()+"元");
                             }
-//                            titleList.add("我们现在是咩有中奖");
-//                            titleList.add("如果有人中奖的话");
-//                            titleList.add("那一定是你");
-//                            titleList.add("没错，就是你，look");
-//                            titleList.add("不管你是躺着还是坐着还是站着");
-//                            titleList.add("你现在已经是上帝光环附体一样");
-//                            titleList.add("然后你踏着七彩祥云离去");
-//                            titleList.add("而后我被留在这里");
+
                             VerticaTextView.setTextList(titleList);
 //                            VerticaTextView.notifyAll();
 //                            VerticaTextView.startAutoScroll();
@@ -135,7 +131,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         });
 
 
-
+        Log.e("YZS",titleList.size()+"");
     }
 
 
@@ -198,10 +194,11 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                 //异步处理加载数据
                 //...
 
+                recycl();
+
+                showbanan();
 
 
-
-                mainRollPagerView.setAdapter(new ImageNormalAdapter());//设置适配器
 
                 //指示器4兄弟,也就是那小圆点
        /* mRollViewPager1.setHintView(new IconHintView(this,R.drawable.point_focus,R.drawable.point_normal));//自定义指示器
@@ -214,18 +211,69 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
                 mainRollPagerView.setAnimationDurtion(500);   //设置透明度
 
-                recycl(0);
-
                 //完成后，通知主线程更新UI
                 handler.sendEmptyMessageDelayed(1, 200);
             }
         }).start();
     }
 
+    private void showbanan() {
+        imgs = new ArrayList<>();
+
+        OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
+        okhttpUtlis.GetAsynMap(Url.baseUrl+"app/operation/getInquireList", new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+            final String result = response.body().string();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        JSONObject jsonObject = new JSONObject(result);
+                        int code = jsonObject.getInt("code");
+                        String msg = jsonObject.getString("msg");
+                        if(code==10000){
+
+
+                            BananBean bananBean = JSON.parseObject(result,BananBean.class);
+
+                            for (int i = 0; i < bananBean.getData().size(); i++) {
+                                imgs.add(bananBean.getData().get(i).getImg_location());
+
+                            }
+                            mainRollPagerView.setAdapter(new ImageNormalAdapter());//设置适配器
 
 
 
-    public void recycl(final int flag){
+                        }else {
+                            Toast.makeText(getActivity(), msg+"", Toast.LENGTH_SHORT).show();
+
+                        }
+
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            });
+
+            }
+        });
+
+
+    }
+
+
+    public void recycl(){
         list.clear();
 
         //有接口时在这里做更新recyclerview的操作
@@ -233,7 +281,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         hashMap.put("type",flag+"");
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "information/getBallInformationList", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/information/getBallInformationList", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -313,13 +361,16 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                 break;
             case R.id.news:
                 changeRecyclerView(news,match);
-                recycl(0);
+                flag=0;
+
+                recycl();
                 Toast.makeText(getContext(), "这是足球咨询", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.match:
                 changeRecyclerView(match,news);
-                recycl(1);
+                flag=1;
+                recycl();
                 Toast.makeText(getContext(), "这是篮球咨询", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Image_lottery:
@@ -367,6 +418,9 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
             public void run() {
 
                 Home_Refresh.setRefreshing(false);
+                getVerticaList();
+                recycl();
+                showbanan();
                 Toast.makeText(getContext(), "刷新完成", Toast.LENGTH_SHORT).show();
 
             }
@@ -380,20 +434,20 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
 
         //本地图片资源
-        String[] imgs = new String[]{"http://103.9.195.242/banner/banner1.png","http://103.9.195.242/banner/banner2.jpg"};
+//        String[] imgs = new String[]{"http://103.9.195.242/banner/banner1.png","http://103.9.195.242/banner/banner2.jpg"};
 
         @Override
         public View getView(ViewGroup container, int position) {
             ImageView view = new ImageView(container.getContext());
             view.setScaleType(ImageView.ScaleType.CENTER_CROP);
             view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            Glide.with(getActivity()).load(imgs[position]).into(view);
+            Glide.with(getActivity()).load(imgs.get(position)).into(view);
             return view;
         }
 
         @Override
         public int getCount() {
-            return imgs.length;
+            return imgs.size();
         }
     }
 

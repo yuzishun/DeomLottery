@@ -32,11 +32,14 @@ import com.example.yuzishun.newdeom.model.FootballBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
 import com.example.yuzishun.newdeom.model.SubMixBean;
 import com.example.yuzishun.newdeom.model.SubMixListBean;
+import com.example.yuzishun.newdeom.utils.AdapterMessage;
 import com.example.yuzishun.newdeom.utils.MainMessage;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -55,7 +58,6 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
 
     //判断选择的有几场，傻瓜方法
     private static List<String> list_adds;
-
     private static List<SubMixBean> list_subMixBean = new ArrayList<>();
 
 
@@ -69,14 +71,18 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
      */
     public BettingListAdapter(List<MultiItemEntity> data) {
         super(data);
+
         addItemType(TYPE_LEVEL_0, R.layout.recyclerview_base_father);
         addItemType(TYPE_LEVEL_1,R.layout.recyclerview_base_son);
 
     }
 
 
+
+
     @Override
     protected void convert(final BaseViewHolder helper, final MultiItemEntity item) {
+
         switch (helper.getItemViewType()){
             case TYPE_LEVEL_0:
                 final ExpandItem item1 = (ExpandItem) item;
@@ -105,7 +111,7 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
                         .setText(R.id.Text_top,item2.home_score)
                         .setText(R.id.Text_bottom,item2.guest_score);
 
-                final TextView text_low = helper.getView(R.id.text_low);
+
                 if(Integer.parseInt(item2.home_score)<0){
 
                     helper.setBackgroundRes(R.id.Text_top,R.drawable.jianone_rang);
@@ -129,8 +135,26 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
 
 
                 }
+                final TextView text_low = helper.getView(R.id.text_low);
 
+//                if(item2.list_choosebena.get(helper.getLayoutPosition()).getDesc().equals("展开更多选项")){
+//                    text_low.setText(item2.list_choosebena.get(helper.getLayoutPosition()).getDesc()+"");
+//                    text_low.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
+//
+//                }else {
+//                    text_low.setText(item2.list_choosebena.get(helper.getLayoutPosition()).getDesc()+"");
+//                    text_low.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.login_red));
+//
+//                }
+                if(item2.desc.equals("展开更多选项")){
+                    text_low.setText(item2.desc+"");
+                    text_low.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
 
+                }else {
+                    text_low.setText(item2.desc+"");
+                    text_low.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.login_red));
+
+                }
 
                 helper.addOnClickListener(R.id.RecyclerView_Mixed_Bet_football);
                 RecyclerView rv = helper.getView(R.id.RecyclerView_Mixed_Bet_football);
@@ -138,16 +162,21 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
 
 //                    QuickAdapter quickAdapter = new QuickAdapter(item2.list_choosebena.get(helper.getAdapterPosition()-1).getOnelist());
 //                    Log.e("YZS",helper.getAdapterPosition()+"");
-                QuickAdapter quickAdapter = new QuickAdapter(item2.list_one,1,helper.getLayoutPosition()-1,text_low,0);
+
+
+                QuickAdapter quickAdapter = new QuickAdapter(item2.list_one,1,item2,0,helper.getLayoutPosition());
                 rv.setAdapter(quickAdapter);
                 list_choose = item2.list_choosebena;
+
 
 
 
                 helper.getView(R.id.layout_low).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dialog_m(item2,helper.itemView.getContext(),helper.getLayoutPosition()-1,text_low);
+                        dialog_m(item2,helper.itemView.getContext(),helper.getLayoutPosition());
+
+
 //
                     }
                 });
@@ -158,21 +187,25 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
         }
 
     }
+
+
+
+
     public List<ChooseMixedBean> getList(){
 
 
         return list_choose;
     }
 
-    public static void setMore(int postion,TextView text_low,Context context){
+    public static String setMore(Context context,final Expand1Item item){
 
 
-
+            String desc = "";
             list_id = new ArrayList<>();
-            List<ItemPoint> onelist = list_choose.get(postion).getOnelist();
-            List<ItemPoint> twolist = list_choose.get(postion).getTwolist();
-            List<ItemPoint> threelist = list_choose.get(postion).getThreelist();
-            List<ItemPoint> fourlist = list_choose.get(postion).getFourlist();
+            List<ItemPoint> onelist = item.list_one;
+            List<ItemPoint> twolist = item.list_two;
+            List<ItemPoint> threelist = item.list_three;
+            List<ItemPoint> fourlist = item.list_four;
 
             for (int j = 0; j < onelist.size(); j++) {
                 if(onelist.get(j).isselect) {
@@ -220,7 +253,7 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
 
             for (int j = 0; j < threelist.size(); j++) {
                 if(threelist.get(j).isselect){
-                    list_id.add("总决赛:"+threelist.get(j).getId());
+                    list_id.add("总进球:"+threelist.get(j).getId());
                 }else {
 
                 }
@@ -239,22 +272,22 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
 
 
             }
-            if(list_id.size()==0) {
-
-                text_low.setText("展开更多选项");
-            }else {
-
-                String substring = list_id.toString();
-                text_low.setText(substring);
-                text_low.setTextColor(context.getResources().getColor(R.color.login_red));
-            }
 
 
 
+                    if(list_id.size()==0) {
+
+                        desc="展开更多选项";
+
+                    }else {
+                        String substring = list_id.toString();
+                        desc=substring;
+
+                        }
 
 
 
-
+             return desc;
 
     }
 
@@ -290,7 +323,7 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
     }
 
     @SuppressLint("NewApi")
-    public void dialog_m(final Expand1Item item, final Context context, final int postion, final TextView text_low) {
+    public void dialog_m(final Expand1Item item, final Context context, final int postion) {
         AlertDialog.Builder alterDiaglog = new AlertDialog.Builder(context);
         alterDiaglog.setView(R.layout.layout_dialog_mixed);//加载进去
         final AlertDialog dialog = alterDiaglog.create();
@@ -344,7 +377,7 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
 
         one_rv.setLayoutManager(new GridLayoutManager(MyApplication.getContext(),3));
 //        one_rv.setAdapter(new QuickAdapter(item.list_choosebena.get(postion).getOnelist()));
-        QuickAdapter quickAdapter = new QuickAdapter(item.list_one,1,postion,text_low,0);
+        QuickAdapter quickAdapter = new QuickAdapter(item.list_one,1,item,0,postion);
         one_rv.setAdapter(quickAdapter);
 
 
@@ -385,7 +418,10 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
             @Override
             public void onDismiss(DialogInterface dialog) {
 
-                setMore(postion,text_low,context);
+                String s = setMore(context, item);
+                EventBus.getDefault().post(new AdapterMessage(postion));
+
+                item.desc=s;
 
             }
         });

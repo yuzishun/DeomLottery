@@ -111,7 +111,7 @@ public class CopydocumentActivity extends BaseActivity implements View.OnClickLi
         hashMap.put("multiple",multiple+"");
         OkhttpUtlis okhttpUtlis  = new OkhttpUtlis();
 
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "order/installFollowOrder", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/order/installFollowOrder", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

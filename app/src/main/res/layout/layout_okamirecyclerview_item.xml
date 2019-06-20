@@ -19,6 +19,7 @@
             <TextView
                 android:text="推荐时间：  04-09  22:04"
                 android:textSize="@dimen/f11"
+                android:visibility="gone"
                 android:textColor="@color/font_black_shen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -38,6 +39,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:text="1858.0元"
+                android:id="@+id/Text_money"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/yigendan"
                 android:layout_marginLeft="@dimen/d10"
@@ -46,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/Text_data"
                 android:text="04-09  23:59 截止"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
@@ -60,18 +63,112 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
         <LinearLayout
-            android:id="@+id/MyTable"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="9dp"
-            android:orientation="vertical"
-            />
+            android:id="@+id/layout_one"
+            android:layout_marginTop="@dimen/d10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_1_1"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/list_1_2"
+                android:layout_alignTop="@+id/list_1_2"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_1_2"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@+id/list_1_1"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_1_3"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/list_1_2"
+                android:layout_alignTop="@+id/list_1_2"
+                android:layout_toRightOf="@+id/list_1_2"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_1_4"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/list_1_3"
+                android:layout_alignTop="@+id/list_1_3"
+                android:layout_toRightOf="@+id/list_1_3"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/layout_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_2_1"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/list_1_2"
+                android:layout_alignTop="@+id/list_1_2"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_2_2"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@+id/list_1_1"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_2_3"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/list_1_2"
+                android:layout_alignTop="@+id/list_1_2"
+                android:layout_toRightOf="@+id/list_1_2"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_2_4"
+
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/list_1_3"
+                android:layout_alignTop="@+id/list_1_3"
+                android:layout_toRightOf="@+id/list_1_3"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+                android:textSize="10sp" />
+        </LinearLayout>
         <Button
             android:background="@drawable/login_select"
             android:layout_width="70dp"
             android:text="跟单"
-            android:enabled="true"
             android:id="@+id/Button_Okami_gen"
             android:textColor="@color/white"
             android:textSize="@dimen/f10"

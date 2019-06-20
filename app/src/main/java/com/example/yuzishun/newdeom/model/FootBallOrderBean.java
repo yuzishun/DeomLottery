@@ -12,7 +12,7 @@ public class FootBallOrderBean {
     /**
      * code : 10000
      * msg : 查询成功!
-     * data : {"order_id":3,"order_no":"201905221649230100025908082","user_id":2,"pour":16,"multiple":1,"order_price":"32.00","bonus_price":"0.00","order_type":0,"order_status":3,"pay_status":1,"see":0,"game_type":0,"create_time":"2019-05-22 16:49:23","update_time":"2019-05-24 16:26:41","bunch":["2"],"multiple_price":24,"order_odds_info":[{"game_status":3,"win_odds_list":["主胜"],"game_home_team_name":"鹿岛鹿角","game_let_score":"-1","game_guest_team_name":"山东鲁能","game_begin_time":"2019-05-22 18:00","half_score":"0:1","last_score":"2:1","bet_info":[{"bet_name":"2:2","bet_odds":"4.10"}]}],"order_plan":{"plan_follow_price":"0.00","plan_follow_person":"0","cut_off_time":"2019-05-27 21:15:00","plan_profits":"0.02","plan_status":0},"order_follow_plan":{"plan_status":2,"plan_profits":"0.02","uname":"ashun"}}
+     * data : {"in_plan":0,"order_id":3,"order_no":"201905221649230100025908082","user_id":2,"pour":16,"multiple":1,"order_price":"32.00","bonus_price":"0.00","order_type":0,"order_status":3,"pay_status":1,"see":0,"game_type":0,"create_time":"2019-05-22 16:49:23","update_time":"2019-05-24 16:26:41","bunch":["2"],"theory_bonus":"","multiple_price":24,"order_odds_info":[{"game_status":3,"win_odds_list":["主胜"],"game_home_team_name":"鹿岛鹿角","game_let_score":"-1","game_guest_team_name":"山东鲁能","game_begin_time":"2019-05-22 18:00","half_score":"0:1","last_score":"2:1","bet_info":[{"bet_name":"主平(1.17)","status":0}]}],"order_plan":{"plan_follow_price":"0.00","plan_follow_person":"0","cut_off_time":"2019-05-27 21:15:00","plan_profits":"0.02","plan_status":0},"order_follow_plan":{"plan_status":2,"plan_profits":"0.02","uname":"ashun"},"order_plan_info":[{"uname":"红领巾","follow_price":"2"}]}
      */
 
     private int code;
@@ -45,6 +45,7 @@ public class FootBallOrderBean {
 
     public static class DataBean {
         /**
+         * in_plan : 0
          * order_id : 3
          * order_no : 201905221649230100025908082
          * user_id : 2
@@ -60,11 +61,14 @@ public class FootBallOrderBean {
          * create_time : 2019-05-22 16:49:23
          * update_time : 2019-05-24 16:26:41
          * bunch : ["2"]
+         * theory_bonus :
          * multiple_price : 24
-         * order_odds_info : [{"game_status":3,"win_odds_list":["主胜"],"game_home_team_name":"鹿岛鹿角","game_let_score":"-1","game_guest_team_name":"山东鲁能","game_begin_time":"2019-05-22 18:00","half_score":"0:1","last_score":"2:1","bet_info":[{"bet_name":"2:2","bet_odds":"4.10"}]}]
+         * order_odds_info : [{"game_status":3,"win_odds_list":["主胜"],"game_home_team_name":"鹿岛鹿角","game_let_score":"-1","game_guest_team_name":"山东鲁能","game_begin_time":"2019-05-22 18:00","half_score":"0:1","last_score":"2:1","bet_info":[{"bet_name":"主平(1.17)","status":0}]}]
          * order_plan : {"plan_follow_price":"0.00","plan_follow_person":"0","cut_off_time":"2019-05-27 21:15:00","plan_profits":"0.02","plan_status":0}
          * order_follow_plan : {"plan_status":2,"plan_profits":"0.02","uname":"ashun"}
+         * order_plan_info : [{"uname":"红领巾","follow_price":"2"}]
          */
+
         private int in_plan;
         private int order_id;
         private String order_no;
@@ -77,24 +81,17 @@ public class FootBallOrderBean {
         private int order_status;
         private int pay_status;
         private int see;
-        private int game_sum;
-
         private int game_type;
+        private int game_sum;
         private String create_time;
         private String update_time;
+        private String theory_bonus;
         private int multiple_price;
         private OrderPlanBean order_plan;
         private OrderFollowPlanBean order_follow_plan;
         private List<String> bunch;
         private List<OrderOddsInfoBean> order_odds_info;
-
-        public int getIn_plan() {
-            return in_plan;
-        }
-
-        public void setIn_plan(int in_plan) {
-            this.in_plan = in_plan;
-        }
+        private List<OrderPlanInfoBean> order_plan_info;
 
         public int getGame_sum() {
             return game_sum;
@@ -102,6 +99,14 @@ public class FootBallOrderBean {
 
         public void setGame_sum(int game_sum) {
             this.game_sum = game_sum;
+        }
+
+        public int getIn_plan() {
+            return in_plan;
+        }
+
+        public void setIn_plan(int in_plan) {
+            this.in_plan = in_plan;
         }
 
         public int getOrder_id() {
@@ -216,6 +221,14 @@ public class FootBallOrderBean {
             this.update_time = update_time;
         }
 
+        public String getTheory_bonus() {
+            return theory_bonus;
+        }
+
+        public void setTheory_bonus(String theory_bonus) {
+            this.theory_bonus = theory_bonus;
+        }
+
         public int getMultiple_price() {
             return multiple_price;
         }
@@ -256,6 +269,14 @@ public class FootBallOrderBean {
             this.order_odds_info = order_odds_info;
         }
 
+        public List<OrderPlanInfoBean> getOrder_plan_info() {
+            return order_plan_info;
+        }
+
+        public void setOrder_plan_info(List<OrderPlanInfoBean> order_plan_info) {
+            this.order_plan_info = order_plan_info;
+        }
+
         public static class OrderPlanBean {
             /**
              * plan_follow_price : 0.00
@@ -264,12 +285,20 @@ public class FootBallOrderBean {
              * plan_profits : 0.02
              * plan_status : 0
              */
-
+            private String plan_profit_price;
             private String plan_follow_price;
             private String plan_follow_person;
             private String cut_off_time;
             private String plan_profits;
             private int plan_status;
+
+            public String getPlan_profit_price() {
+                return plan_profit_price;
+            }
+
+            public void setPlan_profit_price(String plan_profit_price) {
+                this.plan_profit_price = plan_profit_price;
+            }
 
             public String getPlan_follow_price() {
                 return plan_follow_price;
@@ -358,7 +387,7 @@ public class FootBallOrderBean {
              * game_begin_time : 2019-05-22 18:00
              * half_score : 0:1
              * last_score : 2:1
-             * bet_info : [{"bet_name":"2:2","bet_odds":"4.10"}]
+             * bet_info : [{"bet_name":"主平(1.17)","status":0}]
              */
 
             private int game_status;
@@ -445,12 +474,12 @@ public class FootBallOrderBean {
 
             public static class BetInfoBean {
                 /**
-                 * bet_name : 2:2
-                 * bet_odds : 4.10
+                 * bet_name : 主平(1.17)
+                 * status : 0
                  */
 
                 private String bet_name;
-                private String bet_odds;
+                private int status;
 
                 public String getBet_name() {
                     return bet_name;
@@ -460,14 +489,60 @@ public class FootBallOrderBean {
                     this.bet_name = bet_name;
                 }
 
-                public String getBet_odds() {
-                    return bet_odds;
+                public int getStatus() {
+                    return status;
                 }
 
-                public void setBet_odds(String bet_odds) {
-                    this.bet_odds = bet_odds;
+                public void setStatus(int status) {
+                    this.status = status;
                 }
             }
+        }
+
+        public static class OrderPlanInfoBean {
+            /**
+             * uname : 红领巾
+             * follow_price : 2
+             */
+
+            private String uname;
+            private String order_price;
+            private String bonus_price;
+            private String create_time;
+
+            public String getOrder_price() {
+                return order_price;
+            }
+
+            public void setOrder_price(String order_price) {
+                this.order_price = order_price;
+            }
+
+            public String getBonus_price() {
+                return bonus_price;
+            }
+
+            public void setBonus_price(String bonus_price) {
+                this.bonus_price = bonus_price;
+            }
+
+            public String getCreate_time() {
+                return create_time;
+            }
+
+            public void setCreate_time(String create_time) {
+                this.create_time = create_time;
+            }
+
+            public String getUname() {
+                return uname;
+            }
+
+            public void setUname(String uname) {
+                this.uname = uname;
+            }
+
+
         }
     }
 }

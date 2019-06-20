@@ -143,7 +143,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         hashMap.put("phone",login_phone);
         hashMap.put("password",login_password);
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl+"login/login", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl+"app/login/login", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e("YZS",e.getMessage());

@@ -52,8 +52,8 @@
     <string name="repeat_service">重置服务连接</string>
     <string name="guanyu_my">关于我们</string>
     <string name="hot_caizhong">热门彩种</string>
-    <string name="hot_football">竞猜足球</string>
-    <string name="hot_baskball">竞猜篮球</string>
+    <string name="hot_football">竞彩足球</string>
+    <string name="hot_baskball">竞彩篮球</string>
     <string name="choose_nine">任选9场</string>
     <string name="victory_shisi">胜负14场</string>
     <string name="Notice">公告:</string>

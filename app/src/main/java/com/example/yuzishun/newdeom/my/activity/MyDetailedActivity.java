@@ -121,7 +121,7 @@ public class MyDetailedActivity extends BaseActivity implements View.OnClickList
         hashMap.put("pagination",index+"");
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "user/geyUserAccountDetailsList", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/user/geyUserAccountDetailsList", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

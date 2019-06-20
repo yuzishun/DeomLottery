@@ -168,7 +168,7 @@ public class BetteyAndWinningActivity extends BaseActivity implements View.OnCli
         }
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
 
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "order/getOrderList", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/order/getOrderList", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

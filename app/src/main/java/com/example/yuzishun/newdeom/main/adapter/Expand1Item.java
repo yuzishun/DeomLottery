@@ -21,15 +21,14 @@ public class Expand1Item  implements MultiItemEntity  {
     public String guest_score;
     public String sequence_no;
     public String begin_time;
-    public List<FootballBean.DataBean> list_databean;
     public List<ChooseMixedBean> list_choosebena;
     public List<ItemPoint> list_one;
     public List<ItemPoint> list_two;
     public List<ItemPoint> list_three;
     public List<ItemPoint> list_four;
-
+    public String desc;
     public Expand1Item(String play_name, String home_team, String guest_team, String home_score, String guest_score, String sequence_no, String begin_time
-    ,List<FootballBean.DataBean> list_databean,List<ItemPoint> list_one,List<ItemPoint> list_two,List<ItemPoint> list_three,List<ItemPoint> list_four,List<ChooseMixedBean> list_choosebena) {
+    ,List<ItemPoint> list_one,List<ItemPoint> list_two,List<ItemPoint> list_three,List<ItemPoint> list_four,List<ChooseMixedBean> list_choosebena,String desc) {
         this.play_name = play_name;
         this.home_team = home_team;
         this.guest_team = guest_team;
@@ -37,8 +36,8 @@ public class Expand1Item  implements MultiItemEntity  {
         this.guest_score = guest_score;
         this.sequence_no = sequence_no;
         this.begin_time = begin_time;
-        this.list_databean = list_databean;
         this.list_one = list_one;
+        this.desc = desc;
         this.list_two = list_two;
         this.list_three = list_three;
         this.list_four = list_four;
