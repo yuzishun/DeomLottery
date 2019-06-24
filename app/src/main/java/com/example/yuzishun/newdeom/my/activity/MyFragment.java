@@ -112,6 +112,7 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
                                 authentication = userInfoBean.getData().getAuthentication();
                                 balance = userInfoBean.getData().getAccount().getBalance();
                                 alipay = userInfoBean.getData().getAlipay();
+                                Content.player = userInfoBean.getData().getPlayer();
                                 available_balance = userInfoBean.getData().getAccount().getAvailable_balance();
                                 Glide.with(getContext()).load(userInfoBean.getData().getImg_head()).asBitmap().centerCrop().into(icon);
                                 text_yue.setText(userInfoBean.getData().getAccount().getBalance());;

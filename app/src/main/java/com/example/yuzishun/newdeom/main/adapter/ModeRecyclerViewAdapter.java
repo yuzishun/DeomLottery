@@ -25,12 +25,10 @@ import java.util.List;
 public class ModeRecyclerViewAdapter extends RecyclerView.Adapter<ModeRecyclerViewAdapter.ViewHolde> {
     private Context context;
     private List<SureguanBean> list;
-    private int length;
     private boolean[] isCheck;
-    public ModeRecyclerViewAdapter(Context context, List<SureguanBean> list,int length) {
+    public ModeRecyclerViewAdapter(Context context, List<SureguanBean> list) {
         this.context = context;
         this.list = list;
-        this.length = length;
 
     }
     // 采用接口回调的方式实现RecyclerView的ItemClick

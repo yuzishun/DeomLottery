@@ -1,7 +1,9 @@
 package com.example.yuzishun.newdeom.my.activity;
 
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -19,6 +21,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,6 +100,7 @@ public class PersonalInformationActivity extends BaseActivity implements View.On
 
         phone.setText(Content.userphone);
         name.setText(Content.username);
+        name.setOnClickListener(this);
     }
 
     @Override
@@ -132,7 +136,35 @@ public class PersonalInformationActivity extends BaseActivity implements View.On
                                 .start(PersonalInformationActivity.this, PhotoPicker.REQUEST_CODE);
 
                 break;
+            case R.id.name:
+
+                if(Content.player==0){
+
+                }else {
+                    showInputDialog();
+
+                }
+
+                break;
         }
+    }
+    private void showInputDialog() {
+    /*@setView 装入一个EditView
+     */
+        final EditText editText = new EditText(PersonalInformationActivity.this);
+        AlertDialog.Builder inputDialog =
+                new AlertDialog.Builder(PersonalInformationActivity.this);
+        inputDialog.setTitle("请输入修改的昵称").setView(editText);
+        inputDialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(PersonalInformationActivity.this,
+//                                editTeqwewqext.getText().toString(),
+//                                Toast.LENGTH_SHORT).show();
+
+                    }
+                }).show();
     }
 
     @Override

@@ -31,6 +31,7 @@ import com.example.yuzishun.newdeom.documentary.custom.MyGridView;
 import com.example.yuzishun.newdeom.login.activity.LoginActivity;
 import com.example.yuzishun.newdeom.main.custom.MyRecyclerView;
 import com.example.yuzishun.newdeom.model.DocumentaryBean;
+import com.example.yuzishun.newdeom.model.HotGodBean;
 import com.example.yuzishun.newdeom.model.OrderBean;
 import com.example.yuzishun.newdeom.my.activity.BetteyAndWinningActivity;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
@@ -86,9 +87,70 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
         initView();
         initData();
         initrecy(0,type);
+        setrequest();
 
     }
 
+    private void setrequest() {
+        HashMap<String,String> hashMap = new HashMap<>();
+        OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/god/getRecommendGodList", hashMap, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                final String result = response.body().string();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(result);
+                            int code = jsonObject.getInt("code");
+                            String msg = jsonObject.getString("msg");
+                            if(code==10000){
+
+                                final HotGodBean hotGodBean = JSON.parseObject(result,HotGodBean.class);
+                                List<HotGodBean.DataBean> data = hotGodBean.getData();
+                                DocumHotGridViewAdapter documHotGridViewAdapter = new DocumHotGridViewAdapter(getContext(),data);
+
+                                Hot_GridView.setAdapter(documHotGridViewAdapter);
+                                Hot_GridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        //跳转到大神首页，
+                                        Intent intent = new Intent(getActivity(), OkamiActivity.class);
+                                        intent.putExtra("user_id",hotGodBean.getData().get(position).getUser_id()+"");
+
+                                        startActivity(intent);
+                                    }
+                                });
+
+
+
+                            }else {
+                                Toast.makeText(getActivity(), msg+"", Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                });
+
+
+            }
+        });
+
+
+    }
 
 
     private void initView() {
@@ -270,17 +332,7 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
 
                 Document_RecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-                DocumHotGridViewAdapter documHotGridViewAdapter = new DocumHotGridViewAdapter(getContext(),list);
 
-                Hot_GridView.setAdapter(documHotGridViewAdapter);
-                Hot_GridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        //跳转到大神首页，先不开
-//                        startActivity(new Intent(getActivity(),OkamiActivity.class));
-
-                    }
-                });
                 documRecyclerViewAdapter = new DocumRecyclerViewAdapter(getContext(),data);
                 Document_RecyclerView.setAdapter(documRecyclerViewAdapter);
                 //完成后，通知主线程更新UI
@@ -346,9 +398,9 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
 
     private void jump(int flag){
         //跳转到列表页面，先不开
-//        Intent intent = new Intent(getContext(),EveryListActivity.class);
-//        intent.putExtra("flag",flag);
-//        startActivity(intent);
+        Intent intent = new Intent(getContext(),EveryListActivity.class);
+        intent.putExtra("flag",flag);
+        startActivity(intent);
     }
 
     @Override

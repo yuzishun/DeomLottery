@@ -1,82 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.main.activity.BettingActivity">
+    tools:context="com.example.yuzishun.newdeom.main.single.BettingSingleFragment">
+
     <RelativeLayout
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:background="@color/login_red"
-        android:layout_height="@dimen/d40">
-        <LinearLayout
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:gravity="center"
-                android:id="@+id/layout_pop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="混合投注"
-                    android:id="@+id/title_text"
-                    android:gravity="center"
-                    android:ellipsize="end"
-                    android:maxEms="8"
-                    android:maxLines="1"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/f16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <CheckBox
-                    android:checked="true"
-                    android:id="@+id/cbDisplayPassword"
-                    android:layout_width="13dp"
-                    android:layout_marginLeft="@dimen/d5"
-                    android:layout_height="8dp"
-                    android:background="@drawable/selector_bet"
-                    android:button="@null"
-                    />
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/image_back"
-            android:layout_centerVertical="true"
-            android:layout_width="40dp"
-            android:gravity="center"
-            android:layout_height="match_parent">
-            <ImageView
-                android:layout_centerVertical="true"
-                android:src="@mipmap/back"
-                android:layout_width="@dimen/d15"
-                android:layout_height="@dimen/d15" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/play_messag"
-            android:src="@mipmap/wenhao"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/d15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-    </RelativeLayout>
-    <FrameLayout
-        android:visibility="visible"
-        android:id="@+id/Betting_Lacontent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
-    <RelativeLayout
-        android:visibility="gone"
         android:layout_below="@+id/title"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -87,13 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:visibility="gone"
-            android:layout_above="@+id/layout_bottom"
-            android:id="@+id/Lottery_RecyCLerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:visibility="gone"
+                android:layout_above="@+id/layout_bottom"
+                android:id="@+id/Lottery_RecyCLerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </android.support.v7.widget.RecyclerView>
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <LinearLayout
@@ -161,8 +90,35 @@
             android:text="正在加载..."
             android:textColor="@color/font_black"
             />
-    </RelativeLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:visibility="gone"
+            android:id="@+id/layout_empt"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:src="@mipmap/empt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
+            <TextView
+                android:text="暂时没有赛事信息哦~"
+                android:textSize="@dimen/f12"
+                android:layout_marginTop="@dimen/d5"
+                android:textColor="@color/font_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="赶紧去看看别的赛事吧"
+                android:textSize="@dimen/f11"
+                android:layout_marginTop="@dimen/d5"
+                android:textColor="@color/font_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
 
 </LinearLayout>

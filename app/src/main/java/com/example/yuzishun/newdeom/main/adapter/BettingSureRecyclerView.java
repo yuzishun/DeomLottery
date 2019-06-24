@@ -38,11 +38,12 @@ public class BettingSureRecyclerView extends RecyclerView.Adapter<BettingSureRec
     private List<SubMixListBean> list_SubMixListBean;
     private String button_name;
     private List<SubMixBean> list_SubMixbean;
-
-    public BettingSureRecyclerView(Context context, List<SubMixListBean> list_SubMixListBean, List<SubMixBean> list_SubMixbean) {
+    private int flag;
+    public BettingSureRecyclerView(Context context, List<SubMixListBean> list_SubMixListBean, List<SubMixBean> list_SubMixbean,int flag) {
         this.context = context;
         this.list_SubMixListBean = list_SubMixListBean;
         this.list_SubMixbean  = list_SubMixbean;
+        this.flag = flag;
     }
 
     // 采用接口回调的方式实现RecyclerView的ItemClick
@@ -91,8 +92,12 @@ public class BettingSureRecyclerView extends RecyclerView.Adapter<BettingSureRec
         holder.button_choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(flag==0){
+
+                }else {
 
                 dialog(position);
+                }
 
             }
         });

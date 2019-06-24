@@ -16,5 +16,15 @@
 
     </android.support.v7.widget.RecyclerView>
 
+    <TextView
+        android:text="暂无数据"
+        android:visibility="gone"
+
+        android:gravity="center"
+        android:id="@+id/text_vi"
+        android:textSize="@dimen/f14"
+        android:textColor="@color/font_black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

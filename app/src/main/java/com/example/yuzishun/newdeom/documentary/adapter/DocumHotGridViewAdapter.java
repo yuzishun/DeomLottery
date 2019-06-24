@@ -6,12 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
+import com.example.yuzishun.newdeom.model.HotGodBean;
 import com.example.yuzishun.newdeom.my.adapter.GridView_Recharge_Adapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yuzishun on 2019/5/6.
@@ -23,10 +27,10 @@ import java.util.ArrayList;
  */
 public class DocumHotGridViewAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<String> list = new ArrayList<>();
+    private List<HotGodBean.DataBean> list = new ArrayList<>();
     private LayoutInflater inflater;
 
-    public DocumHotGridViewAdapter(Context context, ArrayList<String> list) {
+    public DocumHotGridViewAdapter(Context context, List<HotGodBean.DataBean> list) {
         this.context = context;
         this.list = list;
         inflater = LayoutInflater.from(this.context);
@@ -35,7 +39,7 @@ public class DocumHotGridViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 8;
+        return list.size();
     }
 
     @Override
@@ -55,18 +59,21 @@ public class DocumHotGridViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.layout_document_hot_item, null);
             viewHolder = new ViewHolder();
             viewHolder.name = (TextView) convertView.findViewById(R.id.name);
+            viewHolder.god_image = convertView.findViewById(R.id.god_image);
             convertView.setTag(viewHolder);
 
 
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.name.setText(list.get(position));
+        viewHolder.name.setText(list.get(position).getUname());
+        Glide.with(context).load(list.get(position).getImg_head()).asBitmap().centerCrop().into(viewHolder.god_image);
         return convertView;
 
     }
 
     class ViewHolder {
         TextView name;
+        ImageView god_image;
     }
 }

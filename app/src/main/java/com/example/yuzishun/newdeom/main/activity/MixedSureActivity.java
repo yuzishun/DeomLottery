@@ -61,14 +61,12 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
     TextView title_text;
     @BindView(R.id.image_back)
     LinearLayout image_back;
-    private FootballBean footballBean;
     @BindView(R.id.Sure_RecyclerView)
     RecyclerView Sure_RecyclerView;
     @BindView(R.id.button_sure)
     Button button_sure;
     @BindView(R.id.edit_Multiple)
     EditText edit_Multiple;
-    private BettingSureRecyclerView bettingSureRecyclerView;
     @BindView(R.id.Text_More)
     TextView Text_More;
     private PopupWindow popupWindow;
@@ -81,7 +79,8 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
     TextView bunch_TextView;
     @BindView(R.id.money)
     TextView money;
-    private int length;
+    private BettingSureRecyclerView bettingSureRecyclerView;
+
     private String format;
     private long mLastClickTime = 0;
     public static final long TIME_INTERVAL = 1000L;    //参数集合和需要展示的集合
@@ -242,35 +241,12 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
                 MinAndMaxBean minAndMaxBean  = new MinAndMaxBean();
 
 
-//                if(one_mix_and_min.size()!=0){
                     minAndMaxBean.setOne_mix_and_min(one_mix_and_min);
-//                Double one_min = Double.valueOf(Collections.min(one_mix_and_min));
-//                }
-//                if(two_mix_and_min.size()!=0){
                     minAndMaxBean.setTwo_mix_and_min(two_mix_and_min);
-
-//                Double two_min = Double.valueOf(Collections.min(two_mix_and_min));
-
-//                }
-//                if(three_mix_and_min.size()!=0){
                     minAndMaxBean.setThree_mix_and_min(three_mix_and_min);
-
-//                Double three_min = Double.valueOf(Collections.min(three_mix_and_min));
-
-//                }
-//                if(four_mix_and_min.size()!=0){
                     minAndMaxBean.setFour_mix_and_min(four_mix_and_min);
-
-//                Double four_min = Double.valueOf(Collections.min(four_mix_and_min));
                     minAndMaxBean.setMinlist(minlist);
-
-//                }
-//                if(fire_mix_and_min.size()!=0){
                     minAndMaxBean.setFire_mix_and_min(fire_mix_and_min);
-
-//                Double fire_min = Double.valueOf(Collections.min(fire_mix_and_min));
-
-//                }
 
                 list_min_and_max.add(minAndMaxBean);
 
@@ -326,7 +302,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
         Sure_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
         Sure_RecyclerView.setNestedScrollingEnabled(false);
 
-        bettingSureRecyclerView = new BettingSureRecyclerView(this,list_stbMixListBean,list_subMixBean);
+        bettingSureRecyclerView = new BettingSureRecyclerView(this,list_stbMixListBean,list_subMixBean,1);
         Sure_RecyclerView.setAdapter(bettingSureRecyclerView);
         bettingSureRecyclerView.setOnRecyclerViewListener(new BettingSureRecyclerView.OnRecyclerViewListener() {
             @Override
@@ -491,7 +467,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
             }
         String maxbunch_end = nfmin.format(maxbunch);
 
-        bunchminandmax =  "理论奖金:"+Double.parseDouble(pmin)*Integer.parseInt(smin)*2+"元~"+Double.parseDouble(maxbunch_end)*Integer.parseInt(smin)*2;
+        bunchminandmax =  "理论奖金:"+Double.parseDouble(pmin)*Integer.parseInt(smin)*2+"元~"+Double.parseDouble(maxbunch_end)*Integer.parseInt(smin)*2+"元";
 
             Log.e("YZS",bunchminandmax+"");
 
@@ -508,30 +484,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
         return list_retun;
 
     }
-    /**
-     * double转String,保留小数点后两位
-     * @param num
-     * @return
-     */
-    public String doubleToString(double num){
-        String strNum = String.valueOf(num);
-        int n = strNum.indexOf(".");
-        if(n>0){
-            //截取小数点后的数字
-            String dotNum = strNum.substring(n+1);
-            if("0".equals(dotNum)){
-                return strNum+"0";
-            }else{
-                if(dotNum.length()==1){
-                    return strNum +"0";
-                }else{
-                    return strNum;
-                }
-            }
-        }else{
-            return strNum+".00";
-        }
-    }
+
 
 
 
@@ -745,7 +698,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
 
 
         text_mode.setText(list_stbMixListBean.size()+"场比赛过关方式");
-        final ModeRecyclerViewAdapter modeRecyclerViewAdapter = new ModeRecyclerViewAdapter(MixedSureActivity.this,list_sureguanBean,length);
+        final ModeRecyclerViewAdapter modeRecyclerViewAdapter = new ModeRecyclerViewAdapter(MixedSureActivity.this,list_sureguanBean);
 
 
         recyclerView.setAdapter(modeRecyclerViewAdapter);

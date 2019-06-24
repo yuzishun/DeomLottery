@@ -3,6 +3,9 @@ package com.example.yuzishun.newdeom.main.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,15 +23,20 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
 import com.example.yuzishun.newdeom.base.Content;
+import com.example.yuzishun.newdeom.documentary.activity.DocumentaryFragment;
 import com.example.yuzishun.newdeom.main.adapter.BettingListAdapter;
 import com.example.yuzishun.newdeom.main.adapter.Expand1Item;
 import com.example.yuzishun.newdeom.main.adapter.ExpandItem;
 
+import com.example.yuzishun.newdeom.main.mixed.BettingMixedFragment;
+import com.example.yuzishun.newdeom.main.single.BettingSingleFragment;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.FootballBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
+import com.example.yuzishun.newdeom.my.activity.MyFragment;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
+import com.example.yuzishun.newdeom.score.activity.ScoreFragment;
 import com.example.yuzishun.newdeom.utils.AdapterMessage;
 import com.example.yuzishun.newdeom.utils.MainMessage;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
@@ -85,6 +93,12 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
     private FootballBean footballBean;
     @BindView(R.id.Text_clear)
     TextView Text_clear;
+    private int flag;
+    @BindView(R.id.title_text)
+    TextView title_text;
+    private Fragment[] mFragments;
+    private int mIndex=0;
+
     @Override
     public int intiLayout() {
         return R.layout.activity_betting;
@@ -98,136 +112,200 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
         button_sure.setOnClickListener(this);
         Scene_TextView.setOnClickListener(this);
         Text_clear.setOnClickListener(this);
-        EventBus.getDefault().register(this);
-        initlist();
-        list = generateData();
-        adapter = new BettingListAdapter(list);
-        Lottery_RecyCLerView.setAdapter(adapter);
-        Lottery_RecyCLerView.setNestedScrollingEnabled(false);
-        Lottery_RecyCLerView.setLayoutManager(new LinearLayoutManager(BettingActivity.this));
-        //下拉刷新的圆圈是否显示
-        layout_swipe.setRefreshing(false);
 
-        //设置下拉时圆圈的颜色（可以由多种颜色拼成）
-        layout_swipe.setColorSchemeResources(android.R.color.holo_blue_light,
-                android.R.color.holo_red_light,
-                android.R.color.holo_orange_light);
+        Intent intent = getIntent();
+        flag = intent.getIntExtra("flag",0);
+        initFragment();
+        if(flag==1){
 
-        //设置下拉时圆圈的背景颜色（这里设置成白色）
-        layout_swipe.setProgressBackgroundColorSchemeResource(android.R.color.white);
+            title_text.setText("混合投注");
+            setIndexSelected(0);
 
-        layout_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable(){
-
-                    @Override
-                    public void run() {
-                        generateData();
-                        adapter.onResh();
-                        adapter.notifyDataSetChanged();
-                        EventBus.getDefault().post(new MainMessage(BettingListAdapter.getnumber()+""));
-
-                        layout_swipe.setRefreshing(false);
-                        Toast.makeText(BettingActivity.this, "刷新完成", Toast.LENGTH_SHORT).show();
-
-                    }
-                },1000);
+        }else if(flag==2){
+            title_text.setText("胜负平");
+            setIndexSelected(1);
 
 
-            }
-        });
+        }
+
+
+//        EventBus.getDefault().register(this);
+//        initlist();
+//        list = generateData();
+//        adapter = new BettingListAdapter(list);
+//        Lottery_RecyCLerView.setAdapter(adapter);
+//        Lottery_RecyCLerView.setNestedScrollingEnabled(false);
+//        Lottery_RecyCLerView.setLayoutManager(new LinearLayoutManager(BettingActivity.this));
+//        //下拉刷新的圆圈是否显示
+//        layout_swipe.setRefreshing(false);
+//
+//        //设置下拉时圆圈的颜色（可以由多种颜色拼成）
+//        layout_swipe.setColorSchemeResources(android.R.color.holo_blue_light,
+//                android.R.color.holo_red_light,
+//                android.R.color.holo_orange_light);
+//
+//        //设置下拉时圆圈的背景颜色（这里设置成白色）
+//        layout_swipe.setProgressBackgroundColorSchemeResource(android.R.color.white);
+//
+//        layout_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                new Handler().postDelayed(new Runnable(){
+//
+//                    @Override
+//                    public void run() {
+//                        generateData();
+//                        adapter.onResh();
+//                        adapter.notifyDataSetChanged();
+//                        EventBus.getDefault().post(new MainMessage(BettingListAdapter.getnumber()+""));
+//
+//                        layout_swipe.setRefreshing(false);
+//                        Toast.makeText(BettingActivity.this, "刷新完成", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                },1000);
+//
+//
+//            }
+//        });
 
 
     }
 
-    private void initlist() {
+    //加载fragment页面
+    private void initFragment() {
+        Fragment mTab_01 = new BettingMixedFragment();
+        Fragment mTab_02 = new BettingSingleFragment();
 
-        for (int i = 0; i <string_one.length ; i++) {
-            list_one.add(string_one[i]+"");
 
-        }
+        //添加到数组
+        mFragments = new Fragment[]{mTab_01,mTab_02};
 
-        for (int i = 0; i <string_two.length ; i++) {
-            list_two.add(string_two[i]+"");
+        //开启事务
 
-        }
-        for (int i = 0; i <string_three.length ; i++) {
-            list_three.add(string_three[i]+"");
+        FragmentTransaction ft =
+                getSupportFragmentManager().beginTransaction();
 
-        }
-        for (int i = 0; i <string_four.length ; i++) {
-            list_four.add(string_four[i]+"");
 
-        }
+        //添加首页
+        ft.add(R.id.Betting_Lacontent,mTab_01).commit();
+
+        //默认设置为第0个
+
+        setIndexSelected(0);
+
 
     }
 
+    private void setIndexSelected(int index) {
 
-    /**
-     * 主线程中执行
-     *
-     * @param msg
-     */
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMainEventBus(MainMessage msg) {
-        Log.e(TAG, msg.getMessage());
-        count = Integer.parseInt(msg.getMessage());
-        if(msg.getMessage().equals("0")||msg.getMessage().equals("1")){
-            Scene_TextView.setText("至少选择两场比赛");
+        if(mIndex==index){
+            return;
+        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft              = fragmentManager.beginTransaction();
+        //隐藏
+        ft.hide(mFragments[mIndex]);
+        //判断是否添加
+        if(!mFragments[index].isAdded()){
+            ft.add(R.id.Betting_Lacontent,mFragments[index]).show(mFragments[index]);
         }else {
-            Scene_TextView.setText("已经选择"+msg.getMessage()+"比赛");
-
-        }
-    }
-    /**
-     * 主线程中执行
-     *
-     * @param msg
-     */
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMainEventBus(AdapterMessage msg) {
-        Log.e("YZSYZSYZS", msg.getPostion()+"");
-        Content.Text_postion = msg.getPostion();
-        adapter.notifyItemChanged(msg.getPostion());
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(adapter!=null){
-
-        if(Content.order_flag==0){
-            adapter.notifyDataSetChanged();
-
-        }else {
-            adapter.onResh();
-
-            adapter.notifyDataSetChanged();
-
-        }
+            ft.show(mFragments[index]);
         }
 
-        EventBus.getDefault().post(new MainMessage(BettingListAdapter.getnumber()+""));
 
+        ft.commit();
+        //再次赋值
+        mIndex=index;
     }
+
+//    private void initlist() {
+//
+//        for (int i = 0; i <string_one.length ; i++) {
+//            list_one.add(string_one[i]+"");
+//
+//        }
+//
+//        for (int i = 0; i <string_two.length ; i++) {
+//            list_two.add(string_two[i]+"");
+//
+//        }
+//        for (int i = 0; i <string_three.length ; i++) {
+//            list_three.add(string_three[i]+"");
+//
+//        }
+//        for (int i = 0; i <string_four.length ; i++) {
+//            list_four.add(string_four[i]+"");
+//
+//        }
+//
+//    }
+
+
+//    /**
+//     * 主线程中执行
+//     *
+//     * @param msg
+//     */
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onMainEventBus(MainMessage msg) {
+//        Log.e(TAG, msg.getMessage());
+//        count = Integer.parseInt(msg.getMessage());
+//        if(msg.getMessage().equals("0")||msg.getMessage().equals("1")){
+//            Scene_TextView.setText("至少选择两场比赛");
+//        }else {
+//            Scene_TextView.setText("已经选择"+msg.getMessage()+"比赛");
+//
+//        }
+//    }
+//    /**
+//     * 主线程中执行
+//     *
+//     * @param msg
+//     */
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onMainEventBus(AdapterMessage msg) {
+//        Log.e("YZSYZSYZS", msg.getPostion()+"");
+//        Content.Text_postion = msg.getPostion();
+//        adapter.notifyItemChanged(msg.getPostion());
+//
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if(adapter!=null){
+//
+//        if(Content.order_flag==0){
+//            adapter.notifyDataSetChanged();
+//
+//        }else {
+//            adapter.onResh();
+//
+//            adapter.notifyDataSetChanged();
+//
+//        }
+//        }
+//
+//        EventBus.getDefault().post(new MainMessage(BettingListAdapter.getnumber()+""));
+//
+//    }
 
     @Override
     public void initData() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //异步处理加载数据
-                //...
-
-
-
-                //完成后，通知主线程更新UI
-                handler.sendEmptyMessageDelayed(1, 2000);
-
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                //异步处理加载数据
+//                //...
+//
+//
+//
+//                //完成后，通知主线程更新UI
+//                handler.sendEmptyMessageDelayed(1, 2000);
+//
+//            }
+//        }).start();
 
     }
 
@@ -270,165 +348,169 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
-
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
-        handler.sendEmptyMessage(1);
-        handler.removeCallbacksAndMessages(null);
 
     }
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(android.os.Message msg) {
-            Text_loading.setVisibility(View.GONE);
-            Lottery_RecyCLerView.setVisibility(View.VISIBLE);
-            layout_bottom.setVisibility(View.VISIBLE);
-            layout_swipe.setVisibility(View.VISIBLE);
-            adapter.expandAll();
 
-        }
-    };
-
-
-    private ArrayList<MultiItemEntity> generateData() {
-        OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        final ArrayList<MultiItemEntity> res = new ArrayList<>();
-        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getFootballList", new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-                Log.e("YZS",e.getMessage()+"");
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                final String result = response.body().string();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        try {
-                            JSONObject jsonObject = new JSONObject(result);
-                            int code = jsonObject.getInt("code");
-                            String msg = jsonObject.getString("msg");
-                            if (code == 10000) {
-//                                ToastUtil.showToast(BettingActivity.this, msg + "");
-                                footballBean = JSON.parseObject(result, FootballBean.class);
-                                List<ChooseMixedBean> list_choose = new ArrayList<>();
-
-                                for (int i = 0; i < footballBean.getData().size(); i++) {
-
-                                    ExpandItem item = new ExpandItem(footballBean.getData().get(i).getGame_week()+""+footballBean.getData().get(i).getGame_group_time()+"共有"+footballBean.getData().get(i).getGame_info().size()+"场比赛可投");
-                                    for (int j = 0; j <footballBean.getData().get(i).getGame_info().size() ; j++) {
-                                        ChooseMixedBean chooseMixedBean = new ChooseMixedBean();
-                                        List<FootballBean.DataBean.GameInfoBean.HomeLetOddsBean> home_let_odds = footballBean.getData().get(i).getGame_info().get(j).getHome_let_odds();
-                                        List<FootballBean.DataBean.GameInfoBean.ScoreOddsBean> score_odds = footballBean.getData().get(i).getGame_info().get(j).getScore_odds();
-                                        List<FootballBean.DataBean.GameInfoBean.TotalOddsBean> total_odds = footballBean.getData().get(i).getGame_info().get(j).getTotal_odds();
-                                        List<FootballBean.DataBean.GameInfoBean.HalfOddsBean> half_odds = footballBean.getData().get(i).getGame_info().get(j).getHalf_odds();
-
-                                        List<ItemPoint> listone = new ArrayList<>();
-                                        List<ItemPoint> listtwo = new ArrayList<>();
-                                        List<ItemPoint> listthree = new ArrayList<>();
-                                        List<ItemPoint> listfour = new ArrayList<>();
-
-                                        for (int k = 0; k <home_let_odds.size() ; k++) {
-
-                                            ItemPoint itemPoint = new ItemPoint();
-                                            itemPoint.setIsselect(false);
-                                            itemPoint.setId(list_one.get(k));
-
-                                            itemPoint.setGame_odds_id(home_let_odds.get(k).getGame_odds_id());
-                                            itemPoint.setOdds(home_let_odds.get(k).getOdds());
-                                            listone.add(itemPoint);
-
-                                        }
-                                        for (int k = 0; k <score_odds.size() ; k++) {
-                                            ItemPoint itemPoint = new ItemPoint();
-                                            itemPoint.setIsselect(false);
-
-                                            itemPoint.setId(list_two.get(k));
-                                            itemPoint.setGame_odds_id(score_odds.get(k).getGame_odds_id());
-                                            itemPoint.setOdds(score_odds.get(k).getOdds());
-                                            listtwo.add(itemPoint);
-
-                                        }
-                                        for (int k = 0; k <total_odds.size() ; k++) {
-                                            ItemPoint itemPoint = new ItemPoint();
-                                            itemPoint.setIsselect(false);
-
-                                            itemPoint.setId(list_three.get(k));
-                                            itemPoint.setGame_odds_id(total_odds.get(k).getGame_odds_id());
-                                            itemPoint.setOdds(total_odds.get(k).getOdds());
-                                            listthree.add(itemPoint);
-
-                                        }
-                                        for (int k = 0; k <half_odds.size() ; k++) {
-                                            ItemPoint itemPoint = new ItemPoint();
-                                            itemPoint.setIsselect(false);
-                                            itemPoint.setId(list_four.get(k));
-                                            itemPoint.setGame_odds_id(half_odds.get(k).getGame_odds_id());
-//                                            if(half_odds.get(k).getOdds().equals("")){
-//                                                itemPoint.setOdds("暂未开售");
+    //    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        EventBus.getDefault().unregister(this);
+//        handler.sendEmptyMessage(1);
+//        handler.removeCallbacksAndMessages(null);
 //
-//                                            }
-                                            itemPoint.setOdds(half_odds.get(k).getOdds());
-
-                                            listfour.add(itemPoint);
-
-                                        }
-                                        chooseMixedBean.setOnelist(listone);
-                                        chooseMixedBean.setTwolist(listtwo);
-                                        chooseMixedBean.setThreelist(listthree);
-
-                                        chooseMixedBean.setFourlist(listfour);
-                                        chooseMixedBean.setGame_id(footballBean.getData().get(i).getGame_info().get(j).getGame_id());
-                                        chooseMixedBean.setHome_team(footballBean.getData().get(i).getGame_info().get(j).getGame_home_team_name());
-
-                                        chooseMixedBean.setGuest_team(footballBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name());
-                                        chooseMixedBean.setName(footballBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+footballBean.getData().get(i).getGame_info().get(j).getGame_home_team_name()
-                                                +"        "+"vs"+"        "+footballBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name());
-                                        chooseMixedBean.setHome_score(footballBean.getData().get(i).getGame_info().get(j).getGame_home_score());
-                                        chooseMixedBean.setGuest_score(footballBean.getData().get(i).getGame_info().get(j).getGame_let_score());
-                                        list_choose.add(chooseMixedBean);
-
-                                        Expand1Item item1 = new Expand1Item(footballBean.getData().get(i).getGame_info().get(j).getGame_name(),
-                                                footballBean.getData().get(i).getGame_info().get(j).getGame_home_team_name()
-                                        ,footballBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name(),footballBean.getData().get(i).getGame_info().get(j).getGame_home_score(),
-                                                footballBean.getData().get(i).getGame_info().get(j).getGame_let_score(),footballBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()
-                                        ,footballBean.getData().get(i).getGame_info().get(j).getGame_begin_time()
-                                        ,listone,listtwo,listthree,listfour,list_choose,"展开更多选项");
+//    }
+//
+//    private Handler handler = new Handler() {
+//        @Override
+//        public void handleMessage(android.os.Message msg) {
+//            Text_loading.setVisibility(View.GONE);
+//            Lottery_RecyCLerView.setVisibility(View.GONE);
+//            layout_bottom.setVisibility(View.GONE);
+//            layout_swipe.setVisibility(View.GONE);
+//            adapter.expandAll();
+//
+//        }
+//    };
 
 
-                                        item.addSubItem(item1);
-                                    }
-
-                                    res.add(item);
-                                }
-
-
-                            } else {
-                                ToastUtil.showToast1(BettingActivity.this, msg + "");
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-                });
-
-            }
-        });
-
-        return res;
-    }
+//    private ArrayList<MultiItemEntity> generateData() {
+//        OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
+//        final ArrayList<MultiItemEntity> res = new ArrayList<>();
+//        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getFootballList", new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//
+//                Log.e("YZS",e.getMessage()+"");
+//
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                final String result = response.body().string();
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(result);
+//                            int code = jsonObject.getInt("code");
+//                            String msg = jsonObject.getString("msg");
+//                            if (code == 10000) {
+////                                ToastUtil.showToast(BettingActivity.this, msg + "");
+//                                footballBean = JSON.parseObject(result, FootballBean.class);
+//                                List<ChooseMixedBean> list_choose = new ArrayList<>();
+//
+//                                for (int i = 0; i < footballBean.getData().size(); i++) {
+//
+//                                    ExpandItem item = new ExpandItem(footballBean.getData().get(i).getGame_week()+""+footballBean.getData().get(i).getGame_group_time()+"共有"+footballBean.getData().get(i).getGame_info().size()+"场比赛可投");
+//                                    for (int j = 0; j <footballBean.getData().get(i).getGame_info().size() ; j++) {
+//                                        ChooseMixedBean chooseMixedBean = new ChooseMixedBean();
+//                                        List<FootballBean.DataBean.GameInfoBean.HomeLetOddsBean> home_let_odds = footballBean.getData().get(i).getGame_info().get(j).getHome_let_odds();
+//                                        List<FootballBean.DataBean.GameInfoBean.ScoreOddsBean> score_odds = footballBean.getData().get(i).getGame_info().get(j).getScore_odds();
+//                                        List<FootballBean.DataBean.GameInfoBean.TotalOddsBean> total_odds = footballBean.getData().get(i).getGame_info().get(j).getTotal_odds();
+//                                        List<FootballBean.DataBean.GameInfoBean.HalfOddsBean> half_odds = footballBean.getData().get(i).getGame_info().get(j).getHalf_odds();
+//
+//                                        List<ItemPoint> listone = new ArrayList<>();
+//                                        List<ItemPoint> listtwo = new ArrayList<>();
+//                                        List<ItemPoint> listthree = new ArrayList<>();
+//                                        List<ItemPoint> listfour = new ArrayList<>();
+//
+//                                        for (int k = 0; k <home_let_odds.size() ; k++) {
+//
+//                                            ItemPoint itemPoint = new ItemPoint();
+//                                            itemPoint.setIsselect(false);
+//                                            itemPoint.setId(list_one.get(k));
+//
+//                                            itemPoint.setGame_odds_id(home_let_odds.get(k).getGame_odds_id());
+//                                            itemPoint.setOdds(home_let_odds.get(k).getOdds());
+//                                            listone.add(itemPoint);
+//
+//                                        }
+//                                        for (int k = 0; k <score_odds.size() ; k++) {
+//                                            ItemPoint itemPoint = new ItemPoint();
+//                                            itemPoint.setIsselect(false);
+//
+//                                            itemPoint.setId(list_two.get(k));
+//                                            itemPoint.setGame_odds_id(score_odds.get(k).getGame_odds_id());
+//                                            itemPoint.setOdds(score_odds.get(k).getOdds());
+//                                            listtwo.add(itemPoint);
+//
+//                                        }
+//                                        for (int k = 0; k <total_odds.size() ; k++) {
+//                                            ItemPoint itemPoint = new ItemPoint();
+//                                            itemPoint.setIsselect(false);
+//
+//                                            itemPoint.setId(list_three.get(k));
+//                                            itemPoint.setGame_odds_id(total_odds.get(k).getGame_odds_id());
+//                                            itemPoint.setOdds(total_odds.get(k).getOdds());
+//                                            listthree.add(itemPoint);
+//
+//                                        }
+//                                        for (int k = 0; k <half_odds.size() ; k++) {
+//                                            ItemPoint itemPoint = new ItemPoint();
+//                                            itemPoint.setIsselect(false);
+//                                            itemPoint.setId(list_four.get(k));
+//                                            itemPoint.setGame_odds_id(half_odds.get(k).getGame_odds_id());
+////                                            if(half_odds.get(k).getOdds().equals("")){
+////                                                itemPoint.setOdds("暂未开售");
+////
+////                                            }
+//                                            itemPoint.setOdds(half_odds.get(k).getOdds());
+//
+//                                            listfour.add(itemPoint);
+//
+//                                        }
+//                                        chooseMixedBean.setOnelist(listone);
+//                                        chooseMixedBean.setTwolist(listtwo);
+//                                        chooseMixedBean.setThreelist(listthree);
+//
+//                                        chooseMixedBean.setFourlist(listfour);
+//                                        chooseMixedBean.setGame_id(footballBean.getData().get(i).getGame_info().get(j).getGame_id());
+//                                        chooseMixedBean.setHome_team(footballBean.getData().get(i).getGame_info().get(j).getGame_home_team_name());
+//
+//                                        chooseMixedBean.setGuest_team(footballBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name());
+//                                        chooseMixedBean.setName(footballBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+footballBean.getData().get(i).getGame_info().get(j).getGame_home_team_name()
+//                                                +"        "+"vs"+"        "+footballBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name());
+//                                        chooseMixedBean.setHome_score(footballBean.getData().get(i).getGame_info().get(j).getGame_home_score());
+//                                        chooseMixedBean.setGuest_score(footballBean.getData().get(i).getGame_info().get(j).getGame_let_score());
+//                                        list_choose.add(chooseMixedBean);
+//
+//                                        Expand1Item item1 = new Expand1Item(footballBean.getData().get(i).getGame_info().get(j).getGame_name(),
+//                                                footballBean.getData().get(i).getGame_info().get(j).getGame_home_team_name()
+//                                        ,footballBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name(),footballBean.getData().get(i).getGame_info().get(j).getGame_home_score(),
+//                                                footballBean.getData().get(i).getGame_info().get(j).getGame_let_score(),footballBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()
+//                                        ,footballBean.getData().get(i).getGame_info().get(j).getGame_begin_time()
+//                                        ,listone,listtwo,listthree,listfour,list_choose,"展开更多选项");
+//
+//
+//                                        item.addSubItem(item1);
+//                                    }
+//
+//                                    res.add(item);
+//                                }
+//
+//
+//                            } else {
+//                                ToastUtil.showToast1(BettingActivity.this, msg + "");
+//
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//
+//                    }
+//                });
+//
+//            }
+//        });
+//
+//        return res;
+//    }
 
 
 

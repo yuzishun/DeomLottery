@@ -42,7 +42,11 @@ public class Content {
     //没办法的静态的篮球数据
     public  static List<ChooseBaskBean> list_chooe_bask;
 
-    //篮球选择的场次
+    //静态的足球单关
+    public static List<ChooseMixedBean> list_chooe_single;
+
+    //订单状态
+    public static int order_flag_single = 0;
 
     //订单状态
     public static int order_flag = 0;
@@ -51,6 +55,8 @@ public class Content {
     //银行卡列表
     public static  List<BankMangmentBean.DataBean> list_bank = new ArrayList<>();
 
+    //用户是否是站内用户
+    public static int player;
 
     public static int Text_postion =0;
 
