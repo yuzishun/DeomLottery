@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.Basefragment;
 import com.example.yuzishun.newdeom.base.LazyFragment;
+import com.example.yuzishun.newdeom.net.Url;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ public class ScoreFragment extends LazyFragment implements View.OnClickListener 
         webView = (WebView) findViewById(R.id.webView);
         Text_loading = (TextView) findViewById(R.id.Text_loading);
         layout_ye = (LinearLayout) findViewById(R.id.layout_ye);
-        webView.loadUrl("http://103.9.195.242/static/ball/instant/fb_index.html");
+        webView.loadUrl(Url.baseUrl+"static/ball/instant/fb_index.html");
         // 复写shouldOverrideUrlLoading()方法，使得打开网页时不调用系统浏览器， 而是在本WebView中显示
         webView.getSettings().setDomStorageEnabled(true);
 

@@ -77,7 +77,7 @@ public class BettingMixedFragment extends LazyFragment implements View.OnClickLi
     private TextView Scene_TextView;
     private RecyclerView Lottery_RecyCLerView;
     private BettingListAdapter adapter;
-    private ArrayList<MultiItemEntity> list;
+    private ArrayList<MultiItemEntity> list=  new ArrayList<>();
     private FootballBean footballBean;
     private TextView Text_clear;
 
@@ -88,8 +88,10 @@ public class BettingMixedFragment extends LazyFragment implements View.OnClickLi
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
         setContentView(R.layout.fragment_betting_mixed);
+
         initView();
         ininData();
+        list.clear();
     }
 
 
@@ -162,7 +164,7 @@ public class BettingMixedFragment extends LazyFragment implements View.OnClickLi
                 Lottery_RecyCLerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
                 //完成后，通知主线程更新UI
-                handler.sendEmptyMessageDelayed(1, 2000);
+                handler.sendEmptyMessageDelayed(1, 3000);
 
             }
         }).start();
@@ -283,6 +285,7 @@ public class BettingMixedFragment extends LazyFragment implements View.OnClickLi
     protected void onResumeLazy() {
         super.onResumeLazy();
         if(adapter!=null){
+
 
             if(Content.order_flag==0){
                 adapter.notifyDataSetChanged();

@@ -1,4 +1,4 @@
-package com.example.yuzishun.newdeom.main.adapter;
+package com.example.yuzishun.newdeom.main.single;
 
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -16,9 +16,9 @@ import java.util.List;
 /**
  * Created by yuzishun on 2019/5/26.
  */
-public class QuickAdapter_two extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
+public class QuickAdapter_single extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
     private int flag_click,type;
-    public QuickAdapter_two(@Nullable List<ItemPoint> data, int flag_click,int type) {
+    public QuickAdapter_single(@Nullable List<ItemPoint> data, int flag_click, int type) {
         super(R.layout.dialog_recycler_two, data);
         this.flag_click = flag_click;
         this.type=type;

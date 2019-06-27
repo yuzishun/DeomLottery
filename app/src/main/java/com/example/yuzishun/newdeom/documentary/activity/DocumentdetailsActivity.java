@@ -321,18 +321,18 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
                                     switch (bunch.size()){
                                         case 1:
-                                            Text_bunch_two.setText("单关");
+                                            Text_bunch_two.setText(bunch.get(0)+"串1");
                                             break;
                                         case 2:
                                             Text_bunch_three.setVisibility(View.VISIBLE);
-                                            Text_bunch_two.setText("单关");
+                                            Text_bunch_two.setText(bunch.get(0)+"串1");
                                             Text_bunch_three.setText(bunch.get(1)+"串1");
 
                                             break;
                                         case 3:
                                             Text_bunch_three.setVisibility(View.VISIBLE);
                                             Text_bunch_four.setVisibility(View.VISIBLE);
-                                            Text_bunch_two.setText("单关");
+                                            Text_bunch_two.setText(bunch.get(0)+"串1");
                                             Text_bunch_three.setText(bunch.get(1)+"串1");
                                             Text_bunch_four.setText(bunch.get(2)+"串1");
 
@@ -341,7 +341,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                             Text_bunch_three.setVisibility(View.VISIBLE);
                                             Text_bunch_four.setVisibility(View.VISIBLE);
                                             Text_bunch_fire.setVisibility(View.VISIBLE);
-                                            Text_bunch_two.setText("单关");
+                                            Text_bunch_two.setText(bunch.get(0)+"串1");
                                             Text_bunch_three.setText(bunch.get(1)+"串1");
                                             Text_bunch_four.setText(bunch.get(2)+"串1");
                                             Text_bunch_fire.setText(bunch.get(3)+"串1");
@@ -352,7 +352,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                             Text_bunch_four.setVisibility(View.VISIBLE);
                                             Text_bunch_fire.setVisibility(View.VISIBLE);
                                             Text_bunch_six.setVisibility(View.VISIBLE);
-                                            Text_bunch_two.setText("单关");
+                                            Text_bunch_two.setText(bunch.get(0)+"串1");
                                             Text_bunch_three.setText(bunch.get(1)+"串1");
                                             Text_bunch_four.setText(bunch.get(2)+"串1");
                                             Text_bunch_fire.setText(bunch.get(3)+"串1");
@@ -365,7 +365,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                             Text_bunch_fire.setVisibility(View.VISIBLE);
                                             Text_bunch_six.setVisibility(View.VISIBLE);
                                             Text_bunch_seven.setVisibility(View.VISIBLE);
-                                            Text_bunch_two.setText("单关");
+                                            Text_bunch_two.setText(bunch.get(0)+"串1");
                                             Text_bunch_three.setText(bunch.get(1)+"串1");
                                             Text_bunch_four.setText(bunch.get(2)+"串1");
                                             Text_bunch_fire.setText(bunch.get(3)+"串1");
@@ -380,7 +380,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                             Text_bunch_six.setVisibility(View.VISIBLE);
                                             Text_bunch_seven.setVisibility(View.VISIBLE);
                                             Text_bunch_entry.setVisibility(View.VISIBLE);
-                                            Text_bunch_two.setText("单关");
+                                            Text_bunch_two.setText(bunch.get(0)+"串1");
                                             Text_bunch_three.setText(bunch.get(1)+"串1");
                                             Text_bunch_four.setText(bunch.get(2)+"串1");
                                             Text_bunch_fire.setText(bunch.get(3)+"串1");
@@ -840,14 +840,14 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 break;
             case 2:
                 Text_bunch_three.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText("单关");
+                Text_bunch_two.setText(bunch.get(0)+"串1");
                 Text_bunch_three.setText(bunch.get(1)+"串1");
 
                 break;
             case 3:
                 Text_bunch_three.setVisibility(View.VISIBLE);
                 Text_bunch_four.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText("单关");
+                Text_bunch_two.setText(bunch.get(0)+"串1");
                 Text_bunch_three.setText(bunch.get(1)+"串1");
                 Text_bunch_four.setText(bunch.get(2)+"串1");
 
@@ -856,7 +856,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 Text_bunch_three.setVisibility(View.VISIBLE);
                 Text_bunch_four.setVisibility(View.VISIBLE);
                 Text_bunch_fire.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText("单关");
+                Text_bunch_two.setText(bunch.get(0)+"串1");
                 Text_bunch_three.setText(bunch.get(1)+"串1");
                 Text_bunch_four.setText(bunch.get(2)+"串1");
                 Text_bunch_fire.setText(bunch.get(3)+"串1");
@@ -867,7 +867,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 Text_bunch_four.setVisibility(View.VISIBLE);
                 Text_bunch_fire.setVisibility(View.VISIBLE);
                 Text_bunch_six.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText("单关");
+                Text_bunch_two.setText(bunch.get(0)+"串1");
                 Text_bunch_three.setText(bunch.get(1)+"串1");
                 Text_bunch_four.setText(bunch.get(2)+"串1");
                 Text_bunch_fire.setText(bunch.get(3)+"串1");
@@ -880,7 +880,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 Text_bunch_fire.setVisibility(View.VISIBLE);
                 Text_bunch_six.setVisibility(View.VISIBLE);
                 Text_bunch_seven.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText("单关");
+                Text_bunch_two.setText(bunch.get(0)+"串1");
                 Text_bunch_three.setText(bunch.get(1)+"串1");
                 Text_bunch_four.setText(bunch.get(2)+"串1");
                 Text_bunch_fire.setText(bunch.get(3)+"串1");
@@ -895,7 +895,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 Text_bunch_six.setVisibility(View.VISIBLE);
                 Text_bunch_seven.setVisibility(View.VISIBLE);
                 Text_bunch_entry.setVisibility(View.VISIBLE);
-                Text_bunch_two.setText("单关");
+                Text_bunch_two.setText(bunch.get(0)+"串1");
                 Text_bunch_three.setText(bunch.get(1)+"串1");
                 Text_bunch_four.setText(bunch.get(2)+"串1");
                 Text_bunch_fire.setText(bunch.get(3)+"串1");

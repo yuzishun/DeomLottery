@@ -1,7 +1,10 @@
 package com.example.yuzishun.newdeom.main.activity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,10 +15,18 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
@@ -28,8 +39,10 @@ import com.example.yuzishun.newdeom.main.adapter.BettingListAdapter;
 import com.example.yuzishun.newdeom.main.adapter.Expand1Item;
 import com.example.yuzishun.newdeom.main.adapter.ExpandItem;
 
+import com.example.yuzishun.newdeom.main.adapter.GridView_Betting_Adapter;
 import com.example.yuzishun.newdeom.main.mixed.BettingMixedFragment;
 import com.example.yuzishun.newdeom.main.single.BettingSingleFragment;
+import com.example.yuzishun.newdeom.main.single.SingleMessage;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.FootballBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
@@ -70,6 +83,11 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
     private List<String> list_two = new ArrayList<>();
     private List<String> list_three = new ArrayList<>();
     private List<String> list_four = new ArrayList<>();
+    private String[] list1=new String[]{"混合投注"};
+    private String[] list2=new String[]{"胜负平","比分"};
+    private List<String> list_pop_one = new ArrayList<>();
+    private List<String> list_pop_two = new ArrayList<>();
+
     //tttttt
     private int count=0;
     @BindView(R.id.image_back)
@@ -86,6 +104,8 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
     ImageView play_messag;
     @BindView(R.id.Scene_TextView)
     TextView Scene_TextView;
+    @BindView(R.id.layout_pop)
+    LinearLayout layout_pop;
     @BindView(R.id.Lottery_RecyCLerView)
     RecyclerView Lottery_RecyCLerView;
     private BettingListAdapter adapter;
@@ -98,7 +118,10 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
     TextView title_text;
     private Fragment[] mFragments;
     private int mIndex=0;
-
+    @BindView(R.id.Single_Lacontent)
+    FrameLayout Single_Lacontent;
+    @BindView(R.id.Betting_Lacontent)
+    FrameLayout Betting_Lacontent;
     @Override
     public int intiLayout() {
         return R.layout.activity_betting;
@@ -115,18 +138,42 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
 
         Intent intent = getIntent();
         flag = intent.getIntExtra("flag",0);
-        initFragment();
-        if(flag==1){
+//        initFragment();
+        //开启事务
+        Fragment mTab_01 = new BettingMixedFragment();
+        Fragment mTab_02 = new BettingSingleFragment();
 
-            title_text.setText("混合投注");
-            setIndexSelected(0);
+        //添加到数组
+        mFragments = new Fragment[]{mTab_01,mTab_02};
 
-        }else if(flag==2){
-            title_text.setText("胜负平");
-            setIndexSelected(1);
+        FragmentTransaction ft =
+                getSupportFragmentManager().beginTransaction();
 
 
-        }
+
+        //添加首页
+        ft.add(R.id.Betting_Lacontent,mTab_01).commit();
+//        FragmentTransaction ft2 =
+//                getSupportFragmentManager().beginTransaction();
+//
+//
+//        //添加首页
+//        ft2.add(R.id.Single_Lacontent,mTab_02).commit();
+//        if(flag==1){
+//
+//            title_text.setText("混合投注");
+////            setIndexSelected(0);
+//            Single_Lacontent.setVisibility(View.GONE);
+//            Betting_Lacontent.setVisibility(View.VISIBLE);
+//
+//        }else if(flag==2){
+//            title_text.setText("胜负平");
+////            setIndexSelected(1);
+//
+//            Single_Lacontent.setVisibility(View.VISIBLE);
+//            Betting_Lacontent.setVisibility(View.GONE);
+//        }
+//        layout_pop.setOnClickListener(this);
 
 
 //        EventBus.getDefault().register(this);
@@ -172,52 +219,51 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
 
     }
 
-    //加载fragment页面
-    private void initFragment() {
-        Fragment mTab_01 = new BettingMixedFragment();
-        Fragment mTab_02 = new BettingSingleFragment();
-
-
-        //添加到数组
-        mFragments = new Fragment[]{mTab_01,mTab_02};
-
-        //开启事务
-
-        FragmentTransaction ft =
-                getSupportFragmentManager().beginTransaction();
-
-
-        //添加首页
-        ft.add(R.id.Betting_Lacontent,mTab_01).commit();
-
-        //默认设置为第0个
-
-        setIndexSelected(0);
-
-
-    }
-
-    private void setIndexSelected(int index) {
-
-        if(mIndex==index){
-            return;
-        }
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction ft              = fragmentManager.beginTransaction();
-        //隐藏
-        ft.hide(mFragments[mIndex]);
-        //判断是否添加
-        if(!mFragments[index].isAdded()){
-            ft.add(R.id.Betting_Lacontent,mFragments[index]).show(mFragments[index]);
-        }else {
-            ft.show(mFragments[index]);
-        }
-
-
-        ft.commit();
-        //再次赋值
-        mIndex=index;
-    }
+//    //加载fragment页面
+//    private void initFragment() {
+//        Fragment mTab_01 = new BettingMixedFragment();
+//        Fragment mTab_02 = new BettingSingleFragment();
+//
+//        //添加到数组
+//        mFragments = new Fragment[]{mTab_01,mTab_02};
+//
+//        //开启事务
+//
+//        FragmentTransaction ft =
+//                getSupportFragmentManager().beginTransaction();
+//
+//
+//        //添加首页
+//        ft.add(R.id.Betting_Lacontent,mTab_01).commit();
+//
+//        //默认设置为第0个
+//
+//        setIndexSelected(0);
+//
+//
+//    }
+//
+//    private void setIndexSelected(int index) {
+//
+//        if(mIndex==index){
+//            return;
+//        }
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction ft              = fragmentManager.beginTransaction();
+//        //隐藏
+//        ft.hide(mFragments[mIndex]);
+//        //判断是否添加
+//        if(!mFragments[index].isAdded()){
+//            ft.add(R.id.Betting_Lacontent,mFragments[index]).show(mFragments[index]);
+//        }else {
+//            ft.show(mFragments[index]);
+//        }
+//
+//
+//        ft.commit();
+//        //再次赋值
+//        mIndex=index;
+//    }
 
 //    private void initlist() {
 //
@@ -331,6 +377,12 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
 
 
                 break;
+            case R.id.layout_pop:
+
+
+                popwindow(layout_pop);
+
+                break;
             case R.id.Text_clear:
                 adapter.onResh();
 
@@ -347,6 +399,111 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
                 break;
         }
     }
+
+    private void popwindow(View view) {
+        list_pop_one.clear();
+        for (int i = 0; i <list1.length ; i++) {
+            list_pop_one.add(list1[i]);
+
+        }
+        list_pop_two.clear();
+        for (int i = 0; i <list2.length ; i++) {
+            list_pop_two.add(list2[i]);
+
+        }
+        final Dialog dialog = new Dialog(this,R.style.dialog);
+        dialog.setContentView(R.layout.pop_betting);
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        getWindow().setBackgroundDrawable(new BitmapDrawable());
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dialog.getWindow().setAttributes(lp);
+        dialog.setCanceledOnTouchOutside(false);
+
+        dialog.show();
+
+
+        TextView choose_one = dialog.findViewById(R.id.choose_one);
+        TextView choose_two = dialog.findViewById(R.id.choose_two);
+        GridView GridView_betting_Money = dialog.findViewById(R.id.GridView_betting_Money);
+        GridView GridView_betting_Money_two = dialog.findViewById(R.id.GridView_betting_Money_two);
+        GridView_Betting_Adapter gridView_betting_adapter = new GridView_Betting_Adapter(BettingActivity.this,list_pop_one);
+        GridView_betting_Money.setAdapter(gridView_betting_adapter);
+        GridView_Betting_Adapter gridView_betting_adapter2 = new GridView_Betting_Adapter(BettingActivity.this,list_pop_two);
+        GridView_betting_Money_two.setAdapter(gridView_betting_adapter2);
+        if(Content.flag_betting_popwindow==0){
+
+            GridView_betting_Money.setVisibility(View.VISIBLE);
+            GridView_betting_Money_two.setVisibility(View.GONE);
+            choose_one.setTextColor(this.getResources().getColor(R.color.login_red));
+            choose_two.setTextColor(this.getResources().getColor(R.color.gray_Overall_hint));
+
+
+        }else {
+
+            GridView_betting_Money.setVisibility(View.GONE);
+            GridView_betting_Money_two.setVisibility(View.VISIBLE);
+            choose_one.setTextColor(this.getResources().getColor(R.color.gray_Overall_hint));
+            choose_two.setTextColor(this.getResources().getColor(R.color.login_red));
+        }
+        choose_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GridView_betting_Money.setVisibility(View.VISIBLE);
+                GridView_betting_Money_two.setVisibility(View.GONE);
+                choose_one.setTextColor(BettingActivity.this.getResources().getColor(R.color.login_red));
+                choose_two.setTextColor(BettingActivity.this.getResources().getColor(R.color.gray_Overall_hint));
+
+            }
+        });
+        choose_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GridView_betting_Money.setVisibility(View.GONE);
+                GridView_betting_Money_two.setVisibility(View.VISIBLE);
+                choose_one.setTextColor(BettingActivity.this.getResources().getColor(R.color.gray_Overall_hint));
+                choose_two.setTextColor(BettingActivity.this.getResources().getColor(R.color.login_red));
+            }
+        });
+
+        GridView_betting_Money.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                gridView_betting_adapter.choiceState(position);
+                Single_Lacontent.setVisibility(View.GONE);
+                Betting_Lacontent.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+
+            }
+        });
+        GridView_betting_Money_two.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                gridView_betting_adapter2.choiceState(position);
+                int single=0;
+                if(position==0){
+                    single=1;
+                }else {
+                    single=3;
+
+                }
+
+                Single_Lacontent.setVisibility(View.VISIBLE);
+                Betting_Lacontent.setVisibility(View.GONE);
+
+//                setIndexSelected(1);
+
+                dialog.dismiss();
+
+            }
+        });
+
+
+
+    }
+
 
     @Override
     protected void onDestroy() {

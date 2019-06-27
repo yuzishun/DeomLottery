@@ -251,6 +251,7 @@
 
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/d10"
+                    android:maxLength="50"
                     android:id="@+id/phoneEditText"
                     android:paddingTop="@dimen/d10"
                     android:background="@color/empt_color"

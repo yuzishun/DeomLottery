@@ -383,7 +383,7 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
 
 
 //        two_rv.setAdapter(new QuickAdapter_two(item.list_choosebena.get(postion).getTwolist()));
-        two_rv.setAdapter(new QuickAdapter_two(item.list_two,1));
+        two_rv.setAdapter(new QuickAdapter_two(item.list_two,1,0));
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(MyApplication.getContext(),7);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {

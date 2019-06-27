@@ -60,4 +60,9 @@ public class Content {
 
     public static int Text_postion =0;
 
+    //投注页面显示哪一个
+    public static int flag_betting_popwindow=0;
+
+
+
 }

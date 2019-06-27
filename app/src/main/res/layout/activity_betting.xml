@@ -75,6 +75,13 @@
         android:layout_height="match_parent">
 
     </FrameLayout>
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/Single_Lacontent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
     <RelativeLayout
         android:visibility="gone"
         android:layout_below="@+id/title"

@@ -39,6 +39,7 @@ public class DocumHotGridViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+
         return list.size();
     }
 

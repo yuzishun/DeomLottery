@@ -68,7 +68,7 @@ public class BettingSingleFragment extends LazyFragment implements View.OnClickL
     private LinearLayout layout_empt;
     private SingleBean singleBean;
     private int count=0;
-
+    private int single=1;
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
@@ -83,7 +83,7 @@ public class BettingSingleFragment extends LazyFragment implements View.OnClickL
         EventBus.getDefault().register(this);
 
         list = request();
-        adapter = new BettingSingleAdapter(list);
+        adapter = new BettingSingleAdapter(list,1);
         Lottery_RecyCLerView.setAdapter(adapter);
         Lottery_RecyCLerView.setNestedScrollingEnabled(false);
         Lottery_RecyCLerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -154,12 +154,15 @@ public class BettingSingleFragment extends LazyFragment implements View.OnClickL
 
     }
 
+
+
+
     private ArrayList<MultiItemEntity> request() {
 
         final ArrayList<MultiItemEntity> res = new ArrayList<>();
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getSingleFootballList?single=1", new Callback() {
+        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getSingleFootballList?single="+single, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -225,7 +228,7 @@ public class BettingSingleFragment extends LazyFragment implements View.OnClickL
                                                 ,singleBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name(),singleBean.getData().get(i).getGame_info().get(j).getGame_home_score(),
                                                 singleBean.getData().get(i).getGame_info().get(j).getGame_let_score(),singleBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()
                                                 ,singleBean.getData().get(i).getGame_info().get(j).getGame_stop_time()
-                                                ,list_single,list_choose);
+                                                ,list_single,list_choose,"点击展开更多");
 
 
                                         item_single.addSubItem(item1);
@@ -368,6 +371,7 @@ public class BettingSingleFragment extends LazyFragment implements View.OnClickL
 
             }
         }
+
 
         EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber()+""));
     }

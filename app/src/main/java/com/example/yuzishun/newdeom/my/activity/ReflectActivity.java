@@ -204,7 +204,7 @@ public class ReflectActivity extends BaseActivity implements View.OnClickListene
         hashMap.put("cash",money_edittext.getText().toString().trim()+"");
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
 
-        okhttpUtlis.PostAsynMap(Url.baseUrl="pay/muck/withdraw", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl+"pay/muck/withdraw", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

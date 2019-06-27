@@ -38,6 +38,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <!-- <uses-sdk tools:overrideLibrary="com.qiangxi.checkupdatelibrary:checkupdatelibrary:1.0.2"/> -->
     <application
@@ -49,7 +50,11 @@
         android:roundIcon="@mipmap/icon_launch"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:theme">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <!-- 屏幕适配 -->
         <meta-data
@@ -88,6 +93,7 @@
         <activity
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <!-- 银行卡管理界面 -->
         <activity
             android:name=".my.activity.BankCradManagementActivity"
             android:screenOrientation="portrait" />
@@ -130,7 +136,8 @@
 
         <activity android:name=".main.activity.InfomationWebViewActivity" />
         <activity android:name=".documentary.activity.SeachActivity" />
-        <activity android:name=".main.single.SingleSureActivity"></activity>
+        <activity android:name=".main.single.SingleSureActivity" />
+        <activity android:name=".main.activity.SingleActivity"></activity>
     </application>
 
 </manifest>

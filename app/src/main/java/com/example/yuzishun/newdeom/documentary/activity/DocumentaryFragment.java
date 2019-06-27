@@ -262,13 +262,14 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
                                 if(i==0){
                                     data.addAll(documentaryBean.getData());
 
-                                if(data.size()==0){
+                                if(documentaryBean.getData().size()==0){
 
                                     hot_empt.setVisibility(View.VISIBLE);
                                     Document_RecyclerView.setVisibility(View.GONE);
 
                                 }else {
-
+                                    hot_empt.setVisibility(View.GONE);
+                                    Document_RecyclerView.setVisibility(View.VISIBLE);
                                     documRecyclerViewAdapter.notifyDataSetChanged();
 
 

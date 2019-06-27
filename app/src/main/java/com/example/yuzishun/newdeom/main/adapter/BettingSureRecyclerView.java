@@ -185,7 +185,7 @@ public class BettingSureRecyclerView extends RecyclerView.Adapter<BettingSureRec
                         "","",onelist,twolist,threelist,fourlist,Content.list_chooe,"");
 
                 one_rv.setAdapter(new QuickAdapter(onelist,0,item,1,0));
-                two_rv.setAdapter(new QuickAdapter_two(twolist,0));
+                two_rv.setAdapter(new QuickAdapter_two(twolist,0,0));
                 three_rv.setAdapter(new QuickAdapter_three(threelist,0));
                 four_rv.setAdapter(new QuickAdapter_four(fourlist,0));
                 TextView victor = dialog.findViewById(R.id.victor);

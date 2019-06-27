@@ -93,6 +93,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     private Button Button_erbai;
     private Button Button_wubai;
     private Button news;
+    private LinearLayout laynout_dan;
     private Button match;
     private LinearLayout dan_layout;
     private ImageView Image_lottery;
@@ -164,7 +165,10 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                                             singleBean.getData().get(0).getGame_info().get(0).getSingle_odds().get(2).getOdds());
                                     game_id = singleBean.getData().get(0).getGame_info().get(0).getGame_id();
                                     single_odds = singleBean.getData().get(0).getGame_info().get(0).getSingle_odds();
-
+                                    double poer = Double.parseDouble(single_odds.get(0).getOdds()) * 50;
+                                    NumberFormat nf = new DecimalFormat("#.##");
+                                    String format = nf.format(poer);
+                                    Text_prour.setText(format);
 
 
                                 }
@@ -243,6 +247,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
 
     private void initView() {
+        laynout_dan = (LinearLayout) findViewById(R.id.laynout_dan);
         Multiple_Money = (ClearEditText) findViewById(R.id.Multiple_Money);
         Text_betting = (Button) findViewById(R.id.Text_betting);
         left_team = (TextView) findViewById(R.id.left_team);
@@ -279,6 +284,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         Button_wubai.setOnClickListener(this);
         news.setOnClickListener(this);
         match.setOnClickListener(this);
+        laynout_dan.setOnClickListener(this);
         Image_lottery.setOnClickListener(this);
         newsRecycleriView.setLayoutManager(new LinearLayoutManager(getContext()));
         //这是后来要删除的集合，所以就不用在strings里面去写了
@@ -318,25 +324,31 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         public void afterTextChanged(Editable s) {
             if(Multiple_Money.getText().toString().trim().equals("")){
                 edit_flag=0;
+
             }else {
                 flag_all=3;
                 change(Button_wushi,Button_erbai,Button_wubai);
 //                BigInteger n = new BigInteger(Multiple_Money.getText().toString().trim());
                 Double n = Double.parseDouble(Multiple_Money.getText().toString().trim());
                 Log.e("YZS",n%2+"");
-                if(n%2==1){
-                    edit_flag=0;
-                    ToastUtil.showToast1(getActivity(),"请输入2的倍数");
-                }else {
-                    edit_flag=1;
-                    money_flag=4;
+//                if(n%2==1){
+//                    edit_flag=0;
+//                    ToastUtil.showToast1(getActivity(),"请输入2的倍数");
+//                }else {
+//                    edit_flag=1;
+//                    money_flag=4;
+//
+//                    double poer = Double.parseDouble(single_odds.get(bett).getOdds()) * Double.parseDouble(Multiple_Money.getText().toString().trim());
+//                    NumberFormat nf = new DecimalFormat("#.##");
+//                    String format = nf.format(poer);
+//                    Text_prour.setText(format);
+//
+//                }
 
-                    double poer = Double.parseDouble(single_odds.get(bett).getOdds()) * Double.parseDouble(Multiple_Money.getText().toString().trim());
-                    NumberFormat nf = new DecimalFormat("#.##");
-                    String format = nf.format(poer);
-                    Text_prour.setText(format);
-
-                }
+                double poer = Double.parseDouble(single_odds.get(bett).getOdds()) * Double.parseDouble(Multiple_Money.getText().toString().trim());
+                NumberFormat nf = new DecimalFormat("#.##");
+                String format = nf.format(poer);
+                Text_prour.setText(format);
 
             }
 
@@ -406,9 +418,10 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                                 imgs.add(bananBean.getData().get(i).getImg_location());
 
                             }
-                            mainRollPagerView.setAdapter(new ImageNormalAdapter());//设置适配器
 
-
+                            ImageNormalAdapter imageNormalAdapter = new ImageNormalAdapter();
+                            mainRollPagerView.setAdapter(imageNormalAdapter);//设置适配器
+                            imageNormalAdapter.notifyDataSetChanged();
 
                         }else if(code==10004){
                             MainActivity.intentsat.finish();
@@ -541,6 +554,10 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                 change(Button_wubai,Button_wushi,Button_erbai);
 
                 break;
+            case R.id.laynout_dan:
+                Intent intent_dan_top = new Intent(getContext(),SingleActivity.class);
+                startActivity(intent_dan_top);
+                break;
             case R.id.news:
                 changeRecyclerView(news,match);
                 flag=0;
@@ -569,21 +586,43 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
                 break;
             case R.id.dan_layout:
-                Intent intent_dan = new Intent(getContext(),BettingActivity.class);
-                intent_dan.putExtra("flag",2);
+                Intent intent_dan = new Intent(getContext(),SingleActivity.class);
                 startActivity(intent_dan);
                 break;
             case R.id.Text_betting:
 
 
-                if(money_flag==4&&edit_flag==0){
-                    ToastUtil.showToast1(getActivity(),"请输入金额");
+                if(Multiple_Money.getText().toString().trim().equals("")){
+                    if(money_flag!=4){
+                        submit();
+                    }else {
+                        ToastUtil.showToast1(getActivity(),"请输入金额");
+
+                    }
+//                    ToastUtil.showToast1(getActivity(),"请输入金额");
 
 
                 }else {
-                    submit();
+
+
+
+//                BigInteger n = new BigInteger(Multiple_Money.getText().toString().trim());
+                    Double n = Double.parseDouble(Multiple_Money.getText().toString().trim());
+                    Log.e("YZS",n%2+"");
+                    if(n%2==1){
+                        edit_flag=0;
+                        ToastUtil.showToast1(getActivity(),"请输入2的倍数");
+                    }else {
+                        edit_flag=1;
+
+
+
+                        submit();
+
+                    }
 
                 }
+
 
 
                 break;
@@ -644,6 +683,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
             two.setTextColor(getResources().getColor(R.color.login_red));
             three.setTextColor(getResources().getColor(R.color.login_red));
             flag_all=0;
+            money_flag=4;
         }
 
 
@@ -668,6 +708,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                 getVerticaList();
                 recycl();
                 showbanan();
+                request();
                 Toast.makeText(getContext(), "刷新完成", Toast.LENGTH_SHORT).show();
 
             }
@@ -686,10 +727,15 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         @Override
         public View getView(ViewGroup container, int position) {
             ImageView view = new ImageView(container.getContext());
+
+
+
             view.setScaleType(ImageView.ScaleType.CENTER_CROP);
             view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             Glide.with(getActivity()).load(imgs.get(position)).into(view);
+
             return view;
+
         }
 
         @Override
@@ -717,6 +763,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     protected void onDestroyViewLazy() {
         super.onDestroyViewLazy();
         handler.sendEmptyMessage(1);
+
     }
 
     private Handler handler = new Handler() {

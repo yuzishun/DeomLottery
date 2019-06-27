@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
+import com.example.yuzishun.newdeom.net.Url;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +39,7 @@ public class InfomationWebViewActivity extends BaseActivity implements View.OnCl
         int type = intent.getIntExtra("type", 0);
         String info_no = intent.getStringExtra("info_no");
 
-        InfoMation_webview.loadUrl("http://103.9.195.242/app/information/getBallInformation?type=+"+type+"&info_no="+info_no);
+        InfoMation_webview.loadUrl(Url.baseUrl+"app/information/getBallInformation?type=+"+type+"&info_no="+info_no);
 
         InfoMation_webview.setWebViewClient(new WebViewClient());
         //声明WebSettings子类

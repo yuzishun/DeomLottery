@@ -139,18 +139,51 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@color/white"
                     android:layout_weight="1"
 
                     android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <android.support.v7.widget.RecyclerView
+                        android:visibility="gone"
                         android:id="@+id/RecyclerView_Mixed_Bet_football"
                         android:gravity="center"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
+                    <Button
+                        android:id="@+id/button_score"
+                        android:text="点击展开投注页"
+                        android:textSize="@dimen/f12"
+                        android:gravity="center"
+                        android:layout_marginRight="@dimen/d10"
+                        android:layout_marginLeft="@dimen/d10"
+                        android:background="@drawable/dialog_mixed_false"
+                        android:textColor="@color/font_black"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d30" />
+                    <Button
+                        android:id="@+id/button_double"
+                        android:text="点击展开投注页"
+                        android:visibility="gone"
+                        android:textSize="@dimen/f12"
+                        android:gravity="center"
+                        android:layout_marginRight="@dimen/d10"
+                        android:layout_marginLeft="@dimen/d10"
+                        android:background="@drawable/dialog_mixed_false"
+                        android:textColor="@color/font_black"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d30" />
+                    <android.support.v7.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/RecyclerView_Mixed_Bet_football_zong"
+                        android:gravity="center"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
 
 

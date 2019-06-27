@@ -7,10 +7,9 @@ package com.example.yuzishun.newdeom.net;
 public class Url {
 
     //本地服务器
-    public static String baseUrl = "http://192.168.1.9/";
+//    public static String baseUrl = "http://192.168.1.9/";
 //    正式服务器
-
-//    public static String baseUrl = "http://103.9.195.242/";
+    public static String baseUrl = "http://www.wannianjuke.com/";
 
 
 }

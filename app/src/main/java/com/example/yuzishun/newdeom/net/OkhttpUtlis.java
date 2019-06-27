@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.base.MyApplication;
+import com.example.yuzishun.newdeom.utils.SSL;
 import com.example.yuzishun.newdeom.utils.SpUtil;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 import com.google.gson.Gson;
@@ -19,6 +20,7 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
@@ -51,9 +53,12 @@ public class OkhttpUtlis {
         ClientBuilder.addInterceptor(new LoggingInterceptor());//日志拦截器
 //        支持HTTPS请求，跳过证书验证
         ClientBuilder.sslSocketFactory(createSSLSocketFactory());
+//        ClientBuilder.sslSocketFactory(new SSL(trustAllCert), trustAllCert);
         ClientBuilder.hostnameVerifier(new HostnameVerifier() {
             @Override
             public boolean verify(String hostname, SSLSession session) {
+//                HostnameVerifier hv = HttpsURLConnection.getDefaultHostnameVerifier();
+//                Boolean result = hv.verify("www.wannianjuke.com",session);
                 return true;
             }
         });
@@ -104,7 +109,21 @@ public class OkhttpUtlis {
     }
 
 
+    //定义一个信任所有证书的TrustManager
+    final X509TrustManager trustAllCert = new X509TrustManager() {
+        @Override
+        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+        }
 
+        @Override
+        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+        }
+
+        @Override
+        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+            return new java.security.cert.X509Certificate[]{};
+        }
+    };
 
     /**
      * 生成安全套接字工厂，用于https请求的证书跳过

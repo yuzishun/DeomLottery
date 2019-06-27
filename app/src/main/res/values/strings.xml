@@ -54,10 +54,10 @@
     <string name="hot_caizhong">热门彩种</string>
     <string name="hot_football">竞彩足球</string>
     <string name="hot_baskball">竞彩篮球</string>
-    <string name="choose_nine">任选9场</string>
+    <string name="choose_nine">竞足单关</string>
     <string name="victory_shisi">胜负14场</string>
     <string name="Notice">公告:</string>
-    <string name="Sufficient_relevance">竟足单关</string>
+    <string name="Sufficient_relevance">竞足单关</string>
     <string name="More"><![CDATA[更多>>]]></string>
     <string name="data">2019-04-11</string>
     <string name="End">截止</string>

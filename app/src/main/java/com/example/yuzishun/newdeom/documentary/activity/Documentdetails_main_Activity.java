@@ -223,6 +223,21 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
                                     Glide.with(Documentdetails_main_Activity.this).load(mainOrderFootBean.getData().getImg_head()).asBitmap().centerCrop().into(usericon);
                                     username.setText(mainOrderFootBean.getData().getUname());
                                     buttom_money.setText(mainOrderFootBean.getData().getMultiple_price()+"");
+                                    if(mainOrderFootBean.getData().getPlan_status()==0){
+                                        text_pluc.setText("完全公开");
+                                        layout_publicv.setVisibility(View.GONE);
+                                        MyTable.setVisibility(View.VISIBLE);
+                                    }else if(mainOrderFootBean.getData().getPlan_status()==1){
+                                        text_pluc.setText("跟单后公开");
+                                        layout_publicv.setVisibility(View.VISIBLE);
+                                        MyTable.setVisibility(View.GONE);
+
+                                    }else {
+                                        text_pluc.setText("截止后公开");
+                                        layout_publicv.setVisibility(View.VISIBLE);
+                                        MyTable.setVisibility(View.GONE);
+
+                                    }
                                     switch (mainOrderFootBean.getData().getOrder_status()){
                                         case -1:
                                             state.setText("申请退款");
@@ -242,21 +257,7 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
                                             Winning_money.setText("未开奖");
 
                                             add_money.setText("0");
-                                            if(mainOrderFootBean.getData().getPlan_status()==0){
-                                                text_pluc.setText("完全公开");
-                                                layout_publicv.setVisibility(View.GONE);
-                                                MyTable.setVisibility(View.VISIBLE);
-                                            }else if(mainOrderFootBean.getData().getPlan_status()==1){
-                                                text_pluc.setText("跟单后公开");
-                                                layout_publicv.setVisibility(View.VISIBLE);
-                                                MyTable.setVisibility(View.GONE);
 
-                                            }else {
-                                                text_pluc.setText("截止后公开");
-                                                layout_publicv.setVisibility(View.VISIBLE);
-                                                MyTable.setVisibility(View.GONE);
-
-                                            }
 
 
                                             break;
@@ -708,7 +709,21 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
 
 
     public void basketball(MainOrderBasketBean basketballOrderBean){
+        if(basketballOrderBean.getData().getPlan_status()==0){
+            text_pluc.setText("完全公开");
+            layout_publicv.setVisibility(View.GONE);
+            MyTable.setVisibility(View.VISIBLE);
+        }else if(basketballOrderBean.getData().getPlan_status()==1){
+            text_pluc.setText("跟单后公开");
+            layout_publicv.setVisibility(View.VISIBLE);
+            MyTable.setVisibility(View.GONE);
 
+        }else {
+            text_pluc.setText("截止后公开");
+            layout_publicv.setVisibility(View.VISIBLE);
+            MyTable.setVisibility(View.GONE);
+
+        }
         switch (basketballOrderBean.getData().getOrder_status()){
             case -1:
                 state.setText("申请退款");
@@ -728,21 +743,7 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
                 Winning_money.setText("未开奖");
 
                 add_money.setText("0");
-                if(basketballOrderBean.getData().getPlan_status()==0){
-                    text_pluc.setText("完全公开");
-                    layout_publicv.setVisibility(View.GONE);
-                    MyTable.setVisibility(View.VISIBLE);
-                }else if(basketballOrderBean.getData().getPlan_status()==1){
-                    text_pluc.setText("跟单后公开");
-                    layout_publicv.setVisibility(View.VISIBLE);
-                    MyTable.setVisibility(View.GONE);
 
-                }else {
-                    text_pluc.setText("截止后公开");
-                    layout_publicv.setVisibility(View.VISIBLE);
-                    MyTable.setVisibility(View.GONE);
-
-                }
                 break;
             case 2:
                 state.setText("恭喜中奖");

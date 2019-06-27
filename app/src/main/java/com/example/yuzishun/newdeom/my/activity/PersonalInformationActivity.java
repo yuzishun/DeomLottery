@@ -32,6 +32,7 @@ import com.example.yuzishun.newdeom.base.BaseActivity;
 import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.base.MyApplication;
 import com.example.yuzishun.newdeom.login.activity.FindPasswordActivity;
+import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 
@@ -162,6 +163,55 @@ public class PersonalInformationActivity extends BaseActivity implements View.On
 //                        Toast.makeText(PersonalInformationActivity.this,
 //                                editTeqwewqext.getText().toString(),
 //                                Toast.LENGTH_SHORT).show();
+
+                        if(editText.getText().toString().equals("")){
+
+                            Toast.makeText(PersonalInformationActivity.this, "用户名不能为空", Toast.LENGTH_SHORT).show();
+                        }else {
+
+                            HashMap<String,String> hashMap = new HashMap<>();
+                            hashMap.put("uname",editText.getText().toString().trim());
+                            OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
+                            okhttpUtlis.PostAsynMap(Url.baseUrl + "app/user/editName", hashMap, new Callback() {
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+
+                                }
+
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                String result = response.body().string();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        try {
+                                            JSONObject jsonObject = new JSONObject(result);
+                                            int code = jsonObject.getInt("code");
+                                            String msg = jsonObject.getString("msg");
+
+                                            if(code==10000){
+
+                                                Toast.makeText(PersonalInformationActivity.this, msg+"", Toast.LENGTH_SHORT).show();
+                                                dialog.dismiss();
+                                                finish();
+                                            }else {
+                                                Toast.makeText(PersonalInformationActivity.this, msg+"", Toast.LENGTH_SHORT).show();
+
+                                            }
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+
+                                    }
+                                });
+
+                                }
+                            });
+
+                        }
 
                     }
                 }).show();
