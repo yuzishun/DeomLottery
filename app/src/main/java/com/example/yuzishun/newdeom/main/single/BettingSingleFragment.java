@@ -107,7 +107,7 @@ public class BettingSingleFragment extends LazyFragment implements View.OnClickL
                     public void run() {
                         list.addAll(request());
 
-                        adapter.onResh();
+                        adapter.onResh(1);
                         adapter.notifyDataSetChanged();
                         EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber()+""));
 
@@ -345,7 +345,7 @@ public class BettingSingleFragment extends LazyFragment implements View.OnClickL
 
                 break;
             case R.id.Text_clear:
-                adapter.onResh();
+                adapter.onResh(1);
 
                 adapter.notifyDataSetChanged();
                 EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber()+""));
@@ -361,16 +361,17 @@ public class BettingSingleFragment extends LazyFragment implements View.OnClickL
         super.onResumeLazy();
         if(adapter!=null){
 
-            if(Content.order_flag_single==0){
+            if(Content.order_flag==0){
                 adapter.notifyDataSetChanged();
 
             }else {
-                adapter.onResh();
+                adapter.onResh(0);
 
                 adapter.notifyDataSetChanged();
 
             }
         }
+
 
 
         EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber()+""));

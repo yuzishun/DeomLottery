@@ -183,7 +183,7 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
             @Override
             public void onClick(View v) {
                 
-
+                startActivity(new Intent(getContext(),SearchActivity.class));
             }
         });
         Document_Refresh.setOnRefreshListener(new TwinklingRefreshLayout.OnRefreshListener(){

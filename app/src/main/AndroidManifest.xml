@@ -137,7 +137,8 @@
         <activity android:name=".main.activity.InfomationWebViewActivity" />
         <activity android:name=".documentary.activity.SeachActivity" />
         <activity android:name=".main.single.SingleSureActivity" />
-        <activity android:name=".main.activity.SingleActivity"></activity>
+        <activity android:name=".main.activity.SingleActivity" />
+        <activity android:name=".documentary.activity.SearchActivity"></activity>
     </application>
 
 </manifest>

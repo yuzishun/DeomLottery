@@ -51,7 +51,6 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
 
     //判断选择的有几场，傻瓜方法
     private static List<String> list_adds;
-
     private int single=0;
     private static List<SubMixBean> list_subMixBean = new ArrayList<>();
     /**
@@ -98,7 +97,6 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
                         .setText(R.id.Text_right,item2.guest_team)
                         .setText(R.id.Text_bianhao,item2.sequence_no)
                         .setText(R.id.Text_data,"截止"+item2.stop_time);
-
                 RecyclerView rv = helper.getView(R.id.RecyclerView_Mixed_Bet_football);
                 RecyclerView rv_zong = helper.getView(R.id.RecyclerView_Mixed_Bet_football_zong);
 
@@ -141,30 +139,49 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
                     rv.setVisibility(View.GONE);
                     button_score.setVisibility(View.GONE);
                 }
-                if(item2.desc.equals("展开更多选项")){
-                    button_score.setText(item2.desc+"");
-                    button_score.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_false));
+                int ii=0;
+                for (int i = 0; i < item2.list_single.size(); i++) {
+                    if(item2.list_single.get(i).isselect){
 
-                    button_score.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
-
-                }else {
-                    button_score.setText(item2.desc+"");
-                    button_score.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_true));
-                    button_score.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
+                        ii++;
+                    }else {
+                    }
 
                 }
-                if(item2.desc.equals("展开更多选项")){
-                    button_double.setText(item2.desc+"");
-                    button_double.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_false));
-
-                    button_double.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
-
-                }else {
-                    button_double.setText(item2.desc+"");
-                    button_double.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_true));
-                    button_double.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
+                if(ii==0){
+                    item2.desc= "展开更多选项";
 
                 }
+                    if(item2.desc.equals("展开更多选项")){
+                        button_score.setText(item2.desc+"");
+                        button_score.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_false));
+
+                        button_score.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
+
+                    }else {
+                        button_score.setText(item2.desc+"");
+                        button_score.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_true));
+                        button_score.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
+
+                    }
+
+
+                    if(item2.desc.equals("展开更多选项")){
+                        button_double.setText(item2.desc+"");
+                        button_double.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_false));
+
+                        button_double.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
+
+                    }else {
+                        button_double.setText(item2.desc+"");
+                        button_double.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_true));
+                        button_double.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
+
+                    }
+
+
+
+
 
                 button_score.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -299,7 +316,7 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                String s = setMore(context, item);
+                String s = setMore(item);
                 EventBus.getDefault().post(new SinglePostionMessage(postion));
 
 
@@ -311,7 +328,9 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
 
 
 
-    public static String setMore(Context context,final Item1_Single item){
+
+
+    public static String setMore(final Item1_Single item){
 
 
         String desc = "";
@@ -349,9 +368,11 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
 
     }
 
-    public void onResh(){
+    public void onResh(int flag){
 
         for (int i = 0; i <list_choose_single.size() ; i++) {
+//
+
             List<ItemPoint> onelist = list_choose_single.get(i).getOnelist();
             for (int j = 0; j <onelist.size() ; j++) {
                 onelist.get(j).setIsselect(false);
@@ -362,6 +383,7 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
 
 
     }
+
     public List<ChooseMixedBean> getList(){
 
 

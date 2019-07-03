@@ -2,12 +2,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="100dp">
+    android:layout_height="80dp">
 
     <View
         android:background="@color/empt_color"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d10">
+        android:layout_height="0.1dp">
 
 
     </View>
@@ -28,11 +28,7 @@
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <ImageView
-                    android:id="@+id/level"
-                    android:src="@mipmap/crown"
-                    android:layout_width="@dimen/d20"
-                    android:layout_height="@dimen/d25" />
+
                 <TextView
                     android:text="4"
                     android:id="@+id/text_level"
@@ -79,17 +75,7 @@
                     android:textSize="@dimen/f11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <TextView
-                    android:text="14.0%"
-                    android:id="@+id/text_zhong"
-                    android:layout_toRightOf="@+id/Text_tui"
-                    android:layout_below="@+id/text_name"
-                    android:layout_marginLeft="@dimen/d5"
-                    android:layout_marginTop="@dimen/d15"
-                    android:textColor="@color/login_red"
-                    android:textSize="@dimen/f11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+
             </RelativeLayout>
 
 
@@ -99,27 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:text="574.0%"
-                android:id="@+id/text_lilv"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/d20"
-                android:layout_marginTop="@dimen/d20"
-                android:textColor="@color/login_red"
-                android:textSize="@dimen/f12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="周盈利率"
-                android:id="@+id/text_wen"
-                android:layout_below="@+id/text_lilv"
-                android:layout_marginRight="@dimen/d20"
-                android:layout_marginTop="@dimen/d15"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/font_black_shen"
-                android:textSize="@dimen/f11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
 
         </RelativeLayout>
 

@@ -216,7 +216,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
                                     switch (footBallOrderBean.getData().getOrder_status()){
                                         case -1:
-                                            state.setText("申请退款");
+                                            state.setText("已退款");
                                             order_money.setText(footBallOrderBean.getData().getOrder_price());
                                             Winning_money.setText(footBallOrderBean.getData().getBonus_price());
                                             add_money.setText("0");
@@ -735,7 +735,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
         switch (basketballOrderBean.getData().getOrder_status()){
             case -1:
-                state.setText("申请退款");
+                state.setText("已退款");
                 order_money.setText(basketballOrderBean.getData().getOrder_price());
                 Winning_money.setText(basketballOrderBean.getData().getBonus_price());
                 add_money.setText("0");

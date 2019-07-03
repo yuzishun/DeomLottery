@@ -115,6 +115,31 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
         ButterKnife.bind(this);
         image_back.setOnClickListener(this);
         title_text.setText("胜负平");
+        Intent intent = getIntent();
+        int single = intent.getIntExtra("single",0);
+        switch (single){
+
+            case 1:
+                title_text.setText("胜负平");
+
+                break;
+            case 2:
+                title_text.setText("让球胜负平");
+
+                break;
+            case 3:
+                title_text.setText("比分");
+
+                break;
+            case 4:
+                title_text.setText("总进球");
+
+                break;
+            case 5:
+                title_text.setText("半全场");
+
+                break;
+        }
         button_sure.setOnClickListener(this);
         Text_More.setOnClickListener(this);
         Button_goon.setOnClickListener(this);
@@ -771,8 +796,11 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
 
         }
         String maxbunch_end = nfmin.format(maxbunch);
-
-        bunchminandmax =  "理论奖金:"+Double.parseDouble(pmin)*Integer.parseInt(smin)*2+"元~"+Double.parseDouble(maxbunch_end)*Integer.parseInt(smin)*2+"元";
+        double v = Double.parseDouble(pmin) * Integer.parseInt(smin) * 2;
+        double v1 = Double.parseDouble(maxbunch_end) * Integer.parseInt(smin) * 2;
+        String format1 = nfmin.format(v);
+        String format2 = nfmin.format(v1);
+        bunchminandmax =  "理论奖金:"+format1+"元~"+format2+"元";
 
         Log.e("YZS",bunchminandmax+"");
 

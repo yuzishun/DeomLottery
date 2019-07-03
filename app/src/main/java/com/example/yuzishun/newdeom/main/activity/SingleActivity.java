@@ -50,7 +50,7 @@ import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
-//1:点击重复一个按钮会有显示不出来的界面
+//1:点击别的加载的过慢，
 //2:只有第一次点击别的按钮是会出来布局，别的不会
 
 public class SingleActivity extends BaseActivity implements View.OnClickListener {
@@ -106,7 +106,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void initData() {
-//        layout_pop.setOnClickListener(this);
+        layout_pop.setOnClickListener(this);
         image_back.setOnClickListener(this);
 
     }
@@ -138,7 +138,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
                     @Override
                     public void run() {
 
-                        adapter.onResh();
+                        adapter.onResh(1);
                         adapter.notifyDataSetChanged();
                         EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber()+""));
 
@@ -157,15 +157,20 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
                 //异步处理加载数据
                 //...
 
+
+
                 list = request(single);
                 list_two = request(2);
                 list_three = request(3);
                 list_four = request(4);
                 list_fire = request(5);
-                initrecycler(1);
+//                adapter = new BettingSingleAdapter(list,single);
+//
+//                Lottery_RecyCLerView.setAdapter(adapter);
+//                Lottery_RecyCLerView.setNestedScrollingEnabled(false);
 
                 //完成后，通知主线程更新UI
-                handler.sendEmptyMessageDelayed(1, 2000);
+                handler.sendEmptyMessageDelayed(2, 2000);
 
             }
         }).start();
@@ -177,40 +182,108 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
         switch (single){
 
             case 1:
-                adapter = new BettingSingleAdapter(list,single);
+                if(list.size()==0){
+                    Lottery_RecyCLerView.setVisibility(View.GONE);
+                    layout_bottom.setVisibility(View.GONE);
+                    layout_swipe.setVisibility(View.GONE);
+                    layout_empt.setVisibility(View.VISIBLE);
+                }else {
+                    layout_empt.setVisibility(View.GONE);
+                    Text_loading.setVisibility(View.GONE);
+                    Lottery_RecyCLerView.setVisibility(View.VISIBLE);
+                    layout_bottom.setVisibility(View.VISIBLE);
+                    layout_swipe.setVisibility(View.VISIBLE);
+                    adapter = new BettingSingleAdapter(list,single);
 
-                Lottery_RecyCLerView.setAdapter(adapter);
-                Lottery_RecyCLerView.setNestedScrollingEnabled(false);
+                    Lottery_RecyCLerView.setAdapter(adapter);
+                    Lottery_RecyCLerView.setNestedScrollingEnabled(false);
+                    adapter.expandAll();
+                }
+
                 break;
             case 2:
-                adapter = new BettingSingleAdapter(list_two,single);
+                if(list_two.size()==0){
+                    Lottery_RecyCLerView.setVisibility(View.GONE);
+                    layout_bottom.setVisibility(View.GONE);
+                    layout_swipe.setVisibility(View.GONE);
+                    layout_empt.setVisibility(View.VISIBLE);
+                }else {
+                    layout_empt.setVisibility(View.GONE);
+                    Text_loading.setVisibility(View.GONE);
+                    Lottery_RecyCLerView.setVisibility(View.VISIBLE);
+                    layout_bottom.setVisibility(View.VISIBLE);
+                    layout_swipe.setVisibility(View.VISIBLE);
+                    adapter = new BettingSingleAdapter(list_two,single);
 
-                Lottery_RecyCLerView.setAdapter(adapter);
-                Lottery_RecyCLerView.setNestedScrollingEnabled(false);
-                adapter.expandAll();
+                    Lottery_RecyCLerView.setAdapter(adapter);
+                    Lottery_RecyCLerView.setNestedScrollingEnabled(false);
+                    adapter.expandAll();
+                }
+
                 break;
             case 3:
-                adapter = new BettingSingleAdapter(list_three,single);
+                if(list_three.size()==0){
+                    Lottery_RecyCLerView.setVisibility(View.GONE);
+                    layout_bottom.setVisibility(View.GONE);
+                    layout_swipe.setVisibility(View.GONE);
+                    layout_empt.setVisibility(View.VISIBLE);
+                }else {
+                    layout_empt.setVisibility(View.GONE);
+                    Text_loading.setVisibility(View.GONE);
+                    Lottery_RecyCLerView.setVisibility(View.VISIBLE);
+                    layout_bottom.setVisibility(View.VISIBLE);
+                    layout_swipe.setVisibility(View.VISIBLE);
+                    adapter = new BettingSingleAdapter(list_three,single);
 
-                Lottery_RecyCLerView.setAdapter(adapter);
-                Lottery_RecyCLerView.setNestedScrollingEnabled(false);
-                adapter.expandAll();
+                    Lottery_RecyCLerView.setAdapter(adapter);
+                    Lottery_RecyCLerView.setNestedScrollingEnabled(false);
+                    adapter.expandAll();
+                }
+
+
 
                 break;
             case 4:
-                adapter = new BettingSingleAdapter(list_four,single);
+                if(list_four.size()==0){
+                    Lottery_RecyCLerView.setVisibility(View.GONE);
+                    layout_bottom.setVisibility(View.GONE);
+                    layout_swipe.setVisibility(View.GONE);
+                    layout_empt.setVisibility(View.VISIBLE);
+                }else {
+                    layout_empt.setVisibility(View.GONE);
+                    Text_loading.setVisibility(View.GONE);
+                    Lottery_RecyCLerView.setVisibility(View.VISIBLE);
+                    layout_bottom.setVisibility(View.VISIBLE);
+                    layout_swipe.setVisibility(View.VISIBLE);
+                    adapter = new BettingSingleAdapter(list_four,single);
 
-                Lottery_RecyCLerView.setAdapter(adapter);
-                Lottery_RecyCLerView.setNestedScrollingEnabled(false);
-                adapter.expandAll();
+                    Lottery_RecyCLerView.setAdapter(adapter);
+                    Lottery_RecyCLerView.setNestedScrollingEnabled(false);
+                    adapter.expandAll();
+                }
+
 
                 break;
             case 5:
-                adapter = new BettingSingleAdapter(list_fire,single);
+                if(list_fire.size()==0){
+                    Lottery_RecyCLerView.setVisibility(View.GONE);
+                    layout_bottom.setVisibility(View.GONE);
+                    layout_swipe.setVisibility(View.GONE);
+                    layout_empt.setVisibility(View.VISIBLE);
+                }else {
+                    layout_empt.setVisibility(View.GONE);
+                    Text_loading.setVisibility(View.GONE);
+                    Lottery_RecyCLerView.setVisibility(View.VISIBLE);
+                    layout_bottom.setVisibility(View.VISIBLE);
+                    layout_swipe.setVisibility(View.VISIBLE);
+                    adapter = new BettingSingleAdapter(list_fire,single);
 
-                Lottery_RecyCLerView.setAdapter(adapter);
-                Lottery_RecyCLerView.setNestedScrollingEnabled(false);
-                adapter.expandAll();
+                    Lottery_RecyCLerView.setAdapter(adapter);
+                    Lottery_RecyCLerView.setNestedScrollingEnabled(false);
+                    adapter.expandAll();
+                }
+
+
 
                 break;
 
@@ -317,7 +390,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
 
                                             }
                                             chooseMixedBean.setOnelist(list_single);
-
+                                            chooseMixedBean.setDesc("展开更多选项");
                                             chooseMixedBean.setGame_id(singleBean.getData().get(i).getGame_info().get(j).getGame_id());
                                             chooseMixedBean.setHome_team(singleBean.getData().get(i).getGame_info().get(j).getGame_home_team_name());
 
@@ -328,6 +401,8 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
                                             chooseMixedBean.setGuest_score(singleBean.getData().get(i).getGame_info().get(j).getGame_let_score());
                                             list_choose.add(chooseMixedBean);
 
+
+                                            Log.e("SingleSize",j+"");
 
                                             Item1_Single item1 = new Item1_Single(singleBean.getData().get(i).getGame_info().get(j).getGame_name(),
                                                     singleBean.getData().get(i).getGame_info().get(j).getGame_home_team_name()
@@ -407,19 +482,26 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
         @Override
         public void handleMessage(android.os.Message msg) {
 
-            if(singleBean.getData().size()==0){
-                Lottery_RecyCLerView.setVisibility(View.GONE);
-                layout_bottom.setVisibility(View.GONE);
-                layout_swipe.setVisibility(View.GONE);
-                layout_empt.setVisibility(View.VISIBLE);
+            if(msg.what==1){
+
             }else {
-                layout_empt.setVisibility(View.GONE);
-                Text_loading.setVisibility(View.GONE);
-                Lottery_RecyCLerView.setVisibility(View.VISIBLE);
-                layout_bottom.setVisibility(View.VISIBLE);
-                layout_swipe.setVisibility(View.VISIBLE);
-                adapter.expandAll();
+                initrecycler(single);
+
+
             }
+//            if(singleBean.getData().size()==0){
+//                Lottery_RecyCLerView.setVisibility(View.GONE);
+//                layout_bottom.setVisibility(View.GONE);
+//                layout_swipe.setVisibility(View.GONE);
+//                layout_empt.setVisibility(View.VISIBLE);
+//            }else {
+//                layout_empt.setVisibility(View.GONE);
+//                Text_loading.setVisibility(View.GONE);
+//                Lottery_RecyCLerView.setVisibility(View.VISIBLE);
+//                layout_bottom.setVisibility(View.VISIBLE);
+//                layout_swipe.setVisibility(View.VISIBLE);
+//                adapter.expandAll();
+//            }
 
 
 
@@ -444,7 +526,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
                     Intent intent = new Intent(this,SingleSureActivity.class);
 
                     Content.list_chooe_single = adapter.getList();
-
+                    intent.putExtra("single",single);
 
                     startActivity(intent);
                 }
@@ -452,7 +534,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
 
                 break;
             case R.id.Text_clear:
-                adapter.onResh();
+                adapter.onResh(1);
 
                 adapter.notifyDataSetChanged();
                 EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber()+""));
@@ -489,7 +571,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
         getWindow().setBackgroundDrawable(new BitmapDrawable());
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         dialog.getWindow().setAttributes(lp);
-        dialog.setCanceledOnTouchOutside(false);
+//        dialog.setCanceledOnTouchOutside(false);
 
         dialog.show();
 
@@ -547,7 +629,6 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
 //                        adapter.onResh();
                         initrecycler(1);
                         title_text.setText(list2[0]);
-                        adapter.notifyDataSetChanged();
                         break;
                     case 1:
                         single=2;
@@ -556,7 +637,6 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
 //                        adapter.onResh();
                         title_text.setText(list2[1]);
 
-                        adapter.notifyDataSetChanged();
                         break;
                     case 2:
                         single=3;
@@ -564,7 +644,6 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
                         title_text.setText(list2[2]);
 
 //                        adapter.onResh();
-                        adapter.notifyDataSetChanged();
                         break;
                     case 3:
                         single=4;
@@ -572,7 +651,6 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
                         title_text.setText(list2[3]);
 
 //                        adapter.onResh();
-                        adapter.notifyDataSetChanged();
                         break;
                     case 4:
                         single=5;
@@ -580,7 +658,6 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
                         title_text.setText(list2[4]);
 
 //                        adapter.onResh();
-                        adapter.notifyDataSetChanged();
                         break;
 
                 }
@@ -623,6 +700,13 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
         Log.e("YZSYZSYZS", msg.getPostion()+"");
         Content.Text_postion = msg.getPostion();
         adapter.notifyItemChanged(msg.getPostion());
+        if(msg.getPostion()==0){
+
+
+        adapter.notifyDataSetChanged();
+        }else {
+
+        }
 
     }
 
@@ -635,7 +719,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
                 adapter.notifyDataSetChanged();
 
             }else {
-                adapter.onResh();
+                adapter.onResh(0);
 
                 adapter.notifyDataSetChanged();
 

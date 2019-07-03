@@ -466,8 +466,12 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
 
             }
         String maxbunch_end = nfmin.format(maxbunch);
+        double v = Double.parseDouble(pmin) * Integer.parseInt(smin) * 2;
+        double v1 = Double.parseDouble(maxbunch_end) * Integer.parseInt(smin) * 2;
+        String format1 = nfmin.format(v);
+        String format2 = nfmin.format(v1);
 
-        bunchminandmax =  "理论奖金:"+Double.parseDouble(pmin)*Integer.parseInt(smin)*2+"元~"+Double.parseDouble(maxbunch_end)*Integer.parseInt(smin)*2+"元";
+        bunchminandmax =  "理论奖金:"+format1+"元~"+format2+"元";
 
             Log.e("YZS",bunchminandmax+"");
 

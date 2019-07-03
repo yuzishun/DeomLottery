@@ -187,7 +187,7 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
             @Override
             public void onAmountChange(View view, int amount) {
                 multiple = amount;
-                buttom_money.setText(amount*multiple_price+"元");
+                buttom_money.setText(amount*multiple_price+"");
 //                Toast.makeText(getApplicationContext(), "Amount=>  " + amount, Toast.LENGTH_SHORT).show();
             }
         });
@@ -654,7 +654,13 @@ public class Documentdetails_main_Activity extends BaseActivity implements View.
 
                 break;
             case R.id.text_gen:
-                send();
+                if(Double.parseDouble(buttom_money.getText().toString().trim())<100.00){
+
+                    ToastUtil.showToast1(Documentdetails_main_Activity.this,"跟单金额不能小于100");
+                }else {
+                    send();
+                }
+
                 break;
 
         }

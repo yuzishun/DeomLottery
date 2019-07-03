@@ -22,8 +22,17 @@ public class ChooseMixedBean {
     public String guest_team;
     public String home_score;
     public String guest_score;
+    public String desc;
 
 
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     public String getHome_score() {
         return home_score;

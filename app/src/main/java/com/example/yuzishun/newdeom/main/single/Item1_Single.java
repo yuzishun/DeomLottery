@@ -22,7 +22,6 @@ public class Item1_Single implements MultiItemEntity  {
     public List<ItemPoint> list_single;
     public List<ChooseMixedBean> list_choosebena;
     public String desc;
-
     public Item1_Single(String play_name, String home_team, String guest_team, String home_score, String guest_score, String sequence_no, String stop_time
     , List<ItemPoint> list_single,List<ChooseMixedBean> list_choosebena,String desc) {
         this.play_name = play_name;
@@ -33,7 +32,6 @@ public class Item1_Single implements MultiItemEntity  {
         this.sequence_no = sequence_no;
         this.stop_time = stop_time;
         this.desc = desc;
-
         this.list_single = list_single;
         this.list_choosebena = list_choosebena;
     }
