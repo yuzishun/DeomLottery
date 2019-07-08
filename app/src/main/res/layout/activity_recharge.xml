@@ -93,7 +93,7 @@
                             android:paddingLeft="@dimen/d5"
                             android:maxLength="11"
                             android:background="@null"
-                            android:hint="请自定义金额"
+                            android:hint="请输入充值金额,10-5000元"
                             android:textColorHint="@color/edittext_hintcolor"
                             android:textSize="@dimen/f11"
                             android:layout_marginRight="35dp"

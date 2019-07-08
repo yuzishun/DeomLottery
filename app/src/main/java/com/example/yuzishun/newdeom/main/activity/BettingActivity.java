@@ -41,7 +41,7 @@ import com.example.yuzishun.newdeom.main.adapter.ExpandItem;
 
 import com.example.yuzishun.newdeom.main.adapter.GridView_Betting_Adapter;
 import com.example.yuzishun.newdeom.main.mixed.BettingMixedFragment;
-import com.example.yuzishun.newdeom.main.single.BettingSingleFragment;
+
 import com.example.yuzishun.newdeom.main.single.SingleMessage;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.FootballBean;
@@ -141,10 +141,9 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
 //        initFragment();
         //开启事务
         Fragment mTab_01 = new BettingMixedFragment();
-        Fragment mTab_02 = new BettingSingleFragment();
 
         //添加到数组
-        mFragments = new Fragment[]{mTab_01,mTab_02};
+        mFragments = new Fragment[]{mTab_01};
 
         FragmentTransaction ft =
                 getSupportFragmentManager().beginTransaction();
@@ -429,10 +428,10 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
         TextView choose_two = dialog.findViewById(R.id.choose_two);
         GridView GridView_betting_Money = dialog.findViewById(R.id.GridView_betting_Money);
         GridView GridView_betting_Money_two = dialog.findViewById(R.id.GridView_betting_Money_two);
-        GridView_Betting_Adapter gridView_betting_adapter = new GridView_Betting_Adapter(BettingActivity.this,list_pop_one);
-        GridView_betting_Money.setAdapter(gridView_betting_adapter);
-        GridView_Betting_Adapter gridView_betting_adapter2 = new GridView_Betting_Adapter(BettingActivity.this,list_pop_two);
-        GridView_betting_Money_two.setAdapter(gridView_betting_adapter2);
+//        GridView_Betting_Adapter gridView_betting_adapter = new GridView_Betting_Adapter(BettingActivity.this,list_pop_one);
+//        GridView_betting_Money.setAdapter(gridView_betting_adapter);
+//        GridView_Betting_Adapter gridView_betting_adapter2 = new GridView_Betting_Adapter(BettingActivity.this,list_pop_two);
+//        GridView_betting_Money_two.setAdapter(gridView_betting_adapter2);
         if(Content.flag_betting_popwindow==0){
 
             GridView_betting_Money.setVisibility(View.VISIBLE);
@@ -471,7 +470,7 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
         GridView_betting_Money.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                gridView_betting_adapter.choiceState(position);
+//                gridView_betting_adapter.choiceState(position);
                 Single_Lacontent.setVisibility(View.GONE);
                 Betting_Lacontent.setVisibility(View.VISIBLE);
                 dialog.dismiss();
@@ -481,7 +480,7 @@ public class BettingActivity extends BaseActivity implements View.OnClickListene
         GridView_betting_Money_two.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                gridView_betting_adapter2.choiceState(position);
+//                gridView_betting_adapter2.choiceState(position);
                 int single=0;
                 if(position==0){
                     single=1;

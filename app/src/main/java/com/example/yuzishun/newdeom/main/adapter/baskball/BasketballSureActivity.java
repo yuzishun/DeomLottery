@@ -385,6 +385,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
                 list_subMixBean.remove(position);
                 bettingSureRecyclerView.notifyDataSetChanged();
                 listSureguanBean();
+                    Text_More.setText("更多过关");
 
                     List<String> getbunch = getbunch();
                     Text_money.setText(getbunch.get(0));

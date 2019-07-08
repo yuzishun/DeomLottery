@@ -9,7 +9,7 @@ public class Url {
     //本地服务器
 //    public static String baseUrl = "http://192.168.1.9/";
 //    正式服务器
-    public static String baseUrl = "http://www.wannianjuke.com/";
+    public static String baseUrl = "http://www.tzppzpp.cn/";
 
 
 }

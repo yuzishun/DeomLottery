@@ -3,6 +3,7 @@ package com.example.yuzishun.newdeom.main.adapter.baskball;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -20,6 +21,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.MyApplication;
+import com.example.yuzishun.newdeom.main.activity.AnalysisActivity;
 import com.example.yuzishun.newdeom.main.adapter.Expand1Item;
 import com.example.yuzishun.newdeom.model.ChooseBaskBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
@@ -90,6 +92,19 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
                         ).setText(R.id.button_three,item2.list_one.get(3).getId()+item2.list_one.get(3).getOdds()).setText(R.id.button_four,item2.list_one.get(4).getId()+item2.list_one.get(4).getOdds())
                         .setText(R.id.button_fire,item2.list_one.get(5).getId()+item2.list_one.get(5).getOdds());
                         LinearLayout layout_victorcha = helper.getView(R.id.layout_victorcha);
+                LinearLayout layout_analysis = helper.getView(R.id.layout_analysis);
+
+                layout_analysis.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(helper.itemView.getContext(), AnalysisActivity.class);
+                        intent.putExtra("game_no",item2.game_no+"");
+                        intent.putExtra("flag",1);
+                        helper.itemView.getContext().startActivity(intent);
+
+                    }
+                });
                         Button button_zero =  helper.getView(R.id.button_zero);
                         Button button_one =  helper.getView(R.id.button_one);
 

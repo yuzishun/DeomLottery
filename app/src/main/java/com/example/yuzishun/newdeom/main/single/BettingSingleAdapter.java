@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
@@ -22,6 +23,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.MyApplication;
+import com.example.yuzishun.newdeom.main.activity.AnalysisActivity;
 import com.example.yuzishun.newdeom.main.adapter.Expand1Item;
 import com.example.yuzishun.newdeom.main.adapter.ExpandItem;
 import com.example.yuzishun.newdeom.main.adapter.QuickAdapter_two;
@@ -99,7 +101,19 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
                         .setText(R.id.Text_data,"截止"+item2.stop_time);
                 RecyclerView rv = helper.getView(R.id.RecyclerView_Mixed_Bet_football);
                 RecyclerView rv_zong = helper.getView(R.id.RecyclerView_Mixed_Bet_football_zong);
+                LinearLayout layout_analysis = helper.getView(R.id.layout_analysis);
+                layout_analysis.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                        Intent intent = new Intent(helper.itemView.getContext(), AnalysisActivity.class);
+                        intent.putExtra("game_no",item2.game_no+"");
+                        intent.putExtra("flag",0);
+
+                        helper.itemView.getContext().startActivity(intent);
+
+                    }
+                });
                 Button button_score = helper.getView(R.id.button_score);
                 Button button_double = helper.getView(R.id.button_double);
 

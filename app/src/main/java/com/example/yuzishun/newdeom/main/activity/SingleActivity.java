@@ -32,6 +32,7 @@ import com.example.yuzishun.newdeom.main.single.SingleSureActivity;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
 import com.example.yuzishun.newdeom.model.SingleBean;
+import com.example.yuzishun.newdeom.model.SinglepopBean;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
 import com.example.yuzishun.newdeom.utils.AdapterMessage;
@@ -79,14 +80,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
     LinearLayout image_back;
     @BindView(R.id.title_text)
     TextView title_text;
-    @BindView(R.id.Lottery_RecyCLerView_two)
-    RecyclerView Lottery_RecyCLerView_two;
-    @BindView(R.id.Lottery_RecyCLerView_three)
-    RecyclerView Lottery_RecyCLerView_three;
-    @BindView(R.id.Lottery_RecyCLerView_four)
-    RecyclerView Lottery_RecyCLerView_four;
-    @BindView(R.id.Lottery_RecyCLerView_fire)
-    RecyclerView Lottery_RecyCLerView_fire;
+    private List<SinglepopBean> list_popbean;
     private String[] list1=new String[]{"混合投注"};
     private String[] list2=new String[]{"胜负平","让球胜负平","比分","总进球","半全场"};
     private List<String> list_pop_one = new ArrayList<>();
@@ -170,7 +164,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
 //                Lottery_RecyCLerView.setNestedScrollingEnabled(false);
 
                 //完成后，通知主线程更新UI
-                handler.sendEmptyMessageDelayed(2, 2000);
+                handler.sendEmptyMessageDelayed(2, 3000);
 
             }
         }).start();
@@ -290,27 +284,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
         }
 
 
-//        ArrayList<MultiItemEntity> list_two= request(2);
-//        BettingSingleAdapter adapter_two = new BettingSingleAdapter(list_two,2);
-//        Lottery_RecyCLerView_two.setAdapter(adapter_two);
-//        Lottery_RecyCLerView_two.setNestedScrollingEnabled(false);
-//
-//
-//        ArrayList<MultiItemEntity> list_three= request(3);
-//        BettingSingleAdapter adapter_three = new BettingSingleAdapter(list_three,3);
-//        Lottery_RecyCLerView_three.setAdapter(adapter_three);
-//        Lottery_RecyCLerView_three.setNestedScrollingEnabled(false);
-//
-//
-//        ArrayList<MultiItemEntity> list_four= request(4);
-//        BettingSingleAdapter adapter_four = new BettingSingleAdapter(list_four,4);
-//        Lottery_RecyCLerView_four.setAdapter(adapter_four);
-//        Lottery_RecyCLerView_four.setNestedScrollingEnabled(false);
-//
-//        ArrayList<MultiItemEntity> list_fire= request(5);
-//        BettingSingleAdapter adapter_fire = new BettingSingleAdapter(list_fire,5);
-//        Lottery_RecyCLerView_four.setAdapter(adapter_fire);
-//        Lottery_RecyCLerView_four.setNestedScrollingEnabled(false);
+
 
     }
 
@@ -409,7 +383,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
                                                     ,singleBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name(),singleBean.getData().get(i).getGame_info().get(j).getGame_home_score(),
                                                     singleBean.getData().get(i).getGame_info().get(j).getGame_let_score(),singleBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()
                                                     ,singleBean.getData().get(i).getGame_info().get(j).getGame_stop_time()
-                                                    ,list_single,list_choose,"展开更多选项");
+                                                    ,list_single,list_choose,"展开更多选项",singleBean.getData().get(i).getGame_info().get(j).getGame_no());
 
 
                                             item_single.addSubItem(item1);
@@ -468,6 +442,20 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
         Text_clear.setOnClickListener(this);
 
 
+        list_popbean = new ArrayList<>();
+        for (int i = 0; i <list2.length ; i++) {
+//            list_pop_two.add(list2[i]);
+            SinglepopBean singlepopBean = new SinglepopBean();
+            singlepopBean.setName(list2[i]);
+            if(i==0){
+                singlepopBean.setIscheck(true);
+
+            }else {
+                singlepopBean.setIscheck(false);
+
+            }
+            list_popbean.add(singlepopBean);
+        }
     }
 
     @Override
@@ -558,10 +546,11 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
 
         }
         list_pop_two.clear();
-        for (int i = 0; i <list2.length ; i++) {
-            list_pop_two.add(list2[i]);
 
-        }
+
+
+
+
         final Dialog dialog = new Dialog(this,R.style.dialog);
         dialog.setContentView(R.layout.pop_betting);
         Window window = dialog.getWindow();
@@ -580,7 +569,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
         TextView choose_two = dialog.findViewById(R.id.choose_two);
         GridView GridView_betting_Money = dialog.findViewById(R.id.GridView_betting_Money);
         GridView GridView_betting_Money_two = dialog.findViewById(R.id.GridView_betting_Money_two);
-        GridView_Betting_Adapter gridView_betting_adapter = new GridView_Betting_Adapter(SingleActivity.this,list_pop_one);
+        GridView_Betting_Adapter gridView_betting_adapter = new GridView_Betting_Adapter(SingleActivity.this,list_popbean);
         GridView_betting_Money.setAdapter(gridView_betting_adapter);
 //        GridView_Betting_Adapter gridView_betting_adapter2 = new GridView_Betting_Adapter(SingleActivity.this,list_pop_two);
 //        GridView_betting_Money_two.setAdapter(gridView_betting_adapter2);

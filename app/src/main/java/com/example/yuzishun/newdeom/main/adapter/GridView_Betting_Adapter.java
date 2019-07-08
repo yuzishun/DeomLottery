@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.MyApplication;
+import com.example.yuzishun.newdeom.model.SinglepopBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +25,9 @@ public class GridView_Betting_Adapter extends BaseAdapter {
     private int mSelectorPosition;
 
     private LayoutInflater inflater;
-    private List<String> results = new ArrayList<String>();
+    private List<SinglepopBean> results = new ArrayList<SinglepopBean>();
 
-    public GridView_Betting_Adapter(Context context, List<String> results) {
+    public GridView_Betting_Adapter(Context context, List<SinglepopBean> results) {
         this.context = context;
         inflater = LayoutInflater.from(this.context);
         this.results = results;
@@ -61,7 +62,7 @@ public class GridView_Betting_Adapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        if(mSelectorPosition==position){
+        if(results.get(position).isIscheck()){
 
             viewHolder.name.setTextColor(convertView.getResources().getColor(R.color.white));
 
@@ -75,7 +76,7 @@ public class GridView_Betting_Adapter extends BaseAdapter {
 
 
 
-        viewHolder.name.setText(results.get(position));
+        viewHolder.name.setText(results.get(position).getName());
         return convertView;
     }
 
@@ -89,7 +90,17 @@ public class GridView_Betting_Adapter extends BaseAdapter {
          *  如果本身不是选中状态,就让他变成选中状态
          */
 
-        mSelectorPosition=post;
+//        mSelectorPosition=post;
+        for (int i = 0; i < results.size(); i++) {
+            if(i==post){
+                results.get(post).setIscheck(true);
+
+            }else {
+                results.get(i).setIscheck(false);
+
+            }
+
+        }
 
         this.notifyDataSetChanged();
     }

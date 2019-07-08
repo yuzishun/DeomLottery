@@ -340,7 +340,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
                     list_subMixBean.remove(position);
                     bettingSureRecyclerView.notifyDataSetChanged();
                     listSureguanBean();
-
+                    Text_More.setText("更多过关");
                     List<String> getbunch = getbunch();
                     Text_money.setText(getbunch.get(0));
                     money.setText(getbunch.get(1));

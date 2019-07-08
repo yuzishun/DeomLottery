@@ -20,6 +20,7 @@ import com.example.yuzishun.newdeom.model.OkamiBean;
 import com.example.yuzishun.newdeom.model.OkamiListBean;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
+import com.example.yuzishun.newdeom.utils.CustomClickListener;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 
 import org.json.JSONException;
@@ -96,7 +97,23 @@ public class OkamiActivity extends BaseActivity implements View.OnClickListener 
         OkamiRecyclerView.setLayoutManager(new LinearLayoutManager(OkamiActivity.this));
 
         setList();
-        button_sure.setOnClickListener(this);
+        button_sure.setOnClickListener(new CustomClickListener() {
+            @Override
+            protected void onSingleClick() {
+                if(button_sure.getText().equals("取消关注")){
+
+                    Cancelfollow();
+                }else {
+                    follow();
+
+                }
+            }
+
+            @Override
+            protected void onFastClick() {
+
+            }
+        });
 
     }
 
@@ -433,13 +450,7 @@ public class OkamiActivity extends BaseActivity implements View.OnClickListener 
             finish();
             break;
             case R.id.button_sure:
-                if(button_sure.getText().equals("取消关注")){
 
-                Cancelfollow();
-                }else {
-                    follow();
-
-                }
 
 
                 break;

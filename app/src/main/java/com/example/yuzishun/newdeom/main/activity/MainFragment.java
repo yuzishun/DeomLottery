@@ -93,6 +93,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     private Button Button_erbai;
     private Button Button_wubai;
     private Button news;
+    private LinearLayout Layout_Fourteen;
     private LinearLayout laynout_dan;
     private Button match;
     private LinearLayout dan_layout;
@@ -154,6 +155,8 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                                 if(singleBean.getData().size()==0){
                                     dan_layout.setVisibility(View.GONE);
                                 }else {
+                                    dan_layout.setVisibility(View.VISIBLE);
+
                                     Text_football_data.setText(singleBean.getData().get(0).getGame_info().get(0).getGame_stop_time());
                                     left_team.setText(singleBean.getData().get(0).getGame_info().get(0).getGame_home_team_name());
                                     right_team.setText(singleBean.getData().get(0).getGame_info().get(0).getGame_guest_team_name());
@@ -217,22 +220,33 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        try {
+                            JSONObject jsonObject = new JSONObject(result);
+                            int code = jsonObject.getInt("code");
 
-                        VerticaBean verticaBean = JSON.parseObject(result,VerticaBean.class);
-                        if(verticaBean.getCode()==10000){
+                            String msg = jsonObject.getString("msg");
+                            if(code==10000){
+                                VerticaBean verticaBean = JSON.parseObject(result,VerticaBean.class);
 
-                            for (int i = 0; i <verticaBean.getData().size() ; i++) {
-                                titleList.add("恭喜用户"+verticaBean.getData().get(i).getUname()+"中奖"+verticaBean.getData().get(i).getBonus_price()+"元");
-                            }
+                                    for (int i = 0; i <verticaBean.getData().size() ; i++) {
+                                        titleList.add("恭喜用户"+verticaBean.getData().get(i).getUname()+"中奖"+verticaBean.getData().get(i).getBonus_price()+"元");
+                                    }
 
-                            VerticaTextView.setTextList(titleList);
+                                    VerticaTextView.setTextList(titleList);
 //                            VerticaTextView.notifyAll();
 //                            VerticaTextView.startAutoScroll();
 
-                        }else {
+                            }else {
+
+                            }
 
 
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
+
+
 
 
                     }
@@ -247,6 +261,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
 
     private void initView() {
+        Layout_Fourteen = (LinearLayout) findViewById(R.id.Layout_Fourteen);
         laynout_dan = (LinearLayout) findViewById(R.id.laynout_dan);
         Multiple_Money = (ClearEditText) findViewById(R.id.Multiple_Money);
         Text_betting = (Button) findViewById(R.id.Text_betting);
@@ -285,6 +300,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         news.setOnClickListener(this);
         match.setOnClickListener(this);
         laynout_dan.setOnClickListener(this);
+        Layout_Fourteen.setOnClickListener(this);
         Image_lottery.setOnClickListener(this);
         newsRecycleriView.setLayoutManager(new LinearLayoutManager(getContext()));
         //这是后来要删除的集合，所以就不用在strings里面去写了
@@ -513,6 +529,10 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.Layout_Fourteen:
+                ToastUtil.showToast1(getActivity(),"敬请期待");
+
+                break;
             case R.id.Button_victory:
 
                 bett=0;
@@ -593,33 +613,43 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
 
                 if(Multiple_Money.getText().toString().trim().equals("")){
-                    if(money_flag!=4){
-                        submit();
-                    }else {
-                        ToastUtil.showToast1(getActivity(),"请输入金额");
 
-                    }
+                        if(money_flag!=4){
+
+                            submit();
+
+                        }else {
+                            ToastUtil.showToast1(getActivity(),"请输入金额");
+
+                        }
+
 //                    ToastUtil.showToast1(getActivity(),"请输入金额");
 
 
                 }else {
+                    String str = Multiple_Money.getText().toString().trim();
+                    int i = str.indexOf('0');
+                    if(i==0){
+                ToastUtil.showToast1(getActivity(),"输入的倍数必须大于0");
+
+            }else {
+                Double n = Double.parseDouble(Multiple_Money.getText().toString().trim());
+                Log.e("YZS",n%2+"");
+                if(n%2==1){
+                    edit_flag=0;
+                    ToastUtil.showToast1(getActivity(),"请输入2的倍数");
+                }else {
+                    edit_flag=1;
 
 
+
+                    submit();
+
+                }
+            }
 
 //                BigInteger n = new BigInteger(Multiple_Money.getText().toString().trim());
-                    Double n = Double.parseDouble(Multiple_Money.getText().toString().trim());
-                    Log.e("YZS",n%2+"");
-                    if(n%2==1){
-                        edit_flag=0;
-                        ToastUtil.showToast1(getActivity(),"请输入2的倍数");
-                    }else {
-                        edit_flag=1;
 
-
-
-                        submit();
-
-                    }
 
                 }
 

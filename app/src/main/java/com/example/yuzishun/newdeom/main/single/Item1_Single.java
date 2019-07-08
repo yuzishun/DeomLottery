@@ -19,11 +19,12 @@ public class Item1_Single implements MultiItemEntity  {
     public String guest_score;
     public String sequence_no;
     public String stop_time;
+    public String game_no;
     public List<ItemPoint> list_single;
     public List<ChooseMixedBean> list_choosebena;
     public String desc;
     public Item1_Single(String play_name, String home_team, String guest_team, String home_score, String guest_score, String sequence_no, String stop_time
-    , List<ItemPoint> list_single,List<ChooseMixedBean> list_choosebena,String desc) {
+    , List<ItemPoint> list_single,List<ChooseMixedBean> list_choosebena,String desc,String game_no) {
         this.play_name = play_name;
         this.home_team = home_team;
         this.guest_team = guest_team;
@@ -32,6 +33,7 @@ public class Item1_Single implements MultiItemEntity  {
         this.sequence_no = sequence_no;
         this.stop_time = stop_time;
         this.desc = desc;
+        this.game_no = game_no;
         this.list_single = list_single;
         this.list_choosebena = list_choosebena;
     }

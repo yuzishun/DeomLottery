@@ -145,7 +145,8 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
                                         .setSmallIcon(R.mipmap.ic_launcher)
                                         .setShowNewerToast(true)
                                         .setConfiguration(configuration)
-//                .setDownloadPath(Environment.getExternalStorageDirectory() + "/AppUpdate")
+                                        //这是bug提交改的空指针path
+                                        .setDownloadPath(Environment.getExternalStorageDirectory() + "/AppUpdate")
                                         .setApkVersionCode(updataBean.getData().getCode())
                                         .setApkVersionName(updataBean.getData().getVersion())
                                         .setAuthorities(getPackageName())

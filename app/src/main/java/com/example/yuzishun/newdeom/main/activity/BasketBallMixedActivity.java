@@ -74,6 +74,7 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
     private List<String> list_two = new ArrayList<>();
     private List<String> list_three = new ArrayList<>();
     private BasketBallBean basketBallBean;
+    private ArrayList<MultiItemEntity> multiItemEntities;
     @Override
     public int intiLayout() {
         return R.layout.activity_basket_ball_mixed;
@@ -87,7 +88,7 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
         Text_clear.setOnClickListener(this);
         play_messag.setOnClickListener(this);
         initlist();
-        ArrayList<MultiItemEntity> multiItemEntities = generateData();
+        multiItemEntities = generateData();
         adapter =  new BaskballAdapter(multiItemEntities);
         //下拉刷新的圆圈是否显示
         layout_swipe.setRefreshing(false);
@@ -229,7 +230,7 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(android.os.Message msg) {
-            if(basketBallBean.getData().size()==0){
+            if(multiItemEntities.size()==0){
                 baskball_RecyCLerView.setVisibility(View.GONE);
                 layout_bottom.setVisibility(View.GONE);
                 layout_swipe.setVisibility(View.GONE);
@@ -340,7 +341,8 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
                                                 basketBallBean.getData().get(i).getGame_info().get(j).getGame_total_score(),
                                                 basketBallBean.getData().get(i).getGame_info().get(j).getGame_let_score(),
                                                 basketBallBean.getData().get(i).getGame_info().get(j).getGame_sequence_no(),
-                                                basketBallBean.getData().get(i).getGame_info().get(j).getGame_begin_time(),listone,listtwo,listthree,list_choose);
+                                                basketBallBean.getData().get(i).getGame_info().get(j).getGame_begin_time(),listone,listtwo,listthree,list_choose,
+                                                basketBallBean.getData().get(i).getGame_info().get(j).getGame_no());
 
                                         item.addSubItem(expand1Item_bask);
 

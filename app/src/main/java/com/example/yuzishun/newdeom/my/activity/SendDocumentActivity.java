@@ -117,12 +117,12 @@ public class SendDocumentActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.Button_two:
                 change(Button_two,Button_one,Button_three);
-                plan_status = 2;
+                plan_status = 1;
 
                 break;
             case R.id.Button_three:
                 change(Button_three,Button_two,Button_one);
-                plan_status = 1;
+                plan_status = 2;
 
                 break;
             case R.id.button_send:

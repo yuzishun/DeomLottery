@@ -150,6 +150,7 @@
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
                         <LinearLayout
+                            android:id="@+id/Layout_Fourteen"
                             android:layout_weight="1"
                             android:orientation="vertical"
                             android:gravity="center"
@@ -216,7 +217,7 @@
             <LinearLayout
 
                 android:id="@+id/dan_layout"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:orientation="vertical"
                 android:background="@color/white"
                 android:layout_width="match_parent"

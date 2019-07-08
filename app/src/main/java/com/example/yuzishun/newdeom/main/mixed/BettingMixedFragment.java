@@ -69,6 +69,7 @@ public class BettingMixedFragment extends LazyFragment implements View.OnClickLi
     private List<String> list_four = new ArrayList<>();
 
     private int count=0;
+    private LinearLayout layout_empt;
 
     private TextView Text_loading;
     private SwipeRefreshLayout layout_swipe;
@@ -108,7 +109,7 @@ public class BettingMixedFragment extends LazyFragment implements View.OnClickLi
         button_sure.setOnClickListener(this);
         Scene_TextView.setOnClickListener(this);
         Text_clear.setOnClickListener(this);
-
+        layout_empt = (LinearLayout) findViewById(R.id.layout_empt);
 
     }
 
@@ -137,7 +138,6 @@ public class BettingMixedFragment extends LazyFragment implements View.OnClickLi
 
                     @Override
                     public void run() {
-                        generateData();
                         adapter.onResh();
                         adapter.notifyDataSetChanged();
                         EventBus.getDefault().post(new MainMessage(BettingListAdapter.getnumber()+""));
@@ -151,23 +151,25 @@ public class BettingMixedFragment extends LazyFragment implements View.OnClickLi
 
             }
         });
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //异步处理加载数据
-                //...
 
-                list = generateData();
-                adapter = new BettingListAdapter(list);
-                Lottery_RecyCLerView.setAdapter(adapter);
-                Lottery_RecyCLerView.setNestedScrollingEnabled(false);
-                Lottery_RecyCLerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        Lottery_RecyCLerView.setNestedScrollingEnabled(false);
+        Lottery_RecyCLerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        list = generateData();
 
-                //完成后，通知主线程更新UI
-                handler.sendEmptyMessageDelayed(1, 3000);
-
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                //异步处理加载数据
+//                //...
+//
+//
+//
+//
+//                //完成后，通知主线程更新UI
+//                handler.sendEmptyMessageDelayed(1, 3000);
+//
+//            }
+//        }).start();
 
 
 
@@ -219,11 +221,33 @@ public class BettingMixedFragment extends LazyFragment implements View.OnClickLi
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(android.os.Message msg) {
-            Text_loading.setVisibility(View.GONE);
-            Lottery_RecyCLerView.setVisibility(View.VISIBLE);
-            layout_bottom.setVisibility(View.VISIBLE);
-            layout_swipe.setVisibility(View.VISIBLE);
-            adapter.expandAll();
+//            if(list.size()==0){
+//                layout_empt.setVisibility(View.VISIBLE);
+//                Text_loading.setVisibility(View.GONE);
+//                Lottery_RecyCLerView.setVisibility(View.GONE);
+//                layout_bottom.setVisibility(View.GONE);
+//                layout_swipe.setVisibility(View.GONE);
+//            }else {
+
+            switch (msg.what)
+            {
+                case 1:
+                    adapter = new BettingListAdapter(list);
+                    Lottery_RecyCLerView.setAdapter(adapter);
+                    Text_loading.setVisibility(View.GONE);
+                    Lottery_RecyCLerView.setVisibility(View.VISIBLE);
+                    layout_bottom.setVisibility(View.VISIBLE);
+                    layout_swipe.setVisibility(View.VISIBLE);
+                    adapter.expandAll();
+                    break;
+
+            }
+
+//            Text_loading.setVisibility(View.GONE);
+//            Lottery_RecyCLerView.setVisibility(View.VISIBLE);
+//            layout_bottom.setVisibility(View.VISIBLE);
+//            layout_swipe.setVisibility(View.VISIBLE);
+//            adapter.expandAll();
 
         }
     };
@@ -411,7 +435,7 @@ public class BettingMixedFragment extends LazyFragment implements View.OnClickLi
                                                 ,footballBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name(),footballBean.getData().get(i).getGame_info().get(j).getGame_home_score(),
                                                 footballBean.getData().get(i).getGame_info().get(j).getGame_let_score(),footballBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()
                                                 ,footballBean.getData().get(i).getGame_info().get(j).getGame_begin_time()
-                                                ,listone,listtwo,listthree,listfour,list_choose,"展开更多选项");
+                                                ,listone,listtwo,listthree,listfour,list_choose,"展开更多选项",footballBean.getData().get(i).getGame_info().get(j).getGame_no());
 
 
                                         item.addSubItem(item1);
@@ -420,6 +444,9 @@ public class BettingMixedFragment extends LazyFragment implements View.OnClickLi
                                     res.add(item);
                                 }
 
+
+//                                handler.sendEmptyMessageDelayed(1, 3000);
+                                handler.sendEmptyMessage(1);
 
                             } else {
                                 ToastUtil.showToast(getActivity(), msg + "");

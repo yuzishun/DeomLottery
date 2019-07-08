@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +28,7 @@ import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.base.MyApplication;
 
+import com.example.yuzishun.newdeom.main.activity.AnalysisActivity;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.FootballBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
@@ -110,8 +112,20 @@ public class BettingListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
                         .setText(R.id.Text_data,"截止"+item2.begin_time)
                         .setText(R.id.Text_top,item2.home_score)
                         .setText(R.id.Text_bottom,item2.guest_score);
+                LinearLayout layout_analysis = helper.getView(R.id.layout_analysis);
 
+                layout_analysis.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                        Intent intent = new Intent(helper.itemView.getContext(), AnalysisActivity.class);
+                        intent.putExtra("game_no",item2.game_no+"");
+                        intent.putExtra("flag",0);
+
+                        helper.itemView.getContext().startActivity(intent);
+
+                    }
+                });
                 if(Integer.parseInt(item2.home_score)<0){
 
                     helper.setBackgroundRes(R.id.Text_top,R.drawable.jianone_rang);

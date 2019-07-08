@@ -263,6 +263,7 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
                     list_stbMixListBean.remove(position);
                     list_subMixBean.remove(position);
                     bettingSureRecyclerView.notifyDataSetChanged();
+                    Text_More.setText("更多过关");
                     listSureguanBean();
 //                     理论奖金 先不显示
                     List<String> getbunch = getbunch();
