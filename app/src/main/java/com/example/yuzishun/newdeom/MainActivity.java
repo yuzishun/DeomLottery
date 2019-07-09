@@ -81,7 +81,6 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
             public void run() {
                 updata();
 
-                //这是测试新电脑的git
 
             }
         });
