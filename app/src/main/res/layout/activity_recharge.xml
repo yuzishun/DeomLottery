@@ -190,27 +190,28 @@
 
                     </View>
                     <LinearLayout
+                        android:id="@+id/layout_pay_two"
                         android:layout_weight="1"
-                        android:background="@color/empt_color"
+                        android:background="@color/white"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <RelativeLayout
                             android:layout_weight="1"
-                            android:visibility="gone"
+                            android:visibility="visible"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
                             <ImageView
                                 android:id="@+id/image2"
-                                android:src="@mipmap/bankcard"
+                                android:src="@mipmap/zhifubao"
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="@dimen/d20"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
 
                             <TextView
-                                android:text="@string/quict_pay"
+                                android:text="@string/pay_froi"
                                 android:layout_toRightOf="@+id/image2"
                                 android:layout_marginLeft="@dimen/d10"
                                 android:textColor="@color/font_black"
@@ -225,7 +226,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <ImageView
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 android:layout_centerVertical="true"
                                 android:layout_alignParentRight="true"
                                 android:layout_marginRight="@dimen/d20"

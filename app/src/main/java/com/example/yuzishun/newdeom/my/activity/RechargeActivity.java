@@ -50,6 +50,9 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
     ClearEditText money_edit;
     @BindView(R.id.money)
     TextView money;
+    @BindView(R.id.layout_pay_two)
+    LinearLayout layout_pay_two;
+    private int pay_type=0;
     private String[] list1=new String[]{"98元","198元","498元","998元","2998元","4998元",};
     private List<String> list = new ArrayList<>();
     private GridView_Recharge_Adapter gridView_recharge_adapter;
@@ -68,6 +71,7 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
         image_back.setOnClickListener(this);
         layout_lineMoney.setOnClickListener(this);
         layout_pay.setOnClickListener(this);
+        layout_pay_two.setOnClickListener(this);
 
     }
 
@@ -101,6 +105,7 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
 //                startActivity(new Intent(this,LineMoneyActivity.class));
                 break;
             case R.id.layout_pay:
+                pay_type=0;
                 if(money_edit.getText().toString().equals("")){
                     ToastUtil.showToast1(this,"金额不能为空");
 
@@ -117,12 +122,32 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
 
 
                 break;
+            case R.id.layout_pay_two:
+                pay_type=1;
+
+                if(money_edit.getText().toString().equals("")){
+                    ToastUtil.showToast1(this,"金额不能为空");
+
+                }else {
+
+                    if(Double.parseDouble(money_edit.getText().toString().trim())<10||Double.parseDouble(money_edit.getText().toString().trim())>5000){
+
+                        ToastUtil.showToast1(this,"输入金额，不符合规定");
+                    }else {
+
+                        pay();
+                    }
+                }
+
+
+                break;
         }
     }
 
     private void pay() {
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("amount",money_edit.getText().toString().trim());
+        hashMap.put("pay_type",pay_type+"");
         OkhttpUtlis okhttpUtlis= new OkhttpUtlis();
 
         okhttpUtlis.PostAsynMap(Url.baseUrl+"app/account/accountPay", hashMap, new Callback() {
