@@ -125,7 +125,7 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
         hashMap.put("amount",money_edit.getText().toString().trim());
         OkhttpUtlis okhttpUtlis= new OkhttpUtlis();
 
-        okhttpUtlis.PostAsynMap(Url.baseUrl+"pay/muck/payment", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl+"app/account/accountPay", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -146,14 +146,14 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
                             String msg = jsonObject.getString("msg");
                             if(code==10000){
                                 PayBean payBean = JSON.parseObject(result,PayBean.class);
-//                            String url = "http://" + payBean.getData().getPay();
-//                            String orderid = payBean.getData().getOrderid();
-//                            String amount = payBean.getData().getAmount();
+                            String url = payBean.getData().getUrl();
+                            String orderid = payBean.getData().getOrder_id();
+                            String amount = payBean.getData().getAmount();
                                     finish();
                                     Intent intent  = new Intent(RechargeActivity.this,WebViewPayActivity.class);
-                                    intent.putExtra("url","http://"+payBean.getData().getPay());
-                                    intent.putExtra("orderid",payBean.getData().getOrderid());
-                                    intent.putExtra("amount",payBean.getData().getAmount());
+                                    intent.putExtra("url",url);
+                                    intent.putExtra("orderid",orderid);
+                                    intent.putExtra("amount",amount);
                                     startActivity(intent);
                             }else {
                                 ToastUtil.showToast1(RechargeActivity.this,msg+"");

@@ -71,6 +71,25 @@ public class UserInfoBean {
         private int god;
         private String alipay;
         private AccountBean account;
+        private int user_fans;
+        private int user_attention;
+
+
+        public int getUser_fans() {
+            return user_fans;
+        }
+
+        public void setUser_fans(int user_fans) {
+            this.user_fans = user_fans;
+        }
+
+        public int getUser_attention() {
+            return user_attention;
+        }
+
+        public void setUser_attention(int user_attention) {
+            this.user_attention = user_attention;
+        }
 
         public int getUser_id() {
             return user_id;

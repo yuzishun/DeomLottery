@@ -69,6 +69,7 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
     private LinearLayout layout_document;
     private TextView hot_empt;
     private TextView screen;
+    private TextView seat_one,seat_two;
     private LinearLayout image_seach;
     private List<DocumentaryBean.DataBean> data = new ArrayList<>();
     private DocumRecyclerViewAdapter documRecyclerViewAdapter;
@@ -76,9 +77,9 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
     private List<String> list_name = new ArrayList<>();
     private String[] list1=new String[]{"阿斯顿","ashun","you","篮球之夜","灭绝师太","艾瑞莉娅","跟我买","我爱刀妹","红单王者","跟着红单走",""};
     private ArrayList<String> list = new ArrayList<>();
-    private int index=0;
+    private int index=0,sort=0;
     private LinearLayout layout_profitlist,layout_biggolist,layout_moneylist,layout_followlist;
-    private String type="";
+    private String type="",attention = "";
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
@@ -154,6 +155,8 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
 
 
     private void initView() {
+        seat_one = (TextView) findViewById(R.id.seat_one);
+        seat_two = (TextView) findViewById(R.id.seat_two);
         Document_Refresh = (TwinklingRefreshLayout) findViewById(R.id.Document_Refresh);
         title_text = (TextView) findViewById(R.id.title_text);
         screen = (TextView) findViewById(R.id.screen);
@@ -238,6 +241,8 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("pagination",index+"");
         hashMap.put("game_type",type);
+        hashMap.put("sort",sort+"");
+        hashMap.put("attention",attention);
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
         okhttpUtlis.PostAsynMap(Url.baseUrl + "app/order_plan/getOrderPlanList", hashMap, new Callback() {
             @Override
@@ -408,11 +413,23 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
     public boolean onMenuItemClick(MenuItem item) {
         // TODO Auto-generated method stub
         switch (item.getItemId()) {
-            case R.id.all:
-                type="";
+            case R.id.all_father:
+                attention  = "";
+
                 index=0;
                 data.clear();
                 initrecy(0,type);
+                popup_one();
+
+                break;
+
+            case R.id.myguan:
+                attention  = "1";
+                index=0;
+                data.clear();
+                initrecy(0,type);
+                popup_one();
+
                 break;
             case R.id.football:
                 type="0";
@@ -420,6 +437,7 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
                 data.clear();
 
                 initrecy(0,type);
+                popup_two();
 
                 break;
             case R.id.basketball:
@@ -428,13 +446,73 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
                 index=0;
                 data.clear();
                 initrecy(0,type);
+                popup_two();
 
 
 
+                break;
+            case R.id.all_son:
+                type="";
+                index=0;
+                data.clear();
+                initrecy(0,type);
+                popup_two();
+
+                break;
+            case R.id.Popularity:
+                sort=0;
+                index=0;
+                data.clear();
+                initrecy(0,type);
+                break;
+            case R.id.Record:
+                sort=1;
+                index=0;
+                data.clear();
+                initrecy(0,type);
+                break;
+            case R.id.higt:
+                sort=2;
+                index=0;
+                data.clear();
+                initrecy(0,type);
+                break;
+            case R.id.low:
+                sort=3;
+                index=0;
+                data.clear();
+                initrecy(0,type);
                 break;
             default:
                 break;
         }
         return false;
     }
+    public void popup_one(){
+
+        //创建弹出式菜单对象（最低版本11）
+        PopupMenu popup = new PopupMenu(getContext(), seat_one);//第二个参数是绑定的那个view
+        //获取菜单填充器
+        MenuInflater inflater = popup.getMenuInflater();
+        //填充菜单
+        inflater.inflate(R.menu.document_pop_one, popup.getMenu());
+        //绑定菜单项的点击事件
+        popup.setOnMenuItemClickListener(this);
+        //显示(这一行代码不要忘记了)
+        popup.show();
+    }
+    public void popup_two(){
+
+        //创建弹出式菜单对象（最低版本11）
+        PopupMenu popup = new PopupMenu(getContext(), seat_one);//第二个参数是绑定的那个view
+        //获取菜单填充器
+        MenuInflater inflater = popup.getMenuInflater();
+        //填充菜单
+        inflater.inflate(R.menu.document_pop_two, popup.getMenu());
+        //绑定菜单项的点击事件
+        popup.setOnMenuItemClickListener(this);
+        //显示(这一行代码不要忘记了)
+        popup.show();
+    }
+
 }

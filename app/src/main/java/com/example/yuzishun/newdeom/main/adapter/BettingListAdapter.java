@@ -2,11 +2,9 @@ package com.example.yuzishun.newdeom.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -16,33 +14,23 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.yuzishun.newdeom.R;
-import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.base.MyApplication;
 
 import com.example.yuzishun.newdeom.main.activity.AnalysisActivity;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
-import com.example.yuzishun.newdeom.model.FootballBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
 import com.example.yuzishun.newdeom.model.SubMixBean;
-import com.example.yuzishun.newdeom.model.SubMixListBean;
-import com.example.yuzishun.newdeom.utils.AdapterMessage;
+import com.example.yuzishun.newdeom.utils.eventbus.AdapterMessage;
 import com.example.yuzishun.newdeom.utils.MainMessage;
-import com.example.yuzishun.newdeom.utils.ToastUtil;
 
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
-import com.example.yuzishun.newdeom.main.adapter.LotteryRecyclerViewAdapter;
 import com.example.yuzishun.newdeom.model.DocumentListBean;
 
 import java.util.ArrayList;

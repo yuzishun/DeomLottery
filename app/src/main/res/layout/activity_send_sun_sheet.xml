@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yuzishun.newdeom.sunsheet.activity.SendSunSheetActivity">
+
+    <include layout="@layout/title_text"></include>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_weight="2.2"
+                android:layout_marginLeft="@dimen/d25"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:background="@mipmap/horn"
+                    android:layout_marginTop="@dimen/d5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="晒单宣言"
+                    android:textColor="@color/font_black"
+                    android:textSize="@dimen/f13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/d25"
+                android:layout_marginRight="@dimen/d25"
+                android:layout_marginBottom="@dimen/d10"
+                android:layout_marginTop="@dimen/d10"
+                android:background="@color/empt_color"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                    android:id="@+id/sunsheet_edit"
+                    android:background="@null"
+                    android:layout_weight="1"
+                    android:maxLength="50"
+                    android:padding="@dimen/d10"
+                    android:textColorHint="@color/edittext_hintcolor"
+                    android:textSize="@dimen/f12"
+                    android:gravity="left"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="2"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:background="@drawable/login_select"
+                    android:text="发起晒单"
+                    android:id="@+id/Sendsunsheet"
+                    android:layout_centerHorizontal="true"
+                    android:enabled="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f12"
+                    android:layout_width="280dp"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

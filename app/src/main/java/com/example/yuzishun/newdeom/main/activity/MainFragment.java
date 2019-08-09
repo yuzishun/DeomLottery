@@ -31,28 +31,33 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.azhon.appupdate.utils.DensityUtil;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.gifbitmap.GifBitmapWrapperTransformation;
 import com.example.yuzishun.newdeom.MainActivity;
 import com.example.yuzishun.newdeom.R;
+import com.example.yuzishun.newdeom.WebViewCustomerActivity;
 import com.example.yuzishun.newdeom.base.Basefragment;
 import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.base.LazyFragment;
 import com.example.yuzishun.newdeom.login.activity.LoginActivity;
 import com.example.yuzishun.newdeom.login.custom.ClearEditText;
+import com.example.yuzishun.newdeom.main.adapter.FameAdapter;
 import com.example.yuzishun.newdeom.main.adapter.NewsRecyclerViewAdapter;
-import com.example.yuzishun.newdeom.main.single.Item1_Single;
-import com.example.yuzishun.newdeom.main.single.Item_Single;
-import com.example.yuzishun.newdeom.main.single.SingleSureActivity;
-import com.example.yuzishun.newdeom.model.BananBean;
-import com.example.yuzishun.newdeom.model.ChooseMixedBean;
+import com.example.yuzishun.newdeom.main.betting.BettingfootActivity;
+
 import com.example.yuzishun.newdeom.model.CodeBean;
+import com.example.yuzishun.newdeom.model.HomeBean;
+import com.example.yuzishun.newdeom.model.HomeSingle;
 import com.example.yuzishun.newdeom.model.ItemPoint;
 import com.example.yuzishun.newdeom.model.MainInfomationBean;
 import com.example.yuzishun.newdeom.model.SingleBean;
-import com.example.yuzishun.newdeom.model.VerticaBean;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
+import com.example.yuzishun.newdeom.utils.GlideRoundTransform;
 import com.example.yuzishun.newdeom.utils.SpUtil;
+import com.example.yuzishun.newdeom.utils.StatusBarUtil;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
@@ -80,7 +85,7 @@ import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
- * 首页面的fragment
+ * 首页面的fragment  218章节咪咕350
  */
 public class MainFragment extends LazyFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -92,21 +97,21 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     private Button Button_wushi;
     private Button Button_erbai;
     private Button Button_wubai;
-    private Button news;
+    private RecyclerView recyclerView_fame;
     private LinearLayout Layout_Fourteen;
     private LinearLayout laynout_dan;
-    private Button match;
+    private ImageView service_img;
+    private TextView fame_empt;
     private LinearLayout dan_layout;
     private ImageView Image_lottery;
-    private RecyclerView newsRecycleriView;
     private SwipeRefreshLayout Home_Refresh;
     private TextView Text_loading;
     private LinearLayout layout_scroll;
-    private NewsRecyclerViewAdapter newsRecyclerViewAdapter;
     private ArrayList<String> titleList;
     private LinearLayout layout_football,layout_baskball;
-    private  int flag=0,bett=0,money_flag=0,edit_flag=0,multiple;
-
+    private  int bett=0,money_flag=0,edit_flag=0,multiple;
+    private  List<HomeBean.DataBean.YesterdayBean> data = new ArrayList<>();
+    private FameAdapter fameAdapter;
     private int flag_all=0;
     private List<String>  imgs;
     private long mLastClickTime = 0;
@@ -116,10 +121,10 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     private Button Text_betting;
     private String game_id;
     private Dialog dialog;
-
+    private LinearLayout Layout_Consultation;
     private TextView left_team,right_team,Text_prour;
     private ClearEditText Multiple_Money;
-    private List<SingleBean.DataBean.GameInfoBean.SingleOddsBean> single_odds;
+    private List<HomeSingle.DataBean.SingleOddsBean> single_odds;
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
@@ -132,7 +137,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     private void request() {
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getSingleFootballList?single=1", new Callback() {
+        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getHomeSingleFootball", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -141,6 +146,9 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String result = response.body().string();
+                if(getActivity()!=null){
+
+
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -151,23 +159,23 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                             String msg = jsonObject.getString("msg");
                             if (code == 10000) {
 
-                               SingleBean singleBean = JSON.parseObject(result, SingleBean.class);
-                                if(singleBean.getData().size()==0){
+                                HomeSingle singleBean = JSON.parseObject(result, HomeSingle.class);
+                                if(singleBean.getData().getSingle_odds().size()==0){
                                     dan_layout.setVisibility(View.GONE);
                                 }else {
                                     dan_layout.setVisibility(View.VISIBLE);
 
-                                    Text_football_data.setText(singleBean.getData().get(0).getGame_info().get(0).getGame_stop_time());
-                                    left_team.setText(singleBean.getData().get(0).getGame_info().get(0).getGame_home_team_name());
-                                    right_team.setText(singleBean.getData().get(0).getGame_info().get(0).getGame_guest_team_name());
-                                    Button_victory.setText(singleBean.getData().get(0).getGame_info().get(0).getSingle_odds().get(0).getOdds_code()+
-                                            singleBean.getData().get(0).getGame_info().get(0).getSingle_odds().get(0).getOdds());
-                                    Button_ping.setText(singleBean.getData().get(0).getGame_info().get(0).getSingle_odds().get(1).getOdds_code()+
-                                            singleBean.getData().get(0).getGame_info().get(0).getSingle_odds().get(1).getOdds());
-                                    Button_loser.setText(singleBean.getData().get(0).getGame_info().get(0).getSingle_odds().get(2).getOdds_code()+
-                                            singleBean.getData().get(0).getGame_info().get(0).getSingle_odds().get(2).getOdds());
-                                    game_id = singleBean.getData().get(0).getGame_info().get(0).getGame_id();
-                                    single_odds = singleBean.getData().get(0).getGame_info().get(0).getSingle_odds();
+                                    Text_football_data.setText(singleBean.getData().getGame_stop_time());
+                                    left_team.setText(singleBean.getData().getGame_home_team_name());
+                                    right_team.setText(singleBean.getData().getGame_guest_team_name());
+                                    Button_victory.setText(singleBean.getData().getSingle_odds().get(0).getOdds_code()+
+                                            singleBean.getData().getSingle_odds().get(0).getOdds());
+                                    Button_ping.setText(singleBean.getData().getSingle_odds().get(1).getOdds_code()+
+                                            singleBean.getData().getSingle_odds().get(1).getOdds());
+                                    Button_loser.setText(singleBean.getData().getSingle_odds().get(2).getOdds_code()+
+                                            singleBean.getData().getSingle_odds().get(2).getOdds());
+                                    game_id = singleBean.getData().getGame_id();
+                                    single_odds = singleBean.getData().getSingle_odds();
                                     double poer = Double.parseDouble(single_odds.get(0).getOdds()) * 50;
                                     NumberFormat nf = new DecimalFormat("#.##");
                                     String format = nf.format(poer);
@@ -191,6 +199,9 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
                     }
                 });
+                }else {
+
+                }//94。95  7。5
 
 
 
@@ -205,9 +216,11 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
     private void getVerticaList() {
         titleList = new ArrayList<>();
+        imgs = new ArrayList<>();
+        data.clear();
         HashMap<String,String> hashMap = new HashMap<>();
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/order/getWinPriceByOrder", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/home/index", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -217,55 +230,81 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
             public void onResponse(Call call, Response response) throws IOException {
 
                 final String result = response.body().string();
+
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+
+
                         try {
                             JSONObject jsonObject = new JSONObject(result);
+
                             int code = jsonObject.getInt("code");
 
                             String msg = jsonObject.getString("msg");
+
                             if(code==10000){
-                                VerticaBean verticaBean = JSON.parseObject(result,VerticaBean.class);
 
-                                    for (int i = 0; i <verticaBean.getData().size() ; i++) {
-                                        titleList.add("恭喜用户"+verticaBean.getData().get(i).getUname()+"中奖"+verticaBean.getData().get(i).getBonus_price()+"元");
-                                    }
+                                HomeBean homeBean = JSON.parseObject(result,HomeBean.class);
+                                if(homeBean.getData().getYesterday().size()==0){
+                                    fame_empt.setVisibility(View.VISIBLE);
+                                }else {
+                                    fame_empt.setVisibility(View.GONE);
+                                    data.addAll(homeBean.getData().getYesterday());
+                                    fameAdapter.notifyDataSetChanged();
 
-                                    VerticaTextView.setTextList(titleList);
-//                            VerticaTextView.notifyAll();
-//                            VerticaTextView.startAutoScroll();
+                                }
+
+                                for (int i = 0; i <homeBean.getData().getAnnouncement().size() ; i++) {
+                                    titleList.add("恭喜用户"+homeBean.getData().getAnnouncement().get(i).getUname()+"中奖"+homeBean.getData().getAnnouncement().get(i).getBonus_price()+"元");
+                                }
+
+                                VerticaTextView.setTextList(titleList);
+
+
+                                for (int i = 0; i < homeBean.getData().getBanner().size(); i++) {
+                                    imgs.add(homeBean.getData().getBanner().get(i).getImg_location());
+
+                                }
+                                ImageNormalAdapter imageNormalAdapter = new ImageNormalAdapter();
+                                mainRollPagerView.setAdapter(imageNormalAdapter);//设置适配器
+                                imageNormalAdapter.notifyDataSetChanged();
 
                             }else {
 
-                            }
 
+                            }
 
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
-
-
-
                     }
                 });
+
+
 
 
             }
         });
 
 
+
     }
 
 
     private void initView() {
+        service_img = (ImageView) findViewById(R.id.service_img);
+        Layout_Consultation = (LinearLayout) findViewById(R.id.Layout_Consultation);
+        fame_empt = (TextView) findViewById(R.id.fame_empt);
+        recyclerView_fame = (RecyclerView) findViewById(R.id.recyclerView_fame);
         Layout_Fourteen = (LinearLayout) findViewById(R.id.Layout_Fourteen);
         laynout_dan = (LinearLayout) findViewById(R.id.laynout_dan);
         Multiple_Money = (ClearEditText) findViewById(R.id.Multiple_Money);
         Text_betting = (Button) findViewById(R.id.Text_betting);
         left_team = (TextView) findViewById(R.id.left_team);
+        service_img.setOnClickListener(this);
         right_team = (TextView) findViewById(R.id.right_team);
         Text_prour = (TextView) findViewById(R.id.Text_prour);
         Text_football_data = (TextView) findViewById(R.id.Text_football_data);
@@ -273,10 +312,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         Text_loading = (TextView) findViewById(R.id.Text_loading);
         layout_scroll = (LinearLayout) findViewById(R.id.layout_scroll);
         Home_Refresh  = (SwipeRefreshLayout) findViewById(R.id.Home_Refresh);
-        newsRecycleriView = (RecyclerView) findViewById(R.id.newsRecycleriView);
         Image_lottery = (ImageView) findViewById(R.id.Image_lottery);
-        match = (Button) findViewById(R.id.match);
-        news = (Button) findViewById(R.id.news);
         layout_football = (LinearLayout) findViewById(R.id.layout_football);
         layout_baskball = (LinearLayout) findViewById(R.id.layout_baskball);
         mainRollPagerView = (RollPagerView) findViewById(R.id.mainRollPagerView);
@@ -290,6 +326,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         Button_victory.setOnClickListener(this);
         Button_ping.setOnClickListener(this);
         Text_betting.setOnClickListener(this);
+        Layout_Consultation.setOnClickListener(this);
         layout_football.setOnClickListener(this);
         layout_baskball.setOnClickListener(this);
         Button_loser.setOnClickListener(this);
@@ -297,12 +334,15 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         Button_erbai.setOnClickListener(this);
         dan_layout.setOnClickListener(this);
         Button_wubai.setOnClickListener(this);
-        news.setOnClickListener(this);
-        match.setOnClickListener(this);
         laynout_dan.setOnClickListener(this);
         Layout_Fourteen.setOnClickListener(this);
         Image_lottery.setOnClickListener(this);
-        newsRecycleriView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView_fame.setNestedScrollingEnabled(false);
+
+        recyclerView_fame.setLayoutManager(new LinearLayoutManager(getContext()));
+        fameAdapter = new FameAdapter(getContext(),data);
+        recyclerView_fame.setAdapter(fameAdapter);
+
         //这是后来要删除的集合，所以就不用在strings里面去写了
         VerticaTextView.setText(11, 0, Color.parseColor("#C08FA6"));//设置属性
         VerticaTextView.setTextStillTime(3000);//设置停留时长间隔
@@ -313,7 +353,6 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 //                Toast.makeText(getContext(), "点击了 : " + titleList.get(position), Toast.LENGTH_SHORT).show();
             }
         });
-        newsRecycleriView.setNestedScrollingEnabled(false);
 
         Multiple_Money.addTextChangedListener(textWatcher);
 
@@ -381,9 +420,6 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                 //异步处理加载数据
                 //...
 
-                recycl();
-
-                showbanan();
 
 
 
@@ -404,133 +440,17 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         }).start();
     }
 
-    private void showbanan() {
-        imgs = new ArrayList<>();
-
-        OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.GetAsynMap(Url.baseUrl+"app/operation/getInquireList", new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(final Call call, Response response) throws IOException {
-            final String result = response.body().string();
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-
-                    try {
-                        JSONObject jsonObject = new JSONObject(result);
-                        int code = jsonObject.getInt("code");
-                        String msg = jsonObject.getString("msg");
-                        if(code==10000){
-
-
-                            BananBean bananBean = JSON.parseObject(result,BananBean.class);
-
-                            for (int i = 0; i < bananBean.getData().size(); i++) {
-                                imgs.add(bananBean.getData().get(i).getImg_location());
-
-                            }
-
-                            ImageNormalAdapter imageNormalAdapter = new ImageNormalAdapter();
-                            mainRollPagerView.setAdapter(imageNormalAdapter);//设置适配器
-                            imageNormalAdapter.notifyDataSetChanged();
-
-                        }else if(code==10004){
-                            MainActivity.intentsat.finish();
-                            startActivity(new Intent(getActivity(), LoginActivity.class));
-                            SpUtil spUtil = new SpUtil(getActivity(),"token");
-                            spUtil.putString("token","");
-                            ToastUtil.showToast(getActivity(),msg+"");
-
-                        }else {
-                            Toast.makeText(getActivity(), msg+"", Toast.LENGTH_SHORT).show();
-
-                        }
-
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-            });
-
-            }
-        });
-
-
-    }
-
-
-    public void recycl(){
-        list.clear();
-
-        //有接口时在这里做更新recyclerview的操作
-        HashMap<String,String> hashMap = new HashMap<>();
-        hashMap.put("type",flag+"");
-
-        OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/information/getBallInformationList", hashMap, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                final String result = response.body().string();
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        try {
-                            JSONObject jsonObject = new JSONObject(result);
-                            int code = jsonObject.getInt("code");
-                            String msg = jsonObject.getString("msg");
-                            if(code==10000){
-
-                                MainInfomationBean mainInfomationBean = JSON.parseObject(result,MainInfomationBean.class);
-                                list.addAll(mainInfomationBean.getData());
-                                newsRecyclerViewAdapter = new NewsRecyclerViewAdapter(getContext(),list,flag);
-
-                                newsRecycleriView.setAdapter(newsRecyclerViewAdapter);
-
-                            }else {
-
-                                Toast.makeText(getActivity(), msg+"", Toast.LENGTH_SHORT).show();
-                            }
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                });
-
-
-            }
-        });
 
 
 
 
-
-
-    }
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.Layout_Fourteen:
-                ToastUtil.showToast1(getActivity(),"敬请期待");
+                startActivity(new Intent(getContext(),LotteryActivity.class));
 
                 break;
             case R.id.Button_victory:
@@ -538,6 +458,11 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                 bett=0;
                change(Button_victory,Button_ping,Button_loser);
 
+
+                break;
+            case R.id.Layout_Consultation:
+
+                startActivity(new Intent(getContext(),ConsultationActivity.class));
 
                 break;
             case R.id.Button_ping:
@@ -575,29 +500,22 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
                 break;
             case R.id.laynout_dan:
-                Intent intent_dan_top = new Intent(getContext(),SingleActivity.class);
+//                Intent intent_dan_top = new Intent(getContext(),SingleActivity.class);
+                Intent intent_dan_top = new Intent(getContext(),BettingfootActivity.class);
+                intent_dan_top.putExtra("flag",0);
+
                 startActivity(intent_dan_top);
                 break;
-            case R.id.news:
-                changeRecyclerView(news,match);
-                flag=0;
 
-                recycl();
-                Toast.makeText(getContext(), "这是足球咨询", Toast.LENGTH_SHORT).show();
-
-                break;
-            case R.id.match:
-                changeRecyclerView(match,news);
-                flag=1;
-                recycl();
-                Toast.makeText(getContext(), "这是篮球咨询", Toast.LENGTH_SHORT).show();
-                break;
             case R.id.Image_lottery:
                 startActivity(new Intent(getContext(),LotteryActivity.class));
 
                 break;
             case R.id.layout_football:
-                Intent intent = new Intent(getContext(),BettingActivity.class);
+                //重写,先注释
+//                Intent intent = new Intent(getContext(),BettingActivity.class);
+                Intent intent = new Intent(getContext(),BettingfootActivity.class);
+
                 intent.putExtra("flag",1);
                 startActivity(intent);
                 break;
@@ -606,8 +524,16 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
                 break;
             case R.id.dan_layout:
-                Intent intent_dan = new Intent(getContext(),SingleActivity.class);
+//                Intent intent_dan = new Intent(getContext(),SingleActivity.class);
+                Intent intent_dan = new Intent(getContext(),BettingfootActivity.class);
+                intent_dan.putExtra("flag",0);
+
                 startActivity(intent_dan);
+                break;
+            case R.id.service_img:
+
+                startActivity(new Intent(getContext(),WebViewCustomerActivity.class));
+
                 break;
             case R.id.Text_betting:
 
@@ -736,8 +662,6 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
                 Home_Refresh.setRefreshing(false);
                 getVerticaList();
-                recycl();
-                showbanan();
                 request();
                 Toast.makeText(getContext(), "刷新完成", Toast.LENGTH_SHORT).show();
 
@@ -762,7 +686,8 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
             view.setScaleType(ImageView.ScaleType.CENTER_CROP);
             view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            Glide.with(getActivity()).load(imgs.get(position)).into(view);
+            Log.e("YZS",imgs.get(position));
+            Glide.with(getActivity()).load(imgs.get(position)).transform(new CenterCrop(getActivity()),new GlideRoundTransform(getActivity(),10)).into(view);
 
             return view;
 
@@ -802,6 +727,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
             Text_loading.setVisibility(View.GONE);
             Home_Refresh.setVisibility(View.VISIBLE);
             layout_scroll.setVisibility(View.VISIBLE);
+            service_img.setVisibility(View.VISIBLE);
         }
     };
 

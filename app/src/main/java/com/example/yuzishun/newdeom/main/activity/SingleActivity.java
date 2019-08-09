@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -35,7 +33,6 @@ import com.example.yuzishun.newdeom.model.SingleBean;
 import com.example.yuzishun.newdeom.model.SinglepopBean;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
-import com.example.yuzishun.newdeom.utils.AdapterMessage;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 import com.example.yuzishun.newdeom.utils.eventbus.SinglePostionMessage;
 import org.greenrobot.eventbus.EventBus;
@@ -158,10 +155,7 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
                 list_three = request(3);
                 list_four = request(4);
                 list_fire = request(5);
-//                adapter = new BettingSingleAdapter(list,single);
-//
-//                Lottery_RecyCLerView.setAdapter(adapter);
-//                Lottery_RecyCLerView.setNestedScrollingEnabled(false);
+
 
                 //完成后，通知主线程更新UI
                 handler.sendEmptyMessageDelayed(2, 3000);
@@ -340,15 +334,15 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
                                     singleBean = JSON.parseObject(result,SingleBean.class);
                                     List<ChooseMixedBean> list_choose = new ArrayList<>();
 
-                                    for (int i = 0; i <singleBean.getData().size() ; i++) {
+                                    for (int i = 0; i <singleBean.getData().getGame_info().size() ; i++) {
 
-                                        Item_Single item_single = new Item_Single(singleBean.getData().get(i).getGame_week()+""+singleBean.getData().get(i).getGame_group_time()+"共有"+singleBean.getData().get(i).getGame_info().size()+"场比赛可投");
+                                        Item_Single item_single = new Item_Single(singleBean.getData().getGame_info().get(i).getGame_week()+""+singleBean.getData().getGame_info().get(i).getGame_group_time()+"共有"+singleBean.getData().getGame_info().get(i).getGame_info().size()+"场比赛可投");
 
-                                        for (int j = 0; j <singleBean.getData().get(i).getGame_info().size() ; j++) {
+                                        for (int j = 0; j <singleBean.getData().getGame_info().get(i).getGame_info().size() ; j++) {
 
                                             ChooseMixedBean chooseMixedBean = new ChooseMixedBean();
 
-                                            List<SingleBean.DataBean.GameInfoBean.SingleOddsBean> single_odds = singleBean.getData().get(i).getGame_info().get(j).getSingle_odds();
+                                            List<SingleBean.DataBean.GameInfoBeanX.GameInfoBean.SingleOddsBean> single_odds = singleBean.getData().getGame_info().get(i).getGame_info().get(j).getSingle_odds();
 
                                             List<ItemPoint> list_single = new ArrayList<>();
 
@@ -365,25 +359,25 @@ public class SingleActivity extends BaseActivity implements View.OnClickListener
                                             }
                                             chooseMixedBean.setOnelist(list_single);
                                             chooseMixedBean.setDesc("展开更多选项");
-                                            chooseMixedBean.setGame_id(singleBean.getData().get(i).getGame_info().get(j).getGame_id());
-                                            chooseMixedBean.setHome_team(singleBean.getData().get(i).getGame_info().get(j).getGame_home_team_name());
+                                            chooseMixedBean.setGame_id(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_id());
+                                            chooseMixedBean.setHome_team(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name());
 
-                                            chooseMixedBean.setGuest_team(singleBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name());
-                                            chooseMixedBean.setName(singleBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+singleBean.getData().get(i).getGame_info().get(j).getGame_home_team_name()
-                                                    +"        "+"vs"+"        "+singleBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name());
-                                            chooseMixedBean.setHome_score(singleBean.getData().get(i).getGame_info().get(j).getGame_home_score());
-                                            chooseMixedBean.setGuest_score(singleBean.getData().get(i).getGame_info().get(j).getGame_let_score());
+                                            chooseMixedBean.setGuest_team(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
+                                            chooseMixedBean.setName(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name()
+                                                    +"        "+"vs"+"        "+singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
+                                            chooseMixedBean.setHome_score(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_score());
+                                            chooseMixedBean.setGuest_score(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score());
                                             list_choose.add(chooseMixedBean);
 
 
                                             Log.e("SingleSize",j+"");
 
-                                            Item1_Single item1 = new Item1_Single(singleBean.getData().get(i).getGame_info().get(j).getGame_name(),
-                                                    singleBean.getData().get(i).getGame_info().get(j).getGame_home_team_name()
-                                                    ,singleBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name(),singleBean.getData().get(i).getGame_info().get(j).getGame_home_score(),
-                                                    singleBean.getData().get(i).getGame_info().get(j).getGame_let_score(),singleBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()
-                                                    ,singleBean.getData().get(i).getGame_info().get(j).getGame_stop_time()
-                                                    ,list_single,list_choose,"展开更多选项",singleBean.getData().get(i).getGame_info().get(j).getGame_no());
+                                            Item1_Single item1 = new Item1_Single(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_name(),
+                                                    singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name()
+                                                    ,singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name(),singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_score(),
+                                                    singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score(),singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()
+                                                    ,singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_stop_time()
+                                                    ,list_single,list_choose,"展开更多选项",singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_no());
 
 
                                             item_single.addSubItem(item1);

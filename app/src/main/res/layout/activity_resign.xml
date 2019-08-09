@@ -108,6 +108,7 @@
                 <com.example.yuzishun.newdeom.login.custom.ClearEditText
                     android:layout_weight="1"
                     android:inputType="textPassword"
+
                     android:paddingLeft="@dimen/d5"
                     android:maxLength="11"
                     android:maxLines="1"

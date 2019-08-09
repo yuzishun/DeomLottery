@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.score.activity.ScoreFragment">
+    tools:context="com.example.yuzishun.newdeom.score.ScoreFragment">
 
     <include layout="@layout/title_text"></include>
     <LinearLayout
         android:id="@+id/layout_ye"
-        android:visibility="visible"
+        android:visibility="gone"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

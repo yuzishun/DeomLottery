@@ -56,6 +56,7 @@ public class OkamiListBean {
          */
         private int game_type;
         private int plan_id;
+        private int order_id;
         private String order_price;
         private String multiple_price;
         private int order_status;
@@ -63,14 +64,31 @@ public class OkamiListBean {
         private String plan_follow_price;
         private String plan_follow_person;
         private String cut_off_time;
-        private int cut_off;
+        private int follow_plan_permission;
+        private String bask_id;
 
-        public int getCut_off() {
-            return cut_off;
+        public String getBask_id() {
+            return bask_id;
         }
 
-        public void setCut_off(int cut_off) {
-            this.cut_off = cut_off;
+        public void setBask_id(String bask_id) {
+            this.bask_id = bask_id;
+        }
+
+        public int getOrder_id() {
+            return order_id;
+        }
+
+        public void setOrder_id(int order_id) {
+            this.order_id = order_id;
+        }
+
+        public int getFollow_plan_permission() {
+            return follow_plan_permission;
+        }
+
+        public void setFollow_plan_permission(int follow_plan_permission) {
+            this.follow_plan_permission = follow_plan_permission;
         }
 
         public int getGame_type() {

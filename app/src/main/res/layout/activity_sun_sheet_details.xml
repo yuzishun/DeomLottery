@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.example.yuzishun.newdeom.sunsheet.activity.SunSheetDetailsActivity">
+
+    <RelativeLayout
+        android:background="@color/login_red"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d40">
+
+        <LinearLayout
+            android:id="@+id/layout_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text=""
+                android:id="@+id/title_text"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:maxLines="1"
+
+                android:layout_marginLeft="@dimen/d40"
+                android:layout_marginRight="@dimen/d40"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/image_back"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@mipmap/back"
+                android:layout_width="@dimen/d15"
+                android:layout_height="@dimen/d15" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fang_details"
+            android:visibility="visible"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/layout_text_sunsheet"
+                android:text="方案详情"
+                android:layout_marginRight="@dimen/d15"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f13"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginLeft="@dimen/d20"
+                android:layout_marginRight="@dimen/d20"
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <com.example.yuzishun.newdeom.my.custom.XCRoundImageView
+                            android:id="@+id/usericon"
+                            android:src="@mipmap/gray_icon"
+                            android:layout_width="@dimen/d40"
+                            android:layout_height="@dimen/d40" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="一拳超人"
+                            android:id="@+id/username"
+                            android:textSize="@dimen/f12"
+                            android:textColor="@color/font_black_shen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/usedr_id"
+                            android:text="111111"
+                            android:textSize="@dimen/f12"
+                            android:layout_marginTop="@dimen/d5"
+                            android:textColor="@color/login_red"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/follow_button"
+                        android:text="+ 关注"
+                        android:textSize="@dimen/f11"
+                        android:background="@drawable/login_shap"
+                        android:textColor="@color/edittext_hintcolor"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="60dp"
+                        android:layout_height="24dp" />
+
+                </RelativeLayout>
+
+
+
+
+            </LinearLayout>
+            <View
+                android:background="@color/empt_color"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/d10"
+                android:layout_height="0.1dp">
+
+            </View>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/layout_dec"
+
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/text_dec"
+                        android:text="曼城真的是！早场见着是缘分的三倍。"
+                        android:textColor="@color/font_black_shen"
+                        android:textSize="@dimen/f12"
+                        android:layout_marginLeft="@dimen/d20"
+                        android:layout_marginRight="@dimen/d20"
+                        android:layout_marginBottom="@dimen/d5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:id="@+id/layout_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                        android:id="@+id/list_1_1"
+                        android:layout_width="85dp"
+                        android:text="竞猜类型"
+                        android:layout_height="40dp"
+                        android:layout_alignBottom="@+id/list_1_2"
+                        android:layout_alignTop="@+id/list_1_2"
+                        android:gravity="center"
+                        android:textColor="@color/font_gray"
+
+                        android:textSize="10sp" />
+
+                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                        android:text="方案金额"
+                        android:id="@+id/list_1_2"
+                        android:layout_width="85dp"
+                        android:layout_height="40dp"
+                        android:layout_toRightOf="@+id/list_1_1"
+                        android:gravity="center"
+                        android:textColor="@color/font_gray"
+
+                        android:textSize="10sp" />
+
+                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                        android:id="@+id/list_1_3"
+                        android:layout_width="85dp"
+                        android:layout_height="40dp"
+                        android:text="中奖金额"
+                        android:layout_alignBottom="@+id/list_1_2"
+                        android:layout_alignTop="@+id/list_1_2"
+                        android:layout_toRightOf="@+id/list_1_2"
+                        android:gravity="center"
+                        android:textColor="@color/font_gray"
+
+                        android:textSize="10sp" />
+
+                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                        android:id="@+id/list_1_4"
+                        android:layout_width="85dp"
+                        android:text="倍数"
+                        android:layout_height="40dp"
+                        android:layout_alignBottom="@+id/list_1_3"
+                        android:layout_alignTop="@+id/list_1_3"
+                        android:layout_toRightOf="@+id/list_1_3"
+                        android:gravity="center"
+                        android:textColor="@color/font_gray"
+
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:layout_below="@+id/layout_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                        android:id="@+id/list_2_1"
+                        android:layout_width="85dp"
+                        android:layout_height="40dp"
+                        android:layout_alignBottom="@+id/list_1_2"
+                        android:layout_alignTop="@+id/list_1_2"
+                        android:gravity="center"
+                        android:textColor="@color/font_gray"
+                        android:text="足球"
+
+                        android:textSize="10sp" />
+
+                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                        android:id="@+id/list_2_2"
+                        android:layout_width="85dp"
+                        android:layout_height="40dp"
+                        android:layout_toRightOf="@+id/list_1_1"
+                        android:gravity="center"
+                        android:textColor="@color/font_gray"
+                        android:text="2.0元"
+
+                        android:textSize="10sp" />
+
+                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                        android:id="@+id/list_2_3"
+                        android:layout_width="85dp"
+                        android:layout_height="40dp"
+                        android:layout_alignBottom="@+id/list_1_2"
+                        android:layout_alignTop="@+id/list_1_2"
+                        android:layout_toRightOf="@+id/list_1_2"
+                        android:gravity="center"
+                        android:textColor="@color/font_gray"
+                        android:text="100元"
+
+                        android:textSize="10sp" />
+
+                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                        android:id="@+id/list_2_4"
+
+                        android:layout_width="85dp"
+                        android:layout_height="40dp"
+                        android:layout_alignBottom="@+id/list_1_3"
+                        android:layout_alignTop="@+id/list_1_3"
+                        android:layout_toRightOf="@+id/list_1_3"
+                        android:gravity="center"
+                        android:text="10倍"
+
+                        android:textColor="@color/font_gray"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:background="@color/empt_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d10">
+
+        </View>
+
+        <com.example.yuzishun.newdeom.utils.CommentExpandableListView
+            android:id="@+id/detail_page_lv_comment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:layout_marginBottom="64dp"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"/>
+
+
+
+
+
+
+
+    </LinearLayout>
+    </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/Layout_genbottom"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d40">
+
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:background="@mipmap/sunsheetmsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/commet_count"
+                    android:text="12"
+                    android:textSize="@dimen/f12"
+                    android:textColor="@color/font_black"
+                    android:layout_marginLeft="@dimen/d5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <View
+                android:background="@color/empt_color"
+                android:layout_marginTop="@dimen/d5"
+                android:layout_marginBottom="@dimen/d5"
+                android:layout_width="0.1dp"
+                android:layout_height="match_parent"></View>
+            <LinearLayout
+                android:id="@+id/layout_like"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/dianzan"
+                    android:background="@mipmap/dianzan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="32"
+                    android:textSize="@dimen/f12"
+                    android:id="@+id/lisk_count"
+                    android:textColor="@color/font_black"
+                    android:layout_marginLeft="@dimen/d5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

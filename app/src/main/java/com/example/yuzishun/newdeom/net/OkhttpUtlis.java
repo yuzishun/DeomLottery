@@ -89,6 +89,7 @@ public class OkhttpUtlis {
                 .post(body)
 
                 .build();
+        Log.e("YZS",token+"");
         mOkHttpClient.newCall(request).enqueue(callback);
 
 
@@ -174,7 +175,7 @@ public class OkhttpUtlis {
 
             Response response = chain.proceed(request);
             Log.e("LogOkHttp",String.format("发送请求 %s on %s%n%s",response.code(),response.headers(),
-                    request.url(), chain.connection(), request.headers()));
+                    request.url(), chain.connection(), request.headers(),request.body() ));
             if(response.code()==200){
 
             }else {

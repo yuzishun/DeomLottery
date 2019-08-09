@@ -139,7 +139,12 @@
         <activity android:name=".main.single.SingleSureActivity" />
         <activity android:name=".main.activity.SingleActivity" />
         <activity android:name=".documentary.activity.SearchActivity" />
-        <activity android:name=".main.activity.AnalysisActivity"></activity>
+        <activity android:name=".main.activity.AnalysisActivity" />
+        <activity android:name=".main.betting.BettingfootActivity" />
+        <activity android:name=".sunsheet.activity.SunSheetDetailsActivity" />
+        <activity android:name=".sunsheet.activity.SendSunSheetActivity" />
+        <activity android:name=".main.activity.ConsultationActivity" />
+        <activity android:name=".sunsheet.activity.ProgrammeActivity"></activity>
     </application>
 
 </manifest>

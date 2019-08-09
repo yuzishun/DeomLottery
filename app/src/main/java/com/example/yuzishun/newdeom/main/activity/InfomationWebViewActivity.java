@@ -39,7 +39,7 @@ public class InfomationWebViewActivity extends BaseActivity implements View.OnCl
         int type = intent.getIntExtra("type", 0);
         String info_no = intent.getStringExtra("info_no");
 
-        InfoMation_webview.loadUrl(Url.baseUrl+"app/information/getBallInformation?type=+"+type+"&info_no="+info_no);
+        InfoMation_webview.loadUrl(Url.baseUrl+"app/home/getBallInformation?type=+"+type+"&info_no="+info_no);
 
         InfoMation_webview.setWebViewClient(new WebViewClient());
         //声明WebSettings子类

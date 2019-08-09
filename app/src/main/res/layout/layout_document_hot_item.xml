@@ -22,6 +22,10 @@
         <TextView
             android:text="虚位以待"
             android:id="@+id/name"
+            android:ellipsize="end"
+            android:maxEms="7"
+
+            android:maxLines="1"
             android:layout_marginTop="@dimen/d5"
             android:textColor="@color/font_black_shen"
             android:textSize="@dimen/f11"

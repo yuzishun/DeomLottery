@@ -3,68 +3,74 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    android:layout_height="131.1dp">
+    android:layout_height="101.1dp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginRight="@dimen/d15"
-        android:layout_marginLeft="@dimen/d15"
-        android:background="#F7F7F7"
+        android:layout_marginLeft="@dimen/d20"
+        android:background="@color/white"
         android:orientation="horizontal"
-        android:layout_height="130dp">
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_height="100dp">
 
-            <ImageView
-                android:src="@mipmap/banner"
-                android:layout_marginRight="@dimen/d10"
-                android:layout_marginLeft="@dimen/d10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_weight="1"
 
-            <TextView
-                android:layout_marginLeft="@dimen/d15"
-                android:id="@+id/infomatio_title"
-                android:textSize="@dimen/f14"
-                android:textColor="#606060"
-                android:text="@string/jingcai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:textSize="@dimen/f11"
-                android:maxLines="1"
-                android:maxLength="15"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/infomatio_title"
+                    android:textSize="@dimen/f12"
+                    android:maxLines="1"
+                    android:layout_marginTop="@dimen/d25"
+
+                    android:textColor="@color/font_black"
+                    android:text="@string/jingcai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/text_desc"
+                    android:layout_marginTop="@dimen/d10"
+                    android:textSize="@dimen/f11"
+                    android:maxLines="1"
+                    android:maxLength="15"
+                    android:layout_below="@+id/infomatio_title"
+                    android:visibility="visible"
+                    android:ellipsize="end"
+                    android:textColor="@color/gray_Overall_hint"
+                    android:text="@string/jingcai_two"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <RelativeLayout
                 android:visibility="gone"
-                android:ellipsize="end"
-                android:layout_marginTop="@dimen/d15"
-                android:textColor="@color/gray_Overall_hint"
-                android:text="@string/jingcai_two"
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_marginLeft="@dimen/d15"
+                <TextView
+                    android:id="@+id/infomatio_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/date_fen"
+                    android:textColor="@color/gray_Overall_hint"
+                    android:textSize="@dimen/f12" />
+            </RelativeLayout>
 
-                android:id="@+id/infomatio_data"
-                android:textSize="@dimen/f12"
-                android:layout_marginTop="@dimen/d40"
-                android:textColor="@color/gray_Overall_hint"
-                android:text="@string/date_fen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
 
         </LinearLayout>
     </LinearLayout>

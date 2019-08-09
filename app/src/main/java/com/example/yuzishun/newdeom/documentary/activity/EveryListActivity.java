@@ -14,7 +14,6 @@ import com.alibaba.fastjson.JSON;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
 import com.example.yuzishun.newdeom.documentary.adapter.EveryListRecyclerViewAdapter;
-import com.example.yuzishun.newdeom.main.adapter.LotteryRecyclerViewAdapter;
 import com.example.yuzishun.newdeom.model.BonusListBean;
 import com.example.yuzishun.newdeom.model.DocumentListBean;
 import com.example.yuzishun.newdeom.model.HitBean;

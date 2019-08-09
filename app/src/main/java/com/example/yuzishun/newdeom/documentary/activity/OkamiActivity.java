@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
+import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.documentary.adapter.OkamiListRecyclerViewAdapter;
 import com.example.yuzishun.newdeom.model.OkamiBean;
 import com.example.yuzishun.newdeom.model.OkamiListBean;
@@ -144,8 +145,16 @@ public class OkamiActivity extends BaseActivity implements View.OnClickListener 
 
                                 OkamiListBean okamiListBean = JSON.parseObject(result,OkamiListBean.class);
                                 List<OkamiListBean.DataBean> data = okamiListBean.getData();
+                                int i = 1;
+                                if(user_id.equals(Content.userid) ){
 
-                                OkamiListRecyclerViewAdapter okamiListRecyclerViewAdapter = new OkamiListRecyclerViewAdapter(OkamiActivity.this,data);
+                                    i=0;
+
+                                }else {
+                                    i=1;
+                                }
+
+                                OkamiListRecyclerViewAdapter okamiListRecyclerViewAdapter = new OkamiListRecyclerViewAdapter(OkamiActivity.this,data,i);
                                 OkamiRecyclerView.setAdapter(okamiListRecyclerViewAdapter);
 
                             }else {

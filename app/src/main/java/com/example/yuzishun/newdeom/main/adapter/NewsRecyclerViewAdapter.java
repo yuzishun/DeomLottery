@@ -41,8 +41,8 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
     public void onBindViewHolder(NewsRecyclerViewAdapter.ViewHolder holder, final int position) {
 
         holder.infomatio_title.setText(list.get(position).getTitle());
-        holder.infomatio_data.setText(list.get(position).getCreate_time());
-
+//        holder.infomatio_data.setText(list.get(position).getCreate_time());
+        holder.text_desc.setText(list.get(position).getCreate_time());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,11 +66,12 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView infomatio_title;
-        TextView infomatio_data;
+        TextView infomatio_data,text_desc;
         public ViewHolder(View itemView) {
             super(itemView);
             infomatio_title = itemView.findViewById(R.id.infomatio_title);
             infomatio_data = itemView.findViewById(R.id.infomatio_data);
+            text_desc  = itemView.findViewById(R.id.text_desc);
         }
     }
 }

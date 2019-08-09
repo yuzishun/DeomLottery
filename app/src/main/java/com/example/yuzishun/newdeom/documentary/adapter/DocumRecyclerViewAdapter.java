@@ -15,8 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.documentary.activity.CopydocumentActivity;
-//import com.example.yuzishun.newdeom.documentary.activity.Documentdetails_main_Activity;
-import com.example.yuzishun.newdeom.documentary.activity.Documentdetails_main_Activity;
+import com.example.yuzishun.newdeom.documentary.activity.DocumentdetailsActivity;
 import com.example.yuzishun.newdeom.documentary.activity.OkamiActivity;
 import com.example.yuzishun.newdeom.model.DocumentaryBean;
 import com.example.yuzishun.newdeom.my.custom.MyTableTextView;
@@ -79,20 +78,13 @@ public class DocumRecyclerViewAdapter extends RecyclerView.Adapter<DocumRecycler
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(context,Documentdetails_main_Activity.class);
+                Intent intent1 = new Intent(context,DocumentdetailsActivity.class);
 
-                Bundle bundle = new Bundle();
-                bundle.putString("name",list.get(position).getUname()+"");
-                bundle.putString("money",list.get(position).getMultiple_price()+"");
-                bundle.putString("plan_id",list.get(position).getPlan_id()+"");
-                bundle.putString("time",list.get(position).getCut_off_time()+"");
-                bundle.putString("plan_profits",list.get(position).getPlan_profits()+"");
-                intent1.putExtra("bundle",bundle);
-                intent1.putExtra("flag",0);
 
-                intent1.putExtra("type",list.get(position).getGame_type());
+                intent1.putExtra("flag",1);
+
+                intent1.putExtra("order_id",list.get(position).getOrder_id());
                 intent1.putExtra("plan_id",list.get(position).getPlan_id());
-                intent1.putExtra("Cut_off",1);
 
                 context.startActivity(intent1);
             }

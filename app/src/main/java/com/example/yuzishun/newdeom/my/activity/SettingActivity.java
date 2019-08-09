@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.yuzishun.newdeom.MainActivity;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.SplachActivity;
+import com.example.yuzishun.newdeom.WebViewCustomerActivity;
 import com.example.yuzishun.newdeom.base.BaseActivity;
 import com.example.yuzishun.newdeom.login.activity.FindPasswordActivity;
 import com.example.yuzishun.newdeom.login.activity.LoginActivity;
@@ -35,6 +36,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     Button button_lgoinout;
     @BindView(R.id.layout_changePassword)
     LinearLayout layout_changePassword;
+    @BindView(R.id.help_center)
+    LinearLayout help_center;
     @Override
     public int intiLayout() {
         return R.layout.activity_setting;
@@ -48,7 +51,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         layout_feedback.setOnClickListener(this);
         button_lgoinout.setOnClickListener(this);
         layout_changePassword.setOnClickListener(this);
-
+        help_center.setOnClickListener(this);
     }
 
     @Override
@@ -64,6 +67,11 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.layout_feedback:
                 //跳转到一健反馈页面
+
+
+                break;
+            case R.id.help_center:
+                startActivity(new Intent(this,WebViewCustomerActivity.class));
 
 
                 break;

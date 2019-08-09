@@ -26,6 +26,7 @@ import com.example.yuzishun.newdeom.base.Basefragment;
 import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.base.LazyFragment;
 import com.example.yuzishun.newdeom.login.activity.LoginActivity;
+import com.example.yuzishun.newdeom.main.activity.InfomationWebViewActivity;
 import com.example.yuzishun.newdeom.model.BankMangmentBean;
 import com.example.yuzishun.newdeom.model.UserInfoBean;
 import com.example.yuzishun.newdeom.my.adapter.BankCradAdapter;
@@ -51,10 +52,8 @@ import okhttp3.Response;
  * A simple {@link Fragment} subclass.
  */
 public class MyFragment extends LazyFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
-    private TextView title_text;
-    private LinearLayout image_back;
     private LinearLayout layout_bankcard;
-    private LinearLayout Layout_Bandpay;
+    private LinearLayout Layout_Bandpay,layout_Sunsheet;
     private TextView Username;
     private ImageView icon;
     private LinearLayout layout_setting;
@@ -65,10 +64,10 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
     private RelativeLayout Relat_order;
     private LinearLayout layout_detailt;
     private SwipeRefreshLayout Home_Refresh;
-    private TextView text_yue,text_caijin;
+    private TextView text_yue,text_caijin,fans,follow;
     private RelativeLayout layout_tixian;
     private int authentication;
-    private String available_balance,balance,alipay;
+    private String available_balance,balance,alipay="";
 
     private List<BankMangmentBean.DataBean> getbanklist;
     @Override
@@ -108,6 +107,8 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
                                 Username.setText(userInfoBean.getData().getUname());
                                 Content.authentication = userInfoBean.getData().getAuthentication();
                                 Content.userurl = userInfoBean.getData().getImg_head();
+                                Content.userid = String.valueOf(userInfoBean.getData().getUser_id());
+
                                 Content.username = userInfoBean.getData().getUname();
                                 authentication = userInfoBean.getData().getAuthentication();
                                 balance = userInfoBean.getData().getAccount().getBalance();
@@ -118,6 +119,8 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
                                 text_yue.setText(userInfoBean.getData().getAccount().getBalance());;
                                 text_caijin.setText(userInfoBean.getData().getAccount().getFrozen_account());
 
+                                fans.setText("粉丝\n"+userInfoBean.getData().getUser_fans());
+                                follow.setText("关注\n"+userInfoBean.getData().getUser_attention());
                             }else if(code==10004){
 
                                 MainActivity.intentsat.finish();
@@ -172,13 +175,14 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
 
 
     private void initView() {
+        fans = (TextView) findViewById(R.id.fans);
+        layout_Sunsheet= (LinearLayout) findViewById(R.id.layout_Sunsheet);
+        follow  = (TextView) findViewById(R.id.follow);
         layout_tixian = (RelativeLayout) findViewById(R.id.layout_tixian);
         text_yue = (TextView) findViewById(R.id.text_yue);
         text_caijin = (TextView) findViewById(R.id.text_caijin);
         layout_touzhu = (LinearLayout) findViewById(R.id.layout_touzhu);
         layout_zhongjiang = (LinearLayout) findViewById(R.id.layout_zhongjiang);
-        title_text = (TextView) findViewById(R.id.title_text);
-        image_back = (LinearLayout) findViewById(R.id.image_back);
         layout_bankcard = (LinearLayout) findViewById(R.id.layout_bankcrad);
         Layout_Bandpay = (LinearLayout) findViewById(R.id.Layout_Bandpay);
         Username = (TextView) findViewById(R.id.Username);
@@ -190,8 +194,6 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
         layout_recharge = (LinearLayout) findViewById(R.id.layout_recharge);
         layout_scroll = (ScrollView) findViewById(R.id.layout_scroll);
         layout_detailt = (LinearLayout) findViewById(R.id.layout_detailt);
-        title_text.setText(R.string.MyCenter);
-        image_back.setVisibility(View.GONE);
         layout_tixian.setOnClickListener(this);
         layout_bankcard.setOnClickListener(this);
         Layout_Bandpay.setOnClickListener(this);
@@ -200,6 +202,7 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
         layout_setting.setOnClickListener(this);
         layout_recharge.setOnClickListener(this);
         layout_touzhu.setOnClickListener(this);
+        layout_Sunsheet.setOnClickListener(this);
         layout_zhongjiang.setOnClickListener(this);
         Relat_order.setOnClickListener(this);
         layout_detailt.setOnClickListener(this);
@@ -246,7 +249,10 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
 
                 }else {
 
-                    ToastUtil.showToast1(getActivity(),"请去绑定身份证");
+                    ToastUtil.showToast1(getActivity(),"请先绑定身份证");
+                    startActivity(new Intent(getContext(),IdentityVerificationActivity.class));
+
+
                 }
 
 
@@ -258,17 +264,26 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
 
 
                 }else {
-                    ToastUtil.showToast1(getActivity(),"请去绑定身份证");
+                    ToastUtil.showToast1(getActivity(),"请先绑定身份证");
+
+                    startActivity(new Intent(getContext(),IdentityVerificationActivity.class));
 
                 }
                 break;
             case R.id.Layout_Bandpay:
                 if(alipay.equals("")){
-                    startActivity(new Intent(getContext(),BandingPayActivity.class));
+                    Intent intent = new Intent(getContext(),BandingPayActivity.class);
+                    intent.putExtra("flag",0);
+                    intent.putExtra("available_balance",available_balance);
+
+                    startActivity(intent);
 
                 }else {
-//                    ToastUtil.showToast1(getActivity(),"已经绑定过支付宝");
-                    Toast.makeText(getActivity(), "已经绑定过支付宝", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(),BandingPayActivity.class);
+                    intent.putExtra("flag",1);
+                    intent.putExtra("available_balance",available_balance);
+
+                    startActivity(intent);
                 }
 
                 break;
@@ -295,6 +310,10 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
                 break;
             case R.id.Relat_order:
                 jump(3,BetteyAndWinningActivity.class);
+
+                break;
+            case R.id.layout_Sunsheet:
+                jump(4,BetteyAndWinningActivity.class);
 
                 break;
             case R.id.layout_detailt:

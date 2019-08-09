@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="@dimen/d40">
+
+            <TextView
+                android:id="@+id/choose_one"
+                android:layout_weight="1"
+                android:text="过关玩法"
+                android:textColor="@color/login_red"
+                android:gravity="center"
+                android:textSize="@dimen/f13"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/choose_two"
+
+                android:layout_weight="1"
+                android:text="单关玩法"
+                android:textColor="@color/font_black"
+                android:gravity="center"
+                android:textSize="@dimen/f13"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+        <View
+            android:background="@color/empt_color"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"></View>
+
+        <RelativeLayout
+            android:layout_marginRight="@dimen/d15"
+            android:layout_marginLeft="@dimen/d15"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/d15"
+            android:layout_marginTop="@dimen/d15"
+            android:layout_height="wrap_content">
+            <GridView
+                android:id="@+id/GridView_betting_Money"
+                android:gravity="center"
+                android:numColumns="3"
+                android:verticalSpacing="@dimen/d15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </GridView>
+            <GridView
+                android:id="@+id/GridView_betting_Money_two"
+                android:gravity="center"
+                android:numColumns="3"
+                android:visibility="gone"
+                android:verticalSpacing="@dimen/d15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </GridView>
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -5,7 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="findpassword">修改密码</string>
     <string name="UserResign">用户注册</string>
-    <string name="BindPaybao">绑定支付宝</string>
+    <string name="BindPaybao">支付宝</string>
     <string name="BankCradManagement">银行卡管理</string>
     <string name="MyCenter">个人中心</string>
     <string name="Information">个人信息</string>
@@ -57,7 +57,7 @@
     <string name="choose_nine">竞足单关</string>
     <string name="victory_shisi">胜负14场</string>
     <string name="Notice">公告:</string>
-    <string name="Sufficient_relevance">竞足单关</string>
+    <string name="Sufficient_relevance">单关</string>
     <string name="More"><![CDATA[更多>>]]></string>
     <string name="data">2019-04-11</string>
     <string name="End">截止</string>
@@ -81,7 +81,7 @@
     <string name="MyOrder">我的订单</string>
     <string name="Betting">已投注</string>
     <string name="Already_won_the_prize">已中奖</string>
-    <string name="Pay_Bind">支付宝绑定</string>
+    <string name="Pay_Bind">支付宝</string>
     <string name="Bank">银行卡</string>
     <string name="Yue">余额</string>
     <string name="Gold_color">彩金</string>

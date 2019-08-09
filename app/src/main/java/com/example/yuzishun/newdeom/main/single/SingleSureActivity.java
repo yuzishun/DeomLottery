@@ -94,11 +94,13 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
     private  List<String> list_adds;
     private  List<String> list_id;
     private List<Double> list_max_end;
-
+    private int flag,flag_guan;
     private List<MinAndMaxBean> list_min_and_max = new ArrayList<>();
     private List<Double> list_min_end = new ArrayList<>();
     private String format;
     private String[] string_mode=new String[]{"单关","2串1","3串1","4串1","5串1","6串1","7串1","8串1"};
+    private String[] string_mode2=new String[]{"2串1","3串1","4串1","5串1","6串1","7串1","8串1"};
+
     private List<SubMixBean> list_subMixBean = new ArrayList<>();
     private List<SureguanBean> list_sureguanBean = new ArrayList<>();
     private List<SubMixListBean> list_stbMixListBean = new ArrayList<>();
@@ -117,14 +119,16 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
         title_text.setText("胜负平");
         Intent intent = getIntent();
         int single = intent.getIntExtra("single",0);
+        flag = intent.getIntExtra("flag",0);
+        flag_guan = intent.getIntExtra("flag_guan",0);
         switch (single){
 
             case 1:
-                title_text.setText("胜负平");
+                title_text.setText("胜平负");
 
                 break;
             case 2:
-                title_text.setText("让球胜负平");
+                title_text.setText("让球胜平负");
 
                 break;
             case 3:
@@ -240,6 +244,13 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
         bettingSureRecyclerView.setOnRecyclerViewListener(new BettingSureRecyclerView.OnRecyclerViewListener() {
             @Override
             public void onItemClick(int position) {
+                int postiondelete = 2;
+                if(flag==0){
+                    postiondelete = 2;
+                }else {
+                    postiondelete = 2;
+
+                }
 
                 if(list_sureguanBean.size()>=2){
                     for (int i = 0; i <list_chooe_single.size() ; i++) {
@@ -324,61 +335,177 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
 
         switch (list_stbMixListBean.size()){
             case 1:
-                length = 1;
+                length = getnumber(1);
 
                 break;
             case 2:
-                length = 2;
+                length = getnumber(2);
                 break;
             case 3:
-                length = 3;
+                length = getnumber(3);
 
                 break;
             case 4:
-                length = 4;
+                length = getnumber(4);
 
                 break;
             case 5:
-                length = 5;
+                length =  getnumber(5);
 
                 break;
             case 6:
-                length = 6;
+                length = getnumber(6);
 
                 break;
             case 7:
-                length = 7;
+                length = getnumber(7);
 
                 break;
             case 8:
-                length = 8;
+                length =  getnumber(8);
 
                 break;
         }
 
         if(list_stbMixListBean.size()>8){
 
-            length=8;
+            length= getnumber(list_stbMixListBean.size());
 
+        }
+        if(flag_guan==1){
+            if(title_text.getText().equals("胜平负")||title_text.getText().equals("让球胜平负")){
+                list_sureguanBean = new ArrayList<>();
+                for (int i = 0; i <length ; i++) {
+                    SureguanBean sureguanBean = new SureguanBean();
+                    sureguanBean.setName(string_mode2[i]);
+                    sureguanBean.setBunch(i+2+"");
+                    if(i==length-1){
+                        sureguanBean.setIsselect(true);
+                        bunch_TextView.setText(sureguanBean.getName());
+
+                    }else {
+                        sureguanBean.setIsselect(false);
+
+                    }
+                    list_sureguanBean.add(sureguanBean);
+                }
+            }else {
+                list_sureguanBean = new ArrayList<>();
+                for (int i = 0; i <length ; i++) {
+                    SureguanBean sureguanBean = new SureguanBean();
+                    sureguanBean.setName(string_mode[i]);
+                    sureguanBean.setBunch(i+1+"");
+                    if(i==0){
+                        sureguanBean.setIsselect(true);
+                        bunch_TextView.setText(sureguanBean.getName());
+
+                    }else {
+                        sureguanBean.setIsselect(false);
+
+                    }
+                    list_sureguanBean.add(sureguanBean);
+                }
+            }
+        }else {
+            list_sureguanBean = new ArrayList<>();
+            for (int i = 0; i <length ; i++) {
+                SureguanBean sureguanBean = new SureguanBean();
+                sureguanBean.setName(string_mode[i]);
+                sureguanBean.setBunch(i+1+"");
+                if(i==0){
+                    sureguanBean.setIsselect(true);
+                    bunch_TextView.setText(sureguanBean.getName());
+
+                }else {
+                    sureguanBean.setIsselect(false);
+
+                }
+                list_sureguanBean.add(sureguanBean);
+            }
         }
 
 
 
-        list_sureguanBean = new ArrayList<>();
-        for (int i = 0; i <length ; i++) {
-            SureguanBean sureguanBean = new SureguanBean();
-            sureguanBean.setName(string_mode[i]);
-            sureguanBean.setBunch(i+1+"");
-            if(i==0){
-                sureguanBean.setIsselect(true);
-                bunch_TextView.setText(sureguanBean.getName());
+
+    }
+
+
+    public int getnumber(int length){
+        int returnlenth = 0;
+
+        if(title_text.getText().equals("胜平负")){
+            if(length>8){
+                if(flag_guan==1){
+                    returnlenth=8-1;
+
+                }else {
+                    returnlenth=8;
+
+                }
 
             }else {
-                sureguanBean.setIsselect(false);
+                if(flag_guan==1){
+                    returnlenth=length-1;
+
+                }else {
+                    returnlenth=length;
+
+                }
 
             }
-            list_sureguanBean.add(sureguanBean);
+
+        }else if(title_text.getText().equals("让球胜平负")){
+            if(length>8){
+                if(flag_guan==1){
+                    returnlenth=8-1;
+
+                }else {
+                    returnlenth=8;
+
+                }
+
+            }else {
+                if(flag_guan==1){
+                    returnlenth=length-1;
+
+                }else {
+                    returnlenth=length;
+
+                }
+
+            }
+
+        }else if(title_text.getText().equals("比分")){
+            if(length>4){
+                returnlenth=4;
+
+            }else {
+                returnlenth=length;
+
+            }
+
+        }else if(title_text.getText().equals("总进球")){
+            if(length>6){
+                returnlenth=6;
+
+            }else {
+                returnlenth=length;
+
+            }
+
+        }else if(title_text.getText().equals("半全场")){
+
+            if(length>4){
+                returnlenth=4;
+
+            }else {
+                returnlenth=length;
+
+            }
+
         }
+
+        return returnlenth;
     }
 
 
@@ -486,7 +613,39 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
         Text_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int ii = 1;
+                for (int i = 0; i < list_sureguanBean.size() ; i++) {
+
+                    if(list_sureguanBean.get(i).isselect){
+                        ii++;
+                    }else {
+
+                    }
+
+                }
+                Text_More.setText(ii-1+"个方式");
                 popupWindow.dismiss();
+                List<String> getbunch = getbunch();
+                Text_money.setText(getbunch.get(0));
+                money.setText(getbunch.get(1));
+
+
+                if(list_sureguanBean.size()==0){
+
+                    ToastUtil.showToast1(SingleSureActivity.this,"请重新选择比赛");
+                }else {
+                    for (int i = 0; i <list_sureguanBean.size() ; i++) {
+                        if(list_sureguanBean.get(i).isselect){
+                            bunch_TextView.setText(list_sureguanBean.get(i).getName());
+
+                        }
+
+                    }
+
+//                    bunch_TextView.setText(list_sureguanBean.get(list_sureguanBean.size()-1).getName());
+
+                }
+
             }
         });
         Text_sure.setOnClickListener(new View.OnClickListener() {

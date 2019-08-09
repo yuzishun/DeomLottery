@@ -15,12 +15,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
+import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.documentary.activity.CopydocumentActivity;
-//import com.example.yuzishun.newdeom.documentary.activity.Documentdetails_main_Activity;
-import com.example.yuzishun.newdeom.documentary.activity.Documentdetails_main_Activity;
+import com.example.yuzishun.newdeom.documentary.activity.DocumentdetailsActivity;
 import com.example.yuzishun.newdeom.model.OkamiListBean;
 import com.example.yuzishun.newdeom.my.activity.BetteyAndWinningActivity;
 import com.example.yuzishun.newdeom.my.custom.MyTableTextView;
+import com.example.yuzishun.newdeom.sunsheet.activity.SunSheetDetailsActivity;
+
+import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +40,12 @@ public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiList
     private Context context;
     private List<OkamiListBean.DataBean> list = new ArrayList<>();
     private String[] name={"订单金额","单倍金额","参与人数","中奖金额"};
+    private int flag;
 
-
-    public OkamiListRecyclerViewAdapter(Context context, List<OkamiListBean.DataBean> list) {
+    public OkamiListRecyclerViewAdapter(Context context, List<OkamiListBean.DataBean> list,int flag) {
         this.context = context;
         this.list = list;
+        this.flag = flag;
     }
 
     @Override
@@ -81,7 +85,7 @@ public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiList
                 Glide.with(context).load(R.mipmap.weijiang).asBitmap().into(holder.jiang_state);
                 break;
         }
-        if(list.get(position).getCut_off()==0){
+        if(list.get(position).getFollow_plan_permission()==0){
 
             holder.Button_Okami_gen.setEnabled(false);
 
@@ -91,21 +95,63 @@ public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiList
 
         }
 
+        if(list.get(position).getBask_id().equals("")){
+            holder.Button_Okami_gen.setVisibility(View.VISIBLE);
+            holder.Button_Okami_ping.setVisibility(View.GONE);
+            holder.text_sunsheet.setVisibility(View.GONE);
+            if(flag==0){
 
+                holder.Button_Okami_gen.setVisibility(View.GONE);
 
+            }else {
+                holder.Button_Okami_gen.setVisibility(View.VISIBLE);
+
+            }
+        }else {
+            holder.text_sunsheet.setVisibility(View.VISIBLE);
+            holder.Button_Okami_gen.setVisibility(View.GONE);
+            holder.Button_Okami_ping.setVisibility(View.GONE);
+            //先隐藏
+//            holder.Button_Okami_ping.setVisibility(View.VISIBLE);
+
+            if(flag==0){
+
+                holder.Button_Okami_gen.setVisibility(View.GONE);
+
+            }else {
+                holder.Button_Okami_gen.setVisibility(View.VISIBLE);
+
+            }
+        }
+
+        if(list.get(position).getGame_type()==0){
+            holder.text_type.setText("竞彩类型：足球");
+
+        }else {
+            holder.text_type.setText("竞彩类型：篮球");
+        }
+
+        holder.Button_Okami_ping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SunSheetDetailsActivity.class);
+                Content.back_id = String.valueOf(list.get(position).getBask_id());
+                context.startActivity(intent);
+            }
+        });
 
         holder.Button_Okami_gen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent1 = new Intent(context,Documentdetails_main_Activity.class);
+                Intent intent1 = new Intent(context,DocumentdetailsActivity.class);
 
 
                 intent1.putExtra("flag",1);
 
-                intent1.putExtra("type",list.get(position).getGame_type());
+                intent1.putExtra("order_id",list.get(position).getOrder_id());
                 intent1.putExtra("plan_id",list.get(position).getPlan_id());
-                intent1.putExtra("Cut_off",list.get(position).getCut_off());
+
 
                 context.startActivity(intent1);
 
@@ -114,7 +160,6 @@ public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiList
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent1 = new Intent(context,Documentdetails_main_Activity.class);
 //
 //                //这里传0代表的是订单
 //                intent1.putExtra("flag",0);
@@ -124,14 +169,13 @@ public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiList
 //
 //                context.startActivity(intent1);
 
-                Intent intent1 = new Intent(context,Documentdetails_main_Activity.class);
+                Intent intent1 = new Intent(context,DocumentdetailsActivity.class);
 
 
                 intent1.putExtra("flag",1);
 
-                intent1.putExtra("type",list.get(position).getGame_type());
+                intent1.putExtra("order_id",list.get(position).getOrder_id());
                 intent1.putExtra("plan_id",list.get(position).getPlan_id());
-                intent1.putExtra("Cut_off",list.get(position).getCut_off());
                 context.startActivity(intent1);
             }
         });
@@ -188,12 +232,14 @@ public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiList
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        Button Button_Okami_gen;
+        Button Button_Okami_gen,Button_Okami_ping;
         ImageView jiang_state;
-        TextView Text_data,Text_money;
+        TextView Text_data,Text_money,text_type,text_sunsheet;
         MyTableTextView list_1_1,list_1_2,list_1_3,list_1_4,list_2_1,list_2_2,list_2_3,list_2_4;
         public ViewHolder(View itemView) {
             super(itemView);
+
+            text_sunsheet = itemView.findViewById(R.id.text_sunsheet);
             list_1_1 = itemView.findViewById(R.id.list_1_1);
             list_1_2 = itemView.findViewById(R.id.list_1_2);
 
@@ -203,7 +249,8 @@ public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiList
             list_2_2 = itemView.findViewById(R.id.list_2_2);
             list_2_3 = itemView.findViewById(R.id.list_2_3);
             list_2_4 = itemView.findViewById(R.id.list_2_4);
-
+            text_type = itemView.findViewById(R.id.text_type);
+            Button_Okami_ping = itemView.findViewById(R.id.Button_Okami_ping);
             Button_Okami_gen = itemView.findViewById(R.id.Button_Okami_gen);
             Text_money = itemView.findViewById(R.id.Text_money);
             jiang_state = itemView.findViewById(R.id.jiang_state);

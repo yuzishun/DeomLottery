@@ -8,7 +8,69 @@
     android:background="@color/white"
 
     tools:context="com.example.yuzishun.newdeom.documentary.activity.DocumentdetailsActivity">
-    <include layout="@layout/title_text"></include>
+
+
+    <RelativeLayout
+        android:background="@color/login_red"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d40">
+
+        <LinearLayout
+            android:id="@+id/layout_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text=""
+                android:id="@+id/title_text"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:maxLines="1"
+
+                android:layout_marginLeft="@dimen/d40"
+                android:layout_marginRight="@dimen/d40"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/image_back"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@mipmap/back"
+                android:layout_width="@dimen/d15"
+                android:layout_height="@dimen/d15" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/send_sunsheet"
+            android:visibility="visible"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/layout_text_sunsheet"
+                android:text="发起晒单"
+                android:layout_marginRight="@dimen/d15"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f13"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -390,7 +452,7 @@
                 android:layout_marginLeft="@dimen/d20"
                 android:orientation="horizontal"
                 android:layout_marginRight="@dimen/d20"
-                android:layout_width="320dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp">
                 <LinearLayout
                     android:background="@drawable/document_details__shape_left"

@@ -26,6 +26,8 @@ public class Content {
     //用户头像
     public static String userurl = "";
 
+    //用户id
+    public static String userid="";
 
     //用户姓名
     public static String username = "";
@@ -59,10 +61,16 @@ public class Content {
     public static int player;
 
     public static int Text_postion =0;
+    public static int Text_postion_mixed =0;
+    public static int Text_postion_mixed_basket =0;
 
     //投注页面显示哪一个
     public static int flag_betting_popwindow=0;
 
+    //晒单id
+    public static String back_id;
 
+    //晒单刷新flag;
+    public static int refre_flag=0;
 
 }

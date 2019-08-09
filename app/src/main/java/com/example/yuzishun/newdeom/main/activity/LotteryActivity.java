@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
-import com.example.yuzishun.newdeom.main.adapter.LotteryRecyclerViewAdapter;
 
 import java.util.ArrayList;
 
@@ -23,13 +22,15 @@ import butterknife.ButterKnife;
  *
  */
 public class LotteryActivity extends BaseActivity implements View.OnClickListener {
-    @BindView(R.id.Lottery_RecyCLerView)
-    RecyclerView Lottery_RecyCLerView;
+
     @BindView(R.id.title_text)
     TextView title_text;
     @BindView(R.id.image_back)
     LinearLayout image_back;
-    private LotteryRecyclerViewAdapter lotteryRecyclerViewAdapter;
+    @BindView(R.id.layout_foot)
+    LinearLayout layout_foot;
+    @BindView(R.id.layout_back)
+    LinearLayout layout_back;
     @Override
     public int intiLayout() {
         return R.layout.activity_lottery;
@@ -38,23 +39,10 @@ public class LotteryActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void initView() {
         ButterKnife.bind(this);
-        title_text.setText("中奖");
+        title_text.setText("开奖");
         image_back.setOnClickListener(this);
-        Lottery_RecyCLerView.setLayoutManager(new LinearLayoutManager(this));
-        ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            list.add("");
-
-        }
-        lotteryRecyclerViewAdapter = new LotteryRecyclerViewAdapter(LotteryActivity.this,list);
-        Lottery_RecyCLerView.setAdapter(lotteryRecyclerViewAdapter);
-        lotteryRecyclerViewAdapter.setOnRecyclerViewListener(new LotteryRecyclerViewAdapter.OnRecyclerViewListener() {
-            @Override
-            public void onItemClick(int position) {
-                startActivity(new Intent(LotteryActivity.this,LotterywangqiActivity.class));
-
-            }
-        });
+        layout_foot.setOnClickListener(this);
+        layout_back.setOnClickListener(this);
 
     }
 
@@ -69,6 +57,21 @@ public class LotteryActivity extends BaseActivity implements View.OnClickListene
             case R.id.image_back:
                 finish();
                 break;
+            case R.id.layout_foot:
+                jump(0);
+
+                break;
+            case R.id.layout_back:
+                jump(1);
+
+                break;
         }
+    }
+
+    public void jump(int flag){
+        Intent intent = new Intent(this,LotterywangqiActivity.class);
+        intent.putExtra("flag",flag);
+        startActivity(intent);
+
     }
 }

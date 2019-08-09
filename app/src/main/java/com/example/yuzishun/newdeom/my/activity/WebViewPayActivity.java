@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
 import com.example.yuzishun.newdeom.base.Content;
+import com.example.yuzishun.newdeom.net.Url;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -61,16 +62,19 @@ public class WebViewPayActivity extends BaseActivity {
 
 
         Map<String, String > map = new HashMap<String, String>() ;
-        map.put("token",Content.ToKen) ;
-
-        map.put("orderid",orderid) ;
+//        map.put("token",Content.ToKen) ;
+//
+        map.put("order_id",orderid) ;
         map.put("amount",amount) ;
-        String data = "orderid="+orderid+"&amount="+amount+"&token="+Content.ToKen;
-        byte[] bytes = data.getBytes();
+        String data = "order_id="+orderid+"&amount="+amount+"&token="+Content.ToKen;
+//        String data = "&token="+Content.ToKen;
 
-        Webview_pay.postUrl(url,bytes);
+        byte[] bytes = data.getBytes();
+//        Webview_pay.postUrl(url,bytes);
 //        Webview_pay.loadUrl("http://192.168.1.9/plugins/pay/goBack.php");
-        Webview_pay.setWebViewClient(new WebViewClient());
+
+        Webview_pay.loadUrl(url+"?amount="+amount+"&order_id="+orderid);
+//        Webview_pay.setWebViewClient(new WebViewClient());
         //声明WebSettings子类
         WebSettings webSettings = Webview_pay.getSettings();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -155,4 +159,10 @@ public class WebViewPayActivity extends BaseActivity {
         }
 
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+
+    }
 }

@@ -43,7 +43,7 @@
                 android:layout_weight="1"
                 android:checked="true"
                 android:button="@null"
-                android:drawablePadding="@dimen/d4"
+                android:drawablePadding="-4dp"
                 android:drawableTop="@drawable/main_button_selector"
                 android:gravity="center"
                 android:text="@string/Colourful_Hall"
@@ -56,25 +56,27 @@
                 android:layout_weight="1"
                 android:checked="false"
                 android:button="@null"
-                android:drawablePadding="@dimen/d4"
+                android:drawablePadding="-4dp"
                 android:drawableTop="@drawable/documentary_button_selector"
                 android:gravity="center"
                 android:text="@string/documentary"
                 android:textColor="@color/color_main_text"
                 android:textSize="@dimen/f10" />
+
+
             <RadioButton
                 android:id="@+id/id_tab_03"
-                android:drawableTop="@mipmap/midkefu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginTop="-5dp"
+                android:checked="false"
                 android:button="@null"
-                android:drawablePadding="@dimen/d4"
+                android:drawablePadding="-4dp"
+                android:drawableTop="@drawable/sunsheet_button_selector"
                 android:gravity="center"
+                android:text="晒单"
+                android:textColor="@color/color_main_text"
                 android:textSize="@dimen/f10" />
-
-
 
             <RadioButton
                 android:id="@+id/id_tab_04"
@@ -83,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@null"
-                android:drawablePadding="@dimen/d4"
+                android:drawablePadding="-4dp"
                 android:gravity="center"
                 android:text="@string/score"
                 android:drawableTop="@drawable/score_button_selector"
@@ -97,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@null"
-                android:drawablePadding="@dimen/d4"
+                android:drawablePadding="-4dp"
                 android:gravity="center"
                 android:text="@string/my"
                 android:drawableTop="@drawable/my_button_selector"

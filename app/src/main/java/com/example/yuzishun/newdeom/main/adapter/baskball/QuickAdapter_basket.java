@@ -11,6 +11,7 @@ import com.example.yuzishun.newdeom.base.MyApplication;
 import com.example.yuzishun.newdeom.main.adapter.BettingListAdapter;
 import com.example.yuzishun.newdeom.model.ItemPoint;
 import com.example.yuzishun.newdeom.utils.MainMessage;
+import com.example.yuzishun.newdeom.utils.eventbus.BasketMessage;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -68,6 +69,7 @@ class QuickAdapter_basket extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
                         notifyDataSetChanged();
 
                         item.setIsselect(false);
+                        EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
 
 
 
@@ -75,6 +77,7 @@ class QuickAdapter_basket extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
                         item.setIsselect(true);
 
                         notifyDataSetChanged();
+                        EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
 
 
 

@@ -169,7 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
-                    android:text="文案提成"
+                    android:text="方案提成"
                     android:textSize="@dimen/f12"
                     android:textColor="@color/font_black"
                     android:layout_marginLeft="@dimen/d25"

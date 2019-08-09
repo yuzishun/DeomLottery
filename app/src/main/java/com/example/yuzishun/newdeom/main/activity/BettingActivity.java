@@ -1,22 +1,12 @@
 package com.example.yuzishun.newdeom.main.activity;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,50 +16,27 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.alibaba.fastjson.JSON;
+
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
 import com.example.yuzishun.newdeom.base.Content;
-import com.example.yuzishun.newdeom.documentary.activity.DocumentaryFragment;
 import com.example.yuzishun.newdeom.main.adapter.BettingListAdapter;
-import com.example.yuzishun.newdeom.main.adapter.Expand1Item;
-import com.example.yuzishun.newdeom.main.adapter.ExpandItem;
 
-import com.example.yuzishun.newdeom.main.adapter.GridView_Betting_Adapter;
 import com.example.yuzishun.newdeom.main.mixed.BettingMixedFragment;
 
-import com.example.yuzishun.newdeom.main.single.SingleMessage;
-import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.FootballBean;
-import com.example.yuzishun.newdeom.model.ItemPoint;
-import com.example.yuzishun.newdeom.my.activity.MyFragment;
-import com.example.yuzishun.newdeom.net.OkhttpUtlis;
-import com.example.yuzishun.newdeom.net.Url;
-import com.example.yuzishun.newdeom.score.activity.ScoreFragment;
-import com.example.yuzishun.newdeom.utils.AdapterMessage;
 import com.example.yuzishun.newdeom.utils.MainMessage;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 public class BettingActivity extends BaseActivity implements View.OnClickListener {
 

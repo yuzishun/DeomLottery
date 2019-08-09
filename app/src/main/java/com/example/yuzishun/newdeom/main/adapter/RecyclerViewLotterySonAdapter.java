@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.yuzishun.newdeom.R;
+import com.example.yuzishun.newdeom.model.PeriodBean;
 import com.example.yuzishun.newdeom.my.custom.MyTableTextView;
 
 import java.util.ArrayList;
@@ -23,9 +25,8 @@ import java.util.ArrayList;
  */
 public class RecyclerViewLotterySonAdapter extends RecyclerView.Adapter<RecyclerViewLotterySonAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<String> list = new ArrayList<>();
-    private String[] name={"胜负","让分胜负","大小分","胜负差"};
-    public RecyclerViewLotterySonAdapter(Context context, ArrayList<String> list) {
+    private ArrayList<PeriodBean.DataBean> list = new ArrayList<>();
+    public RecyclerViewLotterySonAdapter(Context context, ArrayList<PeriodBean.DataBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -38,51 +39,22 @@ public class RecyclerViewLotterySonAdapter extends RecyclerView.Adapter<Recycler
     @Override
     public void onBindViewHolder(RecyclerViewLotterySonAdapter.ViewHolder holder, int position) {
 
-        initData(context,holder.MyTable);
+
+        holder.game_name.setText(list.get(position).getGame_name());
+        holder.no_number.setText(list.get(position).getGame_sequence_no());
+        holder.left_name.setText(list.get(position).getGame_guest_team_name());
+        holder.right_name.setText(list.get(position).getGame_home_team_name());
+        holder.score.setText(list.get(position).getGame_last_score());
+
+        holder.list_2_1.setText(list.get(position).getWin_odds().get(0).getOdds_code());
+        holder.list_2_2.setText(list.get(position).getWin_odds().get(1).getOdds_code());
+        holder.list_2_3.setText(list.get(position).getWin_odds().get(2).getOdds_code());
+        holder.list_2_4.setText(list.get(position).getWin_odds().get(3).getOdds_code());
+        holder.list_2_5.setText(list.get(position).getWin_odds().get(4).getOdds_code());
 
     }
 
-    private void initData(Context context,LinearLayout linearLayout) {
 
-        RelativeLayout relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.table, null);
-        MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-        title.setText(name[0]);
-        title.setTextColor(context.getResources().getColor(R.color.font_black));
-
-        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
-        title.setText(name[1]);
-        title.setTextColor(context.getResources().getColor(R.color.font_black));
-        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
-        title.setText(name[2]);
-        title.setTextColor(context.getResources().getColor(R.color.font_black));
-        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
-        title.setText(name[3]);
-        title.setTextColor(context.getResources().getColor(R.color.font_black));
-
-
-        linearLayout.addView(relativeLayout);
-        //初始化内容
-        for (int i = 0; i < 1; i++) {
-            relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.table, null);
-            MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-            txt.setText("主胜");
-            txt.setTextColor(context.getResources().getColor(R.color.login_red));
-            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
-            txt.setText("（-7.5）让分主负");
-            txt.setTextColor(context.getResources().getColor(R.color.login_red));
-
-            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
-            txt.setText("小分（162.5）");
-            txt.setTextColor(context.getResources().getColor(R.color.login_red));
-
-            txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
-            txt.setText("主胜（1-5）");
-            txt.setTextColor(context.getResources().getColor(R.color.login_red));
-
-
-            linearLayout.addView(relativeLayout);
-        }
-    }
 
     @Override
     public int getItemCount() {
@@ -90,11 +62,25 @@ public class RecyclerViewLotterySonAdapter extends RecyclerView.Adapter<Recycler
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout MyTable;
-
+        TextView game_name,no_number,left_name,score,right_name;
+        MyTableTextView list_1_1,list_1_2,list_1_3,list_1_4,list_1_5,list_2_1,list_2_2,list_2_3,list_2_4,list_2_5;
         public ViewHolder(View itemView) {
             super(itemView);
-            MyTable = itemView.findViewById(R.id.MyTable);
+            game_name = itemView.findViewById(R.id.game_name);
+            no_number = itemView.findViewById(R.id.no_number);
+            left_name = itemView.findViewById(R.id.left_name);
+            score = itemView.findViewById(R.id.score);
+            right_name = itemView.findViewById(R.id.right_name);
+            list_1_1 = itemView.findViewById(R.id.list_1_1);
+            list_1_2 = itemView.findViewById(R.id.list_1_2);
+            list_1_3 = itemView.findViewById(R.id.list_1_3);
+            list_1_4 = itemView.findViewById(R.id.list_1_4);
+            list_1_5 = itemView.findViewById(R.id.list_1_5);
+            list_2_1 = itemView.findViewById(R.id.list_2_1);
+            list_2_2 = itemView.findViewById(R.id.list_2_2);
+            list_2_3 = itemView.findViewById(R.id.list_2_3);
+            list_2_4 = itemView.findViewById(R.id.list_2_4);
+            list_2_5 = itemView.findViewById(R.id.list_2_5);
 
         }
     }

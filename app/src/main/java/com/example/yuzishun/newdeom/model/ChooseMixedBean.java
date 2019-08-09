@@ -18,12 +18,12 @@ public class ChooseMixedBean {
     private List<ItemPoint> twolist;
     private List<ItemPoint> threelist;
     private List<ItemPoint> fourlist;
+
     public String home_team;
     public String guest_team;
     public String home_score;
     public String guest_score;
     public String desc;
-
 
 
     public String getDesc() {

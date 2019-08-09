@@ -73,9 +73,9 @@ public class BetteyRecyclerViewAdapter extends RecyclerView.Adapter<BetteyRecycl
                 case 2:
                     NumberFormat nfmin = new DecimalFormat("#.##");
 
-                    String winning_money = nfmin.format(Double.parseDouble(data.get(position).getBonus_price()) + Double.parseDouble(data.get(position).getBonus_price()) * 0.05);
+//                    String winning_money = nfmin.format(Double.parseDouble(data.get(position).getBonus_price()) + Double.parseDouble(data.get(position).getBonus_price()) * 0.05);
 
-                    holder.state_betteyandwinnit.setText("中"+winning_money+"元奖");
+                    holder.state_betteyandwinnit.setText("中"+data.get(position).getBonus_price()+"元奖");
 
                     break;
                 case 3:

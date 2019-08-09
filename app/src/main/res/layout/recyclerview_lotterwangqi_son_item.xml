@@ -16,19 +16,21 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
                 android:text="欧篮冠"
+                android:id="@+id/game_name"
                 android:textColor="@color/font_black"
                 android:textSize="@dimen/f12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:text="302"
+                android:id="@+id/no_number"
                 android:textColor="@color/font_black"
                 android:textSize="@dimen/f12"
                 android:layout_marginTop="@dimen/d10"
@@ -37,19 +39,22 @@
         </LinearLayout>
         <LinearLayout
             android:layout_weight="1"
-            android:gravity="center_vertical"
+
+            android:gravity="center"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
                 android:text="帕纳辛纳科斯"
+                android:id="@+id/left_name"
                 android:textColor="@color/font_black"
                 android:textSize="@dimen/f12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:text="72:75"
+                android:id="@+id/score"
                 android:layout_marginLeft="@dimen/d20"
 
                 android:textColor="@color/font_black"
@@ -58,6 +63,8 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:text="皇家马德里"
+                android:id="@+id/right_name"
+
                 android:layout_marginLeft="@dimen/d20"
 
                 android:textColor="@color/font_black"
@@ -68,20 +75,164 @@
 
     </LinearLayout>
     <RelativeLayout
-        android:layout_marginLeft="@dimen/d25"
-        android:layout_marginRight="@dimen/d25"
         android:layout_weight="0.8"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
-            android:id="@+id/MyTable"
+            android:gravity="center_horizontal"
+            android:id="@+id/layout_one"
+            android:layout_marginLeft="@dimen/d20"
+            android:layout_marginRight="@dimen/d20"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_1_1"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="胜负"
 
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="9dp"
-            android:orientation="vertical"
-            />
+                android:layout_alignBottom="@+id/list_1_2"
+                android:layout_alignTop="@+id/list_1_2"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
 
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:text="让球胜负平"
+                android:id="@+id/list_1_2"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/list_1_1"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_1_3"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="比分"
+                android:layout_alignBottom="@+id/list_1_2"
+                android:layout_alignTop="@+id/list_1_2"
+                android:layout_toRightOf="@+id/list_1_2"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_1_4"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="总进球数"
+
+                android:layout_alignBottom="@+id/list_1_3"
+                android:layout_alignTop="@+id/list_1_3"
+                android:layout_toRightOf="@+id/list_1_3"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_1_5"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="半全场"
+                android:layout_alignBottom="@+id/list_1_3"
+                android:layout_alignTop="@+id/list_1_3"
+                android:layout_toRightOf="@+id/list_1_3"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_below="@+id/layout_one"
+            android:gravity="center_horizontal"
+            android:id="@+id/layout_two"
+            android:layout_marginLeft="@dimen/d20"
+            android:layout_marginRight="@dimen/d20"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_2_1"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="主胜"
+
+                android:layout_alignBottom="@+id/list_1_2"
+                android:layout_alignTop="@+id/list_1_2"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:text="让球胜"
+                android:id="@+id/list_2_2"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/list_1_1"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_2_3"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="1：2"
+                android:layout_alignBottom="@+id/list_1_2"
+                android:layout_alignTop="@+id/list_1_2"
+                android:layout_toRightOf="@+id/list_1_2"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_2_4"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="2球"
+
+                android:layout_alignBottom="@+id/list_1_3"
+                android:layout_alignTop="@+id/list_1_3"
+                android:layout_toRightOf="@+id/list_1_3"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                android:id="@+id/list_2_5"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="胜胜"
+                android:layout_alignBottom="@+id/list_1_3"
+                android:layout_alignTop="@+id/list_1_3"
+                android:layout_toRightOf="@+id/list_1_3"
+                android:gravity="center"
+                android:textColor="@color/font_gray"
+
+                android:textSize="10sp" />
+        </LinearLayout>
 
     </RelativeLayout>
     <View

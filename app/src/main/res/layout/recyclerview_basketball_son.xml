@@ -322,9 +322,9 @@
                         android:layout_width="30dp"
                         android:layout_height="90dp">
                         <TextView
+                            android:id="@+id/victor_text"
                             android:layout_width="wrap_content"
                             android:ems="1"
-
                             android:text="胜分差"
                             android:textColor="@color/font_black"
                             android:textSize="@dimen/f11"

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by yuzishun on 2019/5/26.
  */
-class QuickAdapter_three extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
+public class QuickAdapter_three extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
     private int flag_click;
     public QuickAdapter_three(@Nullable List<ItemPoint> data, int flag_click) {
         super(R.layout.dialog_recycler_two, data);

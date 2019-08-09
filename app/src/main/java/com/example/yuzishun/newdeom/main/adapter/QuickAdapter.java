@@ -9,7 +9,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.MyApplication;
 import com.example.yuzishun.newdeom.model.ItemPoint;
-import com.example.yuzishun.newdeom.utils.AdapterMessage;
+import com.example.yuzishun.newdeom.utils.eventbus.AdapterMessage;
 import com.example.yuzishun.newdeom.utils.MainMessage;
 
 import org.greenrobot.eventbus.EventBus;
@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by yuzishun on 2019/5/26.
  */
-class QuickAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
+public class QuickAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
     private int flag_click,flag_type;
     private Expand1Item item2;
     private int id;

@@ -15,8 +15,9 @@
     <color name="font_yellew">#FFCA28</color>
     <color name="divider">#ffd2d2d2</color>
     <color name="font_green">#71D79D</color>
+    <color name="new_gray_empt">#F2F2F2</color>
 
-
+    <color name="main_list_item_color">#F7F7F7</color>
     <color name="c23">#337e90a7</color>
     <color name="c3">#FFFFFFFF</color>
 </resources>

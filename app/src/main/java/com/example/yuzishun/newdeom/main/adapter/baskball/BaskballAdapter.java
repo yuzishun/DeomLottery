@@ -3,6 +3,7 @@ package com.example.yuzishun.newdeom.main.adapter.baskball;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,10 +24,16 @@ import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.MyApplication;
 import com.example.yuzishun.newdeom.main.activity.AnalysisActivity;
 import com.example.yuzishun.newdeom.main.adapter.Expand1Item;
+import com.example.yuzishun.newdeom.main.betting.Expand1Item_football;
 import com.example.yuzishun.newdeom.model.ChooseBaskBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
 import com.example.yuzishun.newdeom.model.SubMixBean;
+import com.example.yuzishun.newdeom.utils.eventbus.AdapterMessage;
+import com.example.yuzishun.newdeom.utils.eventbus.BasketAdapterMessage;
+import com.example.yuzishun.newdeom.utils.eventbus.BasketMessage;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +46,8 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
     public static final int  BASKET_TYPE_LEVEL_0 = 0;
     public static final int  BASKET_TYPE_LEVEL_1 = 1;
     public static List<ChooseBaskBean> list_choose = new ArrayList<>();
+    private static List<String> list_id;
+
     //判断选择的有几场，傻瓜方法
     private static List<String> list_adds;
     private static List<SubMixBean> list_subMixBean = new ArrayList<>();
@@ -56,6 +65,7 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
 
     }
 
+    @SuppressLint("NewApi")
     @Override
     protected void convert(final BaseViewHolder helper, MultiItemEntity item) {
         switch (helper.getItemViewType()){
@@ -87,13 +97,13 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
                         .setText(R.id.Text_bianhao,item2.sequence_no)
                         .setText(R.id.Text_data,"截止"+item2.begin_time)
                         .setText(R.id.home_socre,item2.let_score)
-                        .setText(R.id.let_socre,item2.total_score).setText(R.id.button_zero,item2.list_one.get(0).getId()+item2.list_one.get(0).getOdds())
-                        .setText(R.id.button_one,item2.list_one.get(1).getId()+item2.list_one.get(1).getOdds()).setText(R.id.button_two,item2.list_one.get(2).getId()+item2.list_one.get(2).getOdds()
-                        ).setText(R.id.button_three,item2.list_one.get(3).getId()+item2.list_one.get(3).getOdds()).setText(R.id.button_four,item2.list_one.get(4).getId()+item2.list_one.get(4).getOdds())
-                        .setText(R.id.button_fire,item2.list_one.get(5).getId()+item2.list_one.get(5).getOdds());
+                        .setText(R.id.let_socre,item2.total_score).setText(R.id.button_zero,item2.list_one.get(1).getId()+item2.list_one.get(1).getOdds())
+                        .setText(R.id.button_one,item2.list_one.get(0).getId()+item2.list_one.get(0).getOdds()).setText(R.id.button_two,item2.list_four.get(1).getId()+item2.list_four.get(1).getOdds()
+                        ).setText(R.id.button_three,item2.list_four.get(0).getId()+item2.list_four.get(0).getOdds()).setText(R.id.button_four,item2.list_fire.get(1).getId()+item2.list_fire.get(1).getOdds())
+                        .setText(R.id.button_fire,item2.list_fire.get(0).getId()+item2.list_fire.get(0).getOdds());
                         LinearLayout layout_victorcha = helper.getView(R.id.layout_victorcha);
                 LinearLayout layout_analysis = helper.getView(R.id.layout_analysis);
-
+                TextView victor_text = helper.getView(R.id.victor_text);
                 layout_analysis.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -117,40 +127,101 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
 
 
 
-                gettext(item2.list_one.get(0).getId(),item2.list_one.get(0).getOdds(),button_zero);
-                gettext(item2.list_one.get(1).getId(),item2.list_one.get(1).getOdds(),button_one);
+                gettext(item2.list_one.get(0).getId(),item2.list_one.get(0).getOdds(),button_one);
+                gettext(item2.list_one.get(1).getId(),item2.list_one.get(1).getOdds(),button_zero);
 
-                gettext(item2.list_one.get(2).getId(),item2.list_one.get(2).getOdds(),button_two);
+                gettext(item2.list_four.get(1).getId(),item2.list_four.get(1).getOdds(),button_two);
 
-                gettext(item2.list_one.get(3).getId(),item2.list_one.get(3).getOdds(),button_three);
+                gettext(item2.list_four.get(0).getId(),item2.list_four.get(0).getOdds(),button_three);
 
-                gettext(item2.list_one.get(4).getId(),item2.list_one.get(4).getOdds(),button_four);
+                gettext(item2.list_fire.get(1).getId(),item2.list_fire.get(1).getOdds(),button_four);
 
-                gettext(item2.list_one.get(5).getId(),item2.list_one.get(5).getOdds(),button_fire);
-
-
+                gettext(item2.list_fire.get(0).getId(),item2.list_fire.get(0).getOdds(),button_fire);
 
 
-                getisselect(item2.list_one.get(0).isselect,button_zero);
-                getisselect(item2.list_one.get(1).isselect,button_one);
-                getisselect(item2.list_one.get(2).isselect,button_two);
-                getisselect(item2.list_one.get(3).isselect,button_three);
-                getisselect(item2.list_one.get(4).isselect,button_four);
-                getisselect(item2.list_one.get(5).isselect,button_fire);
 
-                getonclick(item2,button_zero,0);
-                getonclick(item2,button_one,1);
-                getonclick(item2,button_two,2);
-                getonclick(item2,button_three,3);
-                getonclick(item2,button_four,4);
-                getonclick(item2,button_fire,5);
+
+                getisselect(item2.list_one.get(1).isselect,button_zero);
+                getisselect(item2.list_one.get(0).isselect,button_one);
+                getisselect(item2.list_four.get(1).isselect,button_two);
+                getisselect(item2.list_four.get(0).isselect,button_three);
+                getisselect(item2.list_fire.get(1).isselect,button_four);
+                getisselect(item2.list_fire.get(0).isselect,button_fire);
+
+                getonclick(item2,button_zero,1,item2.list_one,helper.getLayoutPosition());
+                getonclick(item2,button_one,0,item2.list_one,helper.getLayoutPosition());
+                getonclick(item2,button_two,1,item2.list_four,helper.getLayoutPosition());
+                getonclick(item2,button_three,0,item2.list_four,helper.getLayoutPosition());
+                getonclick(item2,button_four,1,item2.list_fire,helper.getLayoutPosition());
+                getonclick(item2,button_fire,0,item2.list_fire,helper.getLayoutPosition());
+
+
+
+
+                int ii=0;
+                for (int i = 0; i < item2.list_one.size(); i++) {
+                    if(item2.list_one.get(i).isselect){
+
+                        ii++;
+                    }else {
+                    }
+
+                }
+                for (int i = 0; i < item2.list_two.size(); i++) {
+                    if(item2.list_two.get(i).isselect){
+
+                        ii++;
+                    }else {
+                    }
+
+                }
+                for (int i = 0; i < item2.list_three.size(); i++) {
+                    if(item2.list_three.get(i).isselect){
+
+                        ii++;
+                    }else {
+                    }
+
+                }
+                for (int i = 0; i < item2.list_four.size(); i++) {
+                    if(item2.list_four.get(i).isselect){
+
+                        ii++;
+                    }else {
+                    }
+
+                }
+                for (int i = 0; i < item2.list_fire.size(); i++) {
+                    if(item2.list_fire.get(i).isselect){
+
+                        ii++;
+                    }else {
+                    }
+
+                }
+                if(ii==0){
+                    item2.desc= "展开更多选项";
+
+                }
+                if(item2.desc.equals("展开更多选项")){
+                    victor_text.setText(item2.desc+"");
+
+                    victor_text.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
+                    layout_victorcha.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.login_radios_border_sure_white));
+
+                }else {
+                    victor_text.setText(item2.desc+"");
+                    victor_text.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
+                    layout_victorcha.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.login_radios_border_sure_red));
+
+                }
 
 
                 layout_victorcha.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                    dialog(helper.itemView.getContext(),item2);
+                    dialog(helper.itemView.getContext(),item2,helper.getLayoutPosition());
 
                     }
                 });
@@ -171,11 +242,101 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
 
         return list_choose;
     }
+
+    public static String setMore(final Expand1Item_bask item){
+
+
+        String desc = "";
+        list_id = new ArrayList<>();
+        List<ItemPoint> onelist = item.list_one;
+        List<ItemPoint> twolist = item.list_two;
+        List<ItemPoint> threelist = item.list_three;
+        List<ItemPoint> fourlist = item.list_four;
+        List<ItemPoint> firelist = item.list_fire;
+
+        for (int j = 0; j < onelist.size(); j++) {
+            if(onelist.get(j).isselect) {
+
+                        list_id.add(""+onelist.get(j).getId());
+
+
+            }else {
+
+            }
+
+        }
+        for (int j = 0; j < twolist.size(); j++) {
+            if(twolist.get(j).isselect){
+                list_id.add(twolist.get(j).getId());
+            }else {
+
+            }
+
+
+        }
+
+        for (int j = 0; j < threelist.size(); j++) {
+            if(threelist.get(j).isselect){
+                list_id.add(threelist.get(j).getId());
+            }else {
+
+            }
+
+
+
+
+        }
+        for (int j = 0; j < fourlist.size(); j++) {
+            if(fourlist.get(j).isselect){
+                list_id.add(fourlist.get(j).getId());
+            }else {
+
+            }
+
+
+
+
+        }
+        for (int j = 0; j < firelist.size(); j++) {
+            if(firelist.get(j).isselect){
+                list_id.add(firelist.get(j).getId());
+            }else {
+
+            }
+
+
+
+
+        }
+
+
+
+
+        if(list_id.size()==0) {
+
+            desc="展开更多选项";
+
+        }else {
+            String substring = list_id.toString();
+            desc="已选中"+list_id.size()+"项";
+
+        }
+
+
+
+        return desc;
+
+    }
+
+
+
     public void onResh(){
         for (int i = 0; i <list_choose.size() ; i++) {
             List<ItemPoint> onelist = list_choose.get(i).getOnelist();
             List<ItemPoint> twolist = list_choose.get(i).getTwolist();
             List<ItemPoint> threelist = list_choose.get(i).getThreelist();
+            List<ItemPoint> fourlist = list_choose.get(i).getFourlist();
+            List<ItemPoint> firelist = list_choose.get(i).getFirelist();
 
             for (int j = 0; j <onelist.size() ; j++) {
                 onelist.get(j).setIsselect(false);
@@ -190,7 +351,16 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
                 threelist.get(j).setIsselect(false);
 
 
+            }for (int j = 0; j <fourlist.size() ; j++) {
+                fourlist.get(j).setIsselect(false);
+
             }
+            for (int j = 0; j <firelist.size() ; j++) {
+                firelist.get(j).setIsselect(false);
+
+            }
+
+
         }
 
 
@@ -198,27 +368,37 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
     }
 
 
-    public void getonclick(final Expand1Item_bask item_bask, Button button, final int i){
+    public void getonclick(final Expand1Item_bask item_bask, Button button, final int i,List<ItemPoint> list,int postion){
 
 
     button.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
-            if(item_bask.list_one.get(i).isselect){
-                item_bask.list_one.get(i).setIsselect(false);
+            if(list.get(i).isselect){
+                list.get(i).setIsselect(false);
 
                 notifyDataSetChanged();
 
 
 
+                EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
+                String s = setMore(item_bask);
+                EventBus.getDefault().post(new BasketAdapterMessage(postion));
 
+
+                item_bask.desc=s;
             }else {
-                item_bask.list_one.get(i).setIsselect(true);
+                list.get(i).setIsselect(true);
 
                 notifyDataSetChanged();
 
+                EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
+                String s = setMore(item_bask);
+                EventBus.getDefault().post(new BasketAdapterMessage(postion));
 
+
+                item_bask.desc=s;
             }
 
 
@@ -265,7 +445,7 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
     }
 
     @SuppressLint("NewApi")
-    private void dialog(Context context,final Expand1Item_bask item) {
+    private void dialog(Context context,final Expand1Item_bask item,int postion) {
 
         AlertDialog.Builder alterDiaglog = new AlertDialog.Builder(context);
         alterDiaglog.setView(R.layout.layout_dialog_basket_mixed);//加载进去
@@ -323,14 +503,23 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
 
         two_rv.setAdapter(new QuickAdapter_basket(item.list_three,1));
 
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                String s = setMore(item);
+                EventBus.getDefault().post(new BasketAdapterMessage(postion));
 
+
+                item.desc=s;
+            }
+        });
 
 
     }
 
 
 
-    public  int getnumber(){
+    public static int getnumber(){
 
         list_subMixBean.clear();
         final List<ChooseBaskBean> list_chooe = list_choose;
@@ -340,6 +529,8 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
             List<ItemPoint> onelist = list_chooe.get(i).getOnelist();
             List<ItemPoint> twolist = list_chooe.get(i).getTwolist();
             List<ItemPoint> threelist = list_chooe.get(i).getThreelist();
+            List<ItemPoint> fourlist = list_chooe.get(i).getFourlist();
+            List<ItemPoint> firelist = list_chooe.get(i).getFirelist();
             for (int j = 0; j <onelist.size() ; j++) {
                 if(onelist.get(j).isselect){
                     list_adds.add(onelist.get(j).getGame_odds_id());
@@ -360,6 +551,24 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
             for (int j = 0; j <threelist.size() ; j++) {
                 if(threelist.get(j).isselect){
                     list_adds.add(threelist.get(j).getGame_odds_id());
+
+                }else {
+
+                }
+
+            }
+            for (int j = 0; j <fourlist.size() ; j++) {
+                if(fourlist.get(j).isselect){
+                    list_adds.add(fourlist.get(j).getGame_odds_id());
+
+                }else {
+
+                }
+
+            }
+            for (int j = 0; j <firelist.size() ; j++) {
+                if(firelist.get(j).isselect){
+                    list_adds.add(firelist.get(j).getGame_odds_id());
 
                 }else {
 

@@ -201,10 +201,11 @@ public class ReflectActivity extends BaseActivity implements View.OnClickListene
     private void refilect() {
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("card_id",card_id+"");
-        hashMap.put("cash",money_edittext.getText().toString().trim()+"");
+        hashMap.put("withdraw_type",1+"");
+        hashMap.put("withdraw_price",money_edittext.getText().toString().trim()+"");
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
 
-        okhttpUtlis.PostAsynMap(Url.baseUrl+"pay/muck/withdraw", hashMap, new Callback() {
+        okhttpUtlis.PostAsynMap(Url.baseUrl+"app/account/addWithdraw", hashMap, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

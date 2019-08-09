@@ -84,6 +84,9 @@ public class BetteyAndWinningActivity extends BaseActivity implements View.OnCli
         }else if(flag==3){
             title_text.setText("全部订单");
 
+        }else if(flag==4){
+
+            title_text.setText("已晒单");
         }
         image_back_left.setOnClickListener(this);
         RecyclerView_BetteyAndwinning.setLayoutManager(new LinearLayoutManager(this));
@@ -143,8 +146,9 @@ public class BetteyAndWinningActivity extends BaseActivity implements View.OnCli
                 //这里传0代表的是订单
                 intent1.putExtra("flag",0);
 
-                intent1.putExtra("type",type);
                 intent1.putExtra("order_id",order_id);
+                intent1.putExtra("plan_id",0);
+
                 startActivity(intent1);
 
 
@@ -159,13 +163,26 @@ public class BetteyAndWinningActivity extends BaseActivity implements View.OnCli
 
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("pagination",index+"");
-        hashMap.put("order_type","0");
+        hashMap.put("order_type","");
+        if(flag==4){
+            hashMap.put("bask_status",1+"");
+
+        }else {
+
+        }
         if(flag==3){
 
         }else {
-            hashMap.put("order_status",flag+"");
+            if(flag==4){
+                hashMap.put("order_status","");
+
+            }else {
+                hashMap.put("order_status",flag+"");
+
+            }
 
         }
+
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
 
         okhttpUtlis.PostAsynMap(Url.baseUrl + "app/order/getOrderList", hashMap, new Callback() {

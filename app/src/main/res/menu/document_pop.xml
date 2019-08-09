@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/all_father"
+        android:title="全部">
 
-    <item android:id="@+id/all"
-        android:title="全部"/>
-    <item android:id="@+id/football"
-        android:title="足球"/>
-    <item android:id="@+id/basketball"
-        android:title="篮球"/>
+    </item>
+    <item android:id="@+id/myguan"
+        android:title="我的关注">
+
+    </item>
 </menu>

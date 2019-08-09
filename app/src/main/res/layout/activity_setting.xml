@@ -80,6 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"></View>
             <LinearLayout
+                android:id="@+id/help_center"
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

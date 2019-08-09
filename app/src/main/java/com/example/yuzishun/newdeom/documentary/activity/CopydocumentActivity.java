@@ -98,13 +98,13 @@ public class CopydocumentActivity extends BaseActivity implements View.OnClickLi
                 finish();
                 break;
             case R.id.button_submit:
-                if(Double.parseDouble(text_moneytwo.getText().toString().trim())<100.00){
-
-                    ToastUtil.showToast1(CopydocumentActivity.this,"跟单金额不能小于100");
-                }else {
+//                if(Double.parseDouble(text_moneytwo.getText().toString().trim())<100.00){
+//
+//                    ToastUtil.showToast1(CopydocumentActivity.this,"跟单金额不能小于100");
+//                }else {
                     submit();
 
-                }
+//                }
 
                 break;
 

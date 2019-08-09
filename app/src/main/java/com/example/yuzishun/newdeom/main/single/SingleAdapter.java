@@ -8,11 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.MyApplication;
-import com.example.yuzishun.newdeom.main.adapter.BettingListAdapter;
-import com.example.yuzishun.newdeom.main.adapter.Expand1Item;
 import com.example.yuzishun.newdeom.model.ItemPoint;
-import com.example.yuzishun.newdeom.utils.AdapterMessage;
-import com.example.yuzishun.newdeom.utils.MainMessage;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -21,7 +17,7 @@ import java.util.List;
 /**
  * Created by yuzishun on 2019/5/26.
  */
-class SingleAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
+public class SingleAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
     private int flag_click;
 
     public SingleAdapter(List<ItemPoint> itemPoint, int flag_click) {

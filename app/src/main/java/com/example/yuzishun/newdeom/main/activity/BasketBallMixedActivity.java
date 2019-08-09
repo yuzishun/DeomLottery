@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,6 +23,8 @@ import com.example.yuzishun.newdeom.main.adapter.baskball.BaskballAdapter;
 import com.example.yuzishun.newdeom.main.adapter.baskball.BasketballSureActivity;
 import com.example.yuzishun.newdeom.main.adapter.baskball.Expand1Item_bask;
 import com.example.yuzishun.newdeom.main.adapter.baskball.ExpandItem_bask;
+import com.example.yuzishun.newdeom.main.single.BettingSingleAdapter;
+import com.example.yuzishun.newdeom.main.single.SingleMessage;
 import com.example.yuzishun.newdeom.model.BasketBallBean;
 import com.example.yuzishun.newdeom.model.ChooseBaskBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
@@ -30,8 +33,14 @@ import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
 import com.example.yuzishun.newdeom.utils.MainMessage;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
+import com.example.yuzishun.newdeom.utils.eventbus.BasketAdapterMessage;
+import com.example.yuzishun.newdeom.utils.eventbus.BasketMessage;
+import com.example.yuzishun.newdeom.utils.eventbus.MIxedMessage;
+import com.example.yuzishun.newdeom.utils.eventbus.MixedPostionMessage;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -74,6 +83,7 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
     private List<String> list_two = new ArrayList<>();
     private List<String> list_three = new ArrayList<>();
     private BasketBallBean basketBallBean;
+    private int mixed;
     private ArrayList<MultiItemEntity> multiItemEntities;
     @Override
     public int intiLayout() {
@@ -83,6 +93,8 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
     @Override
     public void initView() {
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
+
         image_back.setOnClickListener(this);
         button_sure.setOnClickListener(this);
         Text_clear.setOnClickListener(this);
@@ -107,9 +119,12 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
 
                     @Override
                     public void run() {
+//                        multiItemEntities.clear();
+                        multiItemEntities.addAll(generateData());
                         generateData();
                         adapter.onResh();
                         adapter.notifyDataSetChanged();
+                        EventBus.getDefault().post(new BasketMessage(adapter.getnumber()+""));
 
                         layout_swipe.setRefreshing(false);
                         Toast.makeText(BasketBallMixedActivity.this, "刷新完成", Toast.LENGTH_SHORT).show();
@@ -136,6 +151,8 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
             adapter.notifyDataSetChanged();
 
         }
+        EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
+
     }
 
     @Override
@@ -196,6 +213,37 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
         }
     }
 
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMainEventBus(BasketMessage msg) {
+        Log.e("YZS", msg.getMessage());
+        mixed = Integer.parseInt(msg.getMessage());
+        if(mixed ==0){
+            Scene_TextView.setText("请选择比赛");
+
+        }else {
+            Scene_TextView.setText("已经选择"+msg.getMessage()+"比赛");
+
+        }
+
+
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMainEventBus(BasketAdapterMessage msg) {
+        Log.e("YZSYZSYZS", msg.getPostion()+"");
+        Content.Text_postion_mixed_basket = msg.getPostion();
+        adapter.notifyItemChanged(msg.getPostion());
+        if(msg.getPostion()==0){
+
+
+            adapter.notifyDataSetChanged();
+        }else {
+
+        }
+
+    }
     private void initlist() {
 
         for (int i = 0; i <string_one.length ; i++) {
@@ -221,6 +269,8 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
+
         handler.sendEmptyMessage(1);
 
 
@@ -279,22 +329,26 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
                                 basketBallBean = JSON.parseObject(result,BasketBallBean.class);
                                 List<ChooseBaskBean> list_choose = new ArrayList<>();
 
-                                for (int i = 0; i <basketBallBean.getData().size() ; i++) {
+                                for (int i = 0; i <basketBallBean.getData().getGame_info().size() ; i++) {
 
-                                    ExpandItem_bask item = new ExpandItem_bask(basketBallBean.getData().get(i).getGame_week()+""+basketBallBean.getData().get(i).getGame_group_time()+"共有"+basketBallBean.getData().get(i).getGame_info().size()+"场比赛可投");
-                                    for (int j = 0; j < basketBallBean.getData().get(i).getGame_info().size(); j++) {
+                                    ExpandItem_bask item = new ExpandItem_bask(basketBallBean.getData().getGame_info().get(i).getGame_week()+""+basketBallBean.getData().getGame_info().get(i).getGame_group_time()+"共有"+basketBallBean.getData().getGame_info().get(i).getGame_info().size()+"场比赛可投");
+                                    for (int j = 0; j < basketBallBean.getData().getGame_info().get(i).getGame_info().size(); j++) {
                                         ChooseBaskBean chooseBaskBean = new ChooseBaskBean();
-                                        List<BasketBallBean.DataBean.GameInfoBean.HomeLetOddsBean> home_let_odds = basketBallBean.getData().get(i).getGame_info().get(j).getHome_let_odds();
+                                        List<BasketBallBean.DataBean.GameInfoBeanX.GameInfoBean.HomeScoreOddsBean> home_let_odds = basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getHome_score_odds();
+                                        List<BasketBallBean.DataBean.GameInfoBeanX.GameInfoBean.LetScoreOddsBean> let_score_odds = basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getLet_score_odds();
+                                        List<BasketBallBean.DataBean.GameInfoBeanX.GameInfoBean.TotalOddsBean> total__odds = basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getTotal_odds();
 
-                                        List<BasketBallBean.DataBean.GameInfoBean.ScoreGuestOddsBean> score_guest_odds = basketBallBean.getData().get(i).getGame_info().get(j).getScore_guest_odds();
-                                        List<BasketBallBean.DataBean.GameInfoBean.ScoreHomeOddsBean> score_home_odds = basketBallBean.getData().get(i).getGame_info().get(j).getScore_home_odds();
+                                        List<BasketBallBean.DataBean.GameInfoBeanX.GameInfoBean.ScoreGuestOddsBean> score_guest_odds = basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getScore_guest_odds();
+                                        List<BasketBallBean.DataBean.GameInfoBeanX.GameInfoBean.ScoreHomeOddsBean> score_home_odds = basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getScore_home_odds();
                                         List<ItemPoint> listone = new ArrayList<>();
                                         List<ItemPoint> listtwo = new ArrayList<>();
                                         List<ItemPoint> listthree = new ArrayList<>();
+                                        List<ItemPoint> listfour = new ArrayList<>();
+                                        List<ItemPoint> listfire = new ArrayList<>();
                                         for (int k = 0; k < home_let_odds.size(); k++) {
                                             ItemPoint itemPoint = new ItemPoint();
                                             itemPoint.setIsselect(false);
-                                            itemPoint.setId(list_one.get(k));
+                                            itemPoint.setId(home_let_odds.get(k).getOdds_code());
 
                                             itemPoint.setGame_odds_id(home_let_odds.get(k).getGame_odds_id());
                                             itemPoint.setOdds(home_let_odds.get(k).getOdds());
@@ -305,7 +359,7 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
                                             ItemPoint itemPoint = new ItemPoint();
                                             itemPoint.setIsselect(false);
 
-                                            itemPoint.setId(list_two.get(k));
+                                            itemPoint.setId(score_guest_odds.get(k).getOdds_code());
                                             itemPoint.setGame_odds_id(score_guest_odds.get(k).getGame_odds_id());
                                             itemPoint.setOdds(score_guest_odds.get(k).getOdds());
                                             listtwo.add(itemPoint);
@@ -315,34 +369,57 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
                                             ItemPoint itemPoint = new ItemPoint();
                                             itemPoint.setIsselect(false);
 
-                                            itemPoint.setId(list_three.get(k));
+                                            itemPoint.setId(score_home_odds.get(k).getOdds_code());
                                             itemPoint.setGame_odds_id(score_home_odds.get(k).getGame_odds_id());
                                             itemPoint.setOdds(score_home_odds.get(k).getOdds());
                                             listthree.add(itemPoint);
 
                                         }
+                                        for (int k = 0; k <let_score_odds.size() ; k++) {
+                                            ItemPoint itemPoint = new ItemPoint();
+                                            itemPoint.setIsselect(false);
+
+                                            itemPoint.setId(let_score_odds.get(k).getOdds_code());
+                                            itemPoint.setGame_odds_id(let_score_odds.get(k).getGame_odds_id());
+                                            itemPoint.setOdds(let_score_odds.get(k).getOdds());
+                                            listfour.add(itemPoint);
+
+                                        }
+                                        for (int k = 0; k <total__odds.size() ; k++) {
+                                            ItemPoint itemPoint = new ItemPoint();
+                                            itemPoint.setIsselect(false);
+
+                                            itemPoint.setId(total__odds.get(k).getOdds_code());
+                                            itemPoint.setGame_odds_id(total__odds.get(k).getGame_odds_id());
+                                            itemPoint.setOdds(total__odds.get(k).getOdds());
+                                            listfire.add(itemPoint);
+
+                                        }
                                         chooseBaskBean.setOnelist(listone);
                                         chooseBaskBean.setTwolist(listtwo);
                                         chooseBaskBean.setThreelist(listthree);
+                                        chooseBaskBean.setFourlist(listfour);
+                                        chooseBaskBean.setDesc("展开更多选项");
 
-                                        chooseBaskBean.setGame_id(basketBallBean.getData().get(i).getGame_info().get(j).getGame_id());
-                                        chooseBaskBean.setHome_team(basketBallBean.getData().get(i).getGame_info().get(j).getGame_home_team_name());
+                                        chooseBaskBean.setFirelist(listfire);
+                                        chooseBaskBean.setGame_id(basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_id());
+                                        chooseBaskBean.setHome_team(basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name());
 
-                                        chooseBaskBean.setGuest_team(basketBallBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name());
-                                        chooseBaskBean.setName(basketBallBean.getData().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+basketBallBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name()
-                                                +"        "+"vs"+"        "+basketBallBean.getData().get(i).getGame_info().get(j).getGame_home_team_name());
+                                        chooseBaskBean.setGuest_team(basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
+                                        chooseBaskBean.setName(basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name()
+                                                +"        "+"vs"+"        "+basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name());
 
                                         list_choose.add(chooseBaskBean);
 
                                         
-                                        Expand1Item_bask expand1Item_bask = new Expand1Item_bask(basketBallBean.getData().get(i).getGame_info().get(j).getGame_name(),
-                                                basketBallBean.getData().get(i).getGame_info().get(j).getGame_home_team_name(),
-                                                basketBallBean.getData().get(i).getGame_info().get(j).getGame_guest_team_name(),
-                                                basketBallBean.getData().get(i).getGame_info().get(j).getGame_total_score(),
-                                                basketBallBean.getData().get(i).getGame_info().get(j).getGame_let_score(),
-                                                basketBallBean.getData().get(i).getGame_info().get(j).getGame_sequence_no(),
-                                                basketBallBean.getData().get(i).getGame_info().get(j).getGame_begin_time(),listone,listtwo,listthree,list_choose,
-                                                basketBallBean.getData().get(i).getGame_info().get(j).getGame_no());
+                                        Expand1Item_bask expand1Item_bask = new Expand1Item_bask(basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_name(),
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name(),
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name(),
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_total_score(),
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score(),
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no(),
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_stop_time(),listone,listtwo,listthree,listfour,listfire,list_choose,
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_no(),"展开更多选项");
 
                                         item.addSubItem(expand1Item_bask);
 

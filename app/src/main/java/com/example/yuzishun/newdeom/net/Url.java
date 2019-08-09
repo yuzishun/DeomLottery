@@ -8,8 +8,11 @@ public class Url {
 
     //本地服务器
 //    public static String baseUrl = "http://192.168.1.9/";
+    //测试服务器
+    public static String baseUrl = "http://192.168.1.26/";
+
 //    正式服务器
-    public static String baseUrl = "http://www.tzppzpp.cn/";
+//    public static String baseUrl = "http://115.231.162.153/";
 
 
 }

@@ -10,7 +10,7 @@ public class PayBean {
     /**
      * code : 10000
      * msg : 请求成功
-     * data : {"pay":"192.168.1.9/plugins/pay/index.php","orderid":"201906021450439781899","amount":"12"}
+     * data : {"order_id":"201908081116082422586","amount":"11","url":"http://192.168.1.26/pay/pay.php"}
      */
 
     private int code;
@@ -43,29 +43,21 @@ public class PayBean {
 
     public static class DataBean {
         /**
-         * pay : 192.168.1.9/plugins/pay/index.php
-         * orderid : 201906021450439781899
-         * amount : 12
+         * order_id : 201908081116082422586
+         * amount : 11
+         * url : http://192.168.1.26/pay/pay.php
          */
 
-        private String pay;
-        private String orderid;
+        private String order_id;
         private String amount;
+        private String url;
 
-        public String getPay() {
-            return pay;
+        public String getOrder_id() {
+            return order_id;
         }
 
-        public void setPay(String pay) {
-            this.pay = pay;
-        }
-
-        public String getOrderid() {
-            return orderid;
-        }
-
-        public void setOrderid(String orderid) {
-            this.orderid = orderid;
+        public void setOrder_id(String order_id) {
+            this.order_id = order_id;
         }
 
         public String getAmount() {
@@ -74,6 +66,14 @@ public class PayBean {
 
         public void setAmount(String amount) {
             this.amount = amount;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
         }
     }
 }

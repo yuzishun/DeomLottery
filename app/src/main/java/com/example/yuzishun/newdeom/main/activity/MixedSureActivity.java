@@ -103,6 +103,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
     private List<SubMixBean> list_subMixBean = new ArrayList<>();
     private List<SureguanBean> list_sureguanBean = new ArrayList<>();
     private List<SubMixListBean> list_stbMixListBean = new ArrayList<>();
+    private   List<ChooseMixedBean> list_chooe;
     private String multiple="1";
     private String theory_bonus;
     @Override
@@ -118,7 +119,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
         button_sure.setOnClickListener(this);
         Text_More.setOnClickListener(this);
         Button_goon.setOnClickListener(this);
-        final List<ChooseMixedBean> list_chooe = Content.list_chooe;
+        list_chooe = Content.list_chooe;
         for (int i = 0; i <list_chooe.size(); i++) {
             list_adds = new ArrayList<>();
             list_id = new ArrayList<>();
@@ -616,37 +617,37 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
 
         switch (list_stbMixListBean.size()){
             case 2:
-                length = 1;
+                length = getnumber(1);
                 break;
             case 3:
-                length = 2;
+                length = getnumber(2);
 
                 break;
             case 4:
-                length = 3;
+                length = getnumber(3);
 
                 break;
             case 5:
-                length = 4;
+                length = getnumber(4);
 
                 break;
             case 6:
-                length = 5;
+                length = getnumber(5);
 
                 break;
             case 7:
-                length = 6;
+                length = getnumber(6);
 
                 break;
             case 8:
-                length = 7;
+                length = getnumber(7);
 
                 break;
         }
 
         if(list_stbMixListBean.size()>8){
 
-            length=7;
+            length=getnumber(list_stbMixListBean.size());
 
         }
 
@@ -669,6 +670,128 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
+
+    private int getnumber(int length){
+        int returenlength=0;
+        int four=0;
+        int three=0;
+        int two=0;
+
+        for (int i = 0; i < list_chooe.size(); i++) {
+            List<ItemPoint> threelist = list_chooe.get(i).getThreelist();
+            List<ItemPoint> fourlist = list_chooe.get(i).getFourlist();
+            List<ItemPoint> twolist = list_chooe.get(i).getTwolist();
+
+                for (int j = 0; j < threelist.size(); j++) {
+                    if (threelist.get(j).isselect) {
+
+                        if (length >= 6) {
+                            if(four==1||two==1){
+                                returenlength = 3;
+
+                            }else {
+                                returenlength = 5;
+
+                            }
+                        } else {
+                            if(four==1||two==1){
+                                if(returenlength>=3){
+                                    returenlength = 3;
+
+                                }else {
+                                    returenlength = length;
+
+                                }
+
+                            }else {
+
+
+                            }
+
+                        }
+                        three = 1;
+
+
+                    } else {
+
+                    }
+
+                }
+
+            for (int j = 0; j < fourlist.size() ; j++) {
+                if(fourlist.get(j).isselect){
+                    if(length>=4){
+                        returenlength=3;
+                    }else {
+                        returenlength=length;
+
+                    }
+                    four=1;
+
+                }else {
+
+                }
+
+            }
+            for (int j = 0; j < twolist.size() ; j++) {
+                if(twolist.get(j).isselect){
+                    if(length>=4){
+                        returenlength=3;
+                    }else {
+                        returenlength=length;
+
+                    }
+                    two=1;
+
+                }else {
+
+                }
+
+            }
+            if(four==1){
+
+
+
+
+            }else {
+                if(two==1){
+
+
+
+                }else {
+
+                    if(three==1){
+
+
+
+                    }else {
+                        if(length>8){
+                            returenlength=7;
+
+                        }else {
+                            returenlength=length;
+
+                        }
+                    }
+                }
+
+            }
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+        return returenlength;
+    }
 
     private void popwindnow() {
         //加载弹出框的布局
@@ -745,7 +868,39 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
         Text_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int ii = 1;
+                for (int i = 0; i < list_sureguanBean.size() ; i++) {
+
+                    if(list_sureguanBean.get(i).isselect){
+                        ii++;
+                    }else {
+
+                    }
+
+                }
+                Text_More.setText(ii-1+"个方式");
                 popupWindow.dismiss();
+                List<String> getbunch = getbunch();
+                Text_money.setText(getbunch.get(0));
+                money.setText(getbunch.get(1));
+
+
+                if(list_sureguanBean.size()==0){
+
+                    ToastUtil.showToast1(MixedSureActivity.this,"请重新选择比赛");
+                }else {
+                    for (int i = 0; i <list_sureguanBean.size() ; i++) {
+                        if(list_sureguanBean.get(i).isselect){
+                            bunch_TextView.setText(list_sureguanBean.get(i).getName());
+
+                        }
+
+                    }
+
+//                    bunch_TextView.setText(list_sureguanBean.get(list_sureguanBean.size()-1).getName());
+
+                }
+
             }
         });
         Text_sure.setOnClickListener(new View.OnClickListener() {

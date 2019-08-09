@@ -17,10 +17,28 @@ public class ChooseBaskBean {
     private List<ItemPoint> twolist;
     private List<ItemPoint> threelist;
     private List<ItemPoint> fourlist;
+    private List<ItemPoint> firelist;
+    private String desc;
     public String home_team;
     public String guest_team;
     public String home_score;
     public String guest_score;
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public List<ItemPoint> getFirelist() {
+        return firelist;
+    }
+
+    public void setFirelist(List<ItemPoint> firelist) {
+        this.firelist = firelist;
+    }
 
     public String getHome_score() {
         return home_score;

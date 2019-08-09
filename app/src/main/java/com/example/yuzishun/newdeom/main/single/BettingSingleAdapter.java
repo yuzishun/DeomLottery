@@ -24,22 +24,15 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.MyApplication;
 import com.example.yuzishun.newdeom.main.activity.AnalysisActivity;
-import com.example.yuzishun.newdeom.main.adapter.Expand1Item;
-import com.example.yuzishun.newdeom.main.adapter.ExpandItem;
-import com.example.yuzishun.newdeom.main.adapter.QuickAdapter_two;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
 import com.example.yuzishun.newdeom.model.SubMixBean;
-import com.example.yuzishun.newdeom.utils.AdapterMessage;
-import com.example.yuzishun.newdeom.utils.MainMessage;
 import com.example.yuzishun.newdeom.utils.eventbus.SinglePostionMessage;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.yuzishun.newdeom.main.adapter.BettingListAdapter.setMore;
 
 /**
  * Created by yuzishun on 2019/6/20.

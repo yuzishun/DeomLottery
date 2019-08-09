@@ -1,48 +1,30 @@
 package com.example.yuzishun.newdeom;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DownloadManager;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.azhon.appupdate.config.UpdateConfiguration;
 import com.azhon.appupdate.listener.OnButtonClickListener;
 import com.azhon.appupdate.listener.OnDownloadListener;
 import com.example.yuzishun.newdeom.base.BaseActivity;
-import com.example.yuzishun.newdeom.base.MyApplication;
 import com.example.yuzishun.newdeom.documentary.activity.DocumentaryFragment;
 import com.example.yuzishun.newdeom.main.activity.MainFragment;
 import com.example.yuzishun.newdeom.model.UpdataBean;
 import com.example.yuzishun.newdeom.my.activity.MyFragment;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
-import com.example.yuzishun.newdeom.score.activity.ScoreFragment;
+import com.example.yuzishun.newdeom.score.ScoreFragment;
+import com.example.yuzishun.newdeom.sunsheet.activity.SunSheetFragment;
+import com.example.yuzishun.newdeom.utils.StatusBarUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,7 +36,8 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * 主页面
+ * 主页面mainactivity
+ * 这里记录一下竞猜足球的刷新，篮球的刷新，两个页面的融合
  *
  */
 public class MainActivity extends BaseActivity implements OnButtonClickListener, OnDownloadListener {
@@ -75,7 +58,6 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
         ButterKnife.bind(this);
         initFragment();
         packagecode = packageCode(this);
-
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -192,12 +174,13 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
     private void initFragment() {
         Fragment mTab_01 = new MainFragment();
         Fragment mTab_02 = new DocumentaryFragment();
-        Fragment mTab_03 = new ScoreFragment();
-        Fragment mTab_04 = new MyFragment();
+        Fragment mTab_03 = new SunSheetFragment();
+        Fragment mTab_04 = new ScoreFragment();
+        Fragment mTab_05 = new MyFragment();
 
 
         //添加到数组
-        mFragments = new Fragment[]{mTab_01,mTab_02,mTab_03,mTab_04};
+        mFragments = new Fragment[]{mTab_01,mTab_02,mTab_03,mTab_04,mTab_05};
 
         //开启事务
 
@@ -243,19 +226,35 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.id_tab_01:
+                StatusBarUtil.setRootViewFitsSystemWindows(this, true);
+                StatusBarUtil.setStatusBarDarkTheme(MainActivity.this, true);
+
                 setIndexSelected(0);
                 break;
             case R.id.id_tab_02:
+                StatusBarUtil.setRootViewFitsSystemWindows(this, true);
+                StatusBarUtil.setStatusBarDarkTheme(MainActivity.this, true);
+
                 setIndexSelected(1);
+
                 break;
             case R.id.id_tab_03:
-                startActivity(new Intent(this,WebViewCustomerActivity.class));
+                setIndexSelected(2);
+
                 break;
             case R.id.id_tab_04:
-                setIndexSelected(2);
+                StatusBarUtil.setRootViewFitsSystemWindows(this, true);
+                StatusBarUtil.setStatusBarDarkTheme(MainActivity.this, true);
+
+                setIndexSelected(3);
+
                 break;
             case R.id.id_tab_05:
-                setIndexSelected(3);
+                setIndexSelected(4);
+                StatusBarUtil.setRootViewFitsSystemWindows(this, false);
+                StatusBarUtil.setStatusBarDarkTheme(MainActivity.this, false);
+//                StatusBarUtil.setTranslucentStatus(this);
+
                 break;
         }
 

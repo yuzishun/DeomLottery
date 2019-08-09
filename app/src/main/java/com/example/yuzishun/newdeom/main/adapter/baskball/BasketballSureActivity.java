@@ -175,45 +175,48 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
             List<ItemPoint> onelist = list_chooe.get(i).getOnelist();
             List<ItemPoint> twolist = list_chooe.get(i).getTwolist();
             List<ItemPoint> threelist = list_chooe.get(i).getThreelist();
+            List<ItemPoint> fourlist = list_chooe.get(i).getFourlist();
+            List<ItemPoint> firelist = list_chooe.get(i).getFirelist();
+
             for (int j = 0; j <onelist.size() ; j++) {
                 if(onelist.get(j).isselect){
                     list_adds.add(onelist.get(j).getGame_odds_id());
                     minlist.add(Double.parseDouble(onelist.get(j).getOdds()));
-
-                    switch (j){
-                        case 0:
-                            list_id.add("胜负:"+onelist.get(j).getId());
-                            one_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
-
-                            break;
-                        case 1:
-                            list_id.add("胜负:"+onelist.get(j).getId());
-                            one_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
-
-                            break;
-                        case 2:
-                            list_id.add("让分:"+onelist.get(j).getId());
-                            two_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
-
-                            break;
-                        case 3:
-                            list_id.add("让分:"+onelist.get(j).getId());
-                            two_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
-
-                            break;
-                        case 4:
-                            list_id.add("大小:"+onelist.get(j).getId());
-                            three_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
-
-                            break;
-                        case 5:
-                            list_id.add("大小:"+onelist.get(j).getId());
-                            three_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
-
-                            break;
-
-
-                    }
+                    list_id.add("胜负:"+onelist.get(j).getId());
+                    one_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+//                    switch (j){
+//                        case 0:
+//
+//
+//                            break;
+//                        case 1:
+//                            list_id.add("胜负:"+onelist.get(j).getId());
+//                            one_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+//
+//                            break;
+//                        case 2:
+//                            list_id.add("让分:"+onelist.get(j).getId());
+//                            two_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+//
+//                            break;
+//                        case 3:
+//                            list_id.add("让分:"+onelist.get(j).getId());
+//                            two_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+//
+//                            break;
+//                        case 4:
+//                            list_id.add("大小:"+onelist.get(j).getId());
+//                            three_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+//
+//                            break;
+//                        case 5:
+//                            list_id.add("大小:"+onelist.get(j).getId());
+//                            three_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+//
+//                            break;
+//
+//
+//                    }
 
 
 
@@ -226,7 +229,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
                 if(twolist.get(j).isselect){
                     list_adds.add(twolist.get(j).getGame_odds_id());
                     list_id.add("客胜:"+twolist.get(j).getId());
-                    four_mix_and_min.add(Double.parseDouble(twolist.get(j).getOdds()));
+                    two_mix_and_min.add(Double.parseDouble(twolist.get(j).getOdds()));
                     minlist.add(Double.parseDouble(twolist.get(j).getOdds()));
 //                    list_chooe_adapter.get(i).setTwolist(twolist);
                 }else {
@@ -238,9 +241,33 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
                 if(threelist.get(j).isselect){
                     list_adds.add(threelist.get(j).getGame_odds_id());
                     list_id.add("主胜:"+threelist.get(j).getId());
-                    fire_mix_and_min.add(Double.parseDouble(threelist.get(j).getOdds()));
+                    two_mix_and_min .add(Double.parseDouble(threelist.get(j).getOdds()));
                     minlist.add(Double.parseDouble(threelist.get(j).getOdds()));
 //                    list_chooe_adapter.get(i).setThreelist(threelist);
+
+                }else {
+
+                }
+
+            }
+            for (int j = 0; j <fourlist.size() ; j++) {
+                if(fourlist.get(j).isselect){
+                    list_adds.add(fourlist.get(j).getGame_odds_id());
+                    list_id.add("让分胜负:"+fourlist.get(j).getId());
+                    four_mix_and_min.add(Double.parseDouble(fourlist.get(j).getOdds()));
+                    minlist.add(Double.parseDouble(fourlist.get(j).getOdds()));
+
+                }else {
+
+                }
+
+            }
+            for (int j = 0; j <firelist.size() ; j++) {
+                if(firelist.get(j).isselect){
+                    list_adds.add(firelist.get(j).getGame_odds_id());
+                    list_id.add("大小:"+firelist.get(j).getId());
+                    fire_mix_and_min.add(Double.parseDouble(firelist.get(j).getOdds()));
+                    minlist.add(Double.parseDouble(firelist.get(j).getOdds()));
 
                 }else {
 
@@ -361,6 +388,8 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
                     List<ItemPoint> onelist = list_chooe.get(i).getOnelist();
                     List<ItemPoint> twolist = list_chooe.get(i).getTwolist();
                     List<ItemPoint> threelist = list_chooe.get(i).getThreelist();
+                    List<ItemPoint> fourlist = list_chooe.get(i).getFourlist();
+                    List<ItemPoint> firelist = list_chooe.get(i).getFirelist();
                     if(list_chooe.get(i).getGame_id()==list_subMixBean.get(position).game_id){
                         for (int j = 0; j <onelist.size() ; j++) {
                             onelist.get(j).setIsselect(false);
@@ -370,6 +399,15 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
                         }
                         for (int j = 0; j <threelist.size() ; j++) {
                             threelist.get(j).setIsselect(false);
+                        }
+                        for (int j = 0; j <fourlist.size() ; j++) {
+                            fourlist.get(j).setIsselect(false);
+
+                        }
+                        for (int j = 0; j <firelist.size() ; j++) {
+                            firelist.get(j).setIsselect(false);
+
+
                         }
 
 
