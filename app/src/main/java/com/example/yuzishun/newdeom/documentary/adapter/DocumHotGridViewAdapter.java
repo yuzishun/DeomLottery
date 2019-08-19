@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.model.HotGodBean;
-import com.example.yuzishun.newdeom.my.adapter.GridView_Recharge_Adapter;
 
 import java.util.ArrayList;
 import java.util.List;

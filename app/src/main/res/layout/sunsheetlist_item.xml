@@ -219,8 +219,9 @@
 
 
             <TextView
-                android:text="120"
                 android:visibility="gone"
+                android:id="@+id/comment_count"
+                android:text="120"
                 android:layout_marginLeft="@dimen/d5"
                 android:textSize="@dimen/f11"
                 android:textColor="@color/gray_Overall_hint"

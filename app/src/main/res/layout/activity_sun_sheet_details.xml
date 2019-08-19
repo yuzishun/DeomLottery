@@ -112,7 +112,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <TextView
-                            android:text="一拳超人"
+                            android:text=""
                             android:id="@+id/username"
                             android:textSize="@dimen/f12"
                             android:textColor="@color/font_black_shen"
@@ -120,7 +120,8 @@
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/usedr_id"
-                            android:text="111111"
+                            android:text=""
+                            android:visibility="gone"
                             android:textSize="@dimen/f12"
                             android:layout_marginTop="@dimen/d5"
                             android:textColor="@color/login_red"
@@ -300,8 +301,37 @@
 
         </View>
 
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="@dimen/d40">
+            <TextView
+                android:text="晒单评论"
+                android:textColor="@color/font_black"
+                android:layout_marginLeft="@dimen/d20"
+                android:textSize="@dimen/f12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <View
+            android:background="@color/empt_color"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp">
+
+        </View>
+        <TextView
+            android:text="暂无评论"
+            android:visibility="gone"
+            android:gravity="center"
+            android:textColor="@color/font_black"
+            android:id="@+id/Comment_text_null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
         <com.example.yuzishun.newdeom.utils.CommentExpandableListView
+            android:visibility="gone"
             android:id="@+id/detail_page_lv_comment"
+            android:layout_marginLeft="@dimen/d20"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@null"
@@ -328,6 +358,7 @@
 
             <LinearLayout
                 android:visibility="gone"
+                android:id="@+id/layout_ping"
                 android:orientation="horizontal"
                 android:layout_weight="1"
                 android:gravity="center"

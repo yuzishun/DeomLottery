@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.documentary.activity.DocumentdetailsActivity;
+import com.example.yuzishun.newdeom.documentary.activity.OkamiActivity;
 import com.example.yuzishun.newdeom.model.HomeBean;
 import com.example.yuzishun.newdeom.my.activity.BetteyAndWinningActivity;
 import com.example.yuzishun.newdeom.my.adapter.BetteyRecyclerViewAdapter;
@@ -72,6 +73,16 @@ public class FameAdapter extends RecyclerView.Adapter<FameAdapter.ViewHolder> {
 
                 context.startActivity(intent);
 
+            }
+        });
+        holder.icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentokmin = new Intent(context, OkamiActivity.class);
+                //change
+                intentokmin.putExtra("user_id",data.get(position).getUser_id());
+
+                context.startActivity(intentokmin);
             }
         });
     }

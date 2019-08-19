@@ -56,7 +56,6 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
     @Override
     public void initView() {
         ButterKnife.bind(this);
-        initFragment();
         packagecode = packageCode(this);
         AsyncTask.execute(new Runnable() {
             @Override
@@ -66,6 +65,7 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
 
             }
         });
+        initFragment();
 
         intentsat = this;
     }

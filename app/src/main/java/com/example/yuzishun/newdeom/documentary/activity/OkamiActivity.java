@@ -13,15 +13,18 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
+import com.example.yuzishun.newdeom.MainActivity;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
 import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.documentary.adapter.OkamiListRecyclerViewAdapter;
+import com.example.yuzishun.newdeom.login.activity.LoginActivity;
 import com.example.yuzishun.newdeom.model.OkamiBean;
 import com.example.yuzishun.newdeom.model.OkamiListBean;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
 import com.example.yuzishun.newdeom.utils.CustomClickListener;
+import com.example.yuzishun.newdeom.utils.SpUtil;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
 
 import org.json.JSONException;
@@ -156,6 +159,13 @@ public class OkamiActivity extends BaseActivity implements View.OnClickListener 
 
                                 OkamiListRecyclerViewAdapter okamiListRecyclerViewAdapter = new OkamiListRecyclerViewAdapter(OkamiActivity.this,data,i);
                                 OkamiRecyclerView.setAdapter(okamiListRecyclerViewAdapter);
+
+                            }else if(code==10004){
+                                MainActivity.intentsat.finish();
+                                startActivity(new Intent(OkamiActivity.this, LoginActivity.class));
+                                SpUtil spUtil = new SpUtil(OkamiActivity.this,"token");
+                                spUtil.putString("token","");
+                                ToastUtil.showToast(OkamiActivity.this,msg+"");
 
                             }else {
                                 ToastUtil.showToast1(OkamiActivity.this,msg);

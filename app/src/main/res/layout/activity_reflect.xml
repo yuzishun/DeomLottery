@@ -164,24 +164,25 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <Button
                 android:id="@+id/button_t"
                 android:layout_marginTop="@dimen/d20"
                 android:background="@drawable/login_select"
                 android:text="预计两小时内到账，确认提现"
-                android:layout_centerHorizontal="true"
+
                 android:enabled="true"
 
                 android:textColor="@color/white"
                 android:textSize="@dimen/f14"
                 android:layout_width="280dp"
                 android:layout_height="40dp" />
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -236,7 +236,8 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
                 if(authentication==1){
                     if(getbanklist.size()==0){
 
-                        ToastUtil.showToast1(getActivity(),"请先去绑定银行卡");
+                        ToastUtil.showToast1(getActivity(),"请先绑定银行卡");
+                        startActivity(new Intent(getContext(),BindingBankActivity.class));
 
                     }else {
                         Content.list_bank = getbanklist;
@@ -260,7 +261,15 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
             case R.id.layout_bankcrad:
 
                 if(authentication==1){
-                    startActivity(new Intent(getContext(), BankCradManagementActivity.class));
+                    if(getbanklist.size()==0){
+
+                        ToastUtil.showToast1(getActivity(),"请先绑定银行卡");
+                        startActivity(new Intent(getContext(),BindingBankActivity.class));
+
+                    }else {
+                        startActivity(new Intent(getContext(), BankCradManagementActivity.class)) ;
+
+                    }
 
 
                 }else {

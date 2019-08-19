@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="login_red">#F94848</color>
+    <color name="Comment_red">#FF9494</color>
     <color name="white">#ffffff</color>
     <color name="gray_Overall_hint">#B1B1B1</color>
     <color name="edittext_hintcolor">#D1D1D1</color>

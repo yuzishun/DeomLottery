@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.Content;
+import com.example.yuzishun.newdeom.documentary.activity.OkamiActivity;
 import com.example.yuzishun.newdeom.documentary.adapter.EveryListRecyclerViewAdapter;
 import com.example.yuzishun.newdeom.model.SunSheetBean;
 import com.example.yuzishun.newdeom.my.custom.MyTableTextView;
@@ -117,6 +118,16 @@ public class SunSheetMainListAdapter extends RecyclerView.Adapter<SunSheetMainLi
         });
 
         Glide.with(context).load(list.get(position).getImg_head()).asBitmap().centerCrop().into(holder.icon);
+        holder.icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentokmin = new Intent(context, OkamiActivity.class);
+                intentokmin.putExtra("user_id",list.get(position).getUser_id()+"");
+
+                context.startActivity(intentokmin);
+
+            }
+        });
         holder.Fabulous_TextView.setText(list.get(position).getLike_count()+"");
         holder.Fabulous.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +145,8 @@ public class SunSheetMainListAdapter extends RecyclerView.Adapter<SunSheetMainLi
             }
         });
 
+        holder.comment_count.setText(list.get(position).getComment_count()+"");
+
 
     }
 
@@ -147,7 +160,7 @@ public class SunSheetMainListAdapter extends RecyclerView.Adapter<SunSheetMainLi
     public class ViewHolder extends RecyclerView.ViewHolder {
         MyTableTextView list_2_1,list_2_2,list_2_3,list_2_4;
         ImageView icon,Fabulous;
-        TextView username,text_money,text_dec,Fabulous_TextView,Text_time;
+        TextView username,text_money,text_dec,Fabulous_TextView,Text_time,comment_count;
         public ViewHolder(View itemView) {
             super(itemView);
             list_2_1 = itemView.findViewById(R.id.list_2_1);
@@ -161,6 +174,7 @@ public class SunSheetMainListAdapter extends RecyclerView.Adapter<SunSheetMainLi
             text_dec = itemView.findViewById(R.id.text_dec);
             Fabulous_TextView = itemView.findViewById(R.id.Fabulous_TextView);
             Text_time = itemView.findViewById(R.id.Text_time);
+            comment_count = itemView.findViewById(R.id.comment_count);
         }
     }
 }

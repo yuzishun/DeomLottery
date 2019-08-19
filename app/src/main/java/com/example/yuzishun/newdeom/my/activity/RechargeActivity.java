@@ -4,19 +4,24 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
+import com.example.yuzishun.newdeom.login.activity.ResignActivity;
 import com.example.yuzishun.newdeom.login.custom.ClearEditText;
 import com.example.yuzishun.newdeom.model.PayBean;
-import com.example.yuzishun.newdeom.my.adapter.GridView_Recharge_Adapter;
+import com.example.yuzishun.newdeom.model.PayTestBean;
+import com.example.yuzishun.newdeom.my.adapter.PayListAdapter;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
@@ -40,22 +45,19 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
     TextView title_text;
     @BindView(R.id.image_back)
     LinearLayout image_back;
-    @BindView(R.id.GridView_recharge_Money)
-    GridView GridView_recharge_Money;
-    @BindView(R.id.layout_lineMoney)
-    LinearLayout layout_lineMoney;
-    @BindView(R.id.layout_pay)
-    LinearLayout layout_pay;
+
+
+
     @BindView(R.id.money_edit)
     ClearEditText money_edit;
     @BindView(R.id.money)
     TextView money;
-    @BindView(R.id.layout_pay_two)
-    LinearLayout layout_pay_two;
+
+
+    @BindView(R.id.Pay_recyclerView)
+    RecyclerView Pay_recyclerView;
     private int pay_type=0;
-    private String[] list1=new String[]{"98元","198元","498元","998元","2998元","4998元",};
-    private List<String> list = new ArrayList<>();
-    private GridView_Recharge_Adapter gridView_recharge_adapter;
+    private PayListAdapter payListAdapter;
     @Override
     public int intiLayout() {
         return R.layout.activity_recharge;
@@ -69,28 +71,69 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
         String balance = intent.getStringExtra("balance");
         money.setText(balance);
         image_back.setOnClickListener(this);
-        layout_lineMoney.setOnClickListener(this);
-        layout_pay.setOnClickListener(this);
-        layout_pay_two.setOnClickListener(this);
+
+        Pay_recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        request();
 
     }
-
-    @Override
-    public void initData() {
-        list.clear();
-        for (int i = 0; i <list1.length ; i++) {
-            list.add(list1[i]);
-
-        }
-        gridView_recharge_adapter =   new GridView_Recharge_Adapter(RechargeActivity.this,list);
-
-        GridView_recharge_Money.setAdapter(gridView_recharge_adapter);
-        GridView_recharge_Money.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    private void request() {
+        OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
+        HashMap<String,String> hashMap = new HashMap<>();
+        okhttpUtlis.PostAsynMap(Url.baseUrl + "app/account/queryAccountPayUrl", hashMap, new Callback() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                gridView_recharge_adapter.choiceState(position);
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String result = response.body().string();
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        PayTestBean payTestBean = JSON.parseObject(result,PayTestBean.class);
+                        if(payTestBean.getCode()==10000){
+
+                            payListAdapter = new PayListAdapter(RechargeActivity.this,payTestBean.getData());
+                            Pay_recyclerView.setAdapter(payListAdapter);
+                            payListAdapter.setOnRecyclerViewListener(new PayListAdapter.OnRecyclerViewListener() {
+                                @Override
+                                public void onItemClick(int pay_e) {
+                                    pay_type=pay_e;
+                                    if(money_edit.getText().toString().equals("")){
+                                        ToastUtil.showToast1(RechargeActivity.this,"金额不能为空");
+
+                                    }else {
+
+                                        if(Double.parseDouble(money_edit.getText().toString().trim())<10||Double.parseDouble(money_edit.getText().toString().trim())>5000){
+
+                                            ToastUtil.showToast1(RechargeActivity.this,"输入金额，不符合规定");
+                                        }else {
+
+                                            pay();
+                                        }
+                                    }
+                                }
+                            });
+                        }else {
+                            Toast.makeText(RechargeActivity.this, payTestBean.getMsg()+"", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+                });
+
             }
         });
+
+
+    }
+    @Override
+    public void initData() {
+
 
 
     }
@@ -101,46 +144,8 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
             case R.id.image_back:
                 finish();
                 break;
-            case R.id.layout_lineMoney:
-//                startActivity(new Intent(this,LineMoneyActivity.class));
-                break;
-            case R.id.layout_pay:
-                pay_type=0;
-                if(money_edit.getText().toString().equals("")){
-                    ToastUtil.showToast1(this,"金额不能为空");
-
-                }else {
-
-                if(Double.parseDouble(money_edit.getText().toString().trim())<10||Double.parseDouble(money_edit.getText().toString().trim())>5000){
-
-                    ToastUtil.showToast1(this,"输入金额，不符合规定");
-                }else {
-
-                pay();
-                }
-                }
 
 
-                break;
-            case R.id.layout_pay_two:
-                pay_type=1;
-
-                if(money_edit.getText().toString().equals("")){
-                    ToastUtil.showToast1(this,"金额不能为空");
-
-                }else {
-
-                    if(Double.parseDouble(money_edit.getText().toString().trim())<10||Double.parseDouble(money_edit.getText().toString().trim())>5000){
-
-                        ToastUtil.showToast1(this,"输入金额，不符合规定");
-                    }else {
-
-                        pay();
-                    }
-                }
-
-
-                break;
         }
     }
 

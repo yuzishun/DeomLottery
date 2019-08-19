@@ -60,7 +60,8 @@ public class SendDocumentActivity extends BaseActivity implements View.OnClickLi
     private  GridView_sendorder_Adapter gridView_sendorder_adapter;
     private String[] list1=new String[]{"1%","2%","3%","4%","5%","6%","7%","8%","9%","10%"};
     private List<String> list = new ArrayList<>();
-    private int plan_status=0,order_id,multiple_price,multiple;
+    private int plan_status=0,order_id,multiple;
+    private String multiple_price;
     @Override
     public int intiLayout() {
         return R.layout.activity_send_document;
@@ -73,7 +74,7 @@ public class SendDocumentActivity extends BaseActivity implements View.OnClickLi
         Intent intent = getIntent();
 
         order_id = intent.getIntExtra("order_id",0);
-        multiple_price = intent.getIntExtra("multiple_price",0);
+        multiple_price = intent.getStringExtra("multiple_price");
 
         multiple = intent.getIntExtra("multiple",0);
 

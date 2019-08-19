@@ -18,6 +18,7 @@ import com.example.yuzishun.newdeom.login.custom.CheckEditForButton;
 import com.example.yuzishun.newdeom.login.custom.ClearEditText;
 import com.example.yuzishun.newdeom.login.custom.EditTextChangeListener;
 import com.example.yuzishun.newdeom.model.CodeBean;
+import com.example.yuzishun.newdeom.model.PayTestBean;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
 import com.example.yuzishun.newdeom.net.Url;
 import com.example.yuzishun.newdeom.utils.RegexUtils;
@@ -72,6 +73,8 @@ public class ResignActivity extends BaseActivity implements View.OnClickListener
         title_text.setText(R.string.UserResign);
         Hou_Code.setOnClickListener(this);
     }
+
+
 
     @Override
     public void initData() {

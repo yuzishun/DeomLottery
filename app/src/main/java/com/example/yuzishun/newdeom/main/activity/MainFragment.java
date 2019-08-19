@@ -85,7 +85,7 @@ import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
- * 首页面的fragment  218章节咪咕350
+ * 首页面的fragment  227章节咪咕350
  */
 public class MainFragment extends LazyFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -160,22 +160,22 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                             if (code == 10000) {
 
                                 HomeSingle singleBean = JSON.parseObject(result, HomeSingle.class);
-                                if(singleBean.getData().getSingle_odds().size()==0){
+                                if(singleBean.getData().size()==0){
                                     dan_layout.setVisibility(View.GONE);
                                 }else {
                                     dan_layout.setVisibility(View.VISIBLE);
 
-                                    Text_football_data.setText(singleBean.getData().getGame_stop_time());
-                                    left_team.setText(singleBean.getData().getGame_home_team_name());
-                                    right_team.setText(singleBean.getData().getGame_guest_team_name());
-                                    Button_victory.setText(singleBean.getData().getSingle_odds().get(0).getOdds_code()+
-                                            singleBean.getData().getSingle_odds().get(0).getOdds());
-                                    Button_ping.setText(singleBean.getData().getSingle_odds().get(1).getOdds_code()+
-                                            singleBean.getData().getSingle_odds().get(1).getOdds());
-                                    Button_loser.setText(singleBean.getData().getSingle_odds().get(2).getOdds_code()+
-                                            singleBean.getData().getSingle_odds().get(2).getOdds());
-                                    game_id = singleBean.getData().getGame_id();
-                                    single_odds = singleBean.getData().getSingle_odds();
+                                    Text_football_data.setText(singleBean.getData().get(0).getGame_stop_time());
+                                    left_team.setText(singleBean.getData().get(0).getGame_home_team_name());
+                                    right_team.setText(singleBean.getData().get(0).getGame_guest_team_name());
+                                    Button_victory.setText(singleBean.getData().get(0).getSingle_odds().get(0).getOdds_code()+
+                                            singleBean.getData().get(0).getSingle_odds().get(0).getOdds());
+                                    Button_ping.setText(singleBean.getData().get(0).getSingle_odds().get(1).getOdds_code()+
+                                            singleBean.getData().get(0).getSingle_odds().get(1).getOdds());
+                                    Button_loser.setText(singleBean.getData().get(0).getSingle_odds().get(2).getOdds_code()+
+                                            singleBean.getData().get(0).getSingle_odds().get(2).getOdds());
+                                    game_id = singleBean.getData().get(0).getGame_id();
+                                    single_odds = singleBean.getData().get(0).getSingle_odds();
                                     double poer = Double.parseDouble(single_odds.get(0).getOdds()) * 50;
                                     NumberFormat nf = new DecimalFormat("#.##");
                                     String format = nf.format(poer);

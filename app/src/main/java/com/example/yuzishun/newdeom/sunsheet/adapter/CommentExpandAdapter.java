@@ -1,0 +1,310 @@
+package com.example.yuzishun.newdeom.sunsheet.adapter;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.yuzishun.newdeom.R;
+import com.example.yuzishun.newdeom.model.CommentsListBean;
+import com.example.yuzishun.newdeom.net.OkhttpUtlis;
+import com.example.yuzishun.newdeom.net.Url;
+import com.example.yuzishun.newdeom.sunsheet.CommentDetailBean;
+import com.example.yuzishun.newdeom.sunsheet.ReplyDetailBean;
+import com.example.yuzishun.newdeom.utils.StringDesignUtil;
+import com.example.yuzishun.newdeom.utils.ToastUtil;
+
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
+
+/**
+ * Author: Moos
+ * E-mail: moosphon@gmail.com
+ * Date:  18/4/20.
+ * Desc: 评论与回复列表的适配器
+ */
+
+public class CommentExpandAdapter extends BaseExpandableListAdapter {
+    private static final String TAG = "CommentExpandAdapter";
+    private List<CommentsListBean.DataBean> commentBeanList;
+    private List<ReplyDetailBean> replyBeanList;
+    private Context context;
+    private int pageIndex = 1;
+
+    public CommentExpandAdapter(Context context, List<CommentsListBean.DataBean> commentBeanList) {
+        this.context = context;
+        this.commentBeanList = commentBeanList;
+    }
+
+    // 采用接口回调的方式实现RecyclerView的ItemClick
+    public OnRecyclerViewListener mOnRecyclerViewListener;
+
+
+    // 接口回调第一步: 定义接口和接口中的方法
+    public interface OnRecyclerViewListener {
+
+        void onItemClick(String bask_id);
+    }
+    // 接口回调第二步: 初始化接口的引用
+    public void setOnRecyclerViewListener(OnRecyclerViewListener l) {
+        this.mOnRecyclerViewListener = l;
+    }
+
+
+    @Override
+    public int getGroupCount() {
+        return commentBeanList.size();
+    }
+
+    @Override
+    public int getChildrenCount(int i) {
+        if(commentBeanList.get(i).getChildren() == null){
+            return 0;
+        }else {
+            return commentBeanList.get(i).getChildren().size()>0 ? commentBeanList.get(i).getChildren().size():0;
+        }
+
+    }
+
+    @Override
+    public Object getGroup(int i) {
+        return commentBeanList.get(i);
+    }
+
+    @Override
+    public Object getChild(int i, int i1) {
+        return commentBeanList.get(i).getChildren().get(i1);
+    }
+
+    @Override
+    public long getGroupId(int groupPosition) {
+        return groupPosition;
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+        return getCombinedChildId(groupPosition, childPosition);
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return true;
+    }
+    boolean isLike = false;
+
+    @Override
+    public View getGroupView(final int groupPosition, boolean isExpand, View convertView, ViewGroup viewGroup) {
+        final GroupHolder groupHolder;
+
+        if(convertView == null){
+            convertView = LayoutInflater.from(context).inflate(R.layout.comment_item_layout, viewGroup, false);
+            groupHolder = new GroupHolder(convertView);
+            convertView.setTag(groupHolder);
+        }else {
+            groupHolder = (GroupHolder) convertView.getTag();
+        }
+        Glide.with(context).load(commentBeanList.get(groupPosition).getImg_head()).asBitmap()
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .error(R.mipmap.ic_launcher)
+                .centerCrop()
+                .into(groupHolder.logo);
+        groupHolder.tv_name.setText(commentBeanList.get(groupPosition).getUname());
+
+        groupHolder.tv_time.setText(commentBeanList.get(groupPosition).getCreate_time());
+        groupHolder.tv_content.setText(commentBeanList.get(groupPosition).getComment_content());
+        if(commentBeanList.get(groupPosition).getComment_is_like()==0){
+
+            groupHolder.iv_like.setImageDrawable(context.getResources().getDrawable(R.mipmap.dianzan));
+
+
+        }else {
+            groupHolder.iv_like.setImageDrawable(context.getResources().getDrawable(R.mipmap.dianzan_red));
+        }
+        groupHolder.dianzan_number.setText(commentBeanList.get(groupPosition).getLike_count()+"");
+
+        groupHolder.iv_like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mOnRecyclerViewListener != null) {
+                    mOnRecyclerViewListener.onItemClick(commentBeanList.get(groupPosition).getComment_id()+"");
+                }
+            }
+        });
+        if(commentBeanList.get(groupPosition).getChildren().size()==0){
+            groupHolder.ping_number.setText("0");
+
+        }else {
+            groupHolder.ping_number.setText(commentBeanList.get(groupPosition).getChildren().size()+"");
+
+        }
+//        groupHolder.iv_like.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(isLike){
+//                    isLike = false;
+//                    groupHolder.iv_like.setColorFilter(Color.parseColor("#aaaaaa"));
+//                }else {
+//                    isLike = true;
+//                    groupHolder.iv_like.setColorFilter(Color.parseColor("#FF5C5C"));
+//                }
+//            }
+//        });
+
+        return convertView;
+    }
+
+    @Override
+    public View getChildView(final int groupPosition, int childPosition, boolean b, View convertView, ViewGroup viewGroup) {
+        final ChildHolder childHolder;
+        if(convertView == null){
+            convertView = LayoutInflater.from(context).inflate(R.layout.comment_reply_item_layout,viewGroup, false);
+            childHolder = new ChildHolder(convertView);
+            convertView.setTag(childHolder);
+        }
+        else {
+            childHolder = (ChildHolder) convertView.getTag();
+        }
+
+        String replyUser = commentBeanList.get(groupPosition).getChildren().get(childPosition).getBy_reply();
+        String username = commentBeanList.get(groupPosition).getChildren().get(childPosition).getUname();
+        String name="";
+        ArrayList<String> list = new ArrayList<>();
+        if(!TextUtils.isEmpty(replyUser)){
+            childHolder.tv_name.setText(username+"回复"+replyUser + ":");
+            list.add(replyUser);
+            if(!TextUtils.isEmpty(username)){
+                list.add(username);
+                name=username+"回复"+replyUser +":"+ commentBeanList.get(groupPosition).getChildren().get(childPosition).getComment_content();
+
+            }
+        }else {
+            if(!TextUtils.isEmpty(username)){
+                list.add(username);
+                name=username+":"+commentBeanList.get(groupPosition).getChildren().get(childPosition).getComment_content();
+
+
+            }else {
+                childHolder.tv_name.setText("无名"+":");
+
+            }
+        }
+
+
+        childHolder.tv_content.setText(commentBeanList.get(groupPosition).getChildren().get(childPosition).getComment_content());
+        childHolder.tv_content.setText(StringDesignUtil.getSpannableStringBuilder(name,list, context.getResources().getColor(R.color.Comment_red)));
+
+        return convertView;
+    }
+
+    @Override
+    public boolean isChildSelectable(int i, int i1) {
+        return true;
+    }
+
+    private class GroupHolder{
+        private ImageView logo;
+        private TextView tv_name, tv_content, tv_time,dianzan_number,ping_number;
+        private ImageView iv_like;
+        public GroupHolder(View view) {
+            logo = (ImageView) view.findViewById(R.id.comment_item_logo);
+            tv_content = (TextView) view.findViewById(R.id.comment_item_content);
+            tv_name = (TextView) view.findViewById(R.id.comment_item_userName);
+            tv_time = (TextView) view.findViewById(R.id.comment_item_time);
+            iv_like = (ImageView) view.findViewById(R.id.comment_item_like);
+            dianzan_number = (TextView) view.findViewById(R.id.dianzan_number);
+            ping_number = view.findViewById(R.id.ping_number);
+        }
+    }
+
+    private class ChildHolder{
+        private TextView tv_name, tv_content;
+        public ChildHolder(View view) {
+            tv_name = (TextView) view.findViewById(R.id.reply_item_user);
+            tv_content = (TextView) view.findViewById(R.id.reply_item_content);
+        }
+    }
+
+
+    /**
+     * by moos on 2018/04/20
+     * func:评论成功后插入一条数据
+     * @param commentDetailBean 新的评论数据
+     */
+    public void addTheCommentData(CommentsListBean.DataBean commentDetailBean){
+        if(commentDetailBean!=null){
+
+            commentBeanList.add(commentDetailBean);
+            notifyDataSetChanged();
+        }else {
+            throw new IllegalArgumentException("评论数据为空!");
+        }
+
+    }
+
+
+
+    /**
+     * by moos on 2018/04/20
+     * func:回复成功后插入一条数据
+     * @param replyDetailBean 新的回复数据
+     */
+    public void addTheReplyData(CommentsListBean.DataBean.ChildrenBean replyDetailBean, int groupPosition){
+        if(replyDetailBean!=null){
+            Log.e(TAG, "addTheReplyData: >>>>该刷新回复列表了:"+replyDetailBean.toString() );
+            if(commentBeanList.get(groupPosition).getChildren() != null ){
+                commentBeanList.get(groupPosition).getChildren().add(replyDetailBean);
+            }else {
+                List<CommentsListBean.DataBean.ChildrenBean> replyList = new ArrayList<>();
+                replyList.add(replyDetailBean);
+                commentBeanList.get(groupPosition).setChildren(replyList);
+            }
+            notifyDataSetChanged();
+        }else {
+            throw new IllegalArgumentException("回复数据为空!");
+        }
+
+    }
+    public void refresh(){
+
+        notifyDataSetChanged();
+    }
+
+    /**
+     * by moos on 2018/04/20
+     * func:添加和展示所有回复
+     * @param replyBeanList 所有回复数据
+     * @param groupPosition 当前的评论
+     */
+    private void addReplyList(List<CommentsListBean.DataBean.ChildrenBean> replyBeanList, int groupPosition){
+        if(commentBeanList.get(groupPosition).getChildren() != null ){
+            commentBeanList.get(groupPosition).getChildren().clear();
+            commentBeanList.get(groupPosition).getChildren().addAll(replyBeanList);
+        }else {
+
+            commentBeanList.get(groupPosition).setChildren(replyBeanList);
+        }
+
+        notifyDataSetChanged();
+    }
+
+}

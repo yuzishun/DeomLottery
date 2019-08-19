@@ -321,29 +321,31 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 //                                        订单状态【0：待出票，1：待开奖，2：中奖，3：未中奖，-1：申请退款，-2：已取消】
                                     }
 
-                                layout_text_sunsheet.setVisibility(View.GONE);
-                                        //判断评论是否可以出现，现在先不出现
-//                                    if(footBallOrderBean.getData().getOrder_status()>1){
-//                                        if(footBallOrderBean.getData().getBask_permission()==0){
-//
-//                                            if(footBallOrderBean.getData().getBask_status()==0){
-//                                                layout_text_sunsheet.setVisibility(View.GONE);
-//
-//                                            }else {
-//                                                layout_text_sunsheet.setText("查看评论");
+                                    if(footBallOrderBean.getData().getOrder_status()>1){
+                                        if(footBallOrderBean.getData().getBask_permission()==0){
+
+                                            if(footBallOrderBean.getData().getBask_status()==0){
+                                                layout_text_sunsheet.setVisibility(View.GONE);
+
+                                            }else {
+                                                layout_text_sunsheet.setText("查看评论");
+                                                //先注释
 //                                                layout_text_sunsheet.setVisibility(View.VISIBLE);
+                                                layout_text_sunsheet.setVisibility(View.GONE);
+
 //
-//                                            }
-//                                        }else {
-//                                            layout_text_sunsheet.setVisibility(View.VISIBLE);
-//
-//                                        }
-//
-//
-//                                    }else {
-//                                        layout_text_sunsheet.setVisibility(View.GONE);
-//
-//                                    }
+
+                                            }
+                                        }else {
+                                            layout_text_sunsheet.setVisibility(View.VISIBLE);
+
+                                        }
+
+
+                                    }else {
+                                        layout_text_sunsheet.setVisibility(View.GONE);
+
+                                    }
                                     switch (footBallOrderBean.getData().getOrder_type()){
                                         case 0:
                                             layout_dec.setVisibility(View.VISIBLE);

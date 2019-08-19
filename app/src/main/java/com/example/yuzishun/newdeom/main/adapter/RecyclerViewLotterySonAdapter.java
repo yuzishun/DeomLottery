@@ -42,8 +42,8 @@ public class RecyclerViewLotterySonAdapter extends RecyclerView.Adapter<Recycler
 
         holder.game_name.setText(list.get(position).getGame_name());
         holder.no_number.setText(list.get(position).getGame_sequence_no());
-        holder.left_name.setText(list.get(position).getGame_guest_team_name());
-        holder.right_name.setText(list.get(position).getGame_home_team_name());
+        holder.left_name.setText(list.get(position).getGame_home_team_name());
+        holder.right_name.setText(list.get(position).getGame_guest_team_name());
         holder.score.setText(list.get(position).getGame_last_score());
 
         holder.list_2_1.setText(list.get(position).getWin_odds().get(0).getOdds_code());

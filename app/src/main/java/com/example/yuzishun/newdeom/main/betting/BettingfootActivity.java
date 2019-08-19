@@ -959,7 +959,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
         }
 
         GridView GridView_betting_Money  = contentView.findViewById(R.id.GridView_betting_Money);
-        GridView_Adapter gridView_adapter = new GridView_Adapter(BettingfootActivity.this,list_pop);
+         GridView_Adapter gridView_adapter = new GridView_Adapter(BettingfootActivity.this,list_pop);
         GridView_betting_Money.setAdapter(gridView_adapter);
         GridView_betting_Money.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -1209,7 +1209,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
         final ArrayList<MultiItemEntity> res = new ArrayList<>();
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getSingleFootballList?single="+single, new Callback() {
+        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getSingleBallList?single="+single, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

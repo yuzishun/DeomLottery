@@ -704,6 +704,13 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
                                 }
 
                             }else {
+                                if(returenlength>=5){
+                                    returenlength = 5;
+
+                                }else {
+                                    returenlength = length;
+
+                                }
 
 
                             }
