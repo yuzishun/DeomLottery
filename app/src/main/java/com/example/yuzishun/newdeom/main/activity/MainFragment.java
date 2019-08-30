@@ -513,7 +513,6 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                 break;
             case R.id.layout_football:
                 //重写,先注释
-//                Intent intent = new Intent(getContext(),BettingActivity.class);
                 Intent intent = new Intent(getContext(),BettingfootActivity.class);
 
                 intent.putExtra("flag",1);

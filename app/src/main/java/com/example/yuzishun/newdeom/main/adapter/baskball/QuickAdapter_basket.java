@@ -29,12 +29,16 @@ class QuickAdapter_basket extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
 
     @Override
     protected void convert(final BaseViewHolder helper, final ItemPoint item) {
-        helper.setText(R.id.item,item.id).setText(R.id.item_right,item.getOdds());
 
         final TextView item_name = helper.getView(R.id.item);
         final TextView item_right_name = helper.getView(R.id.item_right);
         final LinearLayout layout_relat = helper.getView(R.id.layout_relat);
+        if(item.getOdds().equals("")){
+            helper.setText(R.id.item,"暂未开售").setText(R.id.item_right,item.getOdds());
 
+        }else {
+            helper.setText(R.id.item,item.id).setText(R.id.item_right,item.getOdds());
+        }
 
         if(flag_click==1){
 
@@ -63,24 +67,26 @@ class QuickAdapter_basket extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
             @Override
             public void onClick(View v) {
                 if(item.isIsclick()){
-
-                    item.isonclick=1;
-                    if(item.isIsselect()){
-                        notifyDataSetChanged();
-
-                        item.setIsselect(false);
-                        EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
-
-
+                    if(item.getOdds().equals("")) {
+                        layout_relat.setOnClickListener(null);
 
                     }else {
-                        item.setIsselect(true);
+                        item.isonclick = 1;
+                        if (item.isIsselect()) {
+                            notifyDataSetChanged();
 
-                        notifyDataSetChanged();
-                        EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
+                            item.setIsselect(false);
+                            EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber() + ""));
 
 
+                        } else {
+                            item.setIsselect(true);
 
+                            notifyDataSetChanged();
+                            EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber() + ""));
+
+
+                        }
                     }
                 }else {
 

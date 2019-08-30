@@ -202,6 +202,7 @@ public class DocumentaryFragment extends LazyFragment implements  View.OnClickLi
 
                         initrecy(0,type);
 //
+                        setrequest();
                         Document_Refresh.finishRefreshing();
 
                         Toast.makeText(getContext(), "刷新完成", Toast.LENGTH_SHORT).show();

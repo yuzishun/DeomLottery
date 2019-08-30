@@ -29,7 +29,7 @@
 
 
             <TextView
-                android:text="我们仍然未知"
+                android:text=""
                 android:id="@+id/username"
                 android:textColor="@color/font_black_shen"
                 android:textSize="@dimen/f13"

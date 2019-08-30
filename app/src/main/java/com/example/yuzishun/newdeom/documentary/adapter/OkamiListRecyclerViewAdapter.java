@@ -110,9 +110,12 @@ public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiList
         }else {
             holder.text_sunsheet.setVisibility(View.VISIBLE);
             holder.Button_Okami_gen.setVisibility(View.GONE);
-            //先注释
+
+            //先隐藏
 //            holder.Button_Okami_ping.setVisibility(View.VISIBLE);
+
             holder.Button_Okami_ping.setVisibility(View.GONE);
+
 
 
             if(flag==0){

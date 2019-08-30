@@ -329,9 +329,10 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
                                             }else {
                                                 layout_text_sunsheet.setText("查看评论");
-                                                //先注释
-//                                                layout_text_sunsheet.setVisibility(View.VISIBLE);
+                                                //先隐藏
                                                 layout_text_sunsheet.setVisibility(View.GONE);
+
+//                                                layout_text_sunsheet.setVisibility(View.VISIBLE);
 
 //
 

@@ -200,9 +200,17 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
                     ToastUtil.showToast1(this,"至少选择一场");
 
                 }else {
-                    Intent intent = new Intent(this,BasketballSureActivity.class);
+                    if(adapter.getnumber()>15) {
+
+                        ToastUtil.showToast1(this,"最多选15场");
+
+                    }else {
+
+                        Intent intent = new Intent(this,BasketballSureActivity.class);
                     Content.list_chooe_bask = adapter.getList();
                     startActivity(intent);
+                    }
+
                 }
 
 

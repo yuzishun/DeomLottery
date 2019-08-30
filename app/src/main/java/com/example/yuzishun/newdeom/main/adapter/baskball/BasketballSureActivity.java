@@ -107,6 +107,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
     private List<SubMixBean> list_subMixBean = new ArrayList<>();
     private List<SureguanBean> list_sureguanBean = new ArrayList<>();
     private List<SubMixListBean> list_stbMixListBean = new ArrayList<>();
+    private  List<ChooseBaskBean> list_chooe;
     private String multiple="1";
     private String theory_bonus;
 
@@ -161,7 +162,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
 
     //初始化
     public void setlist(){
-        final List<ChooseBaskBean> list_chooe = Content.list_chooe_bask;
+        list_chooe = Content.list_chooe_bask;
         for (int i = 0; i <list_chooe.size(); i++) {
             list_adds = new ArrayList<>();
             list_id = new ArrayList<>();
@@ -228,7 +229,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
             for (int j = 0; j <twolist.size() ; j++) {
                 if(twolist.get(j).isselect){
                     list_adds.add(twolist.get(j).getGame_odds_id());
-                    list_id.add("客胜:"+twolist.get(j).getId());
+                    list_id.add("胜分差:"+twolist.get(j).getId());
                     two_mix_and_min.add(Double.parseDouble(twolist.get(j).getOdds()));
                     minlist.add(Double.parseDouble(twolist.get(j).getOdds()));
 //                    list_chooe_adapter.get(i).setTwolist(twolist);
@@ -240,7 +241,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
             for (int j = 0; j <threelist.size() ; j++) {
                 if(threelist.get(j).isselect){
                     list_adds.add(threelist.get(j).getGame_odds_id());
-                    list_id.add("主胜:"+threelist.get(j).getId());
+                    list_id.add("胜分差:"+threelist.get(j).getId());
                     two_mix_and_min .add(Double.parseDouble(threelist.get(j).getOdds()));
                     minlist.add(Double.parseDouble(threelist.get(j).getOdds()));
 //                    list_chooe_adapter.get(i).setThreelist(threelist);
@@ -265,7 +266,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
             for (int j = 0; j <firelist.size() ; j++) {
                 if(firelist.get(j).isselect){
                     list_adds.add(firelist.get(j).getGame_odds_id());
-                    list_id.add("大小:"+firelist.get(j).getId());
+                    list_id.add("大小分:"+firelist.get(j).getId());
                     fire_mix_and_min.add(Double.parseDouble(firelist.get(j).getOdds()));
                     minlist.add(Double.parseDouble(firelist.get(j).getOdds()));
 
@@ -476,41 +477,41 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
 
         switch (list_stbMixListBean.size()){
             case 1:
-                length = 1;
+                length = getnumber(1);
 
                 break;
             case 2:
-                length = 2;
+                length = getnumber(2);
                 break;
             case 3:
-                length = 3;
+                length = getnumber(3);
 
                 break;
             case 4:
-                length = 4;
+                length = getnumber(4);
 
                 break;
             case 5:
-                length = 5;
+                length = getnumber(5);
 
                 break;
             case 6:
-                length = 6;
+                length = getnumber(6);
 
                 break;
             case 7:
-                length = 7;
+                length = getnumber(7);
 
                 break;
             case 8:
-                length = 8;
+                length = getnumber(8);
 
                 break;
         }
 
         if(list_stbMixListBean.size()>8){
 
-            length=8;
+            length=getnumber(8);
 
         }
 
@@ -534,8 +535,78 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
     }
 
 
+    public int getnumber(int length) {
+        int returnlenth = 0;
 
-    public Double getpour(List<Double> list,int number){
+        int flag_two=0;
+        int flag_three=0;
+
+
+        if(length>4){
+
+            for (int i = 0; i < list_chooe.size(); i++) {
+
+                List<ItemPoint> twolist = list_chooe.get(i).getTwolist();
+                List<ItemPoint> threelist = list_chooe.get(i).getThreelist();
+
+                for (int j = 0; j < twolist.size(); j++) {
+
+                    if(twolist.get(j).isselect){
+
+
+                        returnlenth=4;
+                        flag_two=1;
+                    }else {
+
+
+                    }
+
+
+                }
+                for (int j = 0; j < threelist.size(); j++) {
+
+                    if(threelist.get(j).isselect){
+
+
+                        returnlenth=4;
+                        flag_three=1;
+                    }else {
+
+
+                    }
+
+
+                }
+
+            }
+
+        }else {
+
+            returnlenth = length;
+
+        }
+        if(flag_two==1){
+
+
+        }else {
+            if(flag_three==1){
+
+            }else {
+                returnlenth = length;
+
+            }
+
+        }
+
+
+
+
+        return returnlenth;
+    }
+
+
+
+        public Double getpour(List<Double> list,int number){
         Double pour= Double.valueOf(0);
         if(list.size()==number){
             //倍数
@@ -581,7 +652,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
             s="1";
 
         }
-        bunch =  format+"注  共"+Integer.parseInt(format)*Integer.parseInt(s)*2+"元";
+        bunch =  format+"注  共"+Double.parseDouble(format)*Integer.parseInt(s)*2+"元";
 
         Log.e("YZS",bunch+"");
 

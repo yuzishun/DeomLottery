@@ -433,6 +433,7 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
             button.setEnabled(false);
 
         }else {
+            button.setEnabled(true);
 
             button.setText(id+odds);
 

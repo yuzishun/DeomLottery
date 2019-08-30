@@ -46,7 +46,7 @@ public class  LotterywangqiActivity extends BaseActivity implements View.OnClick
     private ArrayList<PeriodBean_Bask.DataBean> list2 = new ArrayList<>();
 
     @Override
-    public int intiLayout() {
+    public int intiLayout()  {
         return R.layout.activity_lotterywangqi;
     }
 
