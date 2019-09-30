@@ -669,7 +669,7 @@
                android:layout_height="wrap_content">
 
                <ImageView
-                   android:background="@mipmap/openjiang"
+                   android:background="@mipmap/huodong"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content" />
 

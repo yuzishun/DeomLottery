@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yuzishun.newdeom.main.betting.BonusBettingActivity">
+    <include layout="@layout/title_text"></include>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/empt_color"
+            android:layout_marginBottom="@dimen/d50"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="投注金额"
+                        android:textColor="@color/font_black"
+                        android:textSize="@dimen/f12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <com.example.yuzishun.newdeom.documentary.custom.AmountView
+                        android:id="@+id/amountView"
+                        android:layout_marginLeft="@dimen/d10"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </com.example.yuzishun.newdeom.documentary.custom.AmountView>
+                    <TextView
+                        android:text="元"
+                        android:layout_marginLeft="@dimen/d10"
+                        android:textColor="@color/font_black"
+                        android:textSize="@dimen/f12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <View
+                    android:background="@color/empt_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"></View>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:gravity="center"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <Button
+                            android:text="平均优化"
+                            android:textSize="@dimen/f11"
+                            android:textColor="@color/white"
+                            android:layout_marginBottom="@dimen/d5"
+                            android:layout_marginTop="@dimen/d5"
+                            android:background="@drawable/main_victory_shape_red"
+                            android:layout_width="@dimen/d100"
+                            android:layout_height="@dimen/d30" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:gravity="center"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <Button
+                            android:text="博热优化"
+                            android:textSize="@dimen/f11"
+                            android:textColor="@color/login_red"
+                            android:layout_marginBottom="@dimen/d5"
+                            android:layout_marginTop="@dimen/d5"
+                            android:background="@drawable/main_victory_shape"
+                            android:layout_width="@dimen/d100"
+                            android:layout_height="@dimen/d30" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <Button
+                            android:text="博冷优化"
+                            android:textSize="@dimen/f11"
+                            android:textColor="@color/login_red"
+                            android:layout_marginBottom="@dimen/d5"
+                            android:layout_marginTop="@dimen/d5"
+                            android:background="@drawable/main_victory_shape"
+                            android:layout_width="@dimen/d100"
+                            android:layout_height="@dimen/d30" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d10"></View>
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:background="@color/white"
+                    android:layout_weight="7"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:text="单注明细"
+                            android:textSize="@dimen/f12"
+                            android:textColor="@color/font_black"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="注数"
+                            android:textSize="@dimen/f12"
+                            android:textColor="@color/font_black"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="理论奖金"
+                            android:textSize="@dimen/f12"
+                            android:textColor="@color/font_black"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/Bouns_RecyClerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="@dimen/d50">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/d20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/Bonus_Money_text"
+                    android:text="1注共 2 元"
+                    android:textColor="@color/login_red"
+                    android:textSize="@dimen/f12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/Range_Text"
+                    android:text="奖金范围：11.63-11.63元"
+                    android:textColor="@color/login_red"
+                    android:layout_marginTop="@dimen/d4"
+                    android:textSize="@dimen/f12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="2"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/button_sure"
+                    android:background="@drawable/login_select"
+                    android:text="确定"
+                    android:enabled="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f13"
+                    android:layout_width="@dimen/d60"
+                    android:layout_height="26dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

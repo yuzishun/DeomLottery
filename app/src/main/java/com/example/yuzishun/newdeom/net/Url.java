@@ -12,7 +12,7 @@ public class Url {
 //    public static String baseUrl = "http://192.168.1.26/";
 
 //    正式服务器
-    public static String baseUrl = "http://wannianjuke.com/";
-
+    public static String baseUrl = "http://103.219.32.194:8888/";
+//
 
 }

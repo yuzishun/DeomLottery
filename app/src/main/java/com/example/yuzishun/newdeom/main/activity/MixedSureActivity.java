@@ -27,9 +27,10 @@ import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.login.activity.LoginActivity;
 import com.example.yuzishun.newdeom.main.adapter.BettingSureRecyclerView;
 import com.example.yuzishun.newdeom.main.adapter.ModeRecyclerViewAdapter;
+import com.example.yuzishun.newdeom.main.betting.BonusBettingActivity;
+import com.example.yuzishun.newdeom.model.BonusBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.CodeBean;
-import com.example.yuzishun.newdeom.model.FootballBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
 import com.example.yuzishun.newdeom.model.MinAndMaxBean;
 import com.example.yuzishun.newdeom.model.SubMixBean;
@@ -41,11 +42,14 @@ import com.example.yuzishun.newdeom.utils.ToastUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -79,6 +83,8 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
     TextView bunch_TextView;
     @BindView(R.id.money)
     TextView money;
+    @BindView(R.id.Text_bouns)
+    TextView Text_bouns;
     private BettingSureRecyclerView bettingSureRecyclerView;
 
     private String format;
@@ -104,7 +110,9 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
     private List<SureguanBean> list_sureguanBean = new ArrayList<>();
     private List<SubMixListBean> list_stbMixListBean = new ArrayList<>();
     private   List<ChooseMixedBean> list_chooe;
+    private  List<BonusBean> list_bonus = new ArrayList<>();
     private String multiple="1";
+    private int BonusMoney;
     private String theory_bonus;
     @Override
     public int intiLayout() {
@@ -119,6 +127,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
         button_sure.setOnClickListener(this);
         Text_More.setOnClickListener(this);
         Button_goon.setOnClickListener(this);
+        Text_bouns.setOnClickListener(this);
         list_chooe = Content.list_chooe;
         for (int i = 0; i <list_chooe.size(); i++) {
             list_adds = new ArrayList<>();
@@ -227,8 +236,8 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
                 SubMixBean subMixBean = new SubMixBean();
                 subMixBean.setGame_id(list_chooe.get(i).getGame_id());
                 subMixBean.setList(list_adds);
-
-
+                subMixBean.setList_adds(minlist);
+                subMixBean.setName(list_chooe.get(i).getHome_team()+list_id);
                 list_subMixBean.add(subMixBean);
 
                 SubMixListBean subMixListBean = new SubMixListBean();
@@ -400,6 +409,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
         String bunchminandmax ="";
             Double pour=Double.valueOf(0);;
             List<Double> list_index = new ArrayList<>();
+            Log.e("YZS",list_chooe+"");
             for (int i = 0; i < list_subMixBean.size(); i++) {
                 list_index.add(Double.valueOf(list_subMixBean.get(i).getList().size()));
 
@@ -411,6 +421,8 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
                 }
 
             }
+
+
             Log.e("YZS",pour+"");
             NumberFormat nf = new DecimalFormat("#.##");
             format = nf.format(pour);
@@ -419,6 +431,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
                 s="1";
 
             }
+            BonusMoney = Integer.parseInt(format)*Integer.parseInt(s)*2;
             bunch =  format+"注  共"+Integer.parseInt(format)*Integer.parseInt(s)*2+"元";
 
             Log.e("YZS",bunch+"");
@@ -498,14 +511,15 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
 
     public Double getpour(List<Double> list,int number){
         Double pour= Double.valueOf(0);
+
         if(list.size()==number){
             //倍数
             pour = Calculation(list);
+
 //
         }else {
 
             List<List<Double>> getdata = getdata(list, number);
-            Log.e("YZS",getdata+"");
             for (int i = 0; i < getdata.size(); i++) {
                 pour +=Calculation(getdata.get(i));
 
@@ -513,7 +527,6 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
 
 
         }
-
         return  pour;
     }
 
@@ -569,8 +582,10 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
 
     public Double Calculation(List<Double> list){
         Double pour= Double.valueOf(1);
+
         for (int i = 0; i < list.size(); i++) {
             pour *= list.get(i);
+
         }
 
         return pour;
@@ -609,8 +624,197 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
 
                 finish();
                 break;
+            case R.id.Text_bouns:
+                calculateCombination();
+
+                List<String> list1 = new ArrayList<String>();
+                list1.add("1");
+                list1.add("2");
+
+                List<String> list2 = new ArrayList<String>();
+                list2.add("a");
+                list2.add("b");
+
+                List<String> list3 = new ArrayList<String>();
+                list3.add("3");
+                list3.add("4");
+                list3.add("5");
+
+                List<String> list4 = new ArrayList<String>();
+                list4.add("c");
+                list4.add("d");
+                list4.add("e");
+
+                List<List<String>> dimValue = new ArrayList<List<String>>();
+                dimValue.add(list1);
+                dimValue.add(list2);
+                dimValue.add(list3);
+                dimValue.add(list4);
+
+
+
+
+
+
+
+
+                //先注释
+                org.json.JSONArray jsonArray = getlist_guan();
+
+                if(jsonArray.length()>1){
+                    ToastUtil.showToast1(this,"不能进行奖金优化");
+                }else {
+
+
+                    Log.e("YZS",list_bonus.size()+"     "+multiple);
+                    List<BonusBean> lastPriceDescList = new ArrayList<>();
+
+                    if(Integer.parseInt(multiple)<=1){
+                        lastPriceDescList = getLastPriceDescList(list_bonus);
+                    }else {
+
+
+                    int totalNumber = Integer.parseInt(multiple)*list_bonus.size();
+                    for (int i = 0; i <totalNumber-list_bonus.size() ; i++) {
+                        lastPriceDescList = getLastPriceDescList(list_bonus);
+                        lastPriceDescList.get(0).setNumber(lastPriceDescList.get(0).getNumber()+1);
+                    }
+                        lastPriceDescList = getLastPriceDescList_zhu(list_bonus);
+
+                    }
+                    Intent intent = new Intent(this, BonusBettingActivity.class);
+                    intent.putExtra("getlist", (Serializable)lastPriceDescList);
+                    intent.putExtra("BonusMoney",BonusMoney+"");
+                    startActivity(intent);
+                }
+
+
+
+                break;
         }
     }
+
+
+    public List<BonusBean> getLastPriceDescList(List<BonusBean> list) {
+        Collections.sort(list, new Comparator<BonusBean>() {
+            @Override
+            public int compare(BonusBean o1, BonusBean o2) {
+
+                return Double.valueOf(o1.getOneBetBounsMoney()*o1.getNumber()).compareTo(Double.valueOf(o2.getOneBetBounsMoney()*o2.getNumber()));
+            }
+        });
+        return list;
+    }
+
+    public List<BonusBean> getLastPriceDescList_zhu(List<BonusBean> list) {
+        Collections.sort(list, new Comparator<BonusBean>() {
+            @Override
+            public int compare(BonusBean o1, BonusBean o2) {
+                if(o2.getNumber()==o1.getNumber()){
+                    return Double.valueOf(o1.getOneBetBounsMoney()*o1.getNumber()).compareTo(Double.valueOf(o2.getOneBetBounsMoney()*o2.getNumber()));
+
+                }
+                return o2.getNumber()-o1.getNumber();
+
+            }
+        });
+        return list;
+    }
+
+
+
+    
+
+
+
+
+
+
+    public void calculateCombination() {
+
+        list_bonus = new ArrayList<>();
+        list_bonus.clear();
+        Double oneBetBounsMoney = Double.valueOf(1);
+        String SingleAdds_id ="";
+        String SingleGame_id ="";
+        List<Integer> combination = new ArrayList<Integer>();
+
+        int n = list_subMixBean.size();
+//        for (int i = 0; i < list_sureguanBean.size(); i++) {
+//            if(list_sureguanBean.get(i).isselect){
+//                n = Integer.parseInt(list_sureguanBean.get(i).getBunch());
+//            }else {
+//
+//
+//            }
+//
+//
+//        }
+
+        for (int i = 0; i < n; i++) {
+            combination.add(0);
+        }
+        int i=0;
+        boolean isContinue=false;
+
+        do{
+            oneBetBounsMoney = Double.valueOf(1);
+            SingleAdds_id ="";
+            SingleGame_id ="";
+            BonusBean bonusBean = new BonusBean();
+            HashMap<String,String> hashMap = new HashMap<>();
+            //打印一次循环生成的组合
+            for (int j = 0; j < n; j++) {
+                System.out.print(list_subMixBean.get(j).getList().get(combination.get(j))+",");
+                System.out.print(list_subMixBean.get(j).getList_adds().get(combination.get(j))+",");
+                System.out.print(list_subMixBean.get(j).getName());
+                SingleAdds_id += list_subMixBean.get(j).getList().get(combination.get(j))+",";
+                SingleGame_id += list_subMixBean.get(j).getGame_id()+",";
+                oneBetBounsMoney *= list_subMixBean.get(j).getList_adds().get(combination.get(j));
+                hashMap.put(list_subMixBean.get(j).getList().get(combination.get(j)),list_subMixBean.get(j).getList_adds().get(combination.get(j))+"");
+
+
+            }
+            NumberFormat nfmin = new DecimalFormat("#.##");
+            String pmin = nfmin.format(oneBetBounsMoney*2);
+            bonusBean.setOneBetBounsMoney(Double.valueOf(pmin));
+            bonusBean.setSingleAdds_id(SingleAdds_id);
+            bonusBean.setSingleGame_id(SingleGame_id);
+            bonusBean.setNumber(1);
+            bonusBean.setHashMap(hashMap);
+            list_bonus.add(bonusBean);
+
+
+
+            System.out.println();
+
+
+            i++;
+            combination.set(n-1, i);
+            for (int j = n-1; j >= 0; j--) {
+                if (combination.get(j)>=list_subMixBean.get(j).getList_adds().size()) {
+                    combination.set(j, 0);
+                    i=0;
+                    if (j-1>=0) {
+                        combination.set(j-1, combination.get(j-1)+1);
+                    }
+                }
+            }
+            isContinue=false;
+            for (Integer integer : combination) {
+                if (integer != 0) {
+                    isContinue=true;
+                }
+            }
+        }while (isContinue);
+
+
+
+    }
+
+
+
+
 
     private void listSureguanBean(){
         int length=0;

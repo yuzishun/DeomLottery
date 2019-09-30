@@ -329,7 +329,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <com.example.yuzishun.newdeom.utils.CommentExpandableListView
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/detail_page_lv_comment"
             android:layout_marginLeft="@dimen/d20"
             android:layout_width="match_parent"

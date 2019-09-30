@@ -78,6 +78,9 @@ public class AmountView extends LinearLayout implements View.OnClickListener, Te
     public void setGoods_storage(int goods_storage) {
         this.goods_storage = goods_storage;
     }
+    public void setTextd(int number){
+        etAmount.setText(number+"");
+    }
 
     @Override
     public void onClick(View v) {

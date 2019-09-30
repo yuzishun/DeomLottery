@@ -79,19 +79,19 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     RecyclerView Lottery_RecyCLerView_single;
     @BindView(R.id.Lottery_RecyCLerView_mixed)
     RecyclerView Lottery_RecyCLerView_mixed;
-    private int single=1,flag=1;
-    private int single_mixed=3;
-    private int popwindows=0;
+    private int single = 1, flag = 1;
+    private int single_mixed = 3;
+    private int popwindows = 0;
     //混合投注需要的东西
     private BettingSeparateAdapter adapter_mixed_Separ;
     private ArrayList<MultiItemEntity> list_mixed;
-    private ArrayList<MultiItemEntity> list_one_mixed=new ArrayList<>();
+    private ArrayList<MultiItemEntity> list_one_mixed = new ArrayList<>();
 
-    private ArrayList<MultiItemEntity> list_two_mixed=new ArrayList<>();
-    private ArrayList<MultiItemEntity> list_four_mixed=new ArrayList<>();
-    private ArrayList<MultiItemEntity> list_five_mixed=new ArrayList<>();
-    private ArrayList<MultiItemEntity> list_six_mixed=new ArrayList<>();
-    private int count_mixed=0,mixed=0,index=0;
+    private ArrayList<MultiItemEntity> list_two_mixed = new ArrayList<>();
+    private ArrayList<MultiItemEntity> list_four_mixed = new ArrayList<>();
+    private ArrayList<MultiItemEntity> list_five_mixed = new ArrayList<>();
+    private ArrayList<MultiItemEntity> list_six_mixed = new ArrayList<>();
+    private int count_mixed = 0, mixed = 0, index = 0;
     private BettingFootballListAdapter adapter_mixed;
     @BindView(R.id.layout_swipe_mixed)
     SwipeRefreshLayout layout_swipe_mixed;
@@ -107,8 +107,6 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     TextView Text_loading_mixed;
     @BindView(R.id.layout_empt_mixed)
     LinearLayout layout_empt_mixed;
-
-
 
 
     //单关所需要的东西
@@ -134,14 +132,12 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     TextView Scene_TextView_single;
     @BindView(R.id.button_sure_single)
     Button button_sure_single;
-    private int count=0;
+    private int count = 0;
 
-    private String[] String_pop_one=new String[]{"胜平负","让球胜平负","混合投注","比分","总进球","半全场"  };
-    private String[] String_pop_two=new String[]{"胜平负","让球胜平负","比分","总进球","半全场"};
+    private String[] String_pop_one = new String[]{"胜平负", "让球胜平负", "混合投注", "比分", "总进球", "半全场"};
+    private String[] String_pop_two = new String[]{"胜平负", "让球胜平负", "比分", "总进球", "半全场"};
 
     private List<String> list_pop = new ArrayList<>();
-
-
 
 
     @Override
@@ -162,20 +158,20 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
         button_sure_single.setOnClickListener(this);
         Text_clear_mixed.setOnClickListener(this);
         button_sure_mixed.setOnClickListener(this);
-        Intent intent  =  getIntent();
-        flag = intent.getIntExtra("flag",0);
-        if(flag==1){
+        Intent intent = getIntent();
+        flag = intent.getIntExtra("flag", 0);
+        if (flag == 1) {
             title_text.setText("混合投注");
             layout_single.setVisibility(View.GONE);
             layout_mixed.setVisibility(View.VISIBLE);
-            popwindows=0;
+            popwindows = 0;
 
-        }else {
+        } else {
             title_text.setText("胜负平");
 
             layout_single.setVisibility(View.VISIBLE);
             layout_mixed.setVisibility(View.GONE);
-            popwindows=1;
+            popwindows = 1;
 
         }
         //混合
@@ -190,24 +186,23 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
         layout_swipe_mixed.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable(){
+                new Handler().postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
-                        if(adapter_mixed_Separ!=null){
+                        if (adapter_mixed_Separ != null) {
                             adapter_mixed_Separ.onResh(1);
                             adapter_mixed_Separ.notifyDataSetChanged();
-                            EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber()+""));
+                            EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber() + ""));
                         }
 
-                        if(adapter_mixed!=null){
+                        if (adapter_mixed != null) {
                             adapter_mixed.onResh();
                             adapter_mixed.notifyDataSetChanged();
 
 
-                            EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber()+""));
+                            EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber() + ""));
                         }
-
 
 
                         layout_swipe_mixed.setRefreshing(false);
@@ -215,7 +210,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
 
                     }
-                },1000);
+                }, 1000);
 
 
             }
@@ -237,20 +232,20 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
         layout_swipe_single.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable(){
+                new Handler().postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
 
                         adapter.onResh(1);
                         adapter.notifyDataSetChanged();
-                        EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber()+""));
+                        EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber() + ""));
 
                         layout_swipe_single.setRefreshing(false);
                         Toast.makeText(BettingfootActivity.this, "刷新完成", Toast.LENGTH_SHORT).show();
 
                     }
-                },1000);
+                }, 1000);
 
 
             }
@@ -295,10 +290,10 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     public void onMainEventBus(SingleMessage msg) {
         Log.e("YZS", msg.getMessage());
         count = Integer.parseInt(msg.getMessage());
-        if(count ==0){
+        if (count == 0) {
             Scene_TextView_single.setText("请选择比赛");
 
-        }else {
+        } else {
             Scene_TextView_single.setText("已经选择" + msg.getMessage() + "比赛");
         }
 
@@ -311,14 +306,14 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainEventBus(SinglePostionMessage msg) {
-        Log.e("YZSYZSYZS", msg.getPostion()+"");
+        Log.e("YZSYZSYZS", msg.getPostion() + "");
         Content.Text_postion = msg.getPostion();
         adapter.notifyItemChanged(msg.getPostion());
-        if(msg.getPostion()==0){
+        if (msg.getPostion() == 0) {
 
 
             adapter.notifyDataSetChanged();
-        }else {
+        } else {
 
         }
 
@@ -333,10 +328,10 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     public void onMainEventBus(MainMessage msg) {
         Log.e("YZS", msg.getMessage());
         count_mixed = Integer.parseInt(msg.getMessage());
-        if(msg.getMessage().equals("0")||msg.getMessage().equals("1")){
+        if (msg.getMessage().equals("0") || msg.getMessage().equals("1")) {
             Scene_TextView_mixed.setText("请至少选择两场比赛");
-        }else {
-            Scene_TextView_mixed.setText("已经选择"+msg.getMessage()+"比赛");
+        } else {
+            Scene_TextView_mixed.setText("已经选择" + msg.getMessage() + "比赛");
 
         }
     }
@@ -348,18 +343,19 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainEventBus(MixedPostionMessage msg) {
-        Log.e("YZSYZSYZS", msg.getPostion()+"");
+        Log.e("YZSYZSYZS", msg.getPostion() + "");
         Content.Text_postion_mixed = msg.getPostion();
         adapter_mixed_Separ.notifyItemChanged(msg.getPostion());
-        if(msg.getPostion()==0){
+        if (msg.getPostion() == 0) {
 
 
             adapter_mixed_Separ.notifyDataSetChanged();
-        }else {
+        } else {
 
         }
 
     }
+
     /**
      * 主线程中执行//混合投注
      *
@@ -369,16 +365,17 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     public void onMainEventBus(MIxedMessage msg) {
         Log.e("YZS", msg.getMessage());
         mixed = Integer.parseInt(msg.getMessage());
-        if(mixed ==0){
+        if (mixed == 0) {
             Scene_TextView_mixed.setText("请选择比赛");
 
-        }else {
-            Scene_TextView_mixed.setText("已经选择"+msg.getMessage()+"比赛");
+        } else {
+            Scene_TextView_mixed.setText("已经选择" + msg.getMessage() + "比赛");
 
         }
 
 
     }
+
     /**
      * 主线程中执行//混合投注
      *
@@ -386,7 +383,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainEventBus(AdapterMessage msg) {
-        Log.e("YZSYZSYZS", msg.getPostion()+"");
+        Log.e("YZSYZSYZS", msg.getPostion() + "");
         Content.Text_postion = msg.getPostion();
         adapter_mixed.notifyItemChanged(msg.getPostion());
 
@@ -396,62 +393,60 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onResume() {
         super.onResume();
-        if(adapter!=null){
+        if (adapter != null) {
 
-            if(Content.order_flag_single==0){
+            if (Content.order_flag_single == 0) {
                 adapter.notifyDataSetChanged();
 
 
-            }else {
+            } else {
                 adapter.onResh(0);
 
                 adapter.notifyDataSetChanged();
 
             }
-            EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber()+""));
+            EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber() + ""));
 
 
         }
-        if(adapter_mixed!=null){
+        if (adapter_mixed != null) {
 
 
-            if(Content.order_flag==0){
+            if (Content.order_flag == 0) {
                 adapter_mixed.notifyDataSetChanged();
-            }else {
+            } else {
                 adapter_mixed.onResh();
 
                 adapter_mixed.notifyDataSetChanged();
 
             }
-            EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber()+""));
+            EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber() + ""));
 
         }
-        if(adapter_mixed_Separ!=null){
+        if (adapter_mixed_Separ != null) {
 
 
-            if(Content.order_flag_single==0){
+            if (Content.order_flag_single == 0) {
                 adapter_mixed_Separ.notifyDataSetChanged();
-            }else {
+            } else {
                 adapter_mixed_Separ.onResh(0);
                 adapter_mixed_Separ.notifyDataSetChanged();
 
 
             }
-            EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber()+""));
+            EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber() + ""));
 
         }
 
 
-
-
     }
-
 
 
     @Override
     public void initData() {
 
     }
+
     /**
      * 改变背景颜色
      */
@@ -466,7 +461,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.image_back:
                 finish();
@@ -481,103 +476,102 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                 adapter.onResh(1);
 
                 adapter.notifyDataSetChanged();
-                EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber()+""));
+                EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber() + ""));
 
-                ToastUtil.showToast1(this,"清空完成");
+                ToastUtil.showToast1(this, "清空完成");
 
 
                 break;
             case R.id.button_sure_single:
-                if(count<1){
-                    ToastUtil.showToast1(this,"至少选择一场");
-                }else if(count>15){
-                    ToastUtil.showToast1(this,"至多选择15场");
+                if (count < 1) {
+                    ToastUtil.showToast1(this, "至少选择一场");
+                } else if (count > 15) {
+                    ToastUtil.showToast1(this, "至多选择15场");
 
 
-                }else  {
+                } else {
 
-                    Intent intent = new Intent(this,SingleSureActivity.class);
+                    Intent intent = new Intent(this, SingleSureActivity.class);
 
                     Content.list_chooe_single = adapter.getList();
-                    intent.putExtra("single",single);
-                    intent.putExtra("flag",1);
-                    intent.putExtra("flag_guan",0);
+                    intent.putExtra("single", single);
+                    intent.putExtra("flag", 1);
+                    intent.putExtra("flag_guan", 0);
 
                     startActivity(intent);
                 }
                 break;
             case R.id.Text_clear_mixed:
-                if(adapter_mixed_Separ!=null){
+                if (adapter_mixed_Separ != null) {
                     adapter_mixed_Separ.onResh(1);
                     adapter_mixed_Separ.notifyDataSetChanged();
-                    EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber()+""));
+                    EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber() + ""));
                 }
-                if(adapter_mixed!=null){
+                if (adapter_mixed != null) {
                     adapter_mixed.onResh();
                     adapter_mixed.notifyDataSetChanged();
 
 
-
-                    EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber()+""));
+                    EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber() + ""));
                 }
 
 
-                ToastUtil.showToast1(this,"清空完成");
+                ToastUtil.showToast1(this, "清空完成");
                 break;
             case R.id.button_sure_mixed:
-                if(single_mixed==3){
+                if (single_mixed == 3) {
 
 
-                        if(count_mixed<2){
-                            ToastUtil.showToast1(this,"至少选择两场");
-                        }else if(count_mixed>15){
-                            ToastUtil.showToast1(this,"至多选择15场");
+                    if (count_mixed < 2) {
+                        ToastUtil.showToast1(this, "至少选择两场");
+                    } else if (count_mixed > 15) {
+                        ToastUtil.showToast1(this, "至多选择15场");
 
 
-                        }else  {
+                    } else {
 
-                            Intent intent = new Intent(this,MixedSureActivity.class);
-                            Content.list_chooe = adapter_mixed.getList();
-                            startActivity(intent);
-                        }
-
-                }else {
-                    int chang;
-                    if(index>=3){
-                        chang=1;
-                    }else {
-                        chang=2;
+                        Intent intent = new Intent(this, MixedSureActivity.class);
+                        Content.list_chooe = adapter_mixed.getList();
+                        startActivity(intent);
                     }
-                    if(mixed<chang){
-                        if(chang==2){
-                            ToastUtil.showToast1(this,"至少选择二场");
 
-                        }else {
-                            ToastUtil.showToast1(this,"至少选择一场");
+                } else {
+                    int chang;
+                    if (index >= 3) {
+                        chang = 1;
+                    } else {
+                        chang = 2;
+                    }
+                    if (mixed < chang) {
+                        if (chang == 2) {
+                            ToastUtil.showToast1(this, "至少选择二场");
+
+                        } else {
+                            ToastUtil.showToast1(this, "至少选择一场");
 
                         }
-                    }else if(mixed>15){
-                        ToastUtil.showToast1(this,"至多选择15场");
+                    } else if (mixed > 15) {
+                        ToastUtil.showToast1(this, "至多选择15场");
 
 
-                    }else  {
+                    } else {
 
-                        if(chang==2){
-                            Intent intent = new Intent(this,SingleSureActivity.class);
+                        if (chang == 2) {
+                            Intent intent = new Intent(this, SingleSureActivity.class);
 
                             Content.list_chooe_single = adapter_mixed_Separ.getList();
-                            intent.putExtra("single",index);
-                            intent.putExtra("flag",0);
-                            intent.putExtra("flag_guan",1);
+                            intent.putExtra("single", index);
+                            intent.putExtra("flag", 0);
+                            intent.putExtra("flag_guan", 1);
 
                             startActivity(intent);
-                        }else {
-                            Intent intent = new Intent(this,SingleSureActivity.class);
+                        } else {
+                            Intent intent = new Intent(this, SingleSureActivity.class);
 
                             Content.list_chooe_single = adapter_mixed_Separ.getList();
-                            intent.putExtra("single",index);
-                            intent.putExtra("flag",1);
-                            intent.putExtra("flag_guan",1);
+                            intent.putExtra("single", index);
+                            intent.putExtra("flag", 1);
+                            intent.putExtra("flag_guan", 1);
 
                             startActivity(intent);
                         }
@@ -591,9 +585,9 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
     }
 
-    public int getSingorMixed(){
+    public int getSingorMixed() {
 
-        int fl=0;
+        int fl = 0;
         List<ChooseMixedBean> list = adapter_mixed.getList();
 
         for (int i = 0; i < list.size(); i++) {
@@ -601,10 +595,10 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
             List<ItemPoint> onelist = list.get(i).getOnelist();
             for (int j = 0; j < onelist.size(); j++) {
 
-                if(onelist.get(j).isselect){
-                    fl=1;
-                }else {
-                    fl=0;
+                if (onelist.get(j).isselect) {
+                    fl = 1;
+                } else {
+                    fl = 0;
 
                 }
 
@@ -618,22 +612,22 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
     //混合
 
-    private void initmixedrecy(int mixed){
+    private void initmixedrecy(int mixed) {
 //        handler.sendEmptyMessageDelayed(1, 1000);
-        switch (mixed){
+        switch (mixed) {
             case 1:
-                if(list_one_mixed.size()==0){
+                if (list_one_mixed.size() == 0) {
                     Lottery_RecyCLerView_mixed.setVisibility(View.GONE);
                     layout_bottom_mixed.setVisibility(View.GONE);
                     layout_swipe_mixed.setVisibility(View.GONE);
                     layout_empt_mixed.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     layout_empt_mixed.setVisibility(View.GONE);
                     Text_loading_mixed.setVisibility(View.GONE);
                     Lottery_RecyCLerView_mixed.setVisibility(View.VISIBLE);
                     layout_bottom_mixed.setVisibility(View.VISIBLE);
                     layout_swipe_mixed.setVisibility(View.VISIBLE);
-                    adapter_mixed_Separ = new BettingSeparateAdapter(list_one_mixed,1);
+                    adapter_mixed_Separ = new BettingSeparateAdapter(list_one_mixed, 1);
 
                     Lottery_RecyCLerView_mixed.setAdapter(adapter_mixed_Separ);
                     Lottery_RecyCLerView_mixed.setNestedScrollingEnabled(false);
@@ -642,18 +636,18 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case 2:
-                if(list_two_mixed.size()==0){
+                if (list_two_mixed.size() == 0) {
                     Lottery_RecyCLerView_mixed.setVisibility(View.GONE);
                     layout_bottom_mixed.setVisibility(View.GONE);
                     layout_swipe_mixed.setVisibility(View.GONE);
                     layout_empt_mixed.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     layout_empt_mixed.setVisibility(View.GONE);
                     Text_loading_mixed.setVisibility(View.GONE);
                     Lottery_RecyCLerView_mixed.setVisibility(View.VISIBLE);
                     layout_bottom_mixed.setVisibility(View.VISIBLE);
                     layout_swipe_mixed.setVisibility(View.VISIBLE);
-                    adapter_mixed_Separ = new BettingSeparateAdapter(list_two_mixed,2);
+                    adapter_mixed_Separ = new BettingSeparateAdapter(list_two_mixed, 2);
 
                     Lottery_RecyCLerView_mixed.setAdapter(adapter_mixed_Separ);
                     Lottery_RecyCLerView_mixed.setNestedScrollingEnabled(false);
@@ -663,12 +657,12 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                 break;
             case 3:
 
-                if(list_mixed.size()==0){
+                if (list_mixed.size() == 0) {
                     Lottery_RecyCLerView_mixed.setVisibility(View.GONE);
                     layout_bottom_mixed.setVisibility(View.GONE);
                     layout_swipe_mixed.setVisibility(View.GONE);
                     layout_empt_mixed.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     layout_empt_mixed.setVisibility(View.GONE);
                     Text_loading_mixed.setVisibility(View.GONE);
                     Lottery_RecyCLerView_mixed.setVisibility(View.VISIBLE);
@@ -684,18 +678,18 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case 4:
-                if(list_four_mixed.size()==0){
+                if (list_four_mixed.size() == 0) {
                     Lottery_RecyCLerView_mixed.setVisibility(View.GONE);
                     layout_bottom_mixed.setVisibility(View.GONE);
                     layout_swipe_mixed.setVisibility(View.GONE);
                     layout_empt_mixed.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     layout_empt_mixed.setVisibility(View.GONE);
                     Text_loading_mixed.setVisibility(View.GONE);
                     Lottery_RecyCLerView_mixed.setVisibility(View.VISIBLE);
                     layout_bottom_mixed.setVisibility(View.VISIBLE);
                     layout_swipe_mixed.setVisibility(View.VISIBLE);
-                    adapter_mixed_Separ = new BettingSeparateAdapter(list_four_mixed,3);
+                    adapter_mixed_Separ = new BettingSeparateAdapter(list_four_mixed, 3);
 
                     Lottery_RecyCLerView_mixed.setAdapter(adapter_mixed_Separ);
                     Lottery_RecyCLerView_mixed.setNestedScrollingEnabled(false);
@@ -704,18 +698,18 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case 5:
-                if(list_five_mixed.size()==0){
+                if (list_five_mixed.size() == 0) {
                     Lottery_RecyCLerView_mixed.setVisibility(View.GONE);
                     layout_bottom_mixed.setVisibility(View.GONE);
                     layout_swipe_mixed.setVisibility(View.GONE);
                     layout_empt_mixed.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     layout_empt_mixed.setVisibility(View.GONE);
                     Text_loading_mixed.setVisibility(View.GONE);
                     Lottery_RecyCLerView_mixed.setVisibility(View.VISIBLE);
                     layout_bottom_mixed.setVisibility(View.VISIBLE);
                     layout_swipe_mixed.setVisibility(View.VISIBLE);
-                    adapter_mixed_Separ = new BettingSeparateAdapter(list_five_mixed,4);
+                    adapter_mixed_Separ = new BettingSeparateAdapter(list_five_mixed, 4);
 
                     Lottery_RecyCLerView_mixed.setAdapter(adapter_mixed_Separ);
                     Lottery_RecyCLerView_mixed.setNestedScrollingEnabled(false);
@@ -724,18 +718,18 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case 6:
-                if(list_six_mixed.size()==0){
+                if (list_six_mixed.size() == 0) {
                     Lottery_RecyCLerView_mixed.setVisibility(View.GONE);
                     layout_bottom_mixed.setVisibility(View.GONE);
                     layout_swipe_mixed.setVisibility(View.GONE);
                     layout_empt_mixed.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     layout_empt_mixed.setVisibility(View.GONE);
                     Text_loading_mixed.setVisibility(View.GONE);
                     Lottery_RecyCLerView_mixed.setVisibility(View.VISIBLE);
                     layout_bottom_mixed.setVisibility(View.VISIBLE);
                     layout_swipe_mixed.setVisibility(View.VISIBLE);
-                    adapter_mixed_Separ = new BettingSeparateAdapter(list_six_mixed,5);
+                    adapter_mixed_Separ = new BettingSeparateAdapter(list_six_mixed, 5);
 
                     Lottery_RecyCLerView_mixed.setAdapter(adapter_mixed_Separ);
                     Lottery_RecyCLerView_mixed.setNestedScrollingEnabled(false);
@@ -745,8 +739,6 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                 break;
 
         }
-
-
 
 
     }
@@ -756,21 +748,21 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     private void initrecycler(int single) {
 //        handler.sendEmptyMessageDelayed(1, 1000);
 
-        switch (single){
+        switch (single) {
 
             case 1:
-                if(list.size()==0){
+                if (list.size() == 0) {
                     Lottery_RecyCLerView_single.setVisibility(View.GONE);
                     layout_bottom.setVisibility(View.GONE);
                     layout_swipe_single.setVisibility(View.GONE);
                     layout_empt_single.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     layout_empt_single.setVisibility(View.GONE);
                     Text_loading_single.setVisibility(View.GONE);
                     Lottery_RecyCLerView_single.setVisibility(View.VISIBLE);
                     layout_bottom.setVisibility(View.VISIBLE);
                     layout_swipe_single.setVisibility(View.VISIBLE);
-                    adapter = new BettingSingleAdapter(list,single);
+                    adapter = new BettingSingleAdapter(list, single);
 
                     Lottery_RecyCLerView_single.setAdapter(adapter);
                     Lottery_RecyCLerView_single.setNestedScrollingEnabled(false);
@@ -779,18 +771,18 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case 2:
-                if(list_two.size()==0){
+                if (list_two.size() == 0) {
                     Lottery_RecyCLerView_single.setVisibility(View.GONE);
                     layout_bottom.setVisibility(View.GONE);
                     layout_swipe_single.setVisibility(View.GONE);
                     layout_empt_single.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     layout_empt_single.setVisibility(View.GONE);
                     Text_loading_single.setVisibility(View.GONE);
                     Lottery_RecyCLerView_single.setVisibility(View.VISIBLE);
                     layout_bottom.setVisibility(View.VISIBLE);
                     layout_swipe_single.setVisibility(View.VISIBLE);
-                    adapter = new BettingSingleAdapter(list_two,single);
+                    adapter = new BettingSingleAdapter(list_two, single);
 
                     Lottery_RecyCLerView_single.setAdapter(adapter);
                     Lottery_RecyCLerView_single.setNestedScrollingEnabled(false);
@@ -799,18 +791,18 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case 3:
-                if(list_three.size()==0){
+                if (list_three.size() == 0) {
                     Lottery_RecyCLerView_single.setVisibility(View.GONE);
                     layout_bottom.setVisibility(View.GONE);
                     layout_swipe_single.setVisibility(View.GONE);
                     layout_empt_single.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     layout_empt_single.setVisibility(View.GONE);
                     Text_loading_single.setVisibility(View.GONE);
                     Lottery_RecyCLerView_single.setVisibility(View.VISIBLE);
                     layout_bottom.setVisibility(View.VISIBLE);
                     layout_swipe_single.setVisibility(View.VISIBLE);
-                    adapter = new BettingSingleAdapter(list_three,single);
+                    adapter = new BettingSingleAdapter(list_three, single);
 
                     Lottery_RecyCLerView_single.setAdapter(adapter);
                     Lottery_RecyCLerView_single.setNestedScrollingEnabled(false);
@@ -818,21 +810,20 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                 }
 
 
-
                 break;
             case 4:
-                if(list_four.size()==0){
+                if (list_four.size() == 0) {
                     Lottery_RecyCLerView_single.setVisibility(View.GONE);
                     layout_bottom.setVisibility(View.GONE);
                     layout_swipe_single.setVisibility(View.GONE);
                     layout_empt_single.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     layout_empt_single.setVisibility(View.GONE);
                     Text_loading_single.setVisibility(View.GONE);
                     Lottery_RecyCLerView_single.setVisibility(View.VISIBLE);
                     layout_bottom.setVisibility(View.VISIBLE);
                     layout_swipe_single.setVisibility(View.VISIBLE);
-                    adapter = new BettingSingleAdapter(list_four,single);
+                    adapter = new BettingSingleAdapter(list_four, single);
 
                     Lottery_RecyCLerView_single.setAdapter(adapter);
                     Lottery_RecyCLerView_single.setNestedScrollingEnabled(false);
@@ -842,18 +833,18 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case 5:
-                if(list_fire.size()==0){
+                if (list_fire.size() == 0) {
                     Lottery_RecyCLerView_single.setVisibility(View.GONE);
                     layout_bottom.setVisibility(View.GONE);
                     layout_swipe_single.setVisibility(View.GONE);
                     layout_empt_single.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     layout_empt_single.setVisibility(View.GONE);
                     Text_loading_single.setVisibility(View.GONE);
                     Lottery_RecyCLerView_single.setVisibility(View.VISIBLE);
                     layout_bottom.setVisibility(View.VISIBLE);
                     layout_swipe_single.setVisibility(View.VISIBLE);
-                    adapter = new BettingSingleAdapter(list_fire,single);
+                    adapter = new BettingSingleAdapter(list_fire, single);
 
                     Lottery_RecyCLerView_single.setAdapter(adapter);
                     Lottery_RecyCLerView_single.setNestedScrollingEnabled(false);
@@ -861,16 +852,12 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                 }
 
 
-
                 break;
 
         }
 
 
-
-
     }
-
 
 
     @Override
@@ -881,26 +868,26 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
         handler.sendEmptyMessage(1);
         handler.removeCallbacksAndMessages(null);
     }
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(android.os.Message msg) {
 
-            if(msg.what==1){
+            if (msg.what == 1) {
 
-                if(flag==0){
+                if (flag == 0) {
                     initrecycler(1);
                     layout_pop.setEnabled(true);
-                }else {
+                } else {
 
                 }
 
-            }else {
+            } else {
 //                initrecycler(single);
-            //在这里处理首次进入加载混合投注
+                //在这里处理首次进入加载混合投注
 
-                    initmixedrecy(3);
-                    layout_pop.setEnabled(true);
-
+                initmixedrecy(3);
+                layout_pop.setEnabled(true);
 
 
             }
@@ -931,7 +918,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 //        }
         TextView choose_one = contentView.findViewById(R.id.choose_one);
         TextView choose_two = contentView.findViewById(R.id.choose_two);
-        if(popwindows==0){
+        if (popwindows == 0) {
 
             choose_one.setTextColor(getResources().getColor(R.color.login_red));
             choose_two.setTextColor(getResources().getColor(R.color.font_black));
@@ -940,26 +927,26 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
             layout_mixed.setVisibility(View.VISIBLE);
 
             layout_single.setVisibility(View.GONE);
-            for (int i = 0; i <String_pop_one.length ; i++) {
+            for (int i = 0; i < String_pop_one.length; i++) {
                 list_pop.add(String_pop_one[i]);
 
             }
-        }else {
+        } else {
             choose_one.setTextColor(getResources().getColor(R.color.font_black));
             choose_two.setTextColor(getResources().getColor(R.color.login_red));
             list_pop.clear();
             layout_mixed.setVisibility(View.GONE);
 
             layout_single.setVisibility(View.VISIBLE);
-            for (int i = 0; i <String_pop_two.length ; i++) {
+            for (int i = 0; i < String_pop_two.length; i++) {
                 list_pop.add(String_pop_two[i]);
 
             }
 
         }
 
-        GridView GridView_betting_Money  = contentView.findViewById(R.id.GridView_betting_Money);
-         GridView_Adapter gridView_adapter = new GridView_Adapter(BettingfootActivity.this,list_pop);
+        GridView GridView_betting_Money = contentView.findViewById(R.id.GridView_betting_Money);
+        GridView_Adapter gridView_adapter = new GridView_Adapter(BettingfootActivity.this, list_pop);
         GridView_betting_Money.setAdapter(gridView_adapter);
         GridView_betting_Money.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -987,7 +974,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 //                EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber()+""));
 
 //                EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber()+""));
-                popwindows= 0;
+                popwindows = 0;
                 choose_one.setTextColor(getResources().getColor(R.color.login_red));
                 choose_two.setTextColor(getResources().getColor(R.color.font_black));
                 list_pop.clear();
@@ -995,13 +982,13 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                 layout_mixed.setVisibility(View.VISIBLE);
 
                 layout_single.setVisibility(View.GONE);
-                for (int i = 0; i <String_pop_one.length ; i++) {
+                for (int i = 0; i < String_pop_one.length; i++) {
                     list_pop.add(String_pop_one[i]);
 
                 }
                 title_text.setText(String_pop_one[3]);
 
-                single_mixed=3;
+                single_mixed = 3;
                 initmixedrecy(3);
                 title_text.setText(String_pop_one[2]);
                 gridView_adapter.notifyDataSetChanged();
@@ -1027,7 +1014,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 //                }
 //                EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber()+""));
 
-                popwindows= 1;
+                popwindows = 1;
 
                 choose_one.setTextColor(getResources().getColor(R.color.font_black));
                 choose_two.setTextColor(getResources().getColor(R.color.login_red));
@@ -1036,11 +1023,11 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                 title_text.setText(String_pop_two[0]);
 
                 layout_single.setVisibility(View.VISIBLE);
-                for (int i = 0; i <String_pop_two.length ; i++) {
+                for (int i = 0; i < String_pop_two.length; i++) {
                     list_pop.add(String_pop_two[i]);
 
                 }
-                single=1;
+                single = 1;
                 initrecycler(1);
                 title_text.setText(String_pop_two[0]);
                 gridView_adapter.notifyDataSetChanged();
@@ -1051,29 +1038,29 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-                if(list_pop.size()==6){
+                if (list_pop.size() == 6) {
 
-                    switch (position){
+                    switch (position) {
                         case 0:
-                            index=1;
-                            single_mixed=1;
+                            index = 1;
+                            single_mixed = 1;
                             initmixedrecy(1);
                             title_text.setText(String_pop_one[0]);
                             change();
                             break;
                         case 1:
-                            index=2;
+                            index = 2;
 
-                            single_mixed=2;
+                            single_mixed = 2;
                             initmixedrecy(2);
                             title_text.setText(String_pop_one[1]);
                             change();
 
                             break;
                         case 2:
-                            index=0;
+                            index = 0;
 
-                            single_mixed=3;
+                            single_mixed = 3;
                             initmixedrecy(3);
                             title_text.setText(String_pop_one[2]);
                             change();
@@ -1081,9 +1068,9 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 //                        adapter.onResh();
                             break;
                         case 3:
-                            index=3;
+                            index = 3;
 
-                            single_mixed=4;
+                            single_mixed = 4;
                             initmixedrecy(4);
                             title_text.setText(String_pop_one[3]);
                             change();
@@ -1091,17 +1078,17 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 //                        adapter.onResh();
                             break;
                         case 4:
-                            index=4;
+                            index = 4;
 
-                            single_mixed=5;
+                            single_mixed = 5;
                             initmixedrecy(5);
                             title_text.setText(String_pop_one[4]);
                             change();
 
                             break;
                         case 5:
-                            index=5;
-                            single_mixed=6;
+                            index = 5;
+                            single_mixed = 6;
                             initmixedrecy(6);
                             title_text.setText(String_pop_one[5]);
                             change();
@@ -1114,11 +1101,11 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                     popupWindow.dismiss();
 
 
-                }else if(list_pop.size()==5){
+                } else if (list_pop.size() == 5) {
 
-                    switch (position){
+                    switch (position) {
                         case 0:
-                            single=1;
+                            single = 1;
 //                        adapter.onResh();
                             initrecycler(1);
                             title_text.setText(String_pop_two[0]);
@@ -1126,7 +1113,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                             break;
                         case 1:
-                            single=2;
+                            single = 2;
                             initrecycler(2);
 
 //                        adapter.onResh();
@@ -1135,7 +1122,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                             break;
                         case 2:
-                            single=3;
+                            single = 3;
                             initrecycler(3);
                             title_text.setText(String_pop_two[2]);
                             change();
@@ -1143,7 +1130,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 //                        adapter.onResh();
                             break;
                         case 3:
-                            single=4;
+                            single = 4;
                             initrecycler(4);
                             title_text.setText(String_pop_two[3]);
                             change();
@@ -1151,7 +1138,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 //                        adapter.onResh();
                             break;
                         case 4:
-                            single=5;
+                            single = 5;
                             initrecycler(5);
                             title_text.setText(String_pop_two[4]);
                             change();
@@ -1167,37 +1154,33 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                 }
 
 
-
             }
         });
-
-
 
 
     }
 
 
-    public void change(){
+    public void change() {
 
-            if(adapter!=null){
-                adapter.onResh(1);
-                adapter.notifyDataSetChanged();
-                EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber()+""));
+        if (adapter != null) {
+            adapter.onResh(1);
+            adapter.notifyDataSetChanged();
+            EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber() + ""));
 
-            }
-            if(adapter_mixed!=null){
-                adapter_mixed.onResh();
-                adapter_mixed.notifyDataSetChanged();
-                EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber()+""));
+        }
+        if (adapter_mixed != null) {
+            adapter_mixed.onResh();
+            adapter_mixed.notifyDataSetChanged();
+            EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber() + ""));
 
-            }
-            if(adapter_mixed_Separ!=null){
-                adapter_mixed_Separ.onResh(1);
-                adapter_mixed_Separ.notifyDataSetChanged();
-                EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber()+""));
+        }
+        if (adapter_mixed_Separ != null) {
+            adapter_mixed_Separ.onResh(1);
+            adapter_mixed_Separ.notifyDataSetChanged();
+            EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber() + ""));
 
-            }
-
+        }
 
 
     }
@@ -1209,7 +1192,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
         final ArrayList<MultiItemEntity> res = new ArrayList<>();
 
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
-        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getSingleBallList?single="+single, new Callback() {
+        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getSingleBallList?single=" + single, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -1229,16 +1212,16 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                                 JSONObject jsonObject = new JSONObject(result);
                                 int code = jsonObject.getInt("code");
                                 String msg = jsonObject.getString("msg");
-                                if(code==10000){
+                                if (code == 10000) {
 
-                                    singleBean = JSON.parseObject(result,SingleBean.class);
+                                    singleBean = JSON.parseObject(result, SingleBean.class);
                                     List<ChooseMixedBean> list_choose = new ArrayList<>();
 
-                                    for (int i = 0; i <singleBean.getData().getGame_info().size() ; i++) {
+                                    for (int i = 0; i < singleBean.getData().getGame_info().size(); i++) {
 
-                                        Item_Single item_single = new Item_Single(singleBean.getData().getGame_info().get(i).getGame_week()+""+singleBean.getData().getGame_info().get(i).getGame_group_time()+"共有"+singleBean.getData().getGame_info().get(i).getGame_info().size()+"场比赛可投");
+                                        Item_Single item_single = new Item_Single(singleBean.getData().getGame_info().get(i).getGame_week() + "" + singleBean.getData().getGame_info().get(i).getGame_group_time() + "共有" + singleBean.getData().getGame_info().get(i).getGame_info().size() + "场比赛可投");
 
-                                        for (int j = 0; j <singleBean.getData().getGame_info().get(i).getGame_info().size() ; j++) {
+                                        for (int j = 0; j < singleBean.getData().getGame_info().get(i).getGame_info().size(); j++) {
 
                                             ChooseMixedBean chooseMixedBean = new ChooseMixedBean();
 
@@ -1246,7 +1229,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                                             List<ItemPoint> list_single = new ArrayList<>();
 
-                                            for (int k = 0; k <single_odds.size() ; k++) {
+                                            for (int k = 0; k < single_odds.size(); k++) {
 
                                                 ItemPoint itemPoint = new ItemPoint();
                                                 itemPoint.setIsselect(false);
@@ -1263,44 +1246,37 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                                             chooseMixedBean.setHome_team(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name());
 
                                             chooseMixedBean.setGuest_team(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
-                                            chooseMixedBean.setName(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name()
-                                                    +"        "+"vs"+"        "+singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
+                                            chooseMixedBean.setName(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no() + "        " + singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name()
+                                                    + "        " + "vs" + "        " + singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
                                             chooseMixedBean.setHome_score(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_score());
                                             chooseMixedBean.setGuest_score(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score());
                                             list_choose.add(chooseMixedBean);
 
 
-                                            Log.e("SingleSize",j+"");
+                                            Log.e("SingleSize", j + "");
 
                                             Item1_Single item1 = new Item1_Single(singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_name(),
                                                     singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name()
-                                                    ,singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name(),singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_score(),
-                                                    singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score(),singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()
-                                                    ,singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_stop_time()
-                                                    ,list_single,list_choose,"展开更多选项",singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_no());
+                                                    , singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name(), singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_score(),
+                                                    singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score(), singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()
+                                                    , singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_stop_time()
+                                                    , list_single, list_choose, "展开更多选项", singleBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_no());
 
 
                                             item_single.addSubItem(item1);
-
-
 
 
                                         }
                                         res.add(item_single);
 
 
-
                                     }
 
 
-
-
-
-                                }else {
-                                    ToastUtil.showToast1(BettingfootActivity.this,msg);
+                                } else {
+                                    ToastUtil.showToast1(BettingfootActivity.this, msg);
 
                                 }
-
 
 
                             } catch (JSONException e) {
@@ -1310,7 +1286,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                         }
                     });
 
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
 
@@ -1322,19 +1298,16 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-
-
-
     //混合投注
 
     private ArrayList<MultiItemEntity> generateData() {
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
         final ArrayList<MultiItemEntity> res = new ArrayList<>();
-        okhttpUtlis.GetAsynMap(Url.baseUrl+"app/ball/getFootballList", new Callback() {
+        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getFootballList", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
-                Log.e("YZS",e.getMessage()+"");
+                Log.e("YZS", e.getMessage() + "");
 
             }
 
@@ -1359,8 +1332,8 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                                     for (int i = 0; i < footballBean.getData().getGame_info().size(); i++) {
 
-                                        ExpandItem_football item = new ExpandItem_football(footballBean.getData().getGame_info().get(i).getGame_week()+""+footballBean.getData().getGame_info().get(i).getGame_group_time()+"共有"+footballBean.getData().getGame_info().get(i).getGame_info().size()+"场比赛可投");
-                                        for (int j = 0; j <footballBean.getData().getGame_info().get(i).getGame_info().size() ; j++) {
+                                        ExpandItem_football item = new ExpandItem_football(footballBean.getData().getGame_info().get(i).getGame_week() + "" + footballBean.getData().getGame_info().get(i).getGame_group_time() + "共有" + footballBean.getData().getGame_info().get(i).getGame_info().size() + "场比赛可投");
+                                        for (int j = 0; j < footballBean.getData().getGame_info().get(i).getGame_info().size(); j++) {
                                             ChooseMixedBean chooseMixedBean = new ChooseMixedBean();
                                             List<MixedFootballBean.DataBean.GameInfoBeanX.GameInfoBean.HomeScoreOddsBean> home_score_odds = footballBean.getData().getGame_info().get(i).getGame_info().get(j).getHome_score_odds();
 
@@ -1376,7 +1349,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                                             List<ItemPoint> listfive = new ArrayList<>();
 
-                                            for (int k = 0; k <home_score_odds.size() ; k++) {
+                                            for (int k = 0; k < home_score_odds.size(); k++) {
 
                                                 ItemPoint itemPoint = new ItemPoint();
                                                 itemPoint.setIsselect(false);
@@ -1388,7 +1361,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                                             }
 
-                                            for (int k = 0; k <home_let_odds.size() ; k++) {
+                                            for (int k = 0; k < home_let_odds.size(); k++) {
 
                                                 ItemPoint itemPoint = new ItemPoint();
                                                 itemPoint.setIsselect(false);
@@ -1402,7 +1375,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                                             listfive.addAll(listone);
 
 
-                                            for (int k = 0; k <score_odds.size() ; k++) {
+                                            for (int k = 0; k < score_odds.size(); k++) {
                                                 ItemPoint itemPoint = new ItemPoint();
                                                 itemPoint.setIsselect(false);
 
@@ -1412,7 +1385,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                                                 listtwo.add(itemPoint);
 
                                             }
-                                            for (int k = 0; k <total_odds.size() ; k++) {
+                                            for (int k = 0; k < total_odds.size(); k++) {
                                                 ItemPoint itemPoint = new ItemPoint();
                                                 itemPoint.setIsselect(false);
 
@@ -1422,7 +1395,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                                                 listthree.add(itemPoint);
 
                                             }
-                                            for (int k = 0; k <half_odds.size() ; k++) {
+                                            for (int k = 0; k < half_odds.size(); k++) {
                                                 ItemPoint itemPoint = new ItemPoint();
                                                 itemPoint.setIsselect(false);
                                                 itemPoint.setId(half_odds.get(k).getOdds_code());
@@ -1442,18 +1415,18 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                                             chooseMixedBean.setHome_team(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name());
 
                                             chooseMixedBean.setGuest_team(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
-                                            chooseMixedBean.setName(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name()
-                                                    +"        "+"vs"+"        "+footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
+                                            chooseMixedBean.setName(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no() + "        " + footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name()
+                                                    + "        " + "vs" + "        " + footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
                                             chooseMixedBean.setHome_score(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_score());
                                             chooseMixedBean.setGuest_score(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score());
                                             list_choose.add(chooseMixedBean);
 
                                             Expand1Item_football item1 = new Expand1Item_football(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_name(),
                                                     footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name()
-                                                    ,footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name(),footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_score(),
-                                                    footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score(),footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()
-                                                    ,footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_stop_time()
-                                                    ,listfive,listtwo,listthree,listfour,list_choose,"展开更多选项",footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_no());
+                                                    , footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name(), footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_score(),
+                                                    footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score(), footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()
+                                                    , footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_stop_time()
+                                                    , listfive, listtwo, listthree, listfour, list_choose, "展开更多选项", footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_no());
 
 
                                             item.addSubItem(item1);
@@ -1477,7 +1450,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                         }
                     });
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }
@@ -1489,16 +1462,14 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-
-
     private ArrayList<MultiItemEntity> getlist_mixed(int mixed) {
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
         final ArrayList<MultiItemEntity> res = new ArrayList<>();
-        okhttpUtlis.GetAsynMap(Url.baseUrl+"app/ball/getFootballList", new Callback() {
+        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getFootballList", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
-                Log.e("YZS",e.getMessage()+"");
+                Log.e("YZS", e.getMessage() + "");
 
             }
 
@@ -1523,8 +1494,8 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                                     for (int i = 0; i < footballBean.getData().getGame_info().size(); i++) {
 
-                                        Item_Mixed item = new Item_Mixed(footballBean.getData().getGame_info().get(i).getGame_week()+""+footballBean.getData().getGame_info().get(i).getGame_group_time()+"共有"+footballBean.getData().getGame_info().get(i).getGame_info().size()+"场比赛可投");
-                                        for (int j = 0; j <footballBean.getData().getGame_info().get(i).getGame_info().size() ; j++) {
+                                        Item_Mixed item = new Item_Mixed(footballBean.getData().getGame_info().get(i).getGame_week() + "" + footballBean.getData().getGame_info().get(i).getGame_group_time() + "共有" + footballBean.getData().getGame_info().get(i).getGame_info().size() + "场比赛可投");
+                                        for (int j = 0; j < footballBean.getData().getGame_info().get(i).getGame_info().size(); j++) {
                                             ChooseMixedBean chooseMixedBean = new ChooseMixedBean();
                                             List<MixedFootballBean.DataBean.GameInfoBeanX.GameInfoBean.HomeScoreOddsBean> home_score_odds = footballBean.getData().getGame_info().get(i).getGame_info().get(j).getHome_score_odds();
 
@@ -1534,9 +1505,9 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                                             List<MixedFootballBean.DataBean.GameInfoBeanX.GameInfoBean.HalfOddsBean> half_odds = footballBean.getData().getGame_info().get(i).getGame_info().get(j).getHalf_odds();
                                             List<ItemPoint> list_single = new ArrayList<>();
 
-                                            switch (mixed){
+                                            switch (mixed) {
                                                 case 1:
-                                                    for (int k = 0; k <home_score_odds.size() ; k++) {
+                                                    for (int k = 0; k < home_score_odds.size(); k++) {
 
                                                         ItemPoint itemPoint = new ItemPoint();
                                                         itemPoint.setIsselect(false);
@@ -1549,7 +1520,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                                                     }
                                                     break;
                                                 case 2:
-                                                    for (int k = 0; k <home_let_odds.size() ; k++) {
+                                                    for (int k = 0; k < home_let_odds.size(); k++) {
 
                                                         ItemPoint itemPoint = new ItemPoint();
                                                         itemPoint.setIsselect(false);
@@ -1562,7 +1533,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                                                     }
                                                     break;
                                                 case 3:
-                                                    for (int k = 0; k <score_odds.size() ; k++) {
+                                                    for (int k = 0; k < score_odds.size(); k++) {
 
                                                         ItemPoint itemPoint = new ItemPoint();
                                                         itemPoint.setIsselect(false);
@@ -1575,7 +1546,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                                                     }
                                                     break;
                                                 case 4:
-                                                    for (int k = 0; k <total_odds.size() ; k++) {
+                                                    for (int k = 0; k < total_odds.size(); k++) {
 
                                                         ItemPoint itemPoint = new ItemPoint();
                                                         itemPoint.setIsselect(false);
@@ -1588,7 +1559,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                                                     }
                                                     break;
                                                 case 5:
-                                                    for (int k = 0; k <half_odds.size() ; k++) {
+                                                    for (int k = 0; k < half_odds.size(); k++) {
 
                                                         ItemPoint itemPoint = new ItemPoint();
                                                         itemPoint.setIsselect(false);
@@ -1604,33 +1575,30 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                                             }
 
 
-
                                             chooseMixedBean.setOnelist(list_single);
                                             chooseMixedBean.setDesc("展开更多选项");
                                             chooseMixedBean.setGame_id(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_id());
                                             chooseMixedBean.setHome_team(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name());
 
                                             chooseMixedBean.setGuest_team(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
-                                            chooseMixedBean.setName(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name()
-                                                    +"        "+"vs"+"        "+footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
+                                            chooseMixedBean.setName(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no() + "        " + footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name()
+                                                    + "        " + "vs" + "        " + footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
                                             chooseMixedBean.setHome_score(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_score());
                                             chooseMixedBean.setGuest_score(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score());
                                             list_choose.add(chooseMixedBean);
 
 
-                                            Log.e("SingleSize",j+"");
+                                            Log.e("SingleSize", j + "");
 
                                             Item1_Mixed item1 = new Item1_Mixed(footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_name(),
                                                     footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name()
-                                                    ,footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name(),footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_score(),
-                                                    footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score(),footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()
-                                                    ,footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_stop_time()
-                                                    ,list_single,list_choose,"展开更多选项",footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_no());
+                                                    , footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name(), footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_score(),
+                                                    footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score(), footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()
+                                                    , footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_stop_time()
+                                                    , list_single, list_choose, "展开更多选项", footballBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_no());
 
 
                                             item.addSubItem(item1);
-
-
 
 
                                         }
@@ -1652,7 +1620,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                         }
                     });
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }
@@ -1662,9 +1630,6 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
         return res;
     }
-
-
-
 
 
 }

@@ -85,7 +85,7 @@ import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
- * 首页面的fragment  227章节咪咕350
+ * 首页面的fragment  我227  海941 鬼75
  */
 public class MainFragment extends LazyFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -108,12 +108,12 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     private TextView Text_loading;
     private LinearLayout layout_scroll;
     private ArrayList<String> titleList;
-    private LinearLayout layout_football,layout_baskball;
-    private  int bett=0,money_flag=0,edit_flag=0,multiple;
-    private  List<HomeBean.DataBean.YesterdayBean> data = new ArrayList<>();
+    private LinearLayout layout_football, layout_baskball;
+    private int bett = 0, money_flag = 0, edit_flag = 0, multiple;
+    private List<HomeBean.DataBean.YesterdayBean> data = new ArrayList<>();
     private FameAdapter fameAdapter;
-    private int flag_all=0;
-    private List<String>  imgs;
+    private int flag_all = 0;
+    private List<String> imgs;
     private long mLastClickTime = 0;
     public static final long TIME_INTERVAL = 1000L;
     private List<MainInfomationBean.DataBean> list = new ArrayList<>();
@@ -122,9 +122,10 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     private String game_id;
     private Dialog dialog;
     private LinearLayout Layout_Consultation;
-    private TextView left_team,right_team,Text_prour;
+    private TextView left_team, right_team, Text_prour;
     private ClearEditText Multiple_Money;
     private List<HomeSingle.DataBean.SingleOddsBean> single_odds;
+
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
@@ -146,70 +147,64 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String result = response.body().string();
-                if(getActivity()!=null){
+                if (getActivity() != null) {
 
 
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
 
-                        try {
-                            JSONObject jsonObject = new JSONObject(result);
-                            int code = jsonObject.getInt("code");
-                            String msg = jsonObject.getString("msg");
-                            if (code == 10000) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(result);
+                                int code = jsonObject.getInt("code");
+                                String msg = jsonObject.getString("msg");
+                                if (code == 10000) {
 
-                                HomeSingle singleBean = JSON.parseObject(result, HomeSingle.class);
-                                if(singleBean.getData().size()==0){
-                                    dan_layout.setVisibility(View.GONE);
-                                }else {
-                                    dan_layout.setVisibility(View.VISIBLE);
+                                    HomeSingle singleBean = JSON.parseObject(result, HomeSingle.class);
+                                    if (singleBean.getData().size() == 0) {
+                                        dan_layout.setVisibility(View.GONE);
+                                    } else {
+                                        dan_layout.setVisibility(View.VISIBLE);
 
-                                    Text_football_data.setText(singleBean.getData().get(0).getGame_stop_time());
-                                    left_team.setText(singleBean.getData().get(0).getGame_home_team_name());
-                                    right_team.setText(singleBean.getData().get(0).getGame_guest_team_name());
-                                    Button_victory.setText(singleBean.getData().get(0).getSingle_odds().get(0).getOdds_code()+
-                                            singleBean.getData().get(0).getSingle_odds().get(0).getOdds());
-                                    Button_ping.setText(singleBean.getData().get(0).getSingle_odds().get(1).getOdds_code()+
-                                            singleBean.getData().get(0).getSingle_odds().get(1).getOdds());
-                                    Button_loser.setText(singleBean.getData().get(0).getSingle_odds().get(2).getOdds_code()+
-                                            singleBean.getData().get(0).getSingle_odds().get(2).getOdds());
-                                    game_id = singleBean.getData().get(0).getGame_id();
-                                    single_odds = singleBean.getData().get(0).getSingle_odds();
-                                    double poer = Double.parseDouble(single_odds.get(0).getOdds()) * 50;
-                                    NumberFormat nf = new DecimalFormat("#.##");
-                                    String format = nf.format(poer);
-                                    Text_prour.setText(format);
+                                        Text_football_data.setText(singleBean.getData().get(0).getGame_stop_time());
+                                        left_team.setText(singleBean.getData().get(0).getGame_home_team_name());
+                                        right_team.setText(singleBean.getData().get(0).getGame_guest_team_name());
+                                        Button_victory.setText(singleBean.getData().get(0).getSingle_odds().get(0).getOdds_code() +
+                                                singleBean.getData().get(0).getSingle_odds().get(0).getOdds());
+                                        Button_ping.setText(singleBean.getData().get(0).getSingle_odds().get(1).getOdds_code() +
+                                                singleBean.getData().get(0).getSingle_odds().get(1).getOdds());
+                                        Button_loser.setText(singleBean.getData().get(0).getSingle_odds().get(2).getOdds_code() +
+                                                singleBean.getData().get(0).getSingle_odds().get(2).getOdds());
+                                        game_id = singleBean.getData().get(0).getGame_id();
+                                        single_odds = singleBean.getData().get(0).getSingle_odds();
+                                        double poer = Double.parseDouble(single_odds.get(0).getOdds()) * 50;
+                                        NumberFormat nf = new DecimalFormat("#.##");
+                                        String format = nf.format(poer);
+                                        Text_prour.setText(format);
 
+
+                                    }
+
+
+                                } else {
+                                    ToastUtil.showToast(getActivity(), msg);
 
                                 }
 
 
-
-                            }else {
-                                ToastUtil.showToast(getActivity(),msg);
-
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
 
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-
-                    }
-                });
-                }else {
+                    });
+                } else {
 
                 }//94。95  7。5
 
 
-
             }
         });
-
-
-
 
 
     }
@@ -218,7 +213,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         titleList = new ArrayList<>();
         imgs = new ArrayList<>();
         data.clear();
-        HashMap<String,String> hashMap = new HashMap<>();
+        HashMap<String, String> hashMap = new HashMap<>();
         OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
         okhttpUtlis.PostAsynMap(Url.baseUrl + "app/home/index", hashMap, new Callback() {
             @Override
@@ -243,20 +238,20 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
                             String msg = jsonObject.getString("msg");
 
-                            if(code==10000){
+                            if (code == 10000) {
 
-                                HomeBean homeBean = JSON.parseObject(result,HomeBean.class);
-                                if(homeBean.getData().getYesterday().size()==0){
+                                HomeBean homeBean = JSON.parseObject(result, HomeBean.class);
+                                if (homeBean.getData().getYesterday().size() == 0) {
                                     fame_empt.setVisibility(View.VISIBLE);
-                                }else {
+                                } else {
                                     fame_empt.setVisibility(View.GONE);
                                     data.addAll(homeBean.getData().getYesterday());
                                     fameAdapter.notifyDataSetChanged();
 
                                 }
 
-                                for (int i = 0; i <homeBean.getData().getAnnouncement().size() ; i++) {
-                                    titleList.add("恭喜用户"+homeBean.getData().getAnnouncement().get(i).getUname()+"中奖"+homeBean.getData().getAnnouncement().get(i).getBonus_price()+"元");
+                                for (int i = 0; i < homeBean.getData().getAnnouncement().size(); i++) {
+                                    titleList.add("恭喜用户" + homeBean.getData().getAnnouncement().get(i).getUname() + "中奖" + homeBean.getData().getAnnouncement().get(i).getBonus_price() + "元");
                                 }
 
                                 VerticaTextView.setTextList(titleList);
@@ -266,11 +261,16 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                                     imgs.add(homeBean.getData().getBanner().get(i).getImg_location());
 
                                 }
+                                try {
+
+
                                 ImageNormalAdapter imageNormalAdapter = new ImageNormalAdapter();
                                 mainRollPagerView.setAdapter(imageNormalAdapter);//设置适配器
                                 imageNormalAdapter.notifyDataSetChanged();
+                                }catch (Exception e){
 
-                            }else {
+                                }
+                            } else {
 
 
                             }
@@ -284,11 +284,8 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                 });
 
 
-
-
             }
         });
-
 
 
     }
@@ -311,7 +308,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         dan_layout = (LinearLayout) findViewById(R.id.dan_layout);
         Text_loading = (TextView) findViewById(R.id.Text_loading);
         layout_scroll = (LinearLayout) findViewById(R.id.layout_scroll);
-        Home_Refresh  = (SwipeRefreshLayout) findViewById(R.id.Home_Refresh);
+        Home_Refresh = (SwipeRefreshLayout) findViewById(R.id.Home_Refresh);
         Image_lottery = (ImageView) findViewById(R.id.Image_lottery);
         layout_football = (LinearLayout) findViewById(R.id.layout_football);
         layout_baskball = (LinearLayout) findViewById(R.id.layout_baskball);
@@ -340,12 +337,12 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         recyclerView_fame.setNestedScrollingEnabled(false);
 
         recyclerView_fame.setLayoutManager(new LinearLayoutManager(getContext()));
-        fameAdapter = new FameAdapter(getContext(),data);
+        fameAdapter = new FameAdapter(getContext(), data);
         recyclerView_fame.setAdapter(fameAdapter);
 
         //这是后来要删除的集合，所以就不用在strings里面去写了
         VerticaTextView.setText(11, 0, Color.parseColor("#C08FA6"));//设置属性
-        VerticaTextView.setTextStillTime(3000);//设置停留时长间隔
+        VerticaTextView.setTextStillTime(5000);//设置停留时长间隔
         VerticaTextView.setAnimTime(300);//设置进入和退出的时间间隔
         VerticaTextView.setOnItemClickListener(new VerticalTextview.OnItemClickListener() {
             @Override
@@ -377,15 +374,15 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
         @Override
         public void afterTextChanged(Editable s) {
-            if(Multiple_Money.getText().toString().trim().equals("")){
-                edit_flag=0;
+            if (Multiple_Money.getText().toString().trim().equals("")) {
+                edit_flag = 0;
 
-            }else {
-                flag_all=3;
-                change(Button_wushi,Button_erbai,Button_wubai);
+            } else {
+                flag_all = 3;
+                change(Button_wushi, Button_erbai, Button_wubai);
 //                BigInteger n = new BigInteger(Multiple_Money.getText().toString().trim());
                 Double n = Double.parseDouble(Multiple_Money.getText().toString().trim());
-                Log.e("YZS",n%2+"");
+                Log.e("YZS", n % 2 + "");
 //                if(n%2==1){
 //                    edit_flag=0;
 //                    ToastUtil.showToast1(getActivity(),"请输入2的倍数");
@@ -408,8 +405,6 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
             }
 
 
-
-
         }
     };
 
@@ -419,8 +414,6 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
             public void run() {
                 //异步处理加载数据
                 //...
-
-
 
 
                 //指示器4兄弟,也就是那小圆点
@@ -441,143 +434,136 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     }
 
 
-
-
-
-
-
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.Layout_Fourteen:
-                startActivity(new Intent(getContext(),LotteryActivity.class));
+                startActivity(new Intent(getContext(), LotteryActivity.class));
 
                 break;
             case R.id.Button_victory:
 
-                bett=0;
-               change(Button_victory,Button_ping,Button_loser);
+                bett = 0;
+                change(Button_victory, Button_ping, Button_loser);
 
 
                 break;
             case R.id.Layout_Consultation:
 
-                startActivity(new Intent(getContext(),ConsultationActivity.class));
+                startActivity(new Intent(getContext(), ConsultationActivity.class));
 
                 break;
             case R.id.Button_ping:
 
-                bett=1;
+                bett = 1;
 
-                change(Button_ping,Button_victory,Button_loser);
+                change(Button_ping, Button_victory, Button_loser);
 
                 break;
             case R.id.Button_loser:
 
-                bett=2;
+                bett = 2;
 
-                change(Button_loser,Button_ping,Button_victory);
+                change(Button_loser, Button_ping, Button_victory);
 
                 break;
             case R.id.Button_wushi:
 
-                money_flag=0;
-                change(Button_wushi,Button_erbai,Button_wubai);
+                money_flag = 0;
+                change(Button_wushi, Button_erbai, Button_wubai);
 
                 break;
             case R.id.Button_erbai:
 
-                money_flag=1;
+                money_flag = 1;
 
-                change(Button_erbai,Button_wushi,Button_wubai);
+                change(Button_erbai, Button_wushi, Button_wubai);
 
                 break;
             case R.id.Button_wubai:
 
-                money_flag=2;
+                money_flag = 2;
 
-                change(Button_wubai,Button_wushi,Button_erbai);
+                change(Button_wubai, Button_wushi, Button_erbai);
 
                 break;
             case R.id.laynout_dan:
 //                Intent intent_dan_top = new Intent(getContext(),SingleActivity.class);
-                Intent intent_dan_top = new Intent(getContext(),BettingfootActivity.class);
-                intent_dan_top.putExtra("flag",0);
+                Intent intent_dan_top = new Intent(getContext(), BettingfootActivity.class);
+                intent_dan_top.putExtra("flag", 0);
 
                 startActivity(intent_dan_top);
                 break;
 
             case R.id.Image_lottery:
-                startActivity(new Intent(getContext(),LotteryActivity.class));
+                startActivity(new Intent(getContext(), LotteryActivity.class));
 
                 break;
             case R.id.layout_football:
                 //重写,先注释
-                Intent intent = new Intent(getContext(),BettingfootActivity.class);
+                Intent intent = new Intent(getContext(), BettingfootActivity.class);
 
-                intent.putExtra("flag",1);
+                intent.putExtra("flag", 1);
                 startActivity(intent);
                 break;
             case R.id.layout_baskball:
-                startActivity(new Intent(getContext(),BasketBallMixedActivity.class));
+                startActivity(new Intent(getContext(), BasketBallMixedActivity.class));
 
                 break;
             case R.id.dan_layout:
 //                Intent intent_dan = new Intent(getContext(),SingleActivity.class);
-                Intent intent_dan = new Intent(getContext(),BettingfootActivity.class);
-                intent_dan.putExtra("flag",0);
+                Intent intent_dan = new Intent(getContext(), BettingfootActivity.class);
+                intent_dan.putExtra("flag", 0);
 
                 startActivity(intent_dan);
                 break;
             case R.id.service_img:
 
-                startActivity(new Intent(getContext(),WebViewCustomerActivity.class));
+                startActivity(new Intent(getContext(), WebViewCustomerActivity.class));
 
                 break;
             case R.id.Text_betting:
 
 
-                if(Multiple_Money.getText().toString().trim().equals("")){
+                if (Multiple_Money.getText().toString().trim().equals("")) {
 
-                        if(money_flag!=4){
+                    if (money_flag != 4) {
 
-                            submit();
+                        submit();
 
-                        }else {
-                            ToastUtil.showToast1(getActivity(),"请输入金额");
+                    } else {
+                        ToastUtil.showToast1(getActivity(), "请输入金额");
 
-                        }
+                    }
 
 //                    ToastUtil.showToast1(getActivity(),"请输入金额");
 
 
-                }else {
+                } else {
                     String str = Multiple_Money.getText().toString().trim();
                     int i = str.indexOf('0');
-                    if(i==0){
-                ToastUtil.showToast1(getActivity(),"输入的倍数必须大于0");
+                    if (i == 0) {
+                        ToastUtil.showToast1(getActivity(), "输入的倍数必须大于0");
 
-            }else {
-                Double n = Double.parseDouble(Multiple_Money.getText().toString().trim());
-                Log.e("YZS",n%2+"");
-                if(n%2==1){
-                    edit_flag=0;
-                    ToastUtil.showToast1(getActivity(),"请输入2的倍数");
-                }else {
-                    edit_flag=1;
+                    } else {
+                        Double n = Double.parseDouble(Multiple_Money.getText().toString().trim());
+                        Log.e("YZS", n % 2 + "");
+                        if (n % 2 == 1) {
+                            edit_flag = 0;
+                            ToastUtil.showToast1(getActivity(), "请输入2的倍数");
+                        } else {
+                            edit_flag = 1;
 
 
+                            submit();
 
-                    submit();
-
-                }
-            }
+                        }
+                    }
 
 //                BigInteger n = new BigInteger(Multiple_Money.getText().toString().trim());
 
 
                 }
-
 
 
                 break;
@@ -586,9 +572,8 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     }
 
 
-
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void changeRecyclerView(Button one,Button two){
+    public void changeRecyclerView(Button one, Button two) {
         one.setBackground(getResources().getDrawable(R.drawable.main_radio_righttop_shape));
         two.setBackground(getResources().getDrawable(R.color.transparent));
         one.setTextColor(getResources().getColor(R.color.login_red));
@@ -597,39 +582,39 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void change(Button one,Button two,Button three){
-        if(flag_all==0) {
+    public void change(Button one, Button two, Button three) {
+        if (flag_all == 0) {
             Multiple_Money.setText("");
             one.setBackground(getResources().getDrawable(R.drawable.main_victory_shape_red));
             one.setTextColor(getResources().getColor(R.color.white));
 
-            if(edit_flag==0){
-               Double zhi = 0.00;
-                switch (money_flag){
+            if (edit_flag == 0) {
+                Double zhi = 0.00;
+                switch (money_flag) {
                     case 0:
-                        zhi=50.00;
+                        zhi = 50.00;
 
                         break;
                     case 1:
-                        zhi=200.00;
+                        zhi = 200.00;
 
                         break;
                     case 2:
-                        zhi=500.00;
+                        zhi = 500.00;
                         break;
                 }
                 double poer = Double.parseDouble(single_odds.get(bett).getOdds()) * zhi;
                 NumberFormat nf = new DecimalFormat("#.##");
                 String format = nf.format(poer);
                 Text_prour.setText(format);
-            }else {
+            } else {
                 double poer = Double.parseDouble(single_odds.get(bett).getOdds()) * Double.parseDouble(Multiple_Money.getText().toString().trim());
                 NumberFormat nf = new DecimalFormat("#.##");
                 String format = nf.format(poer);
                 Text_prour.setText(format);
             }
 
-        }else if(flag_all==3){
+        } else if (flag_all == 3) {
 
             one.setBackground(getResources().getDrawable(R.drawable.main_victory_shape));
             one.setTextColor(getResources().getColor(R.color.login_red));
@@ -637,8 +622,8 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
             three.setBackground(getResources().getDrawable(R.drawable.main_victory_shape));
             two.setTextColor(getResources().getColor(R.color.login_red));
             three.setTextColor(getResources().getColor(R.color.login_red));
-            flag_all=0;
-            money_flag=4;
+            flag_all = 0;
+            money_flag = 4;
         }
 
 
@@ -654,7 +639,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
     public void onRefresh() {
         Toast.makeText(getContext(), "正在刷新", Toast.LENGTH_SHORT).show();
 
-        new Handler().postDelayed(new Runnable(){
+        new Handler().postDelayed(new Runnable() {
 
             @Override
             public void run() {
@@ -665,7 +650,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                 Toast.makeText(getContext(), "刷新完成", Toast.LENGTH_SHORT).show();
 
             }
-        },2000);
+        }, 2000);
 
 
     }
@@ -681,13 +666,15 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         public View getView(ViewGroup container, int position) {
             ImageView view = new ImageView(container.getContext());
 
-
+            try{
 
             view.setScaleType(ImageView.ScaleType.CENTER_CROP);
             view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            Log.e("YZS",imgs.get(position));
-            Glide.with(getActivity()).load(imgs.get(position)).transform(new CenterCrop(getActivity()),new GlideRoundTransform(getActivity(),10)).into(view);
+            Log.e("YZS", imgs.get(position));
+            Glide.with(getActivity()).load(imgs.get(position)).transform(new CenterCrop(getActivity()), new GlideRoundTransform(getActivity(), 10)).into(view);
+            }catch (Exception e){
 
+            }
             return view;
 
         }
@@ -733,7 +720,7 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
     private void submit() {
 
-        dialog = new Dialog(getActivity(),R.style.dialog);
+        dialog = new Dialog(getActivity(), R.style.dialog);
         dialog.setContentView(R.layout.dialog_sure_mixed);
         Window window = dialog.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
@@ -751,46 +738,44 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
         TextView pop_bunch = dialog.findViewById(R.id.pop_bunch);
         Button button_cancle = dialog.findViewById(R.id.button_cancle);
 
-            if(edit_flag==0){
-                switch (money_flag){
-                    case 0:
-                        pop_money.setText("50元");
-                        multiple = 50/2;
-                        text_bei.setText(multiple+"倍");
-                        pop_bunch.setText("1注");
-                        break;
-                    case 1:
-                        pop_money.setText("200元");
-                        multiple = 200/2;
-                        text_bei.setText(multiple+"倍");
-                        pop_bunch.setText("1注");
-                        break;
-                    case 2:
-                        pop_money.setText("500元");
+        if (edit_flag == 0) {
+            switch (money_flag) {
+                case 0:
+                    pop_money.setText("50元");
+                    multiple = 50 / 2;
+                    text_bei.setText(multiple + "倍");
+                    pop_bunch.setText("1注");
+                    break;
+                case 1:
+                    pop_money.setText("200元");
+                    multiple = 200 / 2;
+                    text_bei.setText(multiple + "倍");
+                    pop_bunch.setText("1注");
+                    break;
+                case 2:
+                    pop_money.setText("500元");
 
-                        multiple = 500/2;
-                        text_bei.setText(multiple+"倍");
-                        pop_bunch.setText("1注");
-                        break;
-
-                }
-
-
-
-
-            }else {
-                pop_money.setText(Multiple_Money.getText().toString().trim()+"元");
-                multiple = Integer.parseInt(Multiple_Money.getText().toString().trim())/2;
-                text_bei.setText(Integer.parseInt(Multiple_Money.getText().toString().trim())/2+"倍");
-                pop_bunch.setText("1注");
+                    multiple = 500 / 2;
+                    text_bei.setText(multiple + "倍");
+                    pop_bunch.setText("1注");
+                    break;
 
             }
+
+
+        } else {
+            pop_money.setText(Multiple_Money.getText().toString().trim() + "元");
+            multiple = Integer.parseInt(Multiple_Money.getText().toString().trim()) / 2;
+            text_bei.setText(Integer.parseInt(Multiple_Money.getText().toString().trim()) / 2 + "倍");
+            pop_bunch.setText("1注");
+
+        }
 
 
 //            pop_money.setText(Integer.parseInt(format)*Integer.parseInt(edit_Multiple.getText().toString())*2+"元");
 
 
-        Button submit_order =  dialog.findViewById(R.id.submit_order);
+        Button submit_order = dialog.findViewById(R.id.submit_order);
         button_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -808,19 +793,15 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                     // do something
                     mLastClickTime = nowTime;
                 } else {
-                    ToastUtil.showToast1(getActivity(),"不要重复点击");
+                    ToastUtil.showToast1(getActivity(), "不要重复点击");
                 }
             }
         });
     }
 
 
-    private void suborder(){
+    private void suborder() {
         try {
-
-
-
-
 
 
             // 创建json对象
@@ -828,18 +809,18 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
             org.json.JSONArray jsonArray1 = new org.json.JSONArray();
             List<JSONObject> list_jsonobject = new ArrayList<>();
 
-                JSONObject jsonObject_son = new JSONObject();
+            JSONObject jsonObject_son = new JSONObject();
 
-                org.json.JSONArray jsonArray_son = new org.json.JSONArray();
+            org.json.JSONArray jsonArray_son = new org.json.JSONArray();
 
-                    jsonArray_son.put(single_odds.get(bett).getGame_odds_id());
+            jsonArray_son.put(single_odds.get(bett).getGame_odds_id());
 
-                jsonObject_son.put("game_id",game_id);
-                jsonObject_son.put("bet_id",jsonArray_son);
+            jsonObject_son.put("game_id", game_id);
+            jsonObject_son.put("bet_id", jsonArray_son);
 
-                list_jsonobject.add(jsonObject_son);
+            list_jsonobject.add(jsonObject_son);
 
-            for (int i = 0; i <list_jsonobject.size() ; i++) {
+            for (int i = 0; i < list_jsonobject.size(); i++) {
 
                 jsonArray1.put(list_jsonobject.get(i));
 
@@ -847,20 +828,20 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
             org.json.JSONArray jsonArray = getlist_guan();
 
-            jsonObject.put("multiple",multiple+"");
-            jsonObject.put("bunch",jsonArray);
-            jsonObject.put("game_type","0");
-            jsonObject.put("game_bet",jsonArray1);
-            jsonObject.put("theory_bonus","预计奖金:"+Text_prour.getText().toString());
+            jsonObject.put("multiple", multiple + "");
+            jsonObject.put("bunch", jsonArray);
+            jsonObject.put("game_type", "0");
+            jsonObject.put("game_bet", jsonArray1);
+            jsonObject.put("theory_bonus", "预计奖金:" + Text_prour.getText().toString());
             String data = jsonObject.toString();
-            Log.e("YZS",data.toString());
+            Log.e("YZS", data.toString());
 
             OkHttpClient client = new OkHttpClient();
 
 
             RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"), data);
             final Request request = new Request.Builder()
-                    .url(Url.baseUrl+"app/order/addOrder")
+                    .url(Url.baseUrl + "app/order/addOrder")
                     .addHeader("token", Content.ToKen)
                     .post(body)
 
@@ -881,23 +862,23 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
                             try {
 
 
-                                CodeBean codeBean = JSON.parseObject(result,CodeBean.class);
-                                if(codeBean.getCode()==10000){
+                                CodeBean codeBean = JSON.parseObject(result, CodeBean.class);
+                                if (codeBean.getCode() == 10000) {
                                     dialog.dismiss();
-                                    ToastUtil.showToast(getActivity(),codeBean.getMsg()+"");
-                                }else if(codeBean.getCode()==10004){
+                                    ToastUtil.showToast(getActivity(), codeBean.getMsg() + "");
+                                } else if (codeBean.getCode() == 10004) {
                                     MainActivity.intentsat.finish();
                                     startActivity(new Intent(getActivity(), LoginActivity.class));
-                                    SpUtil spUtil = new SpUtil(getActivity(),"token");
-                                    spUtil.putString("token","");
-                                    ToastUtil.showToast(getActivity(),codeBean.getMsg()+"");
+                                    SpUtil spUtil = new SpUtil(getActivity(), "token");
+                                    spUtil.putString("token", "");
+                                    ToastUtil.showToast(getActivity(), codeBean.getMsg() + "");
 
-                                }else {
-                                    ToastUtil.showToast(getActivity(),codeBean.getMsg()+"");
+                                } else {
+                                    ToastUtil.showToast(getActivity(), codeBean.getMsg() + "");
 
                                 }
-                            }catch (Exception e){
-                                ToastUtil.showToast(getActivity(),"返回数据有误");
+                            } catch (Exception e) {
+                                ToastUtil.showToast(getActivity(), "返回数据有误");
 
                             }
 
@@ -915,11 +896,10 @@ public class MainFragment extends LazyFragment implements View.OnClickListener, 
 
 
     //获取几串几的集合
-    public org.json.JSONArray getlist_guan(){
+    public org.json.JSONArray getlist_guan() {
         org.json.JSONArray jsonArray = new org.json.JSONArray();
 
         jsonArray.put(1);
-
 
 
         return jsonArray;

@@ -139,7 +139,7 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
     }
 
     @Override
-    protected void onResume() {
+    protected void   onResume() {
         super.onResume();
 
         if(Content.order_flag_bask==0){

@@ -357,7 +357,17 @@
                     android:layout_marginLeft="@dimen/d10"
                     android:layout_width="50dp"
                     android:layout_height="22dp" />
-
+                <TextView
+                    android:background="@drawable/order_details_yellow"
+                    android:text="单关"
+                    android:id="@+id/Text_bunch_dan"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f12"
+                    android:layout_marginLeft="@dimen/d10"
+                    android:layout_width="50dp"
+                    android:layout_height="22dp" />
                 <TextView
                     android:background="@drawable/order_details_yellow"
                     android:text="2串1"

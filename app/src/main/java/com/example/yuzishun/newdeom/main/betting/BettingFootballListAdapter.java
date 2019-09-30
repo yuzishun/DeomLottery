@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -103,7 +104,7 @@ public class BettingFootballListAdapter extends BaseMultiItemQuickAdapter<MultiI
                         .setText(R.id.Text_top,item2.home_score)
                         .setText(R.id.Text_bottom,item2.guest_score);
                 LinearLayout layout_analysis = helper.getView(R.id.layout_analysis);
-
+                ImageView image_single = helper.getView(R.id.image_single);
                 layout_analysis.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

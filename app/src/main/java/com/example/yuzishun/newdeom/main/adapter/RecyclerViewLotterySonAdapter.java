@@ -40,6 +40,7 @@ public class RecyclerViewLotterySonAdapter extends RecyclerView.Adapter<Recycler
     public void onBindViewHolder(RecyclerViewLotterySonAdapter.ViewHolder holder, int position) {
 
 
+
         holder.game_name.setText(list.get(position).getGame_name());
         holder.no_number.setText(list.get(position).getGame_sequence_no());
         holder.left_name.setText(list.get(position).getGame_home_team_name());

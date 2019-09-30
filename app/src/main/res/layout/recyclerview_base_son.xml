@@ -11,19 +11,25 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
+        <RelativeLayout
             android:layout_weight="3"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/image_single"
+                android:visibility="gone"
+                android:background="@mipmap/single"
+                android:layout_width="35dp"
+                android:layout_height="35dp" />
             <TextView
                 android:text="澳超"
                 android:id="@+id/Text_diqu"
                 android:textColor="@color/font_black"
                 android:textSize="@dimen/f12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
         <LinearLayout
             android:layout_weight="1"
             android:orientation="horizontal"

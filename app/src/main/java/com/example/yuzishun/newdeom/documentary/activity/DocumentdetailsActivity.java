@@ -67,7 +67,8 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
     Button button_senddocument;
     @BindView(R.id.amountView)
     AmountView amountView;
-
+    @BindView(R.id.Text_bunch_dan)
+    TextView Text_bunch_dan;
     @BindView(R.id.layout_dec)
     LinearLayout layout_dec;
     @BindView(R.id.text_dec)
@@ -329,16 +330,14 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
                                             }else {
                                                 layout_text_sunsheet.setText("查看评论");
-                                                //先隐藏
-                                                layout_text_sunsheet.setVisibility(View.GONE);
 
-//                                                layout_text_sunsheet.setVisibility(View.VISIBLE);
+                                                layout_text_sunsheet.setVisibility(View.VISIBLE);
 
 //
 
                                             }
                                         }else {
-                                            layout_text_sunsheet.setVisibility(View.VISIBLE);
+                                            layout_text_sunsheet.setVisibility(View.GONE);
 
                                         }
 
@@ -462,6 +461,24 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                             Text_bunch_six.setText(bunch.get(4)+"串1");
                                             Text_bunch_seven.setText(bunch.get(5)+"串1");
                                             Text_bunch_entry.setText(bunch.get(6)+"串1");
+
+                                            break;
+                                        case 8:
+                                            Text_bunch_dan.setVisibility(View.VISIBLE);
+                                            Text_bunch_dan.setText("单关");
+                                            Text_bunch_three.setVisibility(View.VISIBLE);
+                                            Text_bunch_four.setVisibility(View.VISIBLE);
+                                            Text_bunch_fire.setVisibility(View.VISIBLE);
+                                            Text_bunch_six.setVisibility(View.VISIBLE);
+                                            Text_bunch_seven.setVisibility(View.VISIBLE);
+                                            Text_bunch_entry.setVisibility(View.VISIBLE);
+                                            Text_bunch_two.setText(bunch.get(1)+"串1");
+                                            Text_bunch_three.setText(bunch.get(2)+"串1");
+                                            Text_bunch_four.setText(bunch.get(3)+"串1");
+                                            Text_bunch_fire.setText(bunch.get(4)+"串1");
+                                            Text_bunch_six.setText(bunch.get(5)+"串1");
+                                            Text_bunch_seven.setText(bunch.get(6)+"串1");
+                                            Text_bunch_entry.setText(bunch.get(7)+"串1");
 
                                             break;
 
