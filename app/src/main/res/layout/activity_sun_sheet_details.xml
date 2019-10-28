@@ -302,7 +302,7 @@
         </View>
 
         <LinearLayout
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
             android:layout_height="@dimen/d40">
@@ -357,7 +357,7 @@
             android:layout_height="@dimen/d40">
 
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/layout_ping"
                 android:orientation="horizontal"
                 android:layout_weight="1"

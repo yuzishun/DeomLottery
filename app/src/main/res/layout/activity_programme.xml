@@ -70,6 +70,16 @@
                 android:layout_width="50dp"
                 android:layout_height="22dp" />
             <TextView
+                android:background="@drawable/order_details_blue"
+                android:text="奖金优化"
+                android:id="@+id/Text_bunch_bonus"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f10"
+                android:layout_marginLeft="@dimen/d10"
+                android:layout_width="60dp"
+                android:layout_height="22dp" />
+            <TextView
                 android:background="@drawable/order_details_yellow"
                 android:text="3串1"
                 android:id="@+id/Text_bunch_three"

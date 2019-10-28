@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yuzishun.newdeom.documentary.activity.BonusdetailsActivity">
+    <include layout="@layout/title_text"></include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d40">
+
+            <TextView
+                android:text="优化方式：平均优化"
+                android:id="@+id/seo_state_text"
+                android:layout_marginLeft="@dimen/d20"
+                android:textSize="@dimen/f13"
+                android:textColor="@color/font_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <View
+            android:background="@color/edittext_hintcolor"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp">
+
+        </View>
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d40">
+
+                <TextView
+                    android:text="方案详情：注数：3注"
+                    android:id="@+id/seo_number"
+                    android:layout_marginLeft="@dimen/d20"
+                    android:textSize="@dimen/f12"
+                    android:textColor="@color/font_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/d20"
+                android:layout_marginRight="@dimen/d20"
+                android:layout_height="@dimen/d20">
+                <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignBottom="@+id/list_1_2"
+                    android:layout_alignTop="@+id/list_1_2"
+                    android:gravity="center"
+                    android:textColor="#AAA6A8"
+                    android:text="单注明细"
+                    android:textSize="10sp" />
+                <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignBottom="@+id/list_1_2"
+                    android:layout_alignTop="@+id/list_1_2"
+                    android:gravity="center"
+                    android:textColor="#AAA6A8"
+                    android:text="注数"
+                    android:textSize="10sp" />
+                <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignBottom="@+id/list_1_2"
+                    android:layout_alignTop="@+id/list_1_2"
+                    android:gravity="center"
+                    android:textColor="#AAA6A8"
+                    android:text="理论奖金"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/Seo_RecyclerView"
+                android:layout_marginLeft="@dimen/d20"
+                android:layout_marginRight="@dimen/d20"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/d20"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -37,14 +37,71 @@
                         android:textSize="@dimen/f12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                    <com.example.yuzishun.newdeom.documentary.custom.AmountView
-                        android:id="@+id/amountView"
+                    <RelativeLayout
+                        android:layout_width="@dimen/d100"
+                        android:layout_height="@dimen/d25"
+                        android:focusable="true"
                         android:layout_marginLeft="@dimen/d10"
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:divider="@drawable/divider"
+                        android:background="@drawable/bonus_document"
+                        android:showDividers="middle"
+                        android:orientation="horizontal">
 
-                    </com.example.yuzishun.newdeom.documentary.custom.AmountView>
+                        <Button
+                            android:id="@+id/btnDecrease"
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_marginLeft="@dimen/d4"
+                            android:layout_alignParentLeft="true"
+                            android:background="@null"
+                            android:textSize="@dimen/f12"
+                            android:textColor="@color/font_black"
+                            android:text="-"/>
+
+                        <EditText
+                            android:id="@+id/etAmount"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+
+
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
+                            android:background="@null"
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/f12"
+                            android:inputType="number"
+                            android:gravity="center"
+                            android:text="1"/>
+
+                        <Button
+                            android:id="@+id/btnIncrease"
+                            android:layout_width="15dp"
+                            android:layout_marginRight="@dimen/d4"
+                            android:layout_alignParentRight="true"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textSize="@dimen/f12"
+                            android:textColor="@color/font_black"
+                            android:background="@null"
+                            android:text="+"/>
+                        <TextView
+                            android:layout_toRightOf="@id/etAmount"
+                            android:layout_centerVertical="true"
+                            android:background="@color/edittext_hintcolor"
+
+                            android:layout_width="0.1dp"
+                            android:layout_height="25dp" />
+                        <TextView
+                            android:layout_toLeftOf="@id/etAmount"
+                            android:layout_centerVertical="true"
+                            android:background="@color/edittext_hintcolor"
+
+                            android:layout_width="0.1dp"
+                            android:layout_height="25dp" />
+                    </RelativeLayout>
+
                     <TextView
                         android:text="元"
                         android:layout_marginLeft="@dimen/d10"
@@ -69,6 +126,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <Button
+                            android:id="@+id/button_Average"
                             android:text="平均优化"
                             android:textSize="@dimen/f11"
                             android:textColor="@color/white"
@@ -85,6 +143,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <Button
+                            android:id="@+id/button_hot"
                             android:text="博热优化"
                             android:textSize="@dimen/f11"
                             android:textColor="@color/login_red"
@@ -100,6 +159,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <Button
+                            android:id="@+id/button_cold"
                             android:text="博冷优化"
                             android:textSize="@dimen/f11"
                             android:textColor="@color/login_red"
@@ -183,13 +243,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/Bouns_RecyClerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/Bouns_RecyClerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
 
-                    </android.support.v7.widget.RecyclerView>
+                            </android.support.v7.widget.RecyclerView>
+
+
                 </LinearLayout>
 
             </LinearLayout>

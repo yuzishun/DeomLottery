@@ -101,6 +101,8 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
     TextView add_money;
     @BindView(R.id.Text_Scene)
     TextView Text_Scene;
+    @BindView(R.id.Text_bunch_bonus)
+    TextView Text_bunch_bonus;
     @BindView(R.id.Text_bunch_two)
     TextView Text_bunch_two;
     @BindView(R.id.Text_bunch_three)
@@ -146,6 +148,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
     private int flag,order_id,plan_id,multiple=1,multiples;
     private Double multiple_price;
     private String order_price,bask_id;
+    private int bonus=0;
     @Override
     public int intiLayout() {
         return R.layout.activity_documentdetails;
@@ -179,6 +182,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
         text_gen.setOnClickListener(this);
         layout_text_sunsheet.setOnClickListener(this);
         image_back.setOnClickListener(this);
+        Text_bunch_bonus.setOnClickListener(this);
         button_senddocument.setOnClickListener(this);
         initnet();
         //倍数选择
@@ -225,7 +229,25 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
 
                                     }
+                                if(footBallOrderBean.getData().getSeo_status()>0){
+                                    Text_bunch_bonus.setVisibility(View.VISIBLE);
+                                    switch (footBallOrderBean.getData().getSeo_status()){
+                                        case 1:
+                                            Text_bunch_bonus.setText("平均优化");
+                                            break;
+                                        case 2:
+                                            Text_bunch_bonus.setText("博热优化");
 
+                                            break;
+                                        case 3:
+                                            Text_bunch_bonus.setText("博冷优化");
+
+                                            break;
+                                    }
+                                }else {
+                                    Text_bunch_bonus.setVisibility(View.GONE);
+
+                                }
                                 bask_id = footBallOrderBean.getData().getBask_id();
                                 order_price= footBallOrderBean.getData().getOrder_price();
                                 Glide.with(DocumentdetailsActivity.this).load(footBallOrderBean.getData().getUser_info().getImg_head()).asBitmap().centerCrop().into(usericon);
@@ -321,23 +343,26 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
 //                                        订单状态【0：待出票，1：待开奖，2：中奖，3：未中奖，-1：申请退款，-2：已取消】
                                     }
-
                                     if(footBallOrderBean.getData().getOrder_status()>1){
                                         if(footBallOrderBean.getData().getBask_permission()==0){
-
-                                            if(footBallOrderBean.getData().getBask_status()==0){
+                                            if(footBallOrderBean.getData().getBask_id().equals("")){
                                                 layout_text_sunsheet.setVisibility(View.GONE);
 
                                             }else {
-                                                layout_text_sunsheet.setText("查看评论");
+                                                if(footBallOrderBean.getData().getBask_status()==0){
+                                                    layout_text_sunsheet.setVisibility(View.GONE);
 
-                                                layout_text_sunsheet.setVisibility(View.VISIBLE);
+                                                }else {
+                                                    layout_text_sunsheet.setText("查看评论");
 
-//
+                                                    layout_text_sunsheet.setVisibility(View.VISIBLE);
 
+
+                                                }
                                             }
+
                                         }else {
-                                            layout_text_sunsheet.setVisibility(View.GONE);
+                                            layout_text_sunsheet.setVisibility(View.VISIBLE);
 
                                         }
 
@@ -487,7 +512,10 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                     if(order_odds_info.size()==0){
                                         layout_publicv.setVisibility(View.VISIBLE);
                                         MyTable.setVisibility(View.GONE);
+                                            bonus=0;
+
                                     }else {
+                                        bonus=1;
                                         layout_publicv.setVisibility(View.GONE);
                                         MyTable.setVisibility(View.VISIBLE);
 
@@ -705,7 +733,18 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                 intentdocument.putExtra("multiple",multiples);
                 startActivity(intentdocument);
                 break;
+            case R.id.Text_bunch_bonus:
+                if(bonus==0){
 
+                }else {
+
+                Intent intent = new Intent(this,BonusdetailsActivity.class);
+                intent.putExtra("order_id",order_id+"");
+
+                startActivity(intent);
+                }
+
+                break;
         }
     }
 

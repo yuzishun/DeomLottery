@@ -1,5 +1,6 @@
 package com.example.yuzishun.newdeom.main.single;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -31,6 +32,8 @@ import com.example.yuzishun.newdeom.login.activity.LoginActivity;
 import com.example.yuzishun.newdeom.main.activity.MixedSureActivity;
 import com.example.yuzishun.newdeom.main.adapter.BettingSureRecyclerView;
 import com.example.yuzishun.newdeom.main.adapter.ModeRecyclerViewAdapter;
+import com.example.yuzishun.newdeom.main.betting.BonusBettingActivity;
+import com.example.yuzishun.newdeom.model.BonusBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.CodeBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
@@ -50,6 +53,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -85,11 +89,14 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
     TextView bunch_TextView;
     @BindView(R.id.money)
     TextView money;
+    @BindView(R.id.Text_bouns)
+    TextView Text_bouns;
     private long mLastClickTime = 0;
     public static final long TIME_INTERVAL = 1000L;
     private BettingSureRecyclerView bettingSureRecyclerView;
     private List<Double> minlist;
     private List<Double> one_max;
+    public static Activity intentt;
 
     private  List<String> list_adds;
     private  List<String> list_id;
@@ -100,12 +107,17 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
     private String format;
     private String[] string_mode=new String[]{"单关","2串1","3串1","4串1","5串1","6串1","7串1","8串1"};
     private String[] string_mode2=new String[]{"2串1","3串1","4串1","5串1","6串1","7串1","8串1"};
-
+    private  List<BonusBean> list_bonus_zong = new ArrayList<>();
+    private   List<ChooseMixedBean> list_chooe;
+    private List<String> list_name_bonus;
+    private List<String> list_style_bonus;
+    private int index=0;
     private List<SubMixBean> list_subMixBean = new ArrayList<>();
     private List<SureguanBean> list_sureguanBean = new ArrayList<>();
     private List<SubMixListBean> list_stbMixListBean = new ArrayList<>();
     private String multiple="1";
     private String theory_bonus="理论奖金:想要多少就要多少";
+    private int BonusMoney,HaploidMoney;
 
     @Override
     public int intiLayout() {
@@ -118,6 +130,7 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
         image_back.setOnClickListener(this);
         title_text.setText("胜负平");
         Intent intent = getIntent();
+        intentt=this;
         int single = intent.getIntExtra("single",0);
         flag = intent.getIntExtra("flag",0);
         flag_guan = intent.getIntExtra("flag_guan",0);
@@ -147,11 +160,15 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
         button_sure.setOnClickListener(this);
         Text_More.setOnClickListener(this);
         Button_goon.setOnClickListener(this);
+        Text_bouns.setOnClickListener(this);
+        list_chooe = Content.list_chooe_single;
 
         final List<ChooseMixedBean> list_chooe_single = Content.list_chooe_single;
         for (int i = 0; i <list_chooe_single.size() ; i++) {
             list_adds = new ArrayList<>();
             list_id = new ArrayList<>();
+            list_name_bonus = new ArrayList<>();
+            list_style_bonus = new ArrayList<>();
             minlist = new ArrayList<>();
             one_max = new ArrayList<>();
             list_max_end = new ArrayList<>();
@@ -160,6 +177,9 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
 
                 if(onelist.get(j).isselect){
                     list_id.add(""+onelist.get(j).getId());
+                    list_name_bonus.add(list_chooe.get(i).getHome_team()+"/"+onelist.get(j).getId());
+                    list_style_bonus.add(onelist.get(j).getGame_odds_id());
+
                     one_max.add(Double.parseDouble(onelist.get(j).getOdds()));
                     minlist.add(Double.parseDouble(onelist.get(j).getOdds()));
                     list_adds.add(onelist.get(j).getGame_odds_id());
@@ -177,7 +197,12 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
                 SubMixBean subMixBean = new SubMixBean();
                 subMixBean.setGame_id(list_chooe_single.get(i).getGame_id());
                 subMixBean.setList(list_adds);
-
+                subMixBean.setList_adds(minlist);
+                subMixBean.setName(list_chooe.get(i).getHome_team()+list_id);
+                subMixBean.setIndex(index);
+                subMixBean.setList_name_bonus(list_name_bonus);
+                subMixBean.setList_style_bonus(list_style_bonus);
+                index++;
 
                 list_subMixBean.add(subMixBean);
 
@@ -329,6 +354,9 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
 
 
     }
+
+
+
 
     private void listSureguanBean(){
         int length=0;
@@ -533,8 +561,241 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
 
                 finish();
                 break;
+            case R.id.Text_bouns:
+
+//                mLoadingDialog = new Dialog(SingleSureActivity.this, R.style.loading_dialog_style);
+//                uiHelper = new UIHelper(mLoadingDialog);
+//                uiHelper.showDialogForLoading(SingleSureActivity.this,"正在计算中……");
+
+                list_bonus_zong.clear();
+
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+
+                        //先注释
+                        org.json.JSONArray jsonArray = getlist_guan();
+
+                        if(jsonArray.length()>1){
+                            ToastUtil.showToast1(SingleSureActivity.this,"不能进行奖金优化");
+                        }else {
+                            int bunch = 2;
+                            for (int i = 0; i < list_sureguanBean.size(); i++) {
+                                if(list_sureguanBean.get(i).isselect){
+                                    bunch = Integer.parseInt(list_sureguanBean.get(i).getBunch());
+                                }else {
+
+
+                                }
+
+
+                            }
+                            List<List<SubMixBean>> recom = getRecom(list_subMixBean, bunch);
+
+                            for (int i = 0; i <recom.size() ; i++) {
+
+                                list_bonus_zong.addAll(calculateCombination(recom.get(i)));
+                            }
+
+                            Log.e("YZS",list_bonus_zong.size()+"     "+multiple);
+                            Content.lastPriceDescList = list_bonus_zong;
+//                            if(Integer.parseInt(multiple)<=1){
+//                                Content.lastPriceDescList = getLastPriceDescList(list_bonus_zong);
+//                            }else {
+//
+//
+//                                int totalNumber = Integer.parseInt(multiple)*list_bonus_zong.size();
+//                                for (int i = 0; i <totalNumber-list_bonus_zong.size() ; i++) {
+//                                    Content.lastPriceDescList = getLastPriceDescList(list_bonus_zong);
+//                                    Content.lastPriceDescList.get(0).setNumber(Content.lastPriceDescList.get(0).getNumber()+1);
+//                                }
+//                                Content.lastPriceDescList = getLastPriceDescList_zhu(list_bonus_zong);
+//
+//                            }
+                            if(list_bonus_zong.size()>256){
+                                ToastUtil.showToast1(SingleSureActivity.this,"购买注数超过256,不能进行奖金优化");
+
+                            }else {
+                                if(bunch==1){
+                                    ToastUtil.showToast1(SingleSureActivity.this,"单关玩法不能奖金优化");
+//                                    if(uiHelper!=null){
+//                                        UIHelper.hideDialogForLoaging();
+//
+//                                    }
+                                }else {
+                                    if(BonusMoney>999999){
+                                        ToastUtil.showToast1(SingleSureActivity.this,"投注金额过大,不能进行投注");
+
+                                    }else {
+                                        Intent intent = new Intent(SingleSureActivity.this, BonusBettingActivity.class);
+                                        intent.putExtra("BonusMoney", BonusMoney + "");
+                                        intent.putExtra("HaploidMoney", HaploidMoney + "");
+                                        intent.putExtra("bunch", bunch + "");
+                                        startActivity(intent);
+                                    }
+                                }
+
+                            }
+
+                        }
+
+                    }
+                });
+
+
+                break;
         }
     }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        if(uiHelper!=null){
+//            UIHelper.hideDialogForLoaging();
+//
+//        }
+
+    }
+
+    //把每一注列出来
+    public List<List<SubMixBean>> getRecom(List<SubMixBean> list, int number){
+        List<List<SubMixBean>> alist = new ArrayList<>();
+
+        int size = list.size();
+
+        if(size<=0||size<number){
+
+            return alist;
+        }
+        for (int i = 0; i <list.size() ; i++) {
+            List<SubMixBean> doubles  = new ArrayList<>();
+            doubles.add(list.get(i));
+
+            if(number==1){
+
+                alist.add(doubles);
+
+            }else {
+                List<SubMixBean> blist= new ArrayList<>();
+                for (int j = i+1; j <list.size() ; j++) {
+                    if(j==0||i+1>j){
+
+                        continue;
+                    }else {
+
+                        blist.add(list.get(j));
+
+
+                    }
+                }
+
+                List<List<SubMixBean>> clist = new ArrayList<>();
+                clist = getRecom(blist,number-1);
+                for (int j = 0; j <clist.size() ; j++) {
+                    List<SubMixBean> dlist = clist.get(j);
+                    dlist.add(list.get(i));
+                    alist.add(dlist);
+
+                }
+
+            }
+
+        }
+
+
+
+        return alist;
+    }
+
+
+
+    public List<BonusBean> calculateCombination(List<SubMixBean> list_size) {
+
+        List<BonusBean> list_bonus = new ArrayList<>();
+        list_bonus.clear();
+        Double oneBetBounsMoney = Double.valueOf(1);
+        String SingleAdds_id ="";
+        String SingleGame_id ="";
+        String StringName = "";
+        String SingleMatch = "";
+        List<Integer> combination = new ArrayList<Integer>();
+        int n = list_size.size();
+
+        for (int i = 0; i < n; i++) {
+            combination.add(0);
+        }
+        int i=0;
+        boolean isContinue=false;
+
+        do{
+            oneBetBounsMoney = Double.valueOf(1);
+            SingleAdds_id ="";
+            SingleGame_id ="";
+            StringName = "";
+            SingleMatch = "";
+            BonusBean bonusBean = new BonusBean();
+            HashMap<String,String> hashMap = new HashMap<>();
+            //打印一次循环生成的组合
+            for (int j = 0; j < n; j++) {
+                System.out.print(list_size.get(j).getList().get(combination.get(j))+",");
+                System.out.print(list_size.get(j).getList_adds().get(combination.get(j))+",");
+                System.out.print(list_size.get(j).getList_name_bonus()+",");
+                System.out.print(list_size.get(j).getList_style_bonus()+",");
+                int ii=0;
+                for (int k = 0; k <list_size.get(j).getList_style_bonus().size() ; k++) {
+                    if(list_size.get(j).getList().get(combination.get(j))==list_size.get(j).getList_style_bonus().get(k)){
+                        ii = k;
+                    }else {
+
+                    }
+                }
+                StringName += list_size.get(j).getList_name_bonus().get(ii)+"\n";
+                SingleAdds_id += list_size.get(j).getList().get(combination.get(j))+",";
+                SingleGame_id += list_size.get(j).getGame_id()+",";
+                SingleMatch +=list_size.get(j).getList_adds().get(combination.get(j))+",";
+                oneBetBounsMoney *= list_size.get(j).getList_adds().get(combination.get(j));
+                hashMap.put(list_size.get(j).getList().get(combination.get(j)),list_size.get(j).getList_adds().get(combination.get(j))+"");
+            }
+            NumberFormat nfmin = new DecimalFormat("#.##");
+            String pmin = nfmin.format(oneBetBounsMoney*2);
+            bonusBean.setOneBetBounsMoney(Double.valueOf(pmin));
+            bonusBean.setSingleAdds_id(SingleAdds_id);
+            bonusBean.setSingleGame_id(SingleGame_id);
+            bonusBean.setStringName(StringName);
+            bonusBean.setSingleMatch(SingleMatch);
+            bonusBean.setNumber(1);
+            bonusBean.setHashMap(hashMap);
+            list_bonus.add(bonusBean);
+            System.out.println();
+            i++;
+            combination.set(n-1, i);
+            for (int j = n-1; j >= 0; j--) {
+                if (combination.get(j)>=list_size.get(j).getList_adds().size()) {
+                    combination.set(j, 0);
+                    i=0;
+                    if (j-1>=0) {
+                        combination.set(j-1, combination.get(j-1)+1);
+                    }
+                }
+            }
+            isContinue=false;
+            for (Integer integer : combination) {
+                if (integer != 0) {
+                    isContinue=true;
+                }
+            }
+        }while (isContinue);
+
+
+        return list_bonus;
+    }
+
+
+
 
 
 
@@ -908,6 +1169,8 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
             s="1";
 
         }
+        HaploidMoney = Integer.parseInt(format)*2;
+        BonusMoney = Integer.parseInt(format)*Integer.parseInt(s)*2;
         bunch =  format+"注  共"+Integer.parseInt(format)*Integer.parseInt(s)*2+"元";
 
         Log.e("YZS",bunch+"");

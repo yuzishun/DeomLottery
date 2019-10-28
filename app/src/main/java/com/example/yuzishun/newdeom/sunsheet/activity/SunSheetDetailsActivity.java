@@ -141,7 +141,7 @@ public class SunSheetDetailsActivity extends BaseActivity implements View.OnClic
 
             }
         });
-//        Loadcomments();
+        Loadcomments();
     }
 
     private void Loadcomments() {

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
+import com.example.yuzishun.newdeom.documentary.activity.BonusdetailsActivity;
 import com.example.yuzishun.newdeom.documentary.activity.DocumentdetailsActivity;
 import com.example.yuzishun.newdeom.model.FootBallOrderBean;
 import com.example.yuzishun.newdeom.my.custom.MyTableTextView;
@@ -59,18 +60,18 @@ public class ProgrammeActivity extends BaseActivity implements View.OnClickListe
     TextView Text_Multiple;
     @BindView(R.id.Text_Scene)
     TextView Text_Scene;
-
+    @BindView(R.id.Text_bunch_bonus)
+    TextView Text_bunch_bonus;
     @BindView(R.id.layout_publicv)
     RelativeLayout layout_publicv;
     @BindView(R.id.text_pluc)
     TextView text_pluc;
-
+    private int bonus=0;
     @BindView(R.id.MyTable)
     LinearLayout MyTable;
     @BindView(R.id.layout_bunch)
     LinearLayout layout_bunch;
     private String order_id;
-
 
     @Override
     public int intiLayout() {
@@ -82,6 +83,7 @@ public class ProgrammeActivity extends BaseActivity implements View.OnClickListe
 
         ButterKnife.bind(this);
         image_back.setOnClickListener(this);
+        Text_bunch_bonus.setOnClickListener(this);
         title_text.setText("方案详情");
         Intent intent  = getIntent();
         order_id = intent.getStringExtra("order_id");
@@ -145,7 +147,25 @@ public class ProgrammeActivity extends BaseActivity implements View.OnClickListe
 
 
                                 }
+                                if(footBallOrderBean.getData().getSeo_status()>0){
+                                    Text_bunch_bonus.setVisibility(View.VISIBLE);
+                                    switch (footBallOrderBean.getData().getSeo_status()){
+                                        case 1:
+                                            Text_bunch_bonus.setText("平均优化");
+                                            break;
+                                        case 2:
+                                            Text_bunch_bonus.setText("博热优化");
 
+                                            break;
+                                        case 3:
+                                            Text_bunch_bonus.setText("博冷优化");
+
+                                            break;
+                                    }
+                                }else {
+                                    Text_bunch_bonus.setVisibility(View.GONE);
+
+                                }
                                 switch (bunch.size()){
                                     case 1:
                                         Text_bunch_two.setText(bunch.get(0)+"串1");
@@ -223,10 +243,12 @@ public class ProgrammeActivity extends BaseActivity implements View.OnClickListe
                                 if(order_odds_info.size()==0){
                                     layout_publicv.setVisibility(View.VISIBLE);
                                     MyTable.setVisibility(View.GONE);
+                                    bonus=0;
+
                                 }else {
                                     layout_publicv.setVisibility(View.GONE);
                                     MyTable.setVisibility(View.VISIBLE);
-
+                                    bonus=1;
                                     initdata_details(ProgrammeActivity.this,MyTable,order_odds_info);
 
                                 }
@@ -343,7 +365,18 @@ public class ProgrammeActivity extends BaseActivity implements View.OnClickListe
                 finish();
 
                 break;
+            case R.id.Text_bunch_bonus:
 
+                if(bonus==0){
+
+                }else {
+
+                    Intent intent = new Intent(this,BonusdetailsActivity.class);
+                    intent.putExtra("order_id",order_id+"");
+
+                    startActivity(intent);
+                }
+                break;
 
         }
     }

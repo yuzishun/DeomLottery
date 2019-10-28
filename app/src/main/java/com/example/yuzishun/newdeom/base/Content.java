@@ -3,6 +3,7 @@ package com.example.yuzishun.newdeom.base;
 
 import com.example.yuzishun.newdeom.main.adapter.Expand1Item;
 import com.example.yuzishun.newdeom.model.BankMangmentBean;
+import com.example.yuzishun.newdeom.model.BonusBean;
 import com.example.yuzishun.newdeom.model.ChooseBaskBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.my.activity.SettingActivity;
@@ -72,5 +73,10 @@ public class Content {
 
     //晒单刷新flag;
     public static int refre_flag=0;
+
+    //奖金优化
+    public static  List<BonusBean> lastPriceDescList;
+    public static  int flag_bonus = 0;
+
 
 }

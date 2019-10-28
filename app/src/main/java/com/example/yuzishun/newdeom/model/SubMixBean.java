@@ -11,8 +11,27 @@ public class SubMixBean {
 
     public List<String> list;
     public List<Double> list_adds;
+    private List<String> list_name_bonus;
+    private List<String> list_style_bonus;
     public String name;
     public String type;
+    public int index;
+
+    public List<String> getList_name_bonus() {
+        return list_name_bonus;
+    }
+
+    public void setList_name_bonus(List<String> list_name_bonus) {
+        this.list_name_bonus = list_name_bonus;
+    }
+
+    public List<String> getList_style_bonus() {
+        return list_style_bonus;
+    }
+
+    public void setList_style_bonus(List<String> list_style_bonus) {
+        this.list_style_bonus = list_style_bonus;
+    }
 
     public String getType() {
         return type;
@@ -52,6 +71,14 @@ public class SubMixBean {
 
     public void setList(List<String> list) {
         this.list = list;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     @Override

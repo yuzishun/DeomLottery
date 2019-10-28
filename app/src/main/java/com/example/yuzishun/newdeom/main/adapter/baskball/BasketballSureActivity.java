@@ -90,7 +90,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
     private String format;
     @BindView(R.id.money)
     TextView money;
-    private List<Double> one_mix_and_min;
+    private List<Double>  one_mix_and_min;
     private List<Double> two_mix_and_min;
     private List<Double> three_mix_and_min;
     private List<Double> four_mix_and_min;
@@ -120,7 +120,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
     public void initView() {
         ButterKnife.bind(this);
         image_back.setOnClickListener(this);
-        title_text.setText("混和投注确定");
+        title_text.setText("混合投注确定");
         button_sure.setOnClickListener(this);
         Text_More.setOnClickListener(this);
         Button_goon.setOnClickListener(this);

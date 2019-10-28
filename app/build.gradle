@@ -64,5 +64,5 @@ dependencies {
     compile 'com.lcodecorex:tkrefreshlayout:1.0.3'
     compile 'com.contrarywind:Android-PickerView:4.1.8'
     implementation 'com.azhon:appupdate:2.1.0'
-
+    compile 'com.wang.avi:library:2.1.3'
 }

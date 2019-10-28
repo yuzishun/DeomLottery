@@ -13,6 +13,9 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import com.example.yuzishun.newdeom.base.MyApplication;
+import com.example.yuzishun.newdeom.utils.AppIconHelper;
+
 /**
  * Created by yuzishun on 2019/5/17.
  */

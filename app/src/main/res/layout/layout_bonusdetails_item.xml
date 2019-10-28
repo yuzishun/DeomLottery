@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="80dp">
+    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+        android:id="@+id/tab_1"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/list_1_2"
+        android:layout_alignTop="@+id/list_1_2"
+        android:gravity="center"
+        android:textColor="#AAA6A8"
+        android:text="单注明细"
+        android:textSize="10sp" />
+    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+        android:id="@+id/tab_2"
+
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/list_1_2"
+        android:layout_alignTop="@+id/list_1_2"
+        android:gravity="center"
+        android:textColor="#AAA6A8"
+        android:text="注数"
+        android:textSize="10sp" />
+    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+        android:id="@+id/tab_3"
+
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/list_1_2"
+        android:layout_alignTop="@+id/list_1_2"
+        android:gravity="center"
+        android:textColor="@color/login_red"
+        android:text="理论奖金"
+        android:textSize="10sp" />
+</LinearLayout>

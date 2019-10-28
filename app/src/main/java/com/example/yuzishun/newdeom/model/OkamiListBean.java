@@ -66,6 +66,15 @@ public class OkamiListBean {
         private String cut_off_time;
         private int follow_plan_permission;
         private String bask_id;
+        private int bask_del_status;
+
+        public int getBask_del_status() {
+            return bask_del_status;
+        }
+
+        public void setBask_del_status(int bask_del_status) {
+            this.bask_del_status = bask_del_status;
+        }
 
         public String getBask_id() {
             return bask_id;

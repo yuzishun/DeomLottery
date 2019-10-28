@@ -20,8 +20,8 @@
     <string name="sure">确定</string>
     <string name="Please_write_Password">请输入密码</string>
     <string name="Please_write_User_Phone">请输入用户名</string>
-    <string name="Phone_Number">手机号码</string>
-    <string name="Login_Password">登录密码</string>
+    <string name="Phone_Number">请输入手机号码</string>
+    <string name="Login_Password">请输入密码</string>
     <string name="login">登录</string>
     <string name="Hurry_Resign">立即注册</string>
     <string name="Forgot_Password">忘记密码</string>

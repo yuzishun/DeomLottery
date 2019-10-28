@@ -25,7 +25,14 @@ public class QuickAdapter_four extends BaseQuickAdapter<ItemPoint,BaseViewHolder
 
     @Override
     protected void convert(BaseViewHolder helper, final ItemPoint item) {
-        helper.setText(R.id.item,item.id).setText(R.id.item_right,item.getOdds());
+        if(item.getOdds().equals("")){
+            helper.setText(R.id.item,"暂未开售").setText(R.id.item_right,item.getOdds());
+
+        }else {
+            helper.setText(R.id.item,item.id).setText(R.id.item_right,item.getOdds());
+        }
+
+//        helper.setText(R.id.item,item.id).setText(R.id.item_right,item.getOdds());
         final TextView item_name = helper.getView(R.id.item);
         final TextView item_right_name = helper.getView(R.id.item_right);
         final LinearLayout layout_relat = helper.getView(R.id.layout_relat);
@@ -54,20 +61,28 @@ public class QuickAdapter_four extends BaseQuickAdapter<ItemPoint,BaseViewHolder
         layout_relat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(item.isIsclick()){
 
+
+                if(item.isIsclick()){
+                    if(item.getOdds().equals("")) {
+                        layout_relat.setOnClickListener(null);
+
+                    }else {
+
+                        if(item.isIsselect()){
+                            item.setIsselect(false);
+                            notifyDataSetChanged();
+                        }else {
+                            item.setIsselect(true);
+
+                            notifyDataSetChanged();
+
+
+                        }
+                    }
                     item.isonclick=1;
 
-                if(item.isIsselect()){
-                    item.setIsselect(false);
-                    notifyDataSetChanged();
-                }else {
-                    item.setIsselect(true);
 
-                    notifyDataSetChanged();
-
-
-                }
             }else {
 
                 layout_relat.setOnClickListener(null);

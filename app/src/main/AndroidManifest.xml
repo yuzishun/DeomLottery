@@ -37,7 +37,7 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> 
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <!-- <uses-sdk tools:overrideLibrary="com.qiangxi.checkupdatelibrary:checkupdatelibrary:1.0.2"/> -->
@@ -145,7 +145,8 @@
         <activity android:name=".sunsheet.activity.SendSunSheetActivity" />
         <activity android:name=".main.activity.ConsultationActivity" />
         <activity android:name=".sunsheet.activity.ProgrammeActivity" />
-        <activity android:name=".main.betting.BonusBettingActivity"></activity>
+        <activity android:name=".main.betting.BonusBettingActivity" />
+        <activity android:name=".documentary.activity.BonusdetailsActivity"></activity>
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@
 
     <include layout="@layout/title_text"></include>
 
+
     <RelativeLayout
         android:background="@color/empt_color"
         android:layout_weight="6"
@@ -28,6 +29,7 @@
 
     </RelativeLayout>
     <RelativeLayout
+
         android:layout_weight="1"
         android:background="@color/white"
         android:layout_width="match_parent"

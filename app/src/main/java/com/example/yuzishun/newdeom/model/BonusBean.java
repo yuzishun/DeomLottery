@@ -16,8 +16,25 @@ public class BonusBean implements Serializable{
     public String SingleAdds_id;
     public String SingleGame_id;
     public int number;
-    public String[] SingleMatchName;
+    public String SingleMatch;
     public HashMap<String,String> hashMap;
+    public String StringName;
+
+    public String getStringName() {
+        return StringName;
+    }
+
+    public void setStringName(String stringName) {
+        StringName = stringName;
+    }
+
+    public String getSingleMatch() {
+        return SingleMatch;
+    }
+
+    public void setSingleMatch(String singleMatch) {
+        SingleMatch = singleMatch;
+    }
 
     public HashMap<String, String> getHashMap() {
         return hashMap;
@@ -60,13 +77,7 @@ public class BonusBean implements Serializable{
     }
 
 
-    public String[] getSingleMatchName() {
-        return SingleMatchName;
-    }
 
-    public void setSingleMatchName(String[] singleMatchName) {
-        SingleMatchName = singleMatchName;
-    }
 
 
 }

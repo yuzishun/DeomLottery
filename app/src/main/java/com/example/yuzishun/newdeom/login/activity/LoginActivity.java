@@ -19,6 +19,7 @@ import com.example.yuzishun.newdeom.base.BaseActivity;
 import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.login.custom.CheckEditForButton;
 import com.example.yuzishun.newdeom.login.custom.ClearEditText;
+import com.example.yuzishun.newdeom.login.custom.ClearEditText_pass;
 import com.example.yuzishun.newdeom.login.custom.EditTextChangeListener;
 import com.example.yuzishun.newdeom.model.LoginBean;
 import com.example.yuzishun.newdeom.net.OkhttpUtlis;
@@ -48,7 +49,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @BindView(R.id.login_phone)
     ClearEditText login_phone;
     @BindView(R.id.login_password)
-    ClearEditText login_password;
+    ClearEditText_pass login_password;
     @BindView(R.id.cbDisplayPassword)
     CheckBox cbDisplayPassword;
     @BindView(R.id.button_sure)

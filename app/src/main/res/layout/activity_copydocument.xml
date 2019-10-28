@@ -127,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
-                    android:text="跟单金额"
+                    android:text="单倍金额"
                     android:textColor="@color/font_black"
                     android:textSize="@dimen/f12"
                     android:layout_centerVertical="true"

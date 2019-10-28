@@ -77,6 +77,7 @@ public class FootBallOrderBean {
         private String order_no;
         private int user_id;
         private int pour;
+        private int seo_status;
         private int multiple;
         private String order_price;
         private String bonus_price;
@@ -99,6 +100,14 @@ public class FootBallOrderBean {
         private List<String> bunch;
         private List<OrderOddsInfoBean> order_odds_info;
         private List<OrderPlanInfoBean> order_plan_info;
+
+        public int getSeo_status() {
+            return seo_status;
+        }
+
+        public void setSeo_status(int seo_status) {
+            this.seo_status = seo_status;
+        }
 
         public String getBask_id() {
             return bask_id;

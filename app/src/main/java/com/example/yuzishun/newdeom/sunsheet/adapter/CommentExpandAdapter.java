@@ -124,8 +124,7 @@ public class CommentExpandAdapter extends BaseExpandableListAdapter {
             groupHolder = (GroupHolder) convertView.getTag();
         }
         Glide.with(context).load(commentBeanList.get(groupPosition).getImg_head()).asBitmap()
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .error(R.mipmap.ic_launcher)
+
                 .centerCrop()
                 .into(groupHolder.logo);
         groupHolder.tv_name.setText(commentBeanList.get(groupPosition).getUname());

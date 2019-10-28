@@ -108,21 +108,36 @@ public class OkamiListRecyclerViewAdapter extends RecyclerView.Adapter<OkamiList
 
             }
         }else {
-            holder.text_sunsheet.setVisibility(View.VISIBLE);
-            holder.Button_Okami_gen.setVisibility(View.GONE);
+            if(list.get(position).getBask_del_status()==0){
+                holder.Button_Okami_gen.setVisibility(View.VISIBLE);
+                holder.Button_Okami_ping.setVisibility(View.GONE);
+                holder.text_sunsheet.setVisibility(View.GONE);
+                if(flag==0){
 
-            holder.Button_Okami_ping.setVisibility(View.GONE);
+                    holder.Button_Okami_gen.setVisibility(View.GONE);
 
+                }else {
+                    holder.Button_Okami_gen.setVisibility(View.VISIBLE);
 
-
-            if(flag==0){
-
+                }
+            }else {
+                holder.text_sunsheet.setVisibility(View.VISIBLE);
                 holder.Button_Okami_gen.setVisibility(View.GONE);
 
-            }else {
-                holder.Button_Okami_gen.setVisibility(View.VISIBLE);
+                holder.Button_Okami_ping.setVisibility(View.VISIBLE);
 
+
+
+                if(flag==0){
+
+                    holder.Button_Okami_gen.setVisibility(View.GONE);
+
+                }else {
+                    holder.Button_Okami_gen.setVisibility(View.VISIBLE);
+
+                }
             }
+
         }
 
         if(list.get(position).getGame_type()==0){
