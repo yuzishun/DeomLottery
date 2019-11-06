@@ -273,7 +273,7 @@ public class BonusBettingActivity extends BaseActivity implements View.OnClickLi
 
         }
 
-        range = "奖金范围："+min+" ～ "+max;
+        range = "奖金范围："+min+"~"+max;
 
         return range;
     }
@@ -282,11 +282,11 @@ public class BonusBettingActivity extends BaseActivity implements View.OnClickLi
 
         for (int j = 0; j <list_bonus.size() ; j++) {
 
-            Log.e("YZS",list_bonus.get(j).getOneBetBounsMoney()+"");
-            Log.e("YZS",list_bonus.get(j).getSingleAdds_id());
-            Log.e("YZS",list_bonus.get(j).getSingleMatch());
-            Log.e("YZS",list_bonus.get(j).getSingleGame_id());
-            Log.e("YZS",list_bonus.get(j).getStringName());
+//            Log.e("YZS",list_bonus.get(j).getOneBetBounsMoney()+"");
+//            Log.e("YZS",list_bonus.get(j).getSingleAdds_id());
+//            Log.e("YZS",list_bonus.get(j).getSingleMatch());
+//            Log.e("YZS",list_bonus.get(j).getSingleGame_id());
+//            Log.e("YZS",list_bonus.get(j).getStringName());
 
             list_bonus_Range.add(list_bonus.get(j).getOneBetBounsMoney()*list_bonus.get(j).getNumber());
 

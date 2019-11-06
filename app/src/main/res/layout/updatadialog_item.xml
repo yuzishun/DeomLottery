@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:background="@drawable/updaate_dialog"
+        android:layout_width="180dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_height="@dimen/d100">
+
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/toast_text"
+                android:text="提交成功"
+                android:textSize="@dimen/f12"
+                android:gravity="center"
+                android:textColor="@color/font_black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

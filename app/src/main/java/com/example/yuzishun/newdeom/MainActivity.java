@@ -1,6 +1,10 @@
 package com.example.yuzishun.newdeom;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -9,7 +13,10 @@ import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.azhon.appupdate.config.UpdateConfiguration;
@@ -65,6 +72,7 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
 
             }
         });
+
         initFragment();
 
         intentsat = this;
@@ -89,7 +97,7 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
                         final UpdataBean updataBean = JSON.parseObject(result,UpdataBean.class);
                         if(updataBean.getCode()==10000){
 
-                            if(updataBean.getData().getCode()!=0){
+                            if(updataBean.getData().getCode()>0){
 
 
 
@@ -139,8 +147,12 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
 
 
 
-                            }else {
+                            }else if(updataBean.getData().getCode()==0){
 
+
+                            }else if(updataBean.getData().getCode()<0){
+
+                                show(updataBean.getData().getMsg());
 
                             }
 
@@ -159,6 +171,25 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
 
 
 
+
+    }
+    @SuppressLint("NewApi")
+    private void show(String msg){
+        //dialog简单展示
+
+        Dialog mDialog  = new Dialog(this,R.style.dialog);
+        View view_layout = LayoutInflater.from(this).inflate(R.layout.updatadialog_item, null);
+        mDialog.setContentView(view_layout);
+        mDialog.setCancelable(false);
+        mDialog.setCanceledOnTouchOutside(false);
+// 设置宽高为match_parent，不要去算出来屏幕宽高再赋值哦，因为有些
+// 有虚拟按键的手机上计算出来的高度不一定准确，所以dialog不会全屏
+
+// 设置dialog距屏幕的边距都为0
+        mDialog.getWindow().getDecorView().setPadding(0,0,0,0);
+        TextView textView = mDialog.findViewById(R.id.toast_text);
+        textView.setText(msg+"");
+        mDialog.show();
 
     }
 
@@ -298,6 +329,12 @@ public class MainActivity extends BaseActivity implements OnButtonClickListener,
 
     @Override
     public void error(Exception e) {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
     }
 }

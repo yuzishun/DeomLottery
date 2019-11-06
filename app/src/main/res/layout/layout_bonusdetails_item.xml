@@ -2,12 +2,13 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:orientation="horizontal"
-    android:layout_height="80dp">
+    android:layout_height="wrap_content">
     <com.example.yuzishun.newdeom.my.custom.MyTableTextView
         android:id="@+id/tab_1"
         android:layout_weight="1"
+        android:paddingTop="@dimen/d10"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/list_1_2"
         android:layout_alignTop="@+id/list_1_2"
         android:gravity="center"
@@ -16,6 +17,7 @@
         android:textSize="10sp" />
     <com.example.yuzishun.newdeom.my.custom.MyTableTextView
         android:id="@+id/tab_2"
+        android:paddingTop="@dimen/d10"
 
         android:layout_weight="1"
         android:layout_width="match_parent"
@@ -28,6 +30,7 @@
         android:textSize="10sp" />
     <com.example.yuzishun.newdeom.my.custom.MyTableTextView
         android:id="@+id/tab_3"
+        android:paddingTop="@dimen/d10"
 
         android:layout_weight="1"
         android:layout_width="match_parent"
