@@ -5,8 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.model.PayTestBean;
 
@@ -49,6 +51,7 @@ public class PayListAdapter extends RecyclerView.Adapter<PayListAdapter.ViewHold
 
 
         holder.pay_text.setText(list.get(position).getPay_name());
+        Glide.with(context).load(list.get(position).getImg()).into(holder.image1);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,9 +72,11 @@ public class PayListAdapter extends RecyclerView.Adapter<PayListAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView pay_text;
+        ImageView image1;
         public ViewHolder(View itemView) {
             super(itemView);
             pay_text = itemView.findViewById(R.id.pay_text);
+            image1 = itemView.findViewById(R.id.image1);
         }
     }
 }

@@ -25,8 +25,8 @@
 
             <ImageView
                 android:id="@+id/image1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/d25"
+                android:layout_height="@dimen/d25"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/d20"
                 android:src="@mipmap/zhifubao" />

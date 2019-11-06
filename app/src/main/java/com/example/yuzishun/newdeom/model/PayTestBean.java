@@ -50,6 +50,15 @@ public class PayTestBean {
 
         private int tag;
         private String pay_name;
+        private String img;
+
+        public String getImg() {
+            return img;
+        }
+
+        public void setImg(String img) {
+            this.img = img;
+        }
 
         public int getTag() {
             return tag;

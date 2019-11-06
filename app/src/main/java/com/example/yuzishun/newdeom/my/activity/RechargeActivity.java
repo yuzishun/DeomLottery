@@ -108,13 +108,13 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
 
                                     }else {
 
-                                        if(Double.parseDouble(money_edit.getText().toString().trim())<10||Double.parseDouble(money_edit.getText().toString().trim())>5000){
-
-                                            ToastUtil.showToast1(RechargeActivity.this,"输入金额，不符合规定");
-                                        }else {
+//                                        if(Double.parseDouble(money_edit.getText().toString().trim())<10||Double.parseDouble(money_edit.getText().toString().trim())>5000){
+//
+//                                            ToastUtil.showToast1(RechargeActivity.this,"输入金额，不符合规定");
+//                                        }else {
 
                                             pay();
-                                        }
+//                                        }
                                     }
                                 }
                             });
