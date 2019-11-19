@@ -6,10 +6,16 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,10 +25,15 @@ import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.BaseActivity;
 import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.main.adapter.BettingListAdapter;
+import com.example.yuzishun.newdeom.main.adapter.GridView_Adapter;
 import com.example.yuzishun.newdeom.main.adapter.baskball.BaskballAdapter;
 import com.example.yuzishun.newdeom.main.adapter.baskball.BasketballSureActivity;
 import com.example.yuzishun.newdeom.main.adapter.baskball.Expand1Item_bask;
+import com.example.yuzishun.newdeom.main.adapter.baskball.Expand1Mixed_bask;
 import com.example.yuzishun.newdeom.main.adapter.baskball.ExpandItem_bask;
+import com.example.yuzishun.newdeom.main.adapter.baskball.ExpandMixed_bask;
+import com.example.yuzishun.newdeom.main.betting.BettingFootballListAdapter;
+import com.example.yuzishun.newdeom.main.betting.BettingfootActivity;
 import com.example.yuzishun.newdeom.main.single.BettingSingleAdapter;
 import com.example.yuzishun.newdeom.main.single.SingleMessage;
 import com.example.yuzishun.newdeom.model.BasketBallBean;
@@ -55,36 +66,66 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class BasketBallMixedActivity extends BaseActivity implements View.OnClickListener {
-
+    private View layout_title;
     @BindView(R.id.image_back)
     LinearLayout image_back;
-    @BindView(R.id.Text_loading)
-    TextView Text_loading;
-    @BindView(R.id.layout_swipe)
-    SwipeRefreshLayout layout_swipe;
-    @BindView(R.id.layout_bottom)
-    LinearLayout layout_bottom;
-    @BindView(R.id.button_sure)
-    Button button_sure;
-    @BindView(R.id.Scene_TextView)
-    TextView Scene_TextView;
-    @BindView(R.id.baskball_RecyCLerView)
-    RecyclerView baskball_RecyCLerView;
-    @BindView(R.id.Text_clear)
-    TextView Text_clear;
-    @BindView(R.id.layout_empt)
-    LinearLayout layout_empt;
+    @BindView(R.id.title_text)
+    TextView title_text;
+    @BindView(R.id.layout_mixed)
+    LinearLayout layout_mixed;
+    @BindView(R.id.layout_single)
+    LinearLayout layout_single;
     @BindView(R.id.play_messag)
     ImageView play_messag;
+    @BindView(R.id.layout_pop)
+    LinearLayout layout_pop;
+    @BindView(R.id.Lottery_RecyCLerView_single)
+    RecyclerView Lottery_RecyCLerView_single;
+    @BindView(R.id.Lottery_RecyCLerView_mixed)
+    RecyclerView Lottery_RecyCLerView_mixed;
+    //混合投注需要的东西
     private BaskballAdapter adapter;
-    private String[] string_one= {"主胜","主负","主胜","主负","大分","小分"};
-    private String[] string_two= {"1-5","6-10","11-15","16-20","21-25","26+"};
-    private List<String> list_one = new ArrayList<>();
-    private List<String> list_two = new ArrayList<>();
-    private List<String> list_three = new ArrayList<>();
+    private ArrayList<MultiItemEntity> list_mixed;
+    private ArrayList<MultiItemEntity> list_one_mixed = new ArrayList<>();
+    private ArrayList<MultiItemEntity> list_two_mixed = new ArrayList<>();
+    private ArrayList<MultiItemEntity> list_three_mixed = new ArrayList<>();
+    private ArrayList<MultiItemEntity> list_four_mixed = new ArrayList<>();
+    private int count_mixed = 0, mixed = 0, index = 0;
+    private BettingFootballListAdapter adapter_mixed;
+    @BindView(R.id.layout_swipe_mixed)
+    SwipeRefreshLayout layout_swipe_mixed;
+    @BindView(R.id.layout_bottom_mixed)
+    LinearLayout layout_bottom_mixed;
+    @BindView(R.id.Text_clear_mixed)
+    TextView Text_clear_mixed;
+    @BindView(R.id.Scene_TextView_mixed)
+    TextView Scene_TextView_mixed;
+    @BindView(R.id.button_sure_mixed)
+    TextView button_sure_mixed;
+    @BindView(R.id.Text_loading_mixed)
+    TextView Text_loading_mixed;
+    @BindView(R.id.layout_empt_mixed)
+    LinearLayout layout_empt_mixed;
+
+
+
+
+
+
     private BasketBallBean basketBallBean;
-    private int mixed;
+    private int count;
     private ArrayList<MultiItemEntity> multiItemEntities;
+
+
+
+
+    private String[] String_pop_one = new String[]{"胜负", "让分胜负", "胜分差", "大小分", "混合过关"};
+    private String[] String_pop_two = new String[]{"胜负", "让分胜负", "胜分差", "大小分"};
+    private int popwindows = 0;
+
+    private List<String> list_pop = new ArrayList<>();
+
+
     @Override
     public int intiLayout() {
         return R.layout.activity_basket_ball_mixed;
@@ -94,25 +135,28 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
     public void initView() {
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-
+        title_text.setText("混合投注");
+        layout_single.setVisibility(View.GONE);
+        layout_mixed.setVisibility(View.VISIBLE);
+        layout_title = findViewById(R.id.layout_title);
         image_back.setOnClickListener(this);
-        button_sure.setOnClickListener(this);
-        Text_clear.setOnClickListener(this);
+        button_sure_mixed.setOnClickListener(this);
+        Text_clear_mixed.setOnClickListener(this);
         play_messag.setOnClickListener(this);
-        initlist();
+        layout_pop.setOnClickListener(this);
         multiItemEntities = generateData();
         adapter =  new BaskballAdapter(multiItemEntities);
         //下拉刷新的圆圈是否显示
-        layout_swipe.setRefreshing(false);
+        layout_swipe_mixed.setRefreshing(false);
 
         //设置下拉时圆圈的颜色（可以由多种颜色拼成）
-        layout_swipe.setColorSchemeResources(android.R.color.holo_blue_light,
+        layout_swipe_mixed.setColorSchemeResources(android.R.color.holo_blue_light,
                 android.R.color.holo_red_light,
                 android.R.color.holo_orange_light);
 
         //设置下拉时圆圈的背景颜色（这里设置成白色）
-        layout_swipe.setProgressBackgroundColorSchemeResource(android.R.color.white);
-        layout_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        layout_swipe_mixed.setProgressBackgroundColorSchemeResource(android.R.color.white);
+        layout_swipe_mixed.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 new Handler().postDelayed(new Runnable(){
@@ -126,7 +170,7 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
                         adapter.notifyDataSetChanged();
                         EventBus.getDefault().post(new BasketMessage(adapter.getnumber()+""));
 
-                        layout_swipe.setRefreshing(false);
+                        layout_swipe_mixed.setRefreshing(false);
                         Toast.makeText(BasketBallMixedActivity.this, "刷新完成", Toast.LENGTH_SHORT).show();
 
                     }
@@ -136,10 +180,42 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
             }
         });
 
+
+        //单关和混合一起加载然后替换集合
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //异步处理加载数据
+                //...
+
+
+                list_mixed = generateData();
+                list_one_mixed = generateData_mixed(1);
+                list_two_mixed = generateData_mixed(2);
+                list_four_mixed = generateData_mixed(3);
+                list_four_mixed = generateData_mixed(4);
+//
+//                list = request(1);
+//                list_two = request(2);
+//                list_three = request(3);
+//                list_four = request(4);
+//                list_fire = request(5);
+
+
+                //完成后，通知主线程更新UI
+                handler.sendEmptyMessageDelayed(1, 3000);
+
+            }
+        }).start();
+
+
+
+
+
     }
 
     @Override
-    protected void   onResume() {
+    protected void onResume() {
         super.onResume();
 
         if(Content.order_flag_bask==0){
@@ -162,9 +238,9 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
             public void run() {
                 //异步处理加载数据
                 //...
-                baskball_RecyCLerView.setAdapter(adapter);
+                Lottery_RecyCLerView_mixed.setAdapter(adapter);
 
-                baskball_RecyCLerView.setLayoutManager(new LinearLayoutManager(BasketBallMixedActivity.this));
+                Lottery_RecyCLerView_mixed.setLayoutManager(new LinearLayoutManager(BasketBallMixedActivity.this));
 
 
                 //完成后，通知主线程更新UI
@@ -181,6 +257,10 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
             case R.id.image_back:
                 finish();
                 break;
+            case R.id.layout_pop:
+                popwin(layout_title);
+
+                break;
             case R.id.Text_clear:
                 adapter.onResh();
 
@@ -196,8 +276,8 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
                 break;
             case R.id.button_sure:
 
-                if(adapter.getnumber()==0){
-                    ToastUtil.showToast1(this,"至少选择一场");
+                if(adapter.getnumber()<2){
+                    ToastUtil.showToast1(this,"至少选择二场比赛");
 
                 }else {
                     if(adapter.getnumber()>15) {
@@ -206,7 +286,7 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
 
                     }else {
 
-                        Intent intent = new Intent(this,BasketballSureActivity.class);
+                    Intent intent = new Intent(this,BasketballSureActivity.class);
                     Content.list_chooe_bask = adapter.getList();
                     startActivity(intent);
                     }
@@ -221,16 +301,141 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    private void popwin(View view) {
+        View contentView = LayoutInflater.from(view.getContext()).inflate(R.layout.bettingfoot_pop_layout,null);
+        PopupWindow popup = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
+        //popwindow开始的时候设置屏幕变暗
+        darkenBackground(0.5f);
+        popup.showAsDropDown(view);
+
+        //popwindow消失的时候设置屏幕变亮
+
+        popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+
+                darkenBackground(1f);
+
+            }
+        });
+
+
+        TextView choose_one = contentView.findViewById(R.id.choose_one);
+        TextView choose_two = contentView.findViewById(R.id.choose_two);
+        if (popwindows == 0) {
+
+            choose_one.setTextColor(getResources().getColor(R.color.login_red));
+            choose_two.setTextColor(getResources().getColor(R.color.font_black));
+            list_pop.clear();
+
+//            layout_mixed.setVisibility(View.VISIBLE);
+//
+//            layout_single.setVisibility(View.GONE);
+            for (int i = 0; i < String_pop_one.length; i++) {
+                list_pop.add(String_pop_one[i]);
+
+            }
+        } else {
+            choose_one.setTextColor(getResources().getColor(R.color.font_black));
+            choose_two.setTextColor(getResources().getColor(R.color.login_red));
+            list_pop.clear();
+//            layout_mixed.setVisibility(View.GONE);
+//
+//            layout_single.setVisibility(View.VISIBLE);
+            for (int i = 0; i < String_pop_two.length; i++) {
+                list_pop.add(String_pop_two[i]);
+
+            }
+
+        }
+
+        GridView GridView_betting_Money = contentView.findViewById(R.id.GridView_betting_Money);
+
+        GridView_Adapter gridView_adapter = new GridView_Adapter(BasketBallMixedActivity.this, list_pop);
+        GridView_betting_Money.setAdapter(gridView_adapter);
+        GridView_betting_Money.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                gridView_adapter.choiceState(i);
+            }
+        });
+        choose_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                change();
+
+                popwindows = 0;
+                choose_one.setTextColor(getResources().getColor(R.color.login_red));
+                choose_two.setTextColor(getResources().getColor(R.color.font_black));
+                list_pop.clear();
+
+                layout_mixed.setVisibility(View.VISIBLE);
+
+                layout_single.setVisibility(View.GONE);
+                for (int i = 0; i < String_pop_one.length; i++) {
+                    list_pop.add(String_pop_one[i]);
+
+                }
+//
+//                single_mixed = 3;
+//                initmixedrecy(3);
+                title_text.setText(String_pop_one[4]);
+                gridView_adapter.notifyDataSetChanged();
+            }
+        });
+        choose_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                change();
+
+
+                popwindows = 1;
+
+                choose_one.setTextColor(getResources().getColor(R.color.font_black));
+                choose_two.setTextColor(getResources().getColor(R.color.login_red));
+                list_pop.clear();
+                layout_mixed.setVisibility(View.GONE);
+                title_text.setText(String_pop_two[0]);
+
+                layout_single.setVisibility(View.VISIBLE);
+                for (int i = 0; i < String_pop_two.length; i++) {
+                    list_pop.add(String_pop_two[i]);
+
+                }
+//                single = 1;
+//                initrecycler(1);
+                title_text.setText(String_pop_two[0]);
+                gridView_adapter.notifyDataSetChanged();
+
+            }
+        });
+
+
+    }
+
+    /**
+     * 改变背景颜色
+     */
+    private void darkenBackground(Float bgcolor) {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = bgcolor;
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        getWindow().setAttributes(lp);
+
+    }
+
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainEventBus(BasketMessage msg) {
         Log.e("YZS", msg.getMessage());
-        mixed = Integer.parseInt(msg.getMessage());
-        if(mixed ==0){
-            Scene_TextView.setText("请选择比赛");
+        count = Integer.parseInt(msg.getMessage());
+        if(count ==0){
+            Scene_TextView_mixed.setText("请选择比赛");
 
         }else {
-            Scene_TextView.setText("已经选择"+msg.getMessage()+"比赛");
+            Scene_TextView_mixed.setText("已经选择"+msg.getMessage()+"比赛");
 
         }
 
@@ -252,28 +457,6 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
         }
 
     }
-    private void initlist() {
-
-        for (int i = 0; i <string_one.length ; i++) {
-            list_one.add(string_one[i]+"");
-
-        }
-
-        for (int i = 0; i <string_two.length ; i++) {
-            list_two.add(string_two[i]+"");
-
-        }
-
-        for (int i = 0; i <string_two.length ; i++) {
-            list_three.add(string_two[i]+"");
-
-        }
-
-    }
-
-
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -289,16 +472,16 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
         @Override
         public void handleMessage(android.os.Message msg) {
             if(multiItemEntities.size()==0){
-                baskball_RecyCLerView.setVisibility(View.GONE);
-                layout_bottom.setVisibility(View.GONE);
-                layout_swipe.setVisibility(View.GONE);
-                layout_empt.setVisibility(View.VISIBLE);
+                Lottery_RecyCLerView_mixed.setVisibility(View.GONE);
+                layout_bottom_mixed.setVisibility(View.GONE);
+                layout_swipe_mixed.setVisibility(View.GONE);
+                layout_empt_mixed.setVisibility(View.VISIBLE);
             }else {
-                layout_empt.setVisibility(View.GONE);
-                Text_loading.setVisibility(View.GONE);
-                baskball_RecyCLerView.setVisibility(View.VISIBLE);
-                layout_bottom.setVisibility(View.VISIBLE);
-                layout_swipe.setVisibility(View.VISIBLE);
+                layout_empt_mixed.setVisibility(View.GONE);
+                Text_loading_mixed.setVisibility(View.GONE);
+                Lottery_RecyCLerView_mixed.setVisibility(View.VISIBLE);
+                layout_bottom_mixed.setVisibility(View.VISIBLE);
+                layout_swipe_mixed.setVisibility(View.VISIBLE);
                 adapter.expandAll();
             }
 
@@ -463,4 +646,181 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
     }
 
 
+
+    private ArrayList<MultiItemEntity> generateData_mixed(int mixed) {
+        final ArrayList<MultiItemEntity> res = new ArrayList<>();
+
+        OkhttpUtlis okhttpUtlis = new OkhttpUtlis();
+
+        okhttpUtlis.GetAsynMap(Url.baseUrl + "app/ball/getBasketballList", new Callback() {
+//                    okhttpUtlis.GetAsynMap("http://192.168.1.9/app/ball/getBasketballList", new Callback() {
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(final Call call, Response response) throws IOException {
+
+                final String result = response.body().string();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(result);
+                            int code = jsonObject.getInt("code");
+                            String msg = jsonObject.getString("msg");
+                            if(code==10000){
+
+                                basketBallBean = JSON.parseObject(result,BasketBallBean.class);
+                                List<ChooseBaskBean> list_choose = new ArrayList<>();
+
+                                for (int i = 0; i <basketBallBean.getData().getGame_info().size() ; i++) {
+
+                                    ExpandMixed_bask item = new ExpandMixed_bask(basketBallBean.getData().getGame_info().get(i).getGame_week()+""+basketBallBean.getData().getGame_info().get(i).getGame_group_time()+"共有"+basketBallBean.getData().getGame_info().get(i).getGame_info().size()+"场比赛可投");
+                                    for (int j = 0; j < basketBallBean.getData().getGame_info().get(i).getGame_info().size(); j++) {
+                                        ChooseBaskBean chooseBaskBean = new ChooseBaskBean();
+                                        List<BasketBallBean.DataBean.GameInfoBeanX.GameInfoBean.HomeScoreOddsBean> home_score_odds = basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getHome_score_odds();
+                                        List<BasketBallBean.DataBean.GameInfoBeanX.GameInfoBean.LetScoreOddsBean> home_let_odds = basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getLet_score_odds();
+                                        List<BasketBallBean.DataBean.GameInfoBeanX.GameInfoBean.TotalOddsBean> score_odds = basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getTotal_odds();
+
+                                        List<BasketBallBean.DataBean.GameInfoBeanX.GameInfoBean.ScoreGuestOddsBean> total_odds = basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getScore_guest_odds();
+                                        List<BasketBallBean.DataBean.GameInfoBeanX.GameInfoBean.ScoreHomeOddsBean> half_odds = basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getScore_home_odds();
+                                        List<ItemPoint> list_mixed = new ArrayList<>();
+                                        List<ItemPoint> list_mixed_bottom = new ArrayList<>();
+
+                                        switch (mixed) {
+                                            case 1:
+                                                for (int k = 0; k < home_score_odds.size(); k++) {
+
+                                                    ItemPoint itemPoint = new ItemPoint();
+                                                    itemPoint.setIsselect(false);
+                                                    itemPoint.setId(home_score_odds.get(k).getOdds_code());
+                                                    itemPoint.setGame_odds_id(home_score_odds.get(k).getGame_odds_id());
+                                                    itemPoint.setOdds(home_score_odds.get(k).getOdds());
+                                                    list_mixed.add(itemPoint);
+
+
+                                                }
+                                                break;
+                                            case 2:
+                                                for (int k = 0; k < home_let_odds.size(); k++) {
+
+                                                    ItemPoint itemPoint = new ItemPoint();
+                                                    itemPoint.setIsselect(false);
+                                                    itemPoint.setId(home_let_odds.get(k).getOdds_code());
+                                                    itemPoint.setGame_odds_id(home_let_odds.get(k).getGame_odds_id());
+                                                    itemPoint.setOdds(home_let_odds.get(k).getOdds());
+                                                    list_mixed.add(itemPoint);
+
+
+                                                }
+                                                break;
+                                            case 3:
+                                                for (int k = 0; k < total_odds.size(); k++) {
+
+                                                    ItemPoint itemPoint = new ItemPoint();
+                                                    itemPoint.setIsselect(false);
+                                                    itemPoint.setId(total_odds.get(k).getOdds_code());
+                                                    itemPoint.setGame_odds_id(total_odds.get(k).getGame_odds_id());
+                                                    itemPoint.setOdds(total_odds.get(k).getOdds());
+                                                    list_mixed.add(itemPoint);
+
+
+                                                }
+                                                for (int k = 0; k < half_odds.size(); k++) {
+
+                                                    ItemPoint itemPoint = new ItemPoint();
+                                                    itemPoint.setIsselect(false);
+                                                    itemPoint.setId(half_odds.get(k).getOdds_code());
+                                                    itemPoint.setGame_odds_id(half_odds.get(k).getGame_odds_id());
+                                                    itemPoint.setOdds(half_odds.get(k).getOdds());
+                                                    list_mixed_bottom.add(itemPoint);
+
+
+                                                }
+                                                break;
+                                            case 4:
+
+                                                for (int k = 0; k < score_odds.size(); k++) {
+
+                                                ItemPoint itemPoint = new ItemPoint();
+                                                itemPoint.setIsselect(false);
+                                                itemPoint.setId(score_odds.get(k).getOdds_code());
+                                                itemPoint.setGame_odds_id(score_odds.get(k).getGame_odds_id());
+                                                itemPoint.setOdds(score_odds.get(k).getOdds());
+                                                list_mixed.add(itemPoint);
+
+
+                                                }
+                                                break;
+
+                                        }
+
+                                        chooseBaskBean.setOnelist(list_mixed);
+                                        chooseBaskBean.setTwolist(list_mixed_bottom);
+                                        chooseBaskBean.setDesc("展开更多选项");
+
+                                        chooseBaskBean.setGame_id(basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_id());
+                                        chooseBaskBean.setHome_team(basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name());
+
+                                        chooseBaskBean.setGuest_team(basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name());
+                                        chooseBaskBean.setName(basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no()+"        "+basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name()
+                                                +"        "+"vs"+"        "+basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name());
+
+                                        list_choose.add(chooseBaskBean);
+
+
+                                        Expand1Mixed_bask expand1Item_bask = new Expand1Mixed_bask(basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_name(),
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_home_team_name(),
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_guest_team_name(),
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_total_score(),
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_let_score(),
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_sequence_no(),
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_stop_time(),list_mixed,list_mixed_bottom,list_choose,
+                                                basketBallBean.getData().getGame_info().get(i).getGame_info().get(j).getGame_no(),"展开更多选项");
+
+                                        item.addSubItem(expand1Item_bask);
+
+
+                                    }
+                                    res.add(item);
+
+
+
+                                }
+
+                            }else {
+                                ToastUtil.showToast1(BasketBallMixedActivity.this,msg+"");
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                });
+
+
+
+
+            }
+        });
+
+        return res;
     }
+
+
+
+
+
+
+
+
+
+}

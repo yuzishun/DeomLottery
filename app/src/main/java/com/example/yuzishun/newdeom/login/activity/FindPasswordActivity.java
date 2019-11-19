@@ -70,7 +70,7 @@ public class FindPasswordActivity extends BaseActivity implements View.OnClickLi
         flag = intent.getIntExtra("flag", 0);
         //0是忘记密码，1是修改密码
         if(flag==0){
-            title_text.setText("密码忘记");
+            title_text.setText("密码找回");
 
         }else if (flag==1){
             title_text.setText(R.string.findpassword);

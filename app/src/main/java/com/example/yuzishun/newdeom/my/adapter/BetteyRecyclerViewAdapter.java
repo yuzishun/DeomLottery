@@ -68,26 +68,30 @@ public class BetteyRecyclerViewAdapter extends RecyclerView.Adapter<BetteyRecycl
             switch (data.get(position).getOrder_status()){
                 case 1:
                     holder.state_betteyandwinnit.setText("待开奖");
-
+                    holder.state_betteyandwinnit.setTextColor(context.getResources().getColor(R.color.font_black));
                     break;
                 case 2:
                     NumberFormat nfmin = new DecimalFormat("#.##");
 
 //                    String winning_money = nfmin.format(Double.parseDouble(data.get(position).getBonus_price()) + Double.parseDouble(data.get(position).getBonus_price()) * 0.05);
 
-                    holder.state_betteyandwinnit.setText("中"+data.get(position).getBonus_price()+"元奖");
+                    holder.state_betteyandwinnit.setText("中"+data.get(position).getBonus_price()+"元");
+                    holder.state_betteyandwinnit.setTextColor(context.getResources().getColor(R.color.login_red));
 
                     break;
                 case 3:
                     holder.state_betteyandwinnit.setText("未中奖");
+                    holder.state_betteyandwinnit.setTextColor(context.getResources().getColor(R.color.font_black));
 
                     break;
                 case 0:
                     holder.state_betteyandwinnit.setText("待出票");
+                    holder.state_betteyandwinnit.setTextColor(context.getResources().getColor(R.color.font_black));
 
                     break;
                 case -1:
                     holder.state_betteyandwinnit.setText("已取消");
+                    holder.state_betteyandwinnit.setTextColor(context.getResources().getColor(R.color.font_black));
 
                     break;
             }

@@ -179,7 +179,7 @@
                     <Button
                         android:id="@+id/button_sure"
                         android:background="@drawable/login_select"
-                        android:text="确定"
+                        android:text="确认"
                         android:enabled="true"
                         android:textColor="@color/white"
                         android:textSize="@dimen/f13"

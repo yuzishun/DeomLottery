@@ -159,7 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/d10"></View>
         <LinearLayout
-            android:layout_weight="1.1"
+            android:layout_weight="1.2"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -178,6 +178,7 @@
                     android:layout_height="wrap_content" />
                 <Button
                     android:text="净利润"
+                    android:visibility="gone"
                     android:textSize="@dimen/f10"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/d25"
@@ -235,7 +236,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
-                    android:text="文案宣言"
+                    android:text="方案宣言"
                     android:textSize="@dimen/f12"
                     android:textColor="@color/font_black"
                     android:layout_marginLeft="@dimen/d25"

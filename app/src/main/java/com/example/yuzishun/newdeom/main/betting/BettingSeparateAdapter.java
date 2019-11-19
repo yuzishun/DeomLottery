@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -243,6 +244,7 @@ public class BettingSeparateAdapter extends BaseMultiItemQuickAdapter<MultiItemE
         TextView name_left = dialog.findViewById(R.id.name_left);
         TextView name_right = dialog.findViewById(R.id.name_right);
         TextView type_text = dialog.findViewById(R.id.type_text);
+        ImageView layout_analysis_in = dialog.findViewById(R.id.layout_analysis_in);
 
 
         name_left.setText(item.home_team);
@@ -257,6 +259,16 @@ public class BettingSeparateAdapter extends BaseMultiItemQuickAdapter<MultiItemE
                 EventBus.getDefault().post(new MIxedMessage(getnumber()+""));
 
 
+            }
+        });
+        layout_analysis_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, AnalysisActivity.class);
+                intent.putExtra("game_no",item.game_no+"");
+                intent.putExtra("flag",0);
+
+                context.startActivity(intent);
             }
         });
         layout_sure.setOnClickListener(new View.OnClickListener() {

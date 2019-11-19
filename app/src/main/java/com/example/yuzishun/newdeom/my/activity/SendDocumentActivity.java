@@ -83,7 +83,7 @@ public class SendDocumentActivity extends BaseActivity implements View.OnClickLi
         Button_two.setOnClickListener(this);
         Button_three.setOnClickListener(this);
         button_send.setOnClickListener(this);
-        money_Textview.setText("跟单金额"+multiple_price+"元,共"+multiple+"倍");
+        money_Textview.setText("跟单金额"+multiple+"倍,共"+multiple_price+"元");
 
     }
 

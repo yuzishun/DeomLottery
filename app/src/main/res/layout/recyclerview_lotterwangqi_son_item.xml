@@ -101,7 +101,7 @@
                 android:textSize="10sp" />
 
             <com.example.yuzishun.newdeom.my.custom.MyTableTextView
-                android:text="让球胜负平"
+                android:text="让分胜负"
                 android:id="@+id/list_1_2"
                 android:layout_width="match_parent"
                 android:layout_weight="1"

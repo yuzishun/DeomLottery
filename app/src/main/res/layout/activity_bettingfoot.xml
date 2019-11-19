@@ -63,7 +63,7 @@
 
         <ImageView
             android:id="@+id/play_messag"
-            android:src="@mipmap/wenhao"
+            android:src="@mipmap/gantan"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/d15"
@@ -150,7 +150,7 @@
                     <Button
                         android:id="@+id/button_sure_mixed"
                         android:background="@drawable/login_select"
-                        android:text="确定"
+                        android:text="确认"
                         android:enabled="true"
                         android:textColor="@color/white"
                         android:textSize="@dimen/f13"
@@ -282,7 +282,7 @@
                     <Button
                         android:id="@+id/button_sure_single"
                         android:background="@drawable/login_select"
-                        android:text="确定"
+                        android:text="确认"
                         android:enabled="true"
                         android:textColor="@color/white"
                         android:textSize="@dimen/f13"

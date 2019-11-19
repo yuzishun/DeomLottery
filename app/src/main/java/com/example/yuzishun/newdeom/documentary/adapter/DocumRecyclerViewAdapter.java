@@ -89,6 +89,13 @@ public class DocumRecyclerViewAdapter extends RecyclerView.Adapter<DocumRecycler
                 context.startActivity(intent1);
             }
         });
+        if(list.get(position).getGame_type()==0){
+            holder.text_type.setText("竞彩类型：足球");
+
+        }else {
+            holder.text_type.setText("竞彩类型：篮球");
+        }
+
         holder.text_time.setText(list.get(position).getCut_off_time()+"截止");
         holder.list_1_1.setText("方案金额");
         holder.list_1_2.setText("单倍金额");
@@ -115,10 +122,11 @@ public class DocumRecyclerViewAdapter extends RecyclerView.Adapter<DocumRecycler
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView icon;
         MyTableTextView list_1_1,list_1_2,list_1_3,list_1_4,list_2_1,list_2_2,list_2_3,list_2_4;
-        TextView username,text_time,text_dec;
+        TextView username,text_time,text_dec,text_type;
         Button document_shou_button_;
         public ViewHolder(View itemView) {
             super(itemView);
+            text_type = itemView.findViewById(R.id.text_type);
             list_1_1 = itemView.findViewById(R.id.list_1_1);
             list_1_2 = itemView.findViewById(R.id.list_1_2);
             list_1_3 = itemView.findViewById(R.id.list_1_3);

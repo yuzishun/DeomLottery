@@ -49,7 +49,8 @@
         android:layout_height="70dp"
         android:background="@color/empt_color"
         android:singleLine="false"
-
+        android:scrollbars="vertical"
+        android:scrollbarStyle="outsideOverlay"
         android:layout_alignBottom="@+id/list_1_3"
         android:layout_alignTop="@+id/list_1_3"
         android:layout_toRightOf="@+id/list_1_3"

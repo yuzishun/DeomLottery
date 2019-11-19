@@ -62,7 +62,6 @@ public class BandingPayActivity extends BaseActivity implements View.OnClickList
     @Override
     public void initView() {
         ButterKnife.bind(this);
-        title_text.setText(R.string.BindPaybao);
         image_back.setOnClickListener(this);
         button_binding.setOnClickListener(this);
         regexUtils  = new RegexUtils(this);
@@ -75,10 +74,12 @@ public class BandingPayActivity extends BaseActivity implements View.OnClickList
         if(flag==0){
             layout_tixian.setVisibility(View.GONE);
             layout_bind.setVisibility(View.VISIBLE);
+            title_text.setText(R.string.BindPaybao);
 
         }else {
             layout_tixian.setVisibility(View.VISIBLE);
             layout_bind.setVisibility(View.GONE);
+            title_text.setText("支付宝提现");
 
 
         }

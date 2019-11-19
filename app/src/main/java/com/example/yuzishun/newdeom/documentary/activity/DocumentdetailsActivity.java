@@ -2,8 +2,10 @@ package com.example.yuzishun.newdeom.documentary.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -374,10 +376,11 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                     switch (footBallOrderBean.getData().getOrder_type()){
                                         case 0:
                                             layout_dec.setVisibility(View.VISIBLE);
-                                            layout_genv.setVisibility(View.GONE);
+                                            layout_genv.setVisibility(View.VISIBLE);
                                             layout_genlistv.setVisibility(View.GONE);
                                             View_genv.setVisibility(View.GONE);
-
+                                            multiple_pric.setText("单倍金额:"+footBallOrderBean.getData().getMultiple_price());
+                                            plan_profits.setVisibility(View.GONE);
                                             text_dec.setText(""+footBallOrderBean.getData().getOrder_plan().getPlan_desc());
 
                                             break;
@@ -386,7 +389,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                             View_genv.setVisibility(View.VISIBLE);
 
                                             multiple_pric.setText("单倍金额:"+footBallOrderBean.getData().getMultiple_price());
-                                            plan_profits.setText("方案提成:"+footBallOrderBean.getData().getOrder_plan().getPlan_profits());
+                                            plan_profits.setText("方案提成:%"+Double.parseDouble(footBallOrderBean.getData().getOrder_plan().getPlan_profits())*100);
                                             gendan_bumber.setText("跟单人数（"+footBallOrderBean.getData().getOrder_plan().getPlan_follow_person()+"，共"+footBallOrderBean.getData().getOrder_plan().getPlan_follow_price()+"元）");
                                             gendan_price.setText("佣金:"+footBallOrderBean.getData().getOrder_plan().getPlan_profit_price());
                                             text_dec.setText(""+footBallOrderBean.getData().getOrder_plan().getPlan_desc());
@@ -398,7 +401,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
                                             multiple_pric.setText("单倍金额:"+footBallOrderBean.getData().getMultiple_price());
 
-                                            plan_profits.setText("方案提成:"+footBallOrderBean.getData().getOrder_follow_plan().getPlan_profits());
+                                            plan_profits.setText("方案提成:%"+Double.parseDouble(footBallOrderBean.getData().getOrder_follow_plan().getPlan_profits())*100);
                                             text_dec.setText("跟单于:"+footBallOrderBean.getData().getOrder_follow_plan().getUname());
 
                                             break;
@@ -604,6 +607,8 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
             txt.setTextColor(context.getResources().getColor(R.color.login_red));
 
             txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
+            txt.setMovementMethod(ScrollingMovementMethod.getInstance());
+            txt.setOnTouchListener(onTouchListener);
             String zhi = "";
             List<String> list_color = new ArrayList<>();
             ArrayList<String> list_color_red = new ArrayList<>();
@@ -651,6 +656,23 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
             linearLayout.addView(relativeLayout);
         }
     }
+    private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                //父节点不拦截子节点
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+            } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                //父节点不拦截子节点
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                //父节点拦截子节点
+                v.getParent().requestDisallowInterceptTouchEvent(false);
+            }
+            return false;
+        }
+    };
 
 
 

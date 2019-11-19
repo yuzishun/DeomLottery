@@ -38,7 +38,7 @@
                 android:id="@+id/tianjia_bank"
                 android:layout_marginBottom="@dimen/d10"
 
-                android:textColor="@color/font_black"
+                android:textColor="@color/login_red"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
@@ -48,7 +48,7 @@
                 android:layout_centerHorizontal="true"
 
                 android:textSize="@dimen/f9"
-                android:textColor="@color/font_black"
+                android:textColor="@color/login_red"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView" />

@@ -107,7 +107,7 @@ public class ScoreFragment extends LazyFragment implements View.OnClickListener 
 
    private void initdata(){
 
-       title_text.setText("比分");
+       title_text.setText("即时比分");
         image_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

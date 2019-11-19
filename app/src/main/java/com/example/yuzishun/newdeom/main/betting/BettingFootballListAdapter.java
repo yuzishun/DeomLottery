@@ -378,6 +378,7 @@ public class BettingFootballListAdapter extends BaseMultiItemQuickAdapter<MultiI
         TextView name_right = dialog.findViewById(R.id.name_right);
         TextView victor = dialog.findViewById(R.id.victor);
         TextView loser = dialog.findViewById(R.id.loser);
+        ImageView layout_analysis_in  = dialog.findViewById(R.id.layout_analysis_in);
         victor.setText(item.home_score);
         loser.setText(item.guest_score);
         name_left.setText(item.home_team);
@@ -391,6 +392,16 @@ public class BettingFootballListAdapter extends BaseMultiItemQuickAdapter<MultiI
 
                 EventBus.getDefault().post(new MainMessage(getnumber()+""));
 
+            }
+        });
+        layout_analysis_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, AnalysisActivity.class);
+                intent.putExtra("game_no",item.game_no+"");
+                intent.putExtra("flag",0);
+
+                context.startActivity(intent);
             }
         });
         layout_sure.setOnClickListener(new View.OnClickListener() {

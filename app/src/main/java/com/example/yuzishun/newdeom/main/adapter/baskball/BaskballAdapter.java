@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -207,12 +208,12 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
                     victor_text.setText(item2.desc+"");
 
                     victor_text.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
-                    layout_victorcha.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.login_radios_border_sure_white));
+                    layout_victorcha.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_false));
 
                 }else {
                     victor_text.setText(item2.desc+"");
                     victor_text.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
-                    layout_victorcha.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.login_radios_border_sure_red));
+                    layout_victorcha.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_true));
 
                 }
 
@@ -414,11 +415,11 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
         if(isselect){
 
             button.setTextColor(MyApplication.getContext().getResources().getColor(R.color.white));
-            button.setBackgroundResource(R.drawable.login_radios_border_sure_red);
+            button.setBackgroundResource(R.drawable.dialog_mixed_true);
         }else {
             button.setTextColor(MyApplication.getContext().getResources().getColor(R.color.font_black));
 
-            button.setBackgroundResource(R.drawable.login_radios_border_sure_white);
+            button.setBackgroundResource(R.drawable.dialog_mixed_false);
 
         }
 
@@ -466,7 +467,7 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
         dialogWindow.setAttributes(p);
         TextView name_left = dialog.findViewById(R.id.name_left);
         TextView name_right = dialog.findViewById(R.id.name_right);
-
+        ImageView layout_analysis_in_bask = dialog.findViewById(R.id.layout_analysis_in_bask);
 
         name_left.setText(item.guest_team);
         name_right.setText(item.home_team);
@@ -477,6 +478,15 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
 
         LinearLayout layout_cancel = dialog.findViewById(R.id.layout_cancel);
         LinearLayout layout_sure = dialog.findViewById(R.id.layout_sure);
+        layout_analysis_in_bask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, AnalysisActivity.class);
+                intent.putExtra("game_no",item.game_no+"");
+                intent.putExtra("flag",1);
+                context.startActivity(intent);
+            }
+        });
         layout_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

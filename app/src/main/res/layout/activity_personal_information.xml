@@ -182,7 +182,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <TextView
-                            android:text="@string/Phone_Number"
+                            android:text="手机号码"
                             android:layout_toRightOf="@+id/image5"
                             android:layout_marginLeft="@dimen/d10"
                             android:textColor="@color/font_black"

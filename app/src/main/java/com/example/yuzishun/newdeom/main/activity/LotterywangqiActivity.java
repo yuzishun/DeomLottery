@@ -57,10 +57,10 @@ public class  LotterywangqiActivity extends BaseActivity implements View.OnClick
         Intent intent = getIntent();
         flag = intent.getIntExtra("flag",0);
         if(flag==0){
-            title_text.setText("竞猜足球往期开奖");
+            title_text.setText("竞彩足球往期开奖");
 
         }else {
-            title_text.setText("竞猜篮球往期开奖");
+            title_text.setText("竞彩篮球往期开奖");
 
         }
         image_back.setOnClickListener(this);

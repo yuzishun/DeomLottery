@@ -101,7 +101,7 @@
                             android:layout_marginRight="35dp"
                             android:layout_weight="1"
                             android:background="@null"
-                            android:hint="请输入充值金额,10-5000元"
+                            android:hint="请输入充值金额"
                             android:inputType="numberDecimal"
                             android:maxLength="11"
                             android:maxLines="1"

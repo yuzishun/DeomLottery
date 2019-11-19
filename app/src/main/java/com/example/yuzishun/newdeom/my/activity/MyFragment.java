@@ -110,6 +110,8 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
                                 Content.userid = String.valueOf(userInfoBean.getData().getUser_id());
 
                                 Content.username = userInfoBean.getData().getUname();
+                                Content.userphone = userInfoBean.getData().getPhone();
+
                                 authentication = userInfoBean.getData().getAuthentication();
                                 balance = userInfoBean.getData().getAccount().getBalance();
                                 alipay = userInfoBean.getData().getAlipay();

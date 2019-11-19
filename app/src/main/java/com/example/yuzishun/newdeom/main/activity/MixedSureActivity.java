@@ -131,7 +131,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
     public void initView() {
         ButterKnife.bind(this);
         image_back.setOnClickListener(this);
-        title_text.setText("混合投注确定");
+        title_text.setText("混合投注确认");
         button_sure.setOnClickListener(this);
         Text_More.setOnClickListener(this);
         Button_goon.setOnClickListener(this);

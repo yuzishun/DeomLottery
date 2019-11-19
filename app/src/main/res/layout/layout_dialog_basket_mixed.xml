@@ -35,6 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <ImageView
+                android:id="@+id/layout_analysis_in_bask"
                 android:src="@mipmap/mixed"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"

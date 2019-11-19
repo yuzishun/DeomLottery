@@ -958,22 +958,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onClick(View view) {
                 change();
-//                try {
-//
-//
-//                    adapter.onResh(1);
-//                    adapter.notifyDataSetChanged();
-//                    adapter_mixed_Separ.onResh(1);
-//                    adapter_mixed.onResh();
-//                    adapter_mixed_Separ.notifyDataSetChanged();
-//                    adapter_mixed.notifyDataSetChanged();
-//                }catch (Exception e){
-//
-//                    Log.e("YZS",e.getMessage()+"");
-//                }
-//                EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber()+""));
 
-//                EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber()+""));
                 popwindows = 0;
                 choose_one.setTextColor(getResources().getColor(R.color.login_red));
                 choose_two.setTextColor(getResources().getColor(R.color.font_black));
@@ -999,20 +984,6 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
             public void onClick(View view) {
                 change();
 
-//                try {
-//
-//
-//                    adapter.onResh(1);
-//                    adapter.notifyDataSetChanged();
-//
-//                    adapter_mixed.onResh();
-//                    adapter_mixed.notifyDataSetChanged();
-//                    adapter_mixed_Separ.onResh(1);
-//                    adapter_mixed_Separ.notifyDataSetChanged();
-//                }catch (Exception e){
-//
-//                }
-//                EventBus.getDefault().post(new SingleMessage(BettingSingleAdapter.getnumber()+""));
 
                 popwindows = 1;
 
@@ -1621,6 +1592,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                         }
                     });
                 } catch (Exception e) {
+
 
                 }
             }

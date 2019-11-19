@@ -103,7 +103,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
     //参数集合和需要展示的集合
     private List<String> list_adds;
     private  List<String> list_id;
-    private String[] string_mode=new String[]{"单关","2串1","3串1","4串1","5串1","6串1","7串1","8串1"};
+    private String[] string_mode=new String[]{"2串1","3串1","4串1","5串1","6串1","7串1","8串1"};
     private List<SubMixBean> list_subMixBean = new ArrayList<>();
     private List<SureguanBean> list_sureguanBean = new ArrayList<>();
     private List<SubMixListBean> list_stbMixListBean = new ArrayList<>();
@@ -120,7 +120,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
     public void initView() {
         ButterKnife.bind(this);
         image_back.setOnClickListener(this);
-        title_text.setText("混合投注确定");
+        title_text.setText("混合投注确认");
         button_sure.setOnClickListener(this);
         Text_More.setOnClickListener(this);
         Button_goon.setOnClickListener(this);
@@ -476,42 +476,39 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
         int length=0;
 
         switch (list_stbMixListBean.size()){
-            case 1:
-                length = getnumber(1);
 
-                break;
             case 2:
-                length = getnumber(2);
+                length = getnumber(1);
                 break;
             case 3:
-                length = getnumber(3);
+                length = getnumber(2);
 
                 break;
             case 4:
-                length = getnumber(4);
+                length = getnumber(3);
 
                 break;
             case 5:
-                length = getnumber(5);
+                length = getnumber(4);
 
                 break;
             case 6:
-                length = getnumber(6);
+                length = getnumber(5);
 
                 break;
             case 7:
-                length = getnumber(7);
+                length = getnumber(6);
 
                 break;
             case 8:
-                length = getnumber(8);
+                length = getnumber(7);
 
                 break;
         }
 
         if(list_stbMixListBean.size()>8){
 
-            length=getnumber(8);
+            length=getnumber(7);
 
         }
 
@@ -521,7 +518,7 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
         for (int i = 0; i <length ; i++) {
             SureguanBean sureguanBean = new SureguanBean();
             sureguanBean.setName(string_mode[i]);
-            sureguanBean.setBunch(i+1+"");
+            sureguanBean.setBunch(i+2+"");
             if(i==length-1){
                 sureguanBean.setIsselect(true);
                 bunch_TextView.setText(sureguanBean.getName());
@@ -847,7 +844,35 @@ public class BasketballSureActivity extends BaseActivity implements View.OnClick
         Text_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int ii = 1;
+                for (int i = 0; i < list_sureguanBean.size() ; i++) {
+
+                    if(list_sureguanBean.get(i).isselect){
+                        ii++;
+                    }else {
+
+                    }
+
+                }
+                Text_More.setText(ii-1+"个方式");
                 popupWindow.dismiss();
+                List<String> getbunch = getbunch();
+                Text_money.setText(getbunch.get(0));
+                money.setText(getbunch.get(1));
+                if(list_sureguanBean.size()==0){
+
+                    ToastUtil.showToast1(BasketballSureActivity.this,"请重新选择比赛");
+                }else {
+                    for (int i = 0; i <list_sureguanBean.size() ; i++) {
+                        if(list_sureguanBean.get(i).isselect){
+                            bunch_TextView.setText(list_sureguanBean.get(i).getName());
+
+                        }
+
+                    }
+
+                }
+
             }
         });
         Text_sure.setOnClickListener(new View.OnClickListener() {

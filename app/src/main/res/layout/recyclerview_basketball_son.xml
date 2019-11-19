@@ -206,7 +206,7 @@
                         android:textSize="@dimen/f11"
                         android:textColor="@color/font_black"
 
-                        android:background="@drawable/login_radios_border_sure_red"
+                        android:background="@drawable/dialog_mixed_true"
                         android:layout_width="70dp"
                         android:layout_height="23dp" />
                     <Button
@@ -217,7 +217,7 @@
                         android:textColor="@color/font_black"
                         android:layout_marginTop="@dimen/d7"
 
-                        android:background="@drawable/login_radios_border_sure_white"
+                        android:background="@drawable/dialog_mixed_false"
                         android:layout_width="70dp"
                         android:layout_height="23dp" />
                     <Button
@@ -228,7 +228,7 @@
                         android:textColor="@color/font_black"
                         android:layout_marginTop="@dimen/d7"
 
-                        android:background="@drawable/login_radios_border_sure_white"
+                        android:background="@drawable/dialog_mixed_false"
                         android:layout_width="70dp"
                         android:layout_height="23dp" />
 
@@ -283,7 +283,7 @@
                         android:textSize="@dimen/f11"
                         android:textColor="@color/font_black"
 
-                        android:background="@drawable/login_radios_border_sure_red"
+                        android:background="@drawable/dialog_mixed_true"
                         android:layout_width="70dp"
                         android:layout_height="23dp" />
                     <Button
@@ -294,7 +294,7 @@
                         android:textColor="@color/font_black"
                         android:layout_marginTop="@dimen/d7"
 
-                        android:background="@drawable/login_radios_border_sure_white"
+                        android:background="@drawable/dialog_mixed_false"
                         android:layout_width="70dp"
                         android:layout_height="23dp" />
                     <Button
@@ -305,7 +305,7 @@
                         android:textColor="@color/font_black"
                         android:layout_marginTop="@dimen/d7"
 
-                        android:background="@drawable/login_radios_border_sure_white"
+                        android:background="@drawable/dialog_mixed_false"
                         android:layout_width="70dp"
                         android:layout_height="23dp" />
                 </LinearLayout>
@@ -316,7 +316,7 @@
                     android:layout_height="match_parent">
 
                     <LinearLayout
-                        android:background="@drawable/login_radios_border_sure_white"
+                        android:background="@drawable/dialog_mixed_false"
                         android:gravity="center"
                         android:id="@+id/layout_victorcha"
                         android:layout_width="30dp"
