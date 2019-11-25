@@ -1,5 +1,6 @@
 package com.example.yuzishun.newdeom.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by yuzishun on 2019/5/28.
  */
 
-public class MinAndMaxBean {
+public class MinAndMaxBean implements Serializable{
     private List<Double> one_mix_and_min = new ArrayList<>();
     private List<Double> two_mix_and_min = new ArrayList<>();
     private List<Double> three_mix_and_min = new ArrayList<>();

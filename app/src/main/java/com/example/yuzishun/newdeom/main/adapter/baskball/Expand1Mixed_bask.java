@@ -18,7 +18,7 @@ public class Expand1Mixed_bask implements MultiItemEntity  {
     public String total_score;
     public String let_score;
     public String sequence_no;
-    public String begin_time;
+    public String stop_time;
     public List<ItemPoint> list_mixed;
     public List<ItemPoint> list_mixed_bottom;
 
@@ -26,7 +26,7 @@ public class Expand1Mixed_bask implements MultiItemEntity  {
     public String game_no;
     public String desc;
 
-    public Expand1Mixed_bask(String play_name, String home_team, String guest_team, String total_score, String let_score, String sequence_no, String begin_time
+    public Expand1Mixed_bask(String play_name, String home_team, String guest_team, String total_score, String let_score, String sequence_no, String stop_time
     , List<ItemPoint> list_mixed,List<ItemPoint> list_mixed_bottom, List<ChooseBaskBean> list_choosebena, String game_no, String desc) {
         this.play_name = play_name;
         this.home_team = home_team;
@@ -34,7 +34,7 @@ public class Expand1Mixed_bask implements MultiItemEntity  {
         this.total_score = total_score;
         this.let_score = let_score;
         this.sequence_no = sequence_no;
-        this.begin_time = begin_time;
+        this.stop_time = stop_time;
         this.list_mixed = list_mixed;
         this.list_mixed_bottom = list_mixed_bottom;
         this.game_no = game_no;

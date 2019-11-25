@@ -4,17 +4,18 @@
     android:gravity="center"
     android:layout_marginLeft="@dimen/d10"
     android:layout_marginRight="@dimen/d10"
-
     android:layout_height="match_parent">
 
 
         <Button
             android:text="你好"
             android:background="@drawable/betting_item"
+
+            android:textSize="@dimen/f12"
             android:checked="false"
             android:clickable="false"
             android:focusable="false"
-            android:textSize="@dimen/f12"
+            android:focusableInTouchMode="false"
 
             android:id="@+id/item"
             android:textColor="@color/font_black"

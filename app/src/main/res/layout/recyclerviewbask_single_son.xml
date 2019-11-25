@@ -9,26 +9,19 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout
+        <LinearLayout
             android:layout_weight="3"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/image_single"
-                android:visibility="gone"
-                android:background="@mipmap/single"
-                android:layout_width="35dp"
-                android:layout_height="35dp" />
             <TextView
                 android:text="澳超"
                 android:id="@+id/Text_diqu"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
                 android:textColor="@color/font_black"
                 android:textSize="@dimen/f12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </RelativeLayout>
+        </LinearLayout>
         <LinearLayout
             android:layout_weight="1"
             android:orientation="horizontal"
@@ -148,40 +141,19 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
+                    android:id="@+id/layout_gone"
                     android:orientation="vertical"
                     android:background="@color/white"
                     android:layout_weight="1"
-
+                    android:visibility="gone"
                     android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <RelativeLayout
-                        android:id="@+id/layout_red"
-                        android:visibility="gone"
-                        android:layout_centerVertical="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    <android.support.v7.widget.RecyclerView
-                        android:visibility="gone"
-                        android:id="@+id/RecyclerView_Mixed_Bet_football"
-                        android:gravity="center"
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <RelativeLayout
-                        android:id="@+id/layout_top"
-                        android:background="@drawable/layout_red_border"
-                        android:visibility="gone"
-                        android:layout_centerVertical="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp">
-
-                    </RelativeLayout>
-                    </RelativeLayout>
 
 
                     <Button
-                        android:id="@+id/button_score"
+                        android:id="@+id/button_Difference"
                         android:text="点击展开投注页"
                         android:textSize="@dimen/f12"
                         android:gravity="center"
@@ -191,54 +163,75 @@
                         android:textColor="@color/font_black"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/d30" />
+
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_visito"
+                    android:orientation="horizontal"
+                    android:background="@color/white"
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+
                     <Button
-                        android:id="@+id/button_double"
-                        android:text="点击展开投注页"
-                        android:visibility="gone"
+                        android:id="@+id/button_left"
+                        android:text="主负2.42"
                         android:textSize="@dimen/f12"
                         android:gravity="center"
-                        android:layout_marginRight="@dimen/d10"
+                        android:layout_marginRight="@dimen/d20"
                         android:layout_marginLeft="@dimen/d10"
                         android:background="@drawable/dialog_mixed_false"
                         android:textColor="@color/font_black"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="@dimen/d30" />
-                    <android.support.v7.widget.RecyclerView
-                        android:visibility="gone"
-                        android:id="@+id/RecyclerView_Mixed_Bet_football_zong"
+
+
+                    <TextView
+
+                        android:text="主3.5"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="@dimen/f10"
+                        android:id="@+id/text_center_socre"
+                        android:textColor="@color/login_red"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/button_right"
+                        android:text="主胜2.12"
+                        android:textSize="@dimen/f12"
                         android:gravity="center"
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_marginRight="@dimen/d10"
+                        android:layout_marginLeft="@dimen/d20"
+                        android:background="@drawable/dialog_mixed_false"
+                        android:textColor="@color/font_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/d30" />
+
+
                 </LinearLayout>
 
 
-            </LinearLayout>
-            <LinearLayout
-                android:visibility="gone"
-                android:layout_weight="3"
-                android:id="@+id/layout_low"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginRight="@dimen/d30"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView
-                    android:id="@+id/text_low"
-                    android:textColor="@color/edittext_hintcolor"
-                    android:text="展开更多选项"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textSize="@dimen/f9"
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <ImageView
-                    android:src="@mipmap/gray_ic_more"
-                    android:layout_marginLeft="@dimen/d3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+
+
+
+
+
+
+
             </LinearLayout>
+
         </LinearLayout>
 
 

@@ -1,12 +1,13 @@
 package com.example.yuzishun.newdeom.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by yuzishun on 2019/5/24.
  */
 
-public class SubMixListBean {
+public class SubMixListBean implements Serializable{
 
     public String name;
 

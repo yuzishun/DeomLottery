@@ -1,4 +1,4 @@
-package com.example.yuzishun.newdeom.main.single;
+package com.example.yuzishun.newdeom.main.adapter.baskball;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -17,7 +17,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
@@ -26,10 +25,15 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.MyApplication;
 import com.example.yuzishun.newdeom.main.activity.AnalysisActivity;
+import com.example.yuzishun.newdeom.main.betting.Item1_Mixed;
+import com.example.yuzishun.newdeom.main.betting.Item_Mixed;
+import com.example.yuzishun.newdeom.main.betting.MixedAdapter;
+import com.example.yuzishun.newdeom.main.single.QuickAdapter_single;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
 import com.example.yuzishun.newdeom.model.SubMixBean;
-import com.example.yuzishun.newdeom.utils.eventbus.SinglePostionMessage;
+import com.example.yuzishun.newdeom.utils.eventbus.MIxedMessage;
+import com.example.yuzishun.newdeom.utils.eventbus.MixedPostionMessage;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -40,7 +44,7 @@ import java.util.List;
  * Created by yuzishun on 2019/6/20.
  */
 
-public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,BaseViewHolder> {
+public class BettingSeparateBaskAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,BaseViewHolder> {
     public static final int  TYPE_LEVEL_0 = 0;
     public static final int  TYPE_LEVEL_1 = 1;
     public static List<ChooseMixedBean> list_choose_single = new ArrayList<>();
@@ -56,10 +60,10 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
      *
      * @param data A new list is created out of this one to avoid mutable list
      */
-    public BettingSingleAdapter(List<MultiItemEntity> data,int single) {
+    public BettingSeparateBaskAdapter(List<MultiItemEntity> data, int single) {
         super(data);
         addItemType(TYPE_LEVEL_0, R.layout.recyclerview_base_father);
-        addItemType(TYPE_LEVEL_1,R.layout.recyclerview_single_son);
+        addItemType(TYPE_LEVEL_1,R.layout.recyclerviewbask_single_son);
         this.single = single;
 
     }
@@ -69,7 +73,7 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
     protected void convert(final BaseViewHolder helper, MultiItemEntity item) {
         switch (helper.getItemViewType()) {
             case TYPE_LEVEL_0:
-                final Item_Single item_single = (Item_Single) item;
+                final Item_Mixed item_single = (Item_Mixed) item;
                 helper.setText(R.id.tv_status,item_single.title)
                         .setBackgroundRes(R.id.status_image,item_single.isExpanded() ? R.mipmap.ic_expand_more:R.mipmap.ic_expand_less);
                 helper.itemView.setOnClickListener(new View.OnClickListener() {
@@ -88,138 +92,127 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
 
                 break;
             case TYPE_LEVEL_1:
-                final Item1_Single item2 = (Item1_Single) item;
-                helper.setText(R.id.Text_diqu,item2.play_name)
-                        .setText(R.id.Text_left,item2.home_team)
-                        .setText(R.id.Text_right,item2.guest_team)
-                        .setText(R.id.Text_bianhao,item2.sequence_no)
-                        .setText(R.id.Text_data,"截止"+item2.stop_time);
-                RecyclerView rv = helper.getView(R.id.RecyclerView_Mixed_Bet_football);
-                RecyclerView rv_zong = helper.getView(R.id.RecyclerView_Mixed_Bet_football_zong);
-                LinearLayout layout_analysis = helper.getView(R.id.layout_analysis);
-                RelativeLayout layout_red = helper.getView(R.id.layout_red);
-
-                layout_analysis.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        Intent intent = new Intent(helper.itemView.getContext(), AnalysisActivity.class);
-                        intent.putExtra("game_no",item2.game_no+"");
-                        intent.putExtra("flag",0);
-
-                        helper.itemView.getContext().startActivity(intent);
-
-                    }
-                });
-                Button button_score = helper.getView(R.id.button_score);
-                Button button_double = helper.getView(R.id.button_double);
-
-                rv.setLayoutManager(new GridLayoutManager(helper.itemView.getContext(),3));
-                SingleAdapter quickAdapter = new SingleAdapter(item2.list_single,1);
-                rv.setAdapter(quickAdapter);
-                rv_zong.setLayoutManager(new GridLayoutManager(helper.itemView.getContext(),4));
-                SingleAdapter quickAdapter_zong = new SingleAdapter(item2.list_single,1);
-                rv_zong.setAdapter(quickAdapter_zong);
-                list_choose_single = item2.list_choosebena;
-                if(single==1){
-                    layout_red.setVisibility(View.VISIBLE);
-                    rv.setVisibility(View.VISIBLE);
-                    button_score.setVisibility(View.GONE);
-                    rv_zong.setVisibility(View.GONE);
-                    button_double.setVisibility(View.GONE);
-
-                }else if(single==3) {
-                    rv.setVisibility(View.GONE);
-                    button_score.setVisibility(View.VISIBLE);
-                    rv_zong.setVisibility(View.GONE);
-                    button_double.setVisibility(View.GONE);
-
-                }else if(single==2){
-                    layout_red.setVisibility(View.VISIBLE);
-                    rv.setVisibility(View.VISIBLE);
-                    rv_zong.setVisibility(View.GONE);
-                    button_double.setVisibility(View.GONE);
-                    button_score.setVisibility(View.GONE);
-                }else if(single==4){
-                    rv_zong.setVisibility(View.VISIBLE);
-                    button_double.setVisibility(View.GONE);
-                    rv.setVisibility(View.GONE);
-                    button_score.setVisibility(View.GONE);
-
-                }else if(single==5){
-                    rv_zong.setVisibility(View.GONE);
-                    button_double.setVisibility(View.VISIBLE);
-                    rv.setVisibility(View.GONE);
-                    button_score.setVisibility(View.GONE);
-                }
-                int ii=0;
-                for (int i = 0; i < item2.list_single.size(); i++) {
-                    if(item2.list_single.get(i).isselect){
-
-                        ii++;
-                    }else {
-                    }
-
-                }
-                if(ii==0){
-                    item2.desc= "展开更多选项";
-
-                }
-                    if(item2.desc.equals("展开更多选项")){
-                        button_score.setText(item2.desc+"");
-                        button_score.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_false));
-
-                        button_score.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
-
-                    }else {
-                        button_score.setText(item2.desc+"");
-                        button_score.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_true));
-                        button_score.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
-
-                    }
-
-
-                    if(item2.desc.equals("展开更多选项")){
-                        button_double.setText(item2.desc+"");
-                        button_double.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_false));
-
-                        button_double.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
-
-                    }else {
-                        button_double.setText(item2.desc+"");
-                        button_double.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_true));
-                        button_double.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
-
-                    }
-
-
-
-
-
-                button_score.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    dialog_m(item2,helper.itemView.getContext(),helper.getLayoutPosition(),single);
-                    }
-                });
-                button_double.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog_m(item2,helper.itemView.getContext(),helper.getLayoutPosition(),single);
-
-                    }
-                });
-                break;
-
-
+                final Item1_Mixed item2 = (Item1_Mixed) item;
+//                helper.setText(R.id.Text_diqu,item2.play_name)
+//                        .setText(R.id.Text_left,item2.home_team)
+//                        .setText(R.id.Text_right,item2.guest_team)
+//                        .setText(R.id.Text_bianhao,item2.sequence_no)
+//                        .setText(R.id.Text_data,"截止"+item2.stop_time);
+//                LinearLayout layout_gone = helper.getView(R.id.layout_gone);
+//                LinearLayout layout_visito = helper.getView(R.id.layout_visito);
+//                LinearLayout layout_analysis = helper.getView(R.id.layout_analysis);
+//                layout_analysis.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        Intent intent = new Intent(helper.itemView.getContext(), AnalysisActivity.class);
+//                        intent.putExtra("game_no",item2.game_no+"");
+//                        intent.putExtra("flag",0);
+//
+//                        helper.itemView.getContext().startActivity(intent);
+//
+//                    }
+//                });
+//                list_choose_single = item2.list_choosebena;
+//
+//                TextView Text_left =  helper.getView(R.id.Text_left);
+//                Button button_Difference = helper.getView(R.id.button_Difference);
+//                Button button_left = h
+//                TextView text_center_socre = helper.getView(R.id.text_center_socre);
+//
+//                if(single==1){
+//                    rv.setVisibility(View.VISIBLE);
+//                    button_score.setVisibility(View.GONE);
+//                    rv_zong.setVisibility(View.GONE);
+//                    button_double.setVisibility(View.GONE);
+//
+//                }else if(single==2) {
+//                    rv.setVisibility(View.GONE);
+//                    button_score.setVisibility(View.VISIBLE);
+//                    rv_zong.setVisibility(View.GONE);
+//                    button_double.setVisibility(View.GONE);
+//
+//                }else if(single==3){
+//                    rv.setVisibility(View.VISIBLE);
+//                    rv_zong.setVisibility(View.GONE);
+//                    button_double.setVisibility(View.GONE);
+//                    button_score.setVisibility(View.GONE);
+//                    Text_left.setText(item2.home_team+"("+item2.guest_score+")");
+//                }else if(single==4){
+//                    rv_zong.setVisibility(View.VISIBLE);
+//                    button_double.setVisibility(View.GONE);
+//                    rv.setVisibility(View.GONE);
+//                    button_score.setVisibility(View.GONE);
+//
+//                }
+//                int ii=0;
+//                for (int i = 0; i < item2.list_single.size(); i++) {
+//                    if(item2.list_single.get(i).isselect){
+//
+//                        ii++;
+//                    }else {
+//                    }
+//
+//                }
+//                if(ii==0){
+//                    item2.desc= "展开更多选项";
+//
+//                }
+//                    if(item2.desc.equals("展开更多选项")){
+//                        button_score.setText(item2.desc+"");
+//                        button_score.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_false));
+//
+//                        button_score.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
+//
+//                    }else {
+//                        button_score.setText(item2.desc+"");
+//                        button_score.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_true));
+//                        button_score.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
+//
+//                    }
+//
+//
+//                    if(item2.desc.equals("展开更多选项")){
+//                        button_double.setText(item2.desc+"");
+//                        button_double.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_false));
+//
+//                        button_double.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
+//
+//                    }else {
+//                        button_double.setText(item2.desc+"");
+//                        button_double.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_true));
+//                        button_double.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
+//
+//                    }
+//
+//
+//
+//
+//
+//                button_score.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                    dialog_m(item2,helper.itemView.getContext(),helper.getLayoutPosition(),single);
+//                    }
+//                });
+//                button_double.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialog_m(item2,helper.itemView.getContext(),helper.getLayoutPosition(),single);
+//
+//                    }
+//                });
+//                break;
+//
+//
         }
         }
 
 
 
     @SuppressLint("NewApi")
-    public void dialog_m(final Item1_Single item, final Context context, final int postion,int single) {
+    public void dialog_m(final Item1_Mixed item, final Context context, final int postion,int single) {
         AlertDialog.Builder alterDiaglog = new AlertDialog.Builder(context);
         alterDiaglog.setView(R.layout.layout_dialog_sing_score);//加载进去
         final AlertDialog dialog = alterDiaglog.create();
@@ -242,10 +235,21 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
         TextView type_text = dialog.findViewById(R.id.type_text);
         ImageView layout_analysis_in = dialog.findViewById(R.id.layout_analysis_in);
 
+
         name_left.setText(item.home_team);
         name_right.setText(item.guest_team);
         LinearLayout layout_cancel = dialog.findViewById(R.id.layout_cancel);
         LinearLayout layout_sure = dialog.findViewById(R.id.layout_sure);
+        layout_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+                EventBus.getDefault().post(new MIxedMessage(getnumber()+""));
+
+
+            }
+        });
         layout_analysis_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -256,16 +260,6 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
                 context.startActivity(intent);
             }
         });
-        layout_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-
-                EventBus.getDefault().post(new SingleMessage(getnumber()+""));
-
-
-            }
-        });
         layout_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -273,7 +267,7 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
                 dialog.dismiss();
 
                 notifyDataSetChanged();
-                EventBus.getDefault().post(new SingleMessage(getnumber()+""));
+                EventBus.getDefault().post(new MIxedMessage(getnumber()+""));
 
             }
         });
@@ -340,7 +334,7 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
             @Override
             public void onDismiss(DialogInterface dialog) {
                 String s = setMore(item);
-                EventBus.getDefault().post(new SinglePostionMessage(postion));
+                EventBus.getDefault().post(new MixedPostionMessage(postion));
 
 
                 item.desc=s;
@@ -353,7 +347,7 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
 
 
 
-    public static String setMore(final Item1_Single item){
+    public static String setMore(final Item1_Mixed item){
 
 
         String desc = "";

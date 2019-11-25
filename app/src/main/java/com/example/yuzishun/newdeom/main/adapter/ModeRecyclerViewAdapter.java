@@ -25,7 +25,6 @@ import java.util.List;
 public class ModeRecyclerViewAdapter extends RecyclerView.Adapter<ModeRecyclerViewAdapter.ViewHolde> {
     private Context context;
     private List<SureguanBean> list;
-    private boolean[] isCheck;
     public ModeRecyclerViewAdapter(Context context, List<SureguanBean> list) {
         this.context = context;
         this.list = list;

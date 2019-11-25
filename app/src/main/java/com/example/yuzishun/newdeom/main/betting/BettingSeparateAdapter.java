@@ -17,12 +17,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.yuzishun.newdeom.R;
+import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.base.MyApplication;
 import com.example.yuzishun.newdeom.main.activity.AnalysisActivity;
 import com.example.yuzishun.newdeom.main.single.Item1_Single;
@@ -30,9 +32,12 @@ import com.example.yuzishun.newdeom.main.single.Item_Single;
 import com.example.yuzishun.newdeom.main.single.QuickAdapter_single;
 import com.example.yuzishun.newdeom.main.single.SingleAdapter;
 import com.example.yuzishun.newdeom.main.single.SingleMessage;
+import com.example.yuzishun.newdeom.model.ChooseBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
+import com.example.yuzishun.newdeom.model.MinAndMaxBean;
 import com.example.yuzishun.newdeom.model.SubMixBean;
+import com.example.yuzishun.newdeom.model.SubMixListBean;
 import com.example.yuzishun.newdeom.utils.eventbus.MIxedMessage;
 import com.example.yuzishun.newdeom.utils.eventbus.MixedPostionMessage;
 import com.example.yuzishun.newdeom.utils.eventbus.SinglePostionMessage;
@@ -103,6 +108,12 @@ public class BettingSeparateAdapter extends BaseMultiItemQuickAdapter<MultiItemE
                 RecyclerView rv = helper.getView(R.id.RecyclerView_Mixed_Bet_football);
                 RecyclerView rv_zong = helper.getView(R.id.RecyclerView_Mixed_Bet_football_zong);
                 LinearLayout layout_analysis = helper.getView(R.id.layout_analysis);
+                ImageView image_single = helper.getView(R.id.image_single);
+
+                RelativeLayout layout_top = helper.getView(R.id.layout_top);
+                RelativeLayout layout_red = helper.getView(R.id.layout_red);
+
+
                 layout_analysis.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -127,7 +138,16 @@ public class BettingSeparateAdapter extends BaseMultiItemQuickAdapter<MultiItemE
                 rv_zong.setAdapter(quickAdapter_zong);
                 list_choose_single = item2.list_choosebena;
                 if(single==1){
+                    layout_red.setVisibility(View.VISIBLE);
                     rv.setVisibility(View.VISIBLE);
+                    if(item2.list_single.get(0).getSingle()==1){
+                        layout_top.setVisibility(View.VISIBLE);
+                        image_single.setVisibility(View.VISIBLE);
+                    }else {
+                        layout_top.setVisibility(View.GONE);
+                        image_single.setVisibility(View.GONE);
+
+                    }
                     button_score.setVisibility(View.GONE);
                     rv_zong.setVisibility(View.GONE);
                     button_double.setVisibility(View.GONE);
@@ -139,7 +159,18 @@ public class BettingSeparateAdapter extends BaseMultiItemQuickAdapter<MultiItemE
                     button_double.setVisibility(View.GONE);
 
                 }else if(single==2){
+                    layout_red.setVisibility(View.VISIBLE);
+
                     rv.setVisibility(View.VISIBLE);
+                    if(item2.list_single.get(0).getSingle()==1){
+                        layout_top.setVisibility(View.VISIBLE);
+                        image_single.setVisibility(View.VISIBLE);
+
+                    }else {
+                        layout_top.setVisibility(View.GONE);
+                        image_single.setVisibility(View.GONE);
+
+                    }
                     rv_zong.setVisibility(View.GONE);
                     button_double.setVisibility(View.GONE);
                     button_score.setVisibility(View.GONE);
@@ -417,6 +448,97 @@ public class BettingSeparateAdapter extends BaseMultiItemQuickAdapter<MultiItemE
 
         return list_choose_single;
     }
+
+    public ChooseBean getchooselist(){
+
+        List<ChooseMixedBean> list_chooe_single = getList();
+        List<String> list_adds;
+        List<String> list_id;
+        List<String> list_name_bonus;
+        List<String> list_style_bonus;
+        List<Double> minlist;
+        List<Double> one_max;
+        List<Integer> list_single;
+        List<SubMixBean> list_subMixBean_choose = new ArrayList<>();
+        List<SubMixListBean> list_stbMixListBean = new ArrayList<>();
+        List<MinAndMaxBean> list_min_and_max = new ArrayList<>();
+
+        for (int i = 0; i <list_chooe_single.size() ; i++) {
+            list_adds = new ArrayList<>();
+            list_id = new ArrayList<>();
+            list_name_bonus = new ArrayList<>();
+            list_style_bonus = new ArrayList<>();
+            minlist = new ArrayList<>();
+            one_max = new ArrayList<>();
+            list_single = new ArrayList<>();
+
+            List<ItemPoint> onelist = list_chooe_single.get(i).getOnelist();
+            for (int j = 0; j < onelist.size(); j++) {
+
+                if(onelist.get(j).isselect){
+                    list_id.add(""+onelist.get(j).getId());
+                    list_name_bonus.add(list_chooe_single.get(i).getHome_team()+"/"+onelist.get(j).getId());
+                    list_style_bonus.add(onelist.get(j).getGame_odds_id());
+                    list_single.add(onelist.get(j).getSingle());
+
+                    one_max.add(Double.parseDouble(onelist.get(j).getOdds()));
+                    minlist.add(Double.parseDouble(onelist.get(j).getOdds()));
+                    list_adds.add(onelist.get(j).getGame_odds_id());
+
+                }else {
+
+                }
+
+            }
+            if(list_adds.size()==0){
+
+
+            }else {
+
+                SubMixBean subMixBean = new SubMixBean();
+                subMixBean.setGame_id(list_chooe_single.get(i).getGame_id());
+                subMixBean.setList(list_adds);
+                subMixBean.setList_adds(minlist);
+                subMixBean.setName(list_chooe_single.get(i).getHome_team()+list_id);
+                subMixBean.setList_name_bonus(list_name_bonus);
+                subMixBean.setList_style_bonus(list_style_bonus);
+                subMixBean.setList_single(list_single);
+                list_subMixBean_choose.add(subMixBean);
+
+                SubMixListBean subMixListBean = new SubMixListBean();
+                subMixListBean.setGame_id(list_chooe_single.get(i).getName());
+
+                subMixListBean.setList(list_id);
+
+                list_stbMixListBean.add(subMixListBean);
+
+                MinAndMaxBean minAndMaxBean  = new MinAndMaxBean();
+
+
+                minAndMaxBean.setOne_mix_and_min(one_max);
+
+                minAndMaxBean.setMinlist(minlist);
+
+                list_min_and_max.add(minAndMaxBean);
+
+            }
+
+
+        }
+
+        ChooseBean chooseBean = new ChooseBean();
+        chooseBean.setList_min_and_max(list_min_and_max);
+        chooseBean.setList_stbMixListBean(list_stbMixListBean);
+        chooseBean.setList_subMixBean_choose(list_subMixBean_choose);
+
+        return chooseBean;
+
+
+
+
+
+    }
+
 
     public static int getnumber() {
         list_subMixBean.clear();

@@ -10,8 +10,17 @@ public class ItemPoint {
     public String odds;
     public boolean isselect;
     public String id;
+    public int Single;
     public int isonclick=0;
     public boolean isclick=true;
+
+    public int getSingle() {
+        return Single;
+    }
+
+    public void setSingle(int single) {
+        Single = single;
+    }
 
     public boolean isIsclick() {
         return isclick;

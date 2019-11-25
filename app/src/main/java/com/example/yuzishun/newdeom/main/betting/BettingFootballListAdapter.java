@@ -15,20 +15,25 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.yuzishun.newdeom.R;
+import com.example.yuzishun.newdeom.base.Content;
 import com.example.yuzishun.newdeom.base.MyApplication;
 import com.example.yuzishun.newdeom.main.activity.AnalysisActivity;
 import com.example.yuzishun.newdeom.main.adapter.QuickAdapter_four;
 import com.example.yuzishun.newdeom.main.adapter.QuickAdapter_three;
 import com.example.yuzishun.newdeom.main.adapter.QuickAdapter_two;
+import com.example.yuzishun.newdeom.model.ChooseBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
+import com.example.yuzishun.newdeom.model.MinAndMaxBean;
 import com.example.yuzishun.newdeom.model.SubMixBean;
+import com.example.yuzishun.newdeom.model.SubMixListBean;
 import com.example.yuzishun.newdeom.utils.eventbus.AdapterMessage;
 import com.example.yuzishun.newdeom.utils.MainMessage;
 
@@ -105,6 +110,28 @@ public class BettingFootballListAdapter extends BaseMultiItemQuickAdapter<MultiI
                         .setText(R.id.Text_bottom,item2.guest_score);
                 LinearLayout layout_analysis = helper.getView(R.id.layout_analysis);
                 ImageView image_single = helper.getView(R.id.image_single);
+                RelativeLayout layout_top = helper.getView(R.id.layout_top);
+                RelativeLayout layout_bottom  = helper.getView(R.id.layout_bottom);
+                if(item2.topsingle==1||item2.bottomsingle==1){
+                    image_single.setVisibility(View.VISIBLE);
+                }else {
+                    image_single.setVisibility(View.GONE);
+
+                }
+                if(item2.list_one.get(0).getSingle()==1){
+
+                    layout_top.setVisibility(View.VISIBLE);
+                }else {
+                    layout_top.setVisibility(View.GONE);
+
+                }
+                if(item2.list_one.get(3).getSingle()==1){
+
+                    layout_bottom.setVisibility(View.VISIBLE);
+                }else {
+                    layout_bottom.setVisibility(View.GONE);
+
+                }
                 layout_analysis.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -229,6 +256,185 @@ public class BettingFootballListAdapter extends BaseMultiItemQuickAdapter<MultiI
 
         return list_choose;
     }
+
+
+    public ChooseBean getChooseList(){
+        List<ChooseMixedBean> list_chooe= getList();
+        List<String> list_adds;
+        List<String> list_id;
+        List<Double> one_mix_and_min;
+        List<Double> two_mix_and_min;
+        List<Double> three_mix_and_min;
+        List<Double> four_mix_and_min;
+        List<Double> fire_mix_and_min;
+        List<Double> minlist;
+        List<Integer> list_single;
+        List<String> list_name_bonus;
+        List<String> list_style_bonus;
+        List<SubMixBean> list_subMixBean_choose = new ArrayList<>();
+        List<SubMixListBean> list_stbMixListBean = new ArrayList<>();
+        List<MinAndMaxBean> list_min_and_max = new ArrayList<>();
+        for (int i = 0; i <list_chooe.size(); i++) {
+            list_adds = new ArrayList<>();
+            list_id = new ArrayList<>();
+            minlist = new ArrayList<>();
+            list_name_bonus = new ArrayList<>();
+            list_style_bonus = new ArrayList<>();
+            one_mix_and_min = new ArrayList<>();
+            two_mix_and_min = new ArrayList<>();
+            three_mix_and_min = new ArrayList<>();
+            four_mix_and_min = new ArrayList<>();
+            fire_mix_and_min = new ArrayList<>();
+            list_single = new ArrayList<>();
+
+            List<ItemPoint> onelist = list_chooe.get(i).getOnelist();
+            List<ItemPoint> twolist = list_chooe.get(i).getTwolist();
+            List<ItemPoint> threelist = list_chooe.get(i).getThreelist();
+            List<ItemPoint> fourlist = list_chooe.get(i).getFourlist();
+            for (int j = 0; j <onelist.size() ; j++) {
+                if(onelist.get(j).isselect){
+                    list_adds.add(onelist.get(j).getGame_odds_id());
+                    minlist.add(Double.parseDouble(onelist.get(j).getOdds()));
+                    list_name_bonus.add(list_chooe.get(i).getHome_team()+"/"+onelist.get(j).getId());
+                    list_style_bonus.add(onelist.get(j).getGame_odds_id());
+                    list_single.add(onelist.get(j).getSingle());
+                    switch (j){
+                        case 0:
+                            list_id.add("胜平负:"+onelist.get(j).getId());
+                            one_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+                            break;
+                        case 1:
+                            list_id.add("胜平负:"+onelist.get(j).getId());
+                            one_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+
+                            break;
+                        case 2:
+                            list_id.add("胜平负:"+onelist.get(j).getId());
+                            one_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+
+                            break;
+                        case 3:
+                            list_id.add("让球胜平负:"+onelist.get(j).getId());
+                            two_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+
+                            break;
+                        case 4:
+                            list_id.add("让球胜平负:"+onelist.get(j).getId());
+                            two_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+
+                            break;
+                        case 5:
+                            list_id.add("让球胜平负:"+onelist.get(j).getId());
+                            two_mix_and_min.add(Double.parseDouble(onelist.get(j).getOdds()));
+
+                            break;
+
+                    }
+
+
+//                    list_id.add(onelist.get(j).getId());
+//                    list_chooe_adapter.get(i).setOnelist(onelist);
+
+
+                }else {
+
+                }
+
+            }
+            for (int j = 0; j <twolist.size() ; j++) {
+                if(twolist.get(j).isselect){
+                    list_adds.add(twolist.get(j).getGame_odds_id());
+                    list_name_bonus.add(list_chooe.get(i).getHome_team()+"/"+twolist.get(j).getId());
+                    list_style_bonus.add(twolist.get(j).getGame_odds_id());
+                    list_id.add("比分:"+twolist.get(j).getId());
+                    three_mix_and_min.add(Double.parseDouble(twolist.get(j).getOdds()));
+                    minlist.add(Double.parseDouble(twolist.get(j).getOdds()));
+                    list_single.add(twolist.get(j).getSingle());
+//                    list_chooe_adapter.get(i).setTwolist(twolist);
+                }else {
+
+                }
+
+            }
+            for (int j = 0; j <threelist.size() ; j++) {
+                if(threelist.get(j).isselect){
+                    list_adds.add(threelist.get(j).getGame_odds_id());
+                    list_name_bonus.add(list_chooe.get(i).getHome_team()+"/"+threelist.get(j).getId());
+                    list_style_bonus.add(threelist.get(j).getGame_odds_id());
+                    list_id.add("总进球:"+threelist.get(j).getId());
+//                    list_chooe_adapter.get(i).setThreelist(threelist);
+                    four_mix_and_min.add(Double.parseDouble(threelist.get(j).getOdds()));
+                    minlist.add(Double.parseDouble(threelist.get(j).getOdds()));
+                    list_single.add(threelist.get(j).getSingle());
+
+                }else {
+
+                }
+
+            }
+            for (int j = 0; j <fourlist.size() ; j++) {
+                if(fourlist.get(j).isselect){
+                    list_adds.add(fourlist.get(j).getGame_odds_id());
+                    list_id.add("半全场:"+fourlist.get(j).getId());
+                    list_name_bonus.add(list_chooe.get(i).getHome_team()+"/"+fourlist.get(j).getId());
+                    list_style_bonus.add(fourlist.get(j).getGame_odds_id());
+//                    list_chooe_adapter.get(i).setFourlist(fourlist);
+                    fire_mix_and_min.add(Double.parseDouble(fourlist.get(j).getOdds()));
+                    minlist.add(Double.parseDouble(fourlist.get(j).getOdds()));
+                    list_single.add(fourlist.get(j).getSingle());
+
+                }else {
+
+                }
+
+            }
+            if(list_adds.size()==0){
+
+
+            }else {
+                SubMixBean subMixBean = new SubMixBean();
+                subMixBean.setGame_id(list_chooe.get(i).getGame_id());
+                subMixBean.setList(list_adds);
+                subMixBean.setList_adds(minlist);
+                subMixBean.setName(list_chooe.get(i).getHome_team()+list_id);
+                subMixBean.setList_name_bonus(list_name_bonus);
+                subMixBean.setList_style_bonus(list_style_bonus);
+                subMixBean.setList_single(list_single);
+                list_subMixBean_choose.add(subMixBean);
+
+                SubMixListBean subMixListBean = new SubMixListBean();
+                subMixListBean.setGame_id(list_chooe.get(i).getName());
+
+                subMixListBean.setList(list_id);
+
+                list_stbMixListBean.add(subMixListBean);
+
+
+                MinAndMaxBean minAndMaxBean  = new MinAndMaxBean();
+
+
+                minAndMaxBean.setOne_mix_and_min(one_mix_and_min);
+                minAndMaxBean.setTwo_mix_and_min(two_mix_and_min);
+                minAndMaxBean.setThree_mix_and_min(three_mix_and_min);
+                minAndMaxBean.setFour_mix_and_min(four_mix_and_min);
+                minAndMaxBean.setMinlist(minlist);
+                minAndMaxBean.setFire_mix_and_min(fire_mix_and_min);
+
+                list_min_and_max.add(minAndMaxBean);
+
+            }
+
+
+
+        }
+        ChooseBean chooseBean = new ChooseBean();
+        chooseBean.setList_min_and_max(list_min_and_max);
+        chooseBean.setList_stbMixListBean(list_stbMixListBean);
+        chooseBean.setList_subMixBean_choose(list_subMixBean_choose);
+        return chooseBean;
+    }
+
+
 
     public static String setMore(final Expand1Item_football item){
 

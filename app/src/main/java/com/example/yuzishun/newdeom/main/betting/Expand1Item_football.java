@@ -25,10 +25,11 @@ public class Expand1Item_football implements MultiItemEntity  {
     public List<ItemPoint> list_two;
     public List<ItemPoint> list_three;
     public List<ItemPoint> list_four;
-
+    public int topsingle;
+    public int bottomsingle;
     public String desc;
     public Expand1Item_football(String play_name, String home_team, String guest_team, String home_score, String guest_score, String sequence_no, String begin_time
-    , List<ItemPoint> list_one, List<ItemPoint> list_two, List<ItemPoint> list_three, List<ItemPoint> list_four, List<ChooseMixedBean> list_choosebena, String desc, String game_no) {
+    , List<ItemPoint> list_one, List<ItemPoint> list_two, List<ItemPoint> list_three, List<ItemPoint> list_four, List<ChooseMixedBean> list_choosebena, String desc, String game_no,int topsingle,int bottomsingle) {
         this.play_name = play_name;
         this.home_team = home_team;
         this.guest_team = guest_team;
@@ -43,6 +44,8 @@ public class Expand1Item_football implements MultiItemEntity  {
         this.list_three = list_three;
         this.list_four = list_four;
         this.list_choosebena = list_choosebena;
+        this.topsingle = topsingle;
+        this.bottomsingle =bottomsingle;
     }
 
     @Override

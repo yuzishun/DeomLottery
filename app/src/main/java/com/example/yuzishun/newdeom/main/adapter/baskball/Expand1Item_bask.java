@@ -30,9 +30,9 @@ public class Expand1Item_bask implements MultiItemEntity  {
     public List<ChooseBaskBean> list_choosebena;
     public String game_no;
     public String desc;
-
+    public String desc_victor;
     public Expand1Item_bask(String play_name, String home_team, String guest_team, String total_score, String let_score, String sequence_no, String begin_time
-    ,List<ItemPoint> list_one,List<ItemPoint> list_two,List<ItemPoint> list_three,List<ItemPoint> list_four,List<ItemPoint> list_fire,List<ChooseBaskBean> list_choosebena,String game_no,String desc) {
+    ,List<ItemPoint> list_one,List<ItemPoint> list_two,List<ItemPoint> list_three,List<ItemPoint> list_four,List<ItemPoint> list_fire,List<ChooseBaskBean> list_choosebena,String game_no,String desc,String desc_victor) {
         this.play_name = play_name;
         this.home_team = home_team;
         this.guest_team = guest_team;
@@ -48,6 +48,7 @@ public class Expand1Item_bask implements MultiItemEntity  {
         this.list_fire = list_fire;
         this.list_choosebena = list_choosebena;
         this.desc = desc;
+        this.desc_victor = desc_victor;
     }
 
     @Override

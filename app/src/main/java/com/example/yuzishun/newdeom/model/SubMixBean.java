@@ -1,12 +1,13 @@
 package com.example.yuzishun.newdeom.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by yuzishun on 2019/5/24.
  */
 
-public class SubMixBean {
+public class SubMixBean implements Serializable{
     public String game_id;
 
     public List<String> list;
@@ -15,7 +16,17 @@ public class SubMixBean {
     private List<String> list_style_bonus;
     public String name;
     public String type;
-    public int index;
+    public List<Integer> list_single;
+
+    public List<Integer> getList_single() {
+        return list_single;
+    }
+
+    public void setList_single(List<Integer> list_single) {
+        this.list_single = list_single;
+    }
+
+
 
     public List<String> getList_name_bonus() {
         return list_name_bonus;
@@ -73,13 +84,7 @@ public class SubMixBean {
         this.list = list;
     }
 
-    public int getIndex() {
-        return index;
-    }
 
-    public void setIndex(int index) {
-        this.index = index;
-    }
 
     @Override
     public String toString() {

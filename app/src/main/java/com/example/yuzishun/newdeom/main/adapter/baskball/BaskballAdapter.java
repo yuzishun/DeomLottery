@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
@@ -48,7 +49,7 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
     public static final int  BASKET_TYPE_LEVEL_1 = 1;
     public static List<ChooseBaskBean> list_choose = new ArrayList<>();
     private static List<String> list_id;
-
+    private int mixed = 5;
     //判断选择的有几场，傻瓜方法
     private static List<String> list_adds;
     private static List<SubMixBean> list_subMixBean = new ArrayList<>();
@@ -59,11 +60,11 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
      *
      * @param data A new list is created out of this one to avoid mutable list
      */
-    public BaskballAdapter(List<MultiItemEntity> data) {
+    public BaskballAdapter(List<MultiItemEntity> data,int mixed) {
         super(data);
         addItemType(BASKET_TYPE_LEVEL_0, R.layout.recyclerview_base_father);
         addItemType(BASKET_TYPE_LEVEL_1, R.layout.recyclerview_basketball_son);
-
+        this.mixed  =  mixed;
     }
 
     @SuppressLint("NewApi")
@@ -104,7 +105,13 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
                         .setText(R.id.button_fire,item2.list_fire.get(0).getId()+item2.list_fire.get(0).getOdds());
                         LinearLayout layout_victorcha = helper.getView(R.id.layout_victorcha);
                 LinearLayout layout_analysis = helper.getView(R.id.layout_analysis);
+                RecyclerView recyclerView_bask = helper.getView(R.id.recyclerView_bask);
                 TextView victor_text = helper.getView(R.id.victor_text);
+                RelativeLayout layout_visito = helper.getView(R.id.layout_visito);
+                LinearLayout layout_gone = helper.getView(R.id.layout_gone);
+                LinearLayout layout_fire = helper.getView(R.id.layout_fire);
+                Button button_Difference = helper.getView(R.id.button_Difference);
+                TextView text_center_socre = helper.getView(R.id.text_center_socre);
                 layout_analysis.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -125,9 +132,51 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
 
                         Button button_four =  helper.getView(R.id.button_four);
                         Button button_fire =  helper.getView(R.id.button_fire);
+                recyclerView_bask.setLayoutManager(new GridLayoutManager(helper.itemView.getContext(),2));
+                MixedBaskAdapter mixedBaskAdapter;
 
+                switch (mixed){
+                    case 1:
+                        layout_visito.setVisibility(View.VISIBLE);
+                        layout_gone.setVisibility(View.GONE);
+                        layout_fire.setVisibility(View.GONE);
+                        text_center_socre.setVisibility(View.GONE);
 
+                         mixedBaskAdapter = new MixedBaskAdapter(item2.list_one,1);
+                        recyclerView_bask.setAdapter(mixedBaskAdapter);
+                        break;
+                    case 2:
+                        layout_visito.setVisibility(View.VISIBLE);
+                        layout_gone.setVisibility(View.GONE);
+                        layout_fire.setVisibility(View.GONE);
+                        text_center_socre.setVisibility(View.VISIBLE);
+                        text_center_socre.setText(item2.let_score);
+                         mixedBaskAdapter = new MixedBaskAdapter(item2.list_four,1);
+                        recyclerView_bask.setAdapter(mixedBaskAdapter);
 
+                        break;
+                    case 3:
+                        layout_visito.setVisibility(View.GONE);
+                        layout_gone.setVisibility(View.VISIBLE);
+                        layout_fire.setVisibility(View.GONE);
+
+                        break;
+                    case 4:
+                        layout_visito.setVisibility(View.VISIBLE);
+                        layout_gone.setVisibility(View.GONE);
+                        layout_fire.setVisibility(View.GONE);
+                        text_center_socre.setVisibility(View.VISIBLE);
+                        text_center_socre.setText(item2.total_score);
+                        mixedBaskAdapter = new MixedBaskAdapter(item2.list_fire,1);
+                        recyclerView_bask.setAdapter(mixedBaskAdapter);
+                        break;
+                    case 5:
+                        layout_visito.setVisibility(View.GONE);
+                        layout_gone.setVisibility(View.GONE);
+                        layout_fire.setVisibility(View.VISIBLE);
+
+                        break;
+                }
                 gettext(item2.list_one.get(0).getId(),item2.list_one.get(0).getOdds(),button_one);
                 gettext(item2.list_one.get(1).getId(),item2.list_one.get(1).getOdds(),button_zero);
 
@@ -210,10 +259,19 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
                     victor_text.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
                     layout_victorcha.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_false));
 
+
+                    button_Difference.setText(item2.desc_victor+"");
+                    button_Difference.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
+                    button_Difference.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_false));
+
                 }else {
                     victor_text.setText(item2.desc+"");
                     victor_text.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
                     layout_victorcha.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_true));
+
+                    button_Difference.setText(item2.desc_victor+"");
+                    button_Difference.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
+                    button_Difference.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_true));
 
                 }
 
@@ -226,7 +284,15 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
 
                     }
                 });
+                button_Difference.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
 
+                        dialog(helper.itemView.getContext(),item2,helper.getLayoutPosition());
+
+
+                    }
+                });
                 list_choose = item2.list_choosebena;
 
 
@@ -244,7 +310,7 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
         return list_choose;
     }
 
-    public static String setMore(final Expand1Item_bask item){
+    public static String setMore(final Expand1Item_bask item,int desc_victor){
 
 
         String desc = "";
@@ -311,15 +377,18 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
         }
 
 
-
-
         if(list_id.size()==0) {
 
             desc="展开更多选项";
 
         }else {
             String substring = list_id.toString();
-            desc="已选中"+list_id.size()+"项";
+            if(desc_victor==0){
+                desc = substring;
+            }else {
+                desc="已选中"+list_id.size()+"项";
+
+            }
 
         }
 
@@ -384,7 +453,7 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
 
 
                 EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
-                String s = setMore(item_bask);
+                String s = setMore(item_bask,1);
                 EventBus.getDefault().post(new BasketAdapterMessage(postion));
 
 
@@ -395,7 +464,7 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
                 notifyDataSetChanged();
 
                 EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
-                String s = setMore(item_bask);
+                String s = setMore(item_bask,1);
                 EventBus.getDefault().post(new BasketAdapterMessage(postion));
 
 
@@ -517,10 +586,12 @@ public class BaskballAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity,B
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
-                String s = setMore(item);
+                String s = setMore(item,1);
+                String desc_victor = setMore(item,0);
+
                 EventBus.getDefault().post(new BasketAdapterMessage(postion));
 
-
+                item.desc_victor = desc_victor;
                 item.desc=s;
             }
         });

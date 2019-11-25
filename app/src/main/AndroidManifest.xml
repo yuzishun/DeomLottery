@@ -146,7 +146,8 @@
         <activity android:name=".main.activity.ConsultationActivity" />
         <activity android:name=".sunsheet.activity.ProgrammeActivity" />
         <activity android:name=".main.betting.BonusBettingActivity" />
-        <activity android:name=".documentary.activity.BonusdetailsActivity"></activity>
+        <activity android:name=".documentary.activity.BonusdetailsActivity" />
+        <activity android:name=".main.baskballbetting.BasketBettingActivity"></activity>
     </application>
 
 </manifest>

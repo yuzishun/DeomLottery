@@ -94,14 +94,14 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
     private long mLastClickTime = 0;
     public static final long TIME_INTERVAL = 1000L;
     private BettingSureRecyclerView bettingSureRecyclerView;
+
+    public static Activity intentt;
     private List<Double> minlist;
     private List<Double> one_max;
-    public static Activity intentt;
-
     private  List<String> list_adds;
     private  List<String> list_id;
     private List<Double> list_max_end;
-    private int flag,flag_guan;
+    private int flag,flag_guan,issingle;
     private List<MinAndMaxBean> list_min_and_max = new ArrayList<>();
     private List<Double> list_min_end = new ArrayList<>();
     private String format;
@@ -111,9 +111,9 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
     private   List<ChooseMixedBean> list_chooe;
     private List<String> list_name_bonus;
     private List<String> list_style_bonus;
-    private int index=0;
-    private List<SubMixBean> list_subMixBean = new ArrayList<>();
     private List<SureguanBean> list_sureguanBean = new ArrayList<>();
+    private List<SubMixBean> list_subMixBean = new ArrayList<>();
+
     private List<SubMixListBean> list_stbMixListBean = new ArrayList<>();
     private String multiple="1";
     private String theory_bonus="理论奖金:想要多少就要多少";
@@ -131,32 +131,14 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
         title_text.setText("胜负平");
         Intent intent = getIntent();
         intentt=this;
-        int single = intent.getIntExtra("single",0);
+        String single = intent.getStringExtra("single");
         flag = intent.getIntExtra("flag",0);
         flag_guan = intent.getIntExtra("flag_guan",0);
-        switch (single){
+        issingle = intent.getIntExtra("issingle",0);
 
-            case 1:
-                title_text.setText("胜平负");
+         title_text.setText(single+"");
 
-                break;
-            case 2:
-                title_text.setText("让球胜平负");
 
-                break;
-            case 3:
-                title_text.setText("比分");
-
-                break;
-            case 4:
-                title_text.setText("总进球");
-
-                break;
-            case 5:
-                title_text.setText("半全场");
-
-                break;
-        }
         button_sure.setOnClickListener(this);
         Text_More.setOnClickListener(this);
         Button_goon.setOnClickListener(this);
@@ -199,10 +181,8 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
                 subMixBean.setList(list_adds);
                 subMixBean.setList_adds(minlist);
                 subMixBean.setName(list_chooe.get(i).getHome_team()+list_id);
-                subMixBean.setIndex(index);
                 subMixBean.setList_name_bonus(list_name_bonus);
                 subMixBean.setList_style_bonus(list_style_bonus);
-                index++;
 
                 list_subMixBean.add(subMixBean);
 
@@ -232,22 +212,7 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
             if (list_min_and_max.get(i).getOne_mix_and_min().size() != 0) {
                 aDouble = Double.valueOf(Collections.max(list_min_and_max.get(i).getOne_mix_and_min()));
             }
-//            if (list_min_and_max.get(i).getTwo_mix_and_min().size() != 0) {
-//                bDouble = Double.valueOf(Collections.max(list_min_and_max.get(i).getTwo_mix_and_min()));
-//
-//            }
-//            if (list_min_and_max.get(i).getThree_mix_and_min().size() != 0) {
-//                cDouble = Double.valueOf(Collections.max(list_min_and_max.get(i).getThree_mix_and_min()));
-//
-//            }
-//            if (list_min_and_max.get(i).getFour_mix_and_min().size() != 0) {
-//                dDouble = Double.valueOf(Collections.max(list_min_and_max.get(i).getFour_mix_and_min()));
-//
-//            }
-//            if (list_min_and_max.get(i).getFire_mix_and_min().size() != 0) {
-//                eDouble = Double.valueOf(Collections.max(list_min_and_max.get(i).getFire_mix_and_min()));
-//
-//            }
+
             list_min_end.add(Double.valueOf(Collections.min(list_min_and_max.get(i).getMinlist())));
 
 
@@ -402,21 +367,41 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
         }
         if(flag_guan==1){
             if(title_text.getText().equals("胜平负")||title_text.getText().equals("让球胜平负")){
-                list_sureguanBean = new ArrayList<>();
-                for (int i = 0; i <length ; i++) {
-                    SureguanBean sureguanBean = new SureguanBean();
-                    sureguanBean.setName(string_mode2[i]);
-                    sureguanBean.setBunch(i+2+"");
-                    if(i==length-1){
-                        sureguanBean.setIsselect(true);
-                        bunch_TextView.setText(sureguanBean.getName());
+                if(issingle==0){
+                    list_sureguanBean = new ArrayList<>();
+                    for (int i = 0; i <length ; i++) {
+                        SureguanBean sureguanBean = new SureguanBean();
+                        sureguanBean.setName(string_mode[i]);
+                        sureguanBean.setBunch(i+1+"");
+                        if(i==0){
+                            sureguanBean.setIsselect(true);
+                            bunch_TextView.setText(sureguanBean.getName());
 
-                    }else {
-                        sureguanBean.setIsselect(false);
+                        }else {
+                            sureguanBean.setIsselect(false);
 
+                        }
+                        list_sureguanBean.add(sureguanBean);
                     }
-                    list_sureguanBean.add(sureguanBean);
+                }else {
+                    list_sureguanBean = new ArrayList<>();
+                    for (int i = 0; i <length ; i++) {
+                        SureguanBean sureguanBean = new SureguanBean();
+                        sureguanBean.setName(string_mode2[i]);
+                        sureguanBean.setBunch(i+2+"");
+                        if(i==length-1){
+                            sureguanBean.setIsselect(true);
+                            bunch_TextView.setText(sureguanBean.getName());
+
+                        }else {
+                            sureguanBean.setIsselect(false);
+
+                        }
+                        list_sureguanBean.add(sureguanBean);
+                    }
+
                 }
+
             }else {
                 list_sureguanBean = new ArrayList<>();
                 for (int i = 0; i <length ; i++) {
@@ -473,7 +458,13 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
 
             }else {
                 if(flag_guan==1){
-                    returnlenth=length-1;
+                    if(issingle==0){
+                        returnlenth=length;
+
+                    }else {
+                        returnlenth=length-1;
+
+                    }
 
                 }else {
                     returnlenth=length;
@@ -494,7 +485,13 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
 
             }else {
                 if(flag_guan==1){
-                    returnlenth=length-1;
+                    if(issingle==0){
+                        returnlenth=length;
+
+                    }else {
+                        returnlenth=length-1;
+
+                    }
 
                 }else {
                     returnlenth=length;
