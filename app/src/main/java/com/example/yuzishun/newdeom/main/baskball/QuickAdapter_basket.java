@@ -1,4 +1,4 @@
-package com.example.yuzishun.newdeom.main.adapter.baskball;
+package com.example.yuzishun.newdeom.main.baskball;
 
 import android.view.View;
 import android.widget.LinearLayout;
@@ -8,10 +8,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.yuzishun.newdeom.R;
 import com.example.yuzishun.newdeom.base.MyApplication;
-import com.example.yuzishun.newdeom.main.betting.BettingSeparateAdapter;
 import com.example.yuzishun.newdeom.model.ItemPoint;
 import com.example.yuzishun.newdeom.utils.eventbus.BasketMessage;
-import com.example.yuzishun.newdeom.utils.eventbus.MIxedMessage;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -20,30 +18,26 @@ import java.util.List;
 /**
  * Created by yuzishun on 2019/5/26.
  */
-public class MixedBaskAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
-    private int flag_click;
-
-    public MixedBaskAdapter(List<ItemPoint> itemPoint, int flag_click) {
-        super(R.layout.dialog_recycler_bask,itemPoint);
+class QuickAdapter_basket extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
+    private int flag_click,isevent;
+    public QuickAdapter_basket(List<ItemPoint> itemPoint, int flag_click,int isevent) {
+        super(R.layout.basket_dialog_recycler_one,itemPoint);
         this.flag_click = flag_click;
-
+        this.isevent = isevent;
     }
 
     @Override
     protected void convert(final BaseViewHolder helper, final ItemPoint item) {
-        final LinearLayout layout_relat = helper.getView(R.id.layout_relat);
 
+        final TextView item_name = helper.getView(R.id.item);
+        final TextView item_right_name = helper.getView(R.id.item_right);
+        final LinearLayout layout_relat = helper.getView(R.id.layout_relat);
         if(item.getOdds().equals("")){
             helper.setText(R.id.item,"暂未开售").setText(R.id.item_right,item.getOdds());
 
         }else {
             helper.setText(R.id.item,item.id).setText(R.id.item_right,item.getOdds());
         }
-
-
-        final TextView item_name = helper.getView(R.id.item);
-        final TextView item_right_name = helper.getView(R.id.item_right);
-
 
         if(flag_click==1){
 
@@ -76,27 +70,35 @@ public class MixedBaskAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder>
                         layout_relat.setOnClickListener(null);
 
                     }else {
+                        item.isonclick = 1;
+                        if (item.isIsselect()) {
+                            notifyDataSetChanged();
 
-                        item.isonclick=1;
-                    if(item.isIsselect()){
-                        notifyDataSetChanged();
+                            item.setIsselect(false);
+                            if(isevent==0){
+                                EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
 
-                        item.setIsselect(false);
+                            }else {
+                                EventBus.getDefault().post(new BasketMessage(BaskballSingleAdapter.getnumber() + ""));
 
-                        EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
-
-
-
-                    }else {
-                        item.setIsselect(true);
-
-                        notifyDataSetChanged();
-                        EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
+                            }
 
 
+                        } else {
+                            item.setIsselect(true);
+
+                            notifyDataSetChanged();
+                            if(isevent==0){
+                                EventBus.getDefault().post(new BasketMessage(BaskballAdapter.getnumber()+""));
+
+                            }else {
+                                EventBus.getDefault().post(new BasketMessage(BaskballSingleAdapter.getnumber() + ""));
+
+                            }
+
+
+                        }
                     }
-                    }
-
                 }else {
 
                     layout_relat.setOnClickListener(null);

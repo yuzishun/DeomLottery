@@ -118,7 +118,7 @@
         <activity android:name=".main.activity.MixedSureActivity" />
         <activity android:name=".main.activity.BettingActivity" />
         <activity android:name=".main.activity.BasketBallMixedActivity" />
-        <activity android:name=".main.adapter.baskball.BasketballSureActivity" />
+        <activity android:name=".main.baskball.BasketballSureActivity" />
         <activity android:name=".documentary.activity.Documentdetails_main_Activity" />
         <activity android:name=".main.activity.Play_MessageActivity" />
         <activity android:name=".my.activity.WebViewPayActivity" />

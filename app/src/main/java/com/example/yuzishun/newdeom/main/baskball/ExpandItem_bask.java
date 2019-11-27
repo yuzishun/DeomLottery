@@ -1,4 +1,4 @@
-package com.example.yuzishun.newdeom.main.adapter.baskball;
+package com.example.yuzishun.newdeom.main.baskball;
 
 import com.chad.library.adapter.base.entity.AbstractExpandableItem;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
@@ -8,10 +8,10 @@ import com.example.yuzishun.newdeom.main.adapter.BettingListAdapter;
  * Created by yuzishun on 2019/5/22.
  */
 
-public class ExpandMixed_bask extends AbstractExpandableItem<Expand1Mixed_bask> implements MultiItemEntity {
+public class ExpandItem_bask extends AbstractExpandableItem<Expand1Item_bask> implements MultiItemEntity {
     public String title;
 
-    public ExpandMixed_bask(String title) {
+    public ExpandItem_bask(String title) {
         this.title = title;
     }
 

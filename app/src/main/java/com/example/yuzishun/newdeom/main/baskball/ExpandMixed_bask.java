@@ -1,18 +1,17 @@
-package com.example.yuzishun.newdeom.main.betting;
+package com.example.yuzishun.newdeom.main.baskball;
 
 import com.chad.library.adapter.base.entity.AbstractExpandableItem;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.yuzishun.newdeom.main.adapter.BettingListAdapter;
-import com.example.yuzishun.newdeom.main.single.Item1_Single;
 
 /**
  * Created by yuzishun on 2019/5/22.
  */
 
-public class Item_Mixed extends AbstractExpandableItem<Item1_Mixed> implements MultiItemEntity {
+public class ExpandMixed_bask extends AbstractExpandableItem<Expand1Mixed_bask> implements MultiItemEntity {
     public String title;
 
-    public Item_Mixed(String title) {
+    public ExpandMixed_bask(String title) {
         this.title = title;
     }
 

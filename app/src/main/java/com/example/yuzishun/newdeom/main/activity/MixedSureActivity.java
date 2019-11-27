@@ -30,6 +30,7 @@ import com.example.yuzishun.newdeom.login.activity.LoginActivity;
 import com.example.yuzishun.newdeom.main.adapter.BettingSureRecyclerView;
 import com.example.yuzishun.newdeom.main.adapter.ModeRecyclerViewAdapter;
 import com.example.yuzishun.newdeom.main.betting.BonusBettingActivity;
+import com.example.yuzishun.newdeom.main.single.SingleSureActivity;
 import com.example.yuzishun.newdeom.model.BonusBean;
 import com.example.yuzishun.newdeom.model.ChooseBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
@@ -139,11 +140,13 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
         Text_More.setOnClickListener(this);
         Button_goon.setOnClickListener(this);
         Text_bouns.setOnClickListener(this);
-        list_chooe = Content.list_chooe;
         intentfinish = this;
         Intent intent = getIntent();
         chooseBean = (ChooseBean) intent.getSerializableExtra("choosebean");
         issingle = intent.getIntExtra("issingle", 0);
+
+        list_chooe = Content.list_chooe;
+
 //        list_min_and_max = chooseBean.getList_min_and_max();
 //        list_stbMixListBean = chooseBean.getList_stbMixListBean();
 //        list_subMixBean  = chooseBean.getList_subMixBean_choose();
@@ -201,12 +204,6 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
                             break;
 
                     }
-
-
-//                    list_id.add(onelist.get(j).getId());
-//                    list_chooe_adapter.get(i).setOnelist(onelist);
-
-
                 }else {
 
                 }
@@ -699,7 +696,11 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
                             if(BonusMoney>999999){
                                 ToastUtil.showToast1(MixedSureActivity.this,"投注金额过大,不能进行投注");
 
-                            }else {
+                            }else if(bunch==1){
+                                ToastUtil.showToast1(MixedSureActivity.this,"单关玩法不能奖金优化");
+
+                            }
+                            else {
 
                             Intent intent = new Intent(MixedSureActivity.this, BonusBettingActivity.class);
                             intent.putExtra("BonusMoney",BonusMoney+"");
@@ -1007,7 +1008,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
             if(four==1||two==1||three==1){
 
             }else {
-                if(length>8){
+                if(length>=8){
                     returenlength=7;
                     if(issingle==0){
                         returenlength++;

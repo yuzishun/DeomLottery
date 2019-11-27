@@ -28,8 +28,8 @@ import com.example.yuzishun.newdeom.main.adapter.GridView_Adapter;
 import com.example.yuzishun.newdeom.main.single.BettingSingleAdapter;
 import com.example.yuzishun.newdeom.main.single.SingleMessage;
 import com.example.yuzishun.newdeom.main.single.SingleSureActivity;
-import com.example.yuzishun.newdeom.main.util.BettFootMixedUtil;
-import com.example.yuzishun.newdeom.main.util.BettFootSIngleUtil;
+import com.example.yuzishun.newdeom.main.util.BettFootBaskMixedUtil;
+import com.example.yuzishun.newdeom.main.util.BettFootBaskSIngleUtil;
 import com.example.yuzishun.newdeom.model.ChooseBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.ChoosebettBean;
@@ -41,8 +41,6 @@ import com.example.yuzishun.newdeom.net.Url;
 import com.example.yuzishun.newdeom.utils.eventbus.AdapterMessage;
 import com.example.yuzishun.newdeom.utils.MainMessage;
 import com.example.yuzishun.newdeom.utils.ToastUtil;
-import com.example.yuzishun.newdeom.utils.eventbus.MIxedMessage;
-import com.example.yuzishun.newdeom.utils.eventbus.MixedPostionMessage;
 import com.example.yuzishun.newdeom.utils.eventbus.SinglePostionMessage;
 
 import org.greenrobot.eventbus.EventBus;
@@ -84,7 +82,6 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     private int single_mixed = 3;
     private int popwindows = 0;
     //混合投注需要的东西
-    private BettingSeparateAdapter adapter_mixed_Separ;
     private ArrayList<MultiItemEntity> list_mixed;
     private ArrayList<MultiItemEntity> list_one_mixed = new ArrayList<>();
 
@@ -92,7 +89,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     private ArrayList<MultiItemEntity> list_four_mixed = new ArrayList<>();
     private ArrayList<MultiItemEntity> list_five_mixed = new ArrayList<>();
     private ArrayList<MultiItemEntity> list_six_mixed = new ArrayList<>();
-    private int count_mixed = 0, mixed = 0;
+    private int count_mixed = 0;
     private BettingFootballListAdapter adapter_mixed;
     @BindView(R.id.layout_swipe_mixed)
     SwipeRefreshLayout layout_swipe_mixed;
@@ -168,7 +165,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
             popwindows = 0;
 
         } else {
-            title_text.setText("胜负平");
+            title_text.setText("胜平负");
 
             layout_single.setVisibility(View.VISIBLE);
             layout_mixed.setVisibility(View.GONE);
@@ -194,21 +191,8 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                     @Override
                     public void run() {
-                        if (adapter_mixed_Separ != null) {
-                            adapter_mixed_Separ.onResh(1);
-                            adapter_mixed_Separ.notifyDataSetChanged();
-                            EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber() + ""));
-                        }
 
-                        if (adapter_mixed != null) {
-                            adapter_mixed.onResh();
-                            adapter_mixed.notifyDataSetChanged();
-
-
-                            EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber() + ""));
-                        }
-
-
+                       change();
                         layout_swipe_mixed.setRefreshing(false);
                         Toast.makeText(BettingfootActivity.this, "刷新完成", Toast.LENGTH_SHORT).show();
 
@@ -264,14 +248,14 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
 
                 list_mixed = generateData();
-                BettFootMixedUtil footMixedUtil = new BettFootMixedUtil(BettingfootActivity.this);
+                BettFootBaskMixedUtil footMixedUtil = new BettFootBaskMixedUtil(BettingfootActivity.this);
                 list_one_mixed = footMixedUtil.getlist_mixed(1);
                 list_two_mixed = footMixedUtil.getlist_mixed(2);
                 list_four_mixed = footMixedUtil.getlist_mixed(3);
                 list_five_mixed = footMixedUtil.getlist_mixed(4);
                 list_six_mixed = footMixedUtil.getlist_mixed(5);
 
-                BettFootSIngleUtil footSIngleUtil = new BettFootSIngleUtil(BettingfootActivity.this);
+                BettFootBaskSIngleUtil footSIngleUtil = new BettFootBaskSIngleUtil(BettingfootActivity.this);
                 list = footSIngleUtil.request(1);
                 list_two = footSIngleUtil.request(2);
                 list_three = footSIngleUtil.request(3);
@@ -287,6 +271,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
         }).start();
 
     }
+
 
     public void initlist(){
         list_pop.clear();
@@ -337,12 +322,23 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
     public void onMainEventBus(SingleMessage msg) {
         Log.e("YZS", msg.getMessage());
         count = Integer.parseInt(msg.getMessage());
-        if (count == 0) {
-            Scene_TextView_single.setText("请选择比赛");
+        if(popwindows==0){
+            if (msg.getMessage().equals("0") || msg.getMessage().equals("1")) {
+                Scene_TextView_mixed.setText("请至少选择两场比赛");
+            } else {
+                Scene_TextView_mixed.setText("已经选择" + msg.getMessage() + "比赛");
 
-        } else {
-            Scene_TextView_single.setText("已经选择" + msg.getMessage() + "比赛");
+            }
+        }else {
+            if (count == 0) {
+
+                Scene_TextView_single.setText("请选择比赛");
+
+            } else {
+                Scene_TextView_single.setText("已经选择" + msg.getMessage() + "比赛");
+            }
         }
+
 
     }
 
@@ -389,46 +385,6 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
      * @param msg
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMainEventBus(MixedPostionMessage msg) {
-        Log.e("YZSYZSYZS", msg.getPostion() + "");
-        Content.Text_postion_mixed = msg.getPostion();
-        adapter_mixed_Separ.notifyItemChanged(msg.getPostion());
-        if (msg.getPostion() == 0) {
-
-
-            adapter_mixed_Separ.notifyDataSetChanged();
-        } else {
-
-        }
-
-    }
-
-    /**
-     * 主线程中执行//混合投注
-     *
-     * @param msg
-     */
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMainEventBus(MIxedMessage msg) {
-        Log.e("YZS", msg.getMessage());
-        mixed = Integer.parseInt(msg.getMessage());
-        if (mixed == 0) {
-            Scene_TextView_mixed.setText("请选择比赛");
-
-        } else {
-            Scene_TextView_mixed.setText("已经选择" + msg.getMessage() + "比赛");
-
-        }
-
-
-    }
-
-    /**
-     * 主线程中执行//混合投注
-     *
-     * @param msg
-     */
-    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainEventBus(AdapterMessage msg) {
         Log.e("YZSYZSYZS", msg.getPostion() + "");
         Content.Text_postion = msg.getPostion();
@@ -436,6 +392,17 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
     }
 
+    public void bottom_text(boolean isture){
+        if(isture){
+
+            Scene_TextView_mixed.setText("请至少选择两场比赛");
+
+        }else {
+            Scene_TextView_mixed.setText("请至少选择一场比赛");
+
+        }
+
+    }
 
     @Override
     protected void onResume() {
@@ -470,20 +437,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
             EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber() + ""));
 
         }
-        if (adapter_mixed_Separ != null) {
 
-
-            if (Content.order_flag_single == 0) {
-                adapter_mixed_Separ.notifyDataSetChanged();
-            } else {
-                adapter_mixed_Separ.onResh(0);
-                adapter_mixed_Separ.notifyDataSetChanged();
-
-
-            }
-            EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber() + ""));
-
-        }
 
 
     }
@@ -550,18 +504,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                 }
                 break;
             case R.id.Text_clear_mixed:
-                if (adapter_mixed_Separ != null) {
-                    adapter_mixed_Separ.onResh(1);
-                    adapter_mixed_Separ.notifyDataSetChanged();
-                    EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber() + ""));
-                }
-                if (adapter_mixed != null) {
-                    adapter_mixed.onResh();
-                    adapter_mixed.notifyDataSetChanged();
-
-
-                    EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber() + ""));
-                }
+              change();
 
 
                 ToastUtil.showToast1(this, "清空完成");
@@ -611,7 +554,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                 } else {
                     int issingle = 0;
-                    ChooseBean getchooselist = adapter_mixed_Separ.getchooselist();
+                    ChooseBean getchooselist = adapter.getchooselist();
                     List<SubMixBean> list_subMixBean_choose = getchooselist.getList_subMixBean_choose();
                     for (int i = 0; i < list_subMixBean_choose.size(); i++) {
                         List<Integer> list_single = list_subMixBean_choose.get(i).getList_single();
@@ -639,7 +582,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                         }
                     }
-                    if (mixed < chang) {
+                    if (count < chang) {
                         if (chang == 2) {
                             ToastUtil.showToast1(this, "至少选择二场");
 
@@ -647,7 +590,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                             ToastUtil.showToast1(this, "至少选择一场");
 
                         }
-                    } else if (mixed > 15) {
+                    } else if (count > 15) {
                         ToastUtil.showToast1(this, "至多选择15场");
 
 
@@ -656,7 +599,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                         if (chang == 2) {
                             Intent intent = new Intent(this, SingleSureActivity.class);
 
-                            Content.list_chooe_single = adapter_mixed_Separ.getList();
+                            Content.list_chooe_single = adapter.getList();
                             intent.putExtra("single", title_text.getText().toString());
                             intent.putExtra("flag", 0);
                             intent.putExtra("flag_guan", 1);
@@ -665,13 +608,15 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
                         } else {
                             Intent intent = new Intent(this, SingleSureActivity.class);
 
-                            Content.list_chooe_single = adapter_mixed_Separ.getList();
+                            Content.list_chooe_single = adapter.getList();
                             intent.putExtra("single", title_text.getText().toString());
                             intent.putExtra("flag", 1);
                             intent.putExtra("flag_guan", 1);
                             intent.putExtra("issingle",issingle);
 
                             startActivity(intent);
+
+
                         }
 
                     }
@@ -712,11 +657,14 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                     Lottery_RecyCLerView_mixed.setAdapter(adapter_mixed);
                     adapter_mixed.expandAll();
+                    bottom_text(true);
                 }else {
-                    adapter_mixed_Separ = new BettingSeparateAdapter(list, mm);
+                    adapter = new BettingSingleAdapter(list, mm,0);
 
-                    Lottery_RecyCLerView_mixed.setAdapter(adapter_mixed_Separ);
-                    adapter_mixed_Separ.expandAll();
+                    Lottery_RecyCLerView_mixed.setAdapter(adapter);
+                    adapter.expandAll();
+                    bottom_text(false);
+
                 }
 
                 Lottery_RecyCLerView_mixed.setNestedScrollingEnabled(false);
@@ -742,7 +690,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
             Lottery_RecyCLerView_single.setVisibility(View.VISIBLE);
             layout_bottom.setVisibility(View.VISIBLE);
             layout_swipe_single.setVisibility(View.VISIBLE);
-            adapter = new BettingSingleAdapter(list_single, single);
+            adapter = new BettingSingleAdapter(list_single, single,1);
 
             Lottery_RecyCLerView_single.setAdapter(adapter);
             Lottery_RecyCLerView_single.setNestedScrollingEnabled(false);
@@ -1008,12 +956,7 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
             EventBus.getDefault().post(new MainMessage(BettingFootballListAdapter.getnumber() + ""));
 
         }
-        if (adapter_mixed_Separ != null) {
-            adapter_mixed_Separ.onResh(1);
-            adapter_mixed_Separ.notifyDataSetChanged();
-            EventBus.getDefault().post(new MIxedMessage(BettingSeparateAdapter.getnumber() + ""));
 
-        }
 
 
     }

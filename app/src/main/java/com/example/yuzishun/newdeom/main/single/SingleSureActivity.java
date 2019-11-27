@@ -326,45 +326,10 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
     private void listSureguanBean(){
         int length=0;
 
-        switch (list_stbMixListBean.size()){
-            case 1:
-                length = getnumber(1);
 
-                break;
-            case 2:
-                length = getnumber(2);
-                break;
-            case 3:
-                length = getnumber(3);
 
-                break;
-            case 4:
-                length = getnumber(4);
+        length= getnumber(list_stbMixListBean.size());
 
-                break;
-            case 5:
-                length =  getnumber(5);
-
-                break;
-            case 6:
-                length = getnumber(6);
-
-                break;
-            case 7:
-                length = getnumber(7);
-
-                break;
-            case 8:
-                length =  getnumber(8);
-
-                break;
-        }
-
-        if(list_stbMixListBean.size()>8){
-
-            length= getnumber(list_stbMixListBean.size());
-
-        }
         if(flag_guan==1){
             if(title_text.getText().equals("胜平负")||title_text.getText().equals("让球胜平负")){
                 if(issingle==0){

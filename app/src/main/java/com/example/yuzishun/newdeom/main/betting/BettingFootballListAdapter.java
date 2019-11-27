@@ -58,8 +58,6 @@ public class BettingFootballListAdapter extends BaseMultiItemQuickAdapter<MultiI
     private static List<SubMixBean> list_subMixBean = new ArrayList<>();
 
 
-
-
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
@@ -118,6 +116,7 @@ public class BettingFootballListAdapter extends BaseMultiItemQuickAdapter<MultiI
                     image_single.setVisibility(View.GONE);
 
                 }
+
                 if(item2.list_one.get(0).getSingle()==1){
 
                     layout_top.setVisibility(View.VISIBLE);

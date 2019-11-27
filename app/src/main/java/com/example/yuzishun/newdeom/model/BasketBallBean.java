@@ -124,12 +124,39 @@ public class BasketBallBean {
                 private String game_total_score;
                 private String game_let_score;
                 private String game_no;
+                private int home_single;
+                private int let_single;
+                private int total_single;
                 private String game_sequence_no;
                 private List<HomeScoreOddsBean> home_score_odds;
                 private List<LetScoreOddsBean> let_score_odds;
                 private List<ScoreGuestOddsBean> score_guest_odds;
                 private List<ScoreHomeOddsBean> score_home_odds;
                 private List<TotalOddsBean> total_odds;
+
+                public int getHome_single() {
+                    return home_single;
+                }
+
+                public void setHome_single(int home_single) {
+                    this.home_single = home_single;
+                }
+
+                public int getLet_single() {
+                    return let_single;
+                }
+
+                public void setLet_single(int let_single) {
+                    this.let_single = let_single;
+                }
+
+                public int getTotal_single() {
+                    return total_single;
+                }
+
+                public void setTotal_single(int total_single) {
+                    this.total_single = total_single;
+                }
 
                 public String getGame_id() {
                     return game_id;
@@ -253,6 +280,15 @@ public class BasketBallBean {
                     private String game_odds_id;
                     private String odds;
                     private String odds_code;
+                    private int single;
+
+                    public int getSingle() {
+                        return single;
+                    }
+
+                    public void setSingle(int single) {
+                        this.single = single;
+                    }
 
                     public String getGame_odds_id() {
                         return game_odds_id;
@@ -285,10 +321,18 @@ public class BasketBallBean {
                      * odds : 1.77
                      * odds_code : 让分主胜
                      */
-
+                    private int single;
                     private String game_odds_id;
                     private String odds;
                     private String odds_code;
+
+                    public int getSingle() {
+                        return single;
+                    }
+
+                    public void setSingle(int single) {
+                        this.single = single;
+                    }
 
                     public String getGame_odds_id() {
                         return game_odds_id;
@@ -325,6 +369,15 @@ public class BasketBallBean {
                     private String game_odds_id;
                     private String odds;
                     private String odds_code;
+                    private int single;
+
+                    public int getSingle() {
+                        return single;
+                    }
+
+                    public void setSingle(int single) {
+                        this.single = single;
+                    }
 
                     public String getGame_odds_id() {
                         return game_odds_id;
@@ -361,6 +414,15 @@ public class BasketBallBean {
                     private String game_odds_id;
                     private String odds;
                     private String odds_code;
+                    private int single;
+
+                    public int getSingle() {
+                        return single;
+                    }
+
+                    public void setSingle(int single) {
+                        this.single = single;
+                    }
 
                     public String getGame_odds_id() {
                         return game_odds_id;
@@ -397,6 +459,15 @@ public class BasketBallBean {
                     private String game_odds_id;
                     private String odds;
                     private String odds_code;
+                    private int single;
+
+                    public int getSingle() {
+                        return single;
+                    }
+
+                    public void setSingle(int single) {
+                        this.single = single;
+                    }
 
                     public String getGame_odds_id() {
                         return game_odds_id;

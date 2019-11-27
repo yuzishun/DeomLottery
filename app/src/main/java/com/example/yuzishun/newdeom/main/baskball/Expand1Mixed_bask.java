@@ -1,4 +1,4 @@
-package com.example.yuzishun.newdeom.main.adapter.baskball;
+package com.example.yuzishun.newdeom.main.baskball;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.yuzishun.newdeom.main.adapter.BettingListAdapter;

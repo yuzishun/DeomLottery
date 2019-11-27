@@ -1,4 +1,4 @@
-package com.example.yuzishun.newdeom.main.adapter.baskball;
+package com.example.yuzishun.newdeom.main.baskball;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -147,8 +147,8 @@ public class BasketBallSureRecyclerView extends RecyclerView.Adapter<BasketBallS
                 name_left.setText(Content.list_chooe_bask.get(i).getGuest_team());
                 name_right.setText(Content.list_chooe_bask.get(i).getHome_team());
 
-                one_rv.setAdapter(new QuickAdapter_basket(twolist,0));
-                two_rv.setAdapter(new QuickAdapter_basket(threelist,0));
+                one_rv.setAdapter(new QuickAdapter_basket(twolist,0,3));
+                two_rv.setAdapter(new QuickAdapter_basket(threelist,0,3));
 
 
 
