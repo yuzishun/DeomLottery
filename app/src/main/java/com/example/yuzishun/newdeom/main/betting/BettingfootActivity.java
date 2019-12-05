@@ -530,7 +530,8 @@ public class BettingfootActivity extends BaseActivity implements View.OnClickLis
 
                     if (count_mixed < 2) {
 
-                        if(issingle==0){
+                        if(issingle==0&&count_mixed>0){
+
                             jumpmixed(0,chooseList);
 
                         }else {

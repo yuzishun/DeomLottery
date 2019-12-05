@@ -17,6 +17,15 @@ public class MinAndMaxBean implements Serializable{
     private List<Double> minlist = new ArrayList<>();
     private double max;
     private double min;
+    private String Game_id;
+
+    public String getGame_id() {
+        return Game_id;
+    }
+
+    public void setGame_id(String game_id) {
+        Game_id = game_id;
+    }
 
     public List<Double> getMinlist() {
         return minlist;

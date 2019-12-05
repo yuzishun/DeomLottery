@@ -391,7 +391,13 @@ public class BettingSingleAdapter extends BaseMultiItemQuickAdapter<MultiItemEnt
 
         for (int j = 0; j < onelist.size(); j++) {
             if(onelist.get(j).isselect){
-                list_id.add("比分:"+onelist.get(j).getId());
+                if(onelist.size()>9){
+                    list_id.add("比分:"+onelist.get(j).getId());
+
+                }else {
+                    list_id.add("半全场:"+onelist.get(j).getId());
+
+                }
             }else {
 
             }

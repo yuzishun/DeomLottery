@@ -878,6 +878,8 @@ public class BonusBettingActivity extends BaseActivity implements View.OnClickLi
                     CodeBean codeBean = JSON.parseObject(result,CodeBean.class);
                     if(codeBean.getCode()==10000){
                         Content.order_flag=1;
+                        Content.order_flag_single=1;
+
                         if(MixedSureActivity.intentfinish!=null){
                             MixedSureActivity.intentfinish.finish();
 

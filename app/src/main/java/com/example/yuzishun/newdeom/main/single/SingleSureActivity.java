@@ -37,6 +37,7 @@ import com.example.yuzishun.newdeom.model.BonusBean;
 import com.example.yuzishun.newdeom.model.ChooseMixedBean;
 import com.example.yuzishun.newdeom.model.CodeBean;
 import com.example.yuzishun.newdeom.model.ItemPoint;
+import com.example.yuzishun.newdeom.model.MaxMinBean;
 import com.example.yuzishun.newdeom.model.MinAndMaxBean;
 import com.example.yuzishun.newdeom.model.SubMixBean;
 import com.example.yuzishun.newdeom.model.SubMixListBean;
@@ -100,10 +101,11 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
     private List<Double> one_max;
     private  List<String> list_adds;
     private  List<String> list_id;
-    private List<Double> list_max_end;
     private int flag,flag_guan,issingle;
     private List<MinAndMaxBean> list_min_and_max = new ArrayList<>();
-    private List<Double> list_min_end = new ArrayList<>();
+    private List<MaxMinBean> list_min_end = new ArrayList<>();
+    private List<MaxMinBean> list_max_end = new ArrayList<>();
+
     private String format;
     private String[] string_mode=new String[]{"单关","2串1","3串1","4串1","5串1","6串1","7串1","8串1"};
     private String[] string_mode2=new String[]{"2串1","3串1","4串1","5串1","6串1","7串1","8串1"};
@@ -145,16 +147,15 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
         Text_bouns.setOnClickListener(this);
         list_chooe = Content.list_chooe_single;
 
-        final List<ChooseMixedBean> list_chooe_single = Content.list_chooe_single;
-        for (int i = 0; i <list_chooe_single.size() ; i++) {
+        for (int i = 0; i <list_chooe.size() ; i++) {
             list_adds = new ArrayList<>();
             list_id = new ArrayList<>();
             list_name_bonus = new ArrayList<>();
             list_style_bonus = new ArrayList<>();
             minlist = new ArrayList<>();
             one_max = new ArrayList<>();
-            list_max_end = new ArrayList<>();
-            List<ItemPoint> onelist = list_chooe_single.get(i).getOnelist();
+
+            List<ItemPoint> onelist = list_chooe.get(i).getOnelist();
             for (int j = 0; j < onelist.size(); j++) {
 
                 if(onelist.get(j).isselect){
@@ -177,7 +178,7 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
             }else {
 
                 SubMixBean subMixBean = new SubMixBean();
-                subMixBean.setGame_id(list_chooe_single.get(i).getGame_id());
+                subMixBean.setGame_id(list_chooe.get(i).getGame_id());
                 subMixBean.setList(list_adds);
                 subMixBean.setList_adds(minlist);
                 subMixBean.setName(list_chooe.get(i).getHome_team()+list_id);
@@ -187,7 +188,7 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
                 list_subMixBean.add(subMixBean);
 
                 SubMixListBean subMixListBean = new SubMixListBean();
-                subMixListBean.setGame_id(list_chooe_single.get(i).getName());
+                subMixListBean.setGame_id(list_chooe.get(i).getName());
 
                 subMixListBean.setList(list_id);
 
@@ -195,7 +196,7 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
 
                 MinAndMaxBean minAndMaxBean  = new MinAndMaxBean();
 
-
+                minAndMaxBean.setGame_id(list_chooe.get(i).getGame_id());
                 minAndMaxBean.setOne_mix_and_min(one_max);
 
                 minAndMaxBean.setMinlist(minlist);
@@ -207,17 +208,24 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
 
         }
         for (int i = 0; i < list_min_and_max.size(); i++) {
+            MaxMinBean maxMinBean_min = new MaxMinBean();
+            MaxMinBean maxMinBean_max = new MaxMinBean();
+
             double max=0,aDouble = 0,bDouble = 0,cDouble = 0,dDouble= 0,eDouble = 0;
 
             if (list_min_and_max.get(i).getOne_mix_and_min().size() != 0) {
                 aDouble = Double.valueOf(Collections.max(list_min_and_max.get(i).getOne_mix_and_min()));
             }
-
-            list_min_end.add(Double.valueOf(Collections.min(list_min_and_max.get(i).getMinlist())));
-
+            maxMinBean_min.setGame_id(list_min_and_max.get(i).getGame_id());
+            maxMinBean_min.setValue(Double.valueOf(Collections.min(list_min_and_max.get(i).getMinlist())));
+            list_min_end.add(maxMinBean_min);
+            //            list_min_end.add(Double.valueOf(Collections.min(list_min_and_max.get(i).getMinlist())));
 
             max += aDouble+bDouble+cDouble+dDouble+eDouble;
-            list_max_end.add(max);
+            maxMinBean_max.setValue(max);
+            maxMinBean_max.setGame_id(list_min_and_max.get(i).getGame_id());
+
+            list_max_end.add(maxMinBean_max);
         }
 
 
@@ -243,9 +251,9 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
                 }
 
                 if(list_sureguanBean.size()>=2){
-                    for (int i = 0; i <list_chooe_single.size() ; i++) {
-                        List<ItemPoint> onelist = list_chooe_single.get(i).getOnelist();
-                        if(list_chooe_single.get(i).getGame_id()==list_subMixBean.get(position).game_id){
+                    for (int i = 0; i <list_chooe.size() ; i++) {
+                        List<ItemPoint> onelist = list_chooe.get(i).getOnelist();
+                        if(list_chooe.get(i).getGame_id()==list_subMixBean.get(position).game_id){
                             for (int j = 0; j <onelist.size() ; j++) {
                                 onelist.get(j).setIsselect(false);
                             }
@@ -261,11 +269,35 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
 
 
                     }
+                    if(popupWindow!=null){
+                        popupWindow.dismiss();
+
+                    }
+
+                    for (int i = 0; i < list_min_end.size(); i++) {
+                        if(list_min_end.get(i).getGame_id()==list_subMixBean.get(position).game_id){
+
+                            list_min_end.remove(position);
+
+                        }
+
+                    }
+                    for (int i = 0; i < list_max_end.size(); i++) {
+                        if(list_max_end.get(i).getGame_id()==list_subMixBean.get(position).game_id){
+
+                            list_max_end.remove(position);
+
+                        }
+
+                    }
+
                     list_stbMixListBean.remove(position);
                     list_subMixBean.remove(position);
                     bettingSureRecyclerView.notifyDataSetChanged();
                     Text_More.setText("更多过关");
                     listSureguanBean();
+
+
 //                     理论奖金 先不显示
                     List<String> getbunch = getbunch();
                     Text_money.setText(getbunch.get(0));
@@ -319,6 +351,7 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
 
 
     }
+
 
 
 
@@ -476,6 +509,7 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
 
         }else if(title_text.getText().equals("总进球")){
             if(length>6){
+
                 returnlenth=6;
 
             }else {
@@ -1152,12 +1186,24 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
             }
 
         }
+        List<Double> list_min = new ArrayList<>();
+        List<Double> list_max = new ArrayList<>();
 
-        Collections.sort(list_min_end);
+        for (int i = 0; i < list_min_end.size(); i++) {
+
+            list_min.add(list_min_end.get(i).getValue());
+        }
+        for (int i = 0; i < list_max_end.size(); i++) {
+
+            list_max.add(list_max_end.get(i).getValue());
+        }
+
+
+        Collections.sort(list_min);
         for (int j = 0; j <list.get(0) ; j++) {
 
 
-            pourmin *=list_min_end.get(j);
+            pourmin *=list_min.get(j);
         }
 
 
@@ -1175,7 +1221,7 @@ public class SingleSureActivity extends BaseActivity implements View.OnClickList
         Double maxbunch=0.0;
         for (int i = 0; i <list_sureguanBean.size() ; i++) {
             if(list_sureguanBean.get(i).isselect){
-                maxbunch +=getpour(list_max_end, Integer.parseInt(list_sureguanBean.get(i).getBunch()));
+                maxbunch +=getpour(list_max, Integer.parseInt(list_sureguanBean.get(i).getBunch()));
 
             }
 

@@ -106,6 +106,10 @@ public class Detailed_RecyclerView_Adapter extends RecyclerView.Adapter<Detailed
                 holder.text_money.setText("余额"+data.get(position).getUser_account());
 
                 break;
+            case 9:
+                holder.text_state.setText("充值");
+                holder.text_money.setText("余额"+data.get(position).getUser_account());
+                break;
         }
 
         holder.text_data.setText(data.get(position).getCreate_time()+"");
