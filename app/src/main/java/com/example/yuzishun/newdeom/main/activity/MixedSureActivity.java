@@ -117,6 +117,7 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
     private String[] string_mode_single=new String[]{"单关","2串1","3串1","4串1","5串1","6串1","7串1","8串1"};
 
     private String[] string_mode=new String[]{"2串1","3串1","4串1","5串1","6串1","7串1","8串1"};
+    private String[] string_MN=new String[]{"3串3","3串4","4串4","4串5","4串6","4串11","5串5","5串6","5串10","5串16","5串20","5串26","6串6","6串7", "6串15","6串20","6串22","6串35","6串42","6串50","6串57","7串7","7串8","7串21","7串35","7串120","8串8","8串9","8串28","8串56","8串70","8串247",};
     private List<SubMixBean> list_subMixBean = new ArrayList<>();
     private List<SureguanBean> list_sureguanBean = new ArrayList<>();
     private List<SubMixListBean> list_stbMixListBean = new ArrayList<>();
