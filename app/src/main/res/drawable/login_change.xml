@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <corners android:radius="@dimen/d20"></corners>
+    <corners android:radius="@dimen/d2"></corners>
     <solid android:color="@color/gray_Overall_hint"></solid>
     <!--渐变，暂时去掉-->
     <!--&lt;!&ndash;设置渐变&ndash;&gt;-->

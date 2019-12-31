@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.score.ScoreFragment">
+    tools:context="com.example.yuzishun.deomlottery.score.ScoreFragment">
 
     <include layout="@layout/title_text"></include>
     <LinearLayout

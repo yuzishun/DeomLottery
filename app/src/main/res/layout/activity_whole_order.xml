@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.my.activity.Details_mingxiActivity">
+    tools:context="com.example.yuzishun.deomlottery.my.activity.Details_mingxiActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/login_red"

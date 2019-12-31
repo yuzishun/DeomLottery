@@ -20,7 +20,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp">
-            <com.example.yuzishun.newdeom.my.custom.XCRoundImageView
+            <com.example.yuzishun.deomlottery.my.custom.XCRoundImageView
                 android:src="@mipmap/gray_icon"
                 android:id="@+id/icon"
                 android:layout_centerVertical="true"
@@ -93,7 +93,7 @@
             android:id="@+id/layout_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+            <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_1"
                 android:layout_width="80dp"
                 android:text="竞猜类型"
@@ -105,7 +105,7 @@
 
                 android:textSize="10sp" />
 
-            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+            <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:text="方案金额"
                 android:id="@+id/list_1_2"
                 android:layout_width="80dp"
@@ -116,7 +116,7 @@
 
                 android:textSize="10sp" />
 
-            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+            <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_3"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
@@ -129,7 +129,7 @@
 
                 android:textSize="10sp" />
 
-            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+            <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_4"
                 android:layout_width="80dp"
                 android:text="倍数"
@@ -147,7 +147,7 @@
             android:layout_below="@+id/layout_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+            <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_1"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
@@ -159,7 +159,7 @@
 
                 android:textSize="10sp" />
 
-            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+            <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_2"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
@@ -170,7 +170,7 @@
 
                 android:textSize="10sp" />
 
-            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+            <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_3"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
@@ -183,7 +183,7 @@
 
                 android:textSize="10sp" />
 
-            <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+            <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_4"
 
                 android:layout_width="80dp"

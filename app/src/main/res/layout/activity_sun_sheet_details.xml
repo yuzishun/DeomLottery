@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.example.yuzishun.newdeom.sunsheet.activity.SunSheetDetailsActivity">
+    tools:context="com.example.yuzishun.deomlottery.sunsheet.activity.SunSheetDetailsActivity">
 
     <RelativeLayout
         android:background="@color/login_red"
@@ -99,7 +99,7 @@
                         android:gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                        <com.example.yuzishun.newdeom.my.custom.XCRoundImageView
+                        <com.example.yuzishun.deomlottery.my.custom.XCRoundImageView
                             android:id="@+id/usericon"
                             android:src="@mipmap/gray_icon"
                             android:layout_width="@dimen/d40"
@@ -185,7 +185,7 @@
                     android:id="@+id/layout_one"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                    <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                         android:id="@+id/list_1_1"
                         android:layout_width="85dp"
                         android:text="竞猜类型"
@@ -197,7 +197,7 @@
 
                         android:textSize="10sp" />
 
-                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                    <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                         android:text="方案金额"
                         android:id="@+id/list_1_2"
                         android:layout_width="85dp"
@@ -208,7 +208,7 @@
 
                         android:textSize="10sp" />
 
-                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                    <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                         android:id="@+id/list_1_3"
                         android:layout_width="85dp"
                         android:layout_height="40dp"
@@ -221,7 +221,7 @@
 
                         android:textSize="10sp" />
 
-                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                    <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                         android:id="@+id/list_1_4"
                         android:layout_width="85dp"
                         android:text="倍数"
@@ -240,7 +240,7 @@
                     android:layout_below="@+id/layout_one"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                    <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                         android:id="@+id/list_2_1"
                         android:layout_width="85dp"
                         android:layout_height="40dp"
@@ -252,7 +252,7 @@
 
                         android:textSize="10sp" />
 
-                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                    <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                         android:id="@+id/list_2_2"
                         android:layout_width="85dp"
                         android:layout_height="40dp"
@@ -263,7 +263,7 @@
 
                         android:textSize="10sp" />
 
-                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                    <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                         android:id="@+id/list_2_3"
                         android:layout_width="85dp"
                         android:layout_height="40dp"
@@ -276,7 +276,7 @@
 
                         android:textSize="10sp" />
 
-                    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+                    <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                         android:id="@+id/list_2_4"
 
                         android:layout_width="85dp"
@@ -328,7 +328,7 @@
             android:id="@+id/Comment_text_null"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-        <com.example.yuzishun.newdeom.utils.CommentExpandableListView
+        <com.example.yuzishun.deomlottery.utils.CommentExpandableListView
             android:visibility="visible"
             android:id="@+id/detail_page_lv_comment"
             android:layout_marginLeft="@dimen/d20"

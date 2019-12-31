@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.example.yuzishun.newdeom.documentary.activity.DocumentaryFragment">
+    tools:context="com.example.yuzishun.deomlottery.documentary.activity.DocumentaryFragment">
 
     <include layout="@layout/title_text"></include>
 
@@ -135,7 +135,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                    <com.example.yuzishun.newdeom.documentary.custom.MyGridView
+                    <com.example.yuzishun.deomlottery.documentary.custom.MyGridView
                         android:layout_below="@+id/hot"
                         android:id="@+id/Hot_GridView"
                         android:gravity="center"
@@ -146,7 +146,7 @@
                         android:layout_height="wrap_content">
 
 
-                    </com.example.yuzishun.newdeom.documentary.custom.MyGridView>
+                    </com.example.yuzishun.deomlottery.documentary.custom.MyGridView>
 
                 </RelativeLayout>
 
@@ -204,7 +204,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                    <com.example.yuzishun.newdeom.main.custom.MyRecyclerView
+                    <com.example.yuzishun.deomlottery.main.custom.MyRecyclerView
                         android:id="@+id/Document_RecyclerView"
                         android:layout_below="@+id/id_list"
                         android:layout_width="match_parent"
@@ -212,7 +212,7 @@
 
 
 
-                    </com.example.yuzishun.newdeom.main.custom.MyRecyclerView>
+                    </com.example.yuzishun.deomlottery.main.custom.MyRecyclerView>
                     <TextView
                         android:text="暂无热门跟单"
                         android:gravity="center"

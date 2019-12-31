@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:clipChildren="false"
-    tools:context="com.example.yuzishun.newdeom.MainActivity">
+    tools:context="com.example.yuzishun.deomlottery.MainActivity">
 
     <LinearLayout
         android:layout_weight="1"

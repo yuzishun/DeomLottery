@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.sunsheet.activity.SendSunSheetActivity">
+    tools:context="com.example.yuzishun.deomlottery.sunsheet.activity.SendSunSheetActivity">
 
     <include layout="@layout/title_text"></include>
     <LinearLayout
@@ -47,7 +47,7 @@
                 android:background="@color/empt_color"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                     android:id="@+id/sunsheet_edit"
                     android:background="@null"
                     android:layout_weight="1"

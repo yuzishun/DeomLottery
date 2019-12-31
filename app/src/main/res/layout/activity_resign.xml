@@ -5,52 +5,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.login.activity.ResignActivity">
+    android:background="@drawable/login_shape"
+    tools:context="com.example.yuzishun.deomlottery.login.activity.ResignActivity">
 
-    <include layout="@layout/title_text"></include>
-
-    <View
-
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="10dp"></View>
+        android:layout_height="@dimen/d40">
+
+        <LinearLayout
+            android:id="@+id/layout_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text=""
+                android:id="@+id/title_text"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:maxLines="1"
+
+                android:layout_marginLeft="@dimen/d40"
+                android:layout_marginRight="@dimen/d40"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/image_back"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@mipmap/back"
+                android:layout_width="@dimen/d15"
+                android:layout_height="@dimen/d15" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
 
     <LinearLayout
+        android:layout_marginTop="@dimen/d20"
         android:orientation="vertical"
+        android:background="@mipmap/find_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_weight="1"
+            android:layout_marginTop="@dimen/d40"
+            android:layout_marginLeft="@dimen/d30"
+            android:layout_marginRight="@dimen/d30"
             android:orientation="vertical"
-            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
 
             <LinearLayout
                 android:layout_weight="1"
+                android:background="@drawable/login_edittext_radio"
+                android:layout_marginTop="@dimen/d5"
+
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <RelativeLayout
-                    android:layout_weight="4"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/resign_user"
+                        android:layout_marginLeft="@dimen/d10"
+                        android:layout_marginTop="@dimen/d1"
+                        android:layout_width="@dimen/d15"
+                        android:layout_height="@dimen/d15" />
                     <TextView
                         android:text="@string/User"
-                        android:layout_centerVertical="true"
                         android:textSize="@dimen/f12"
-                        android:layout_marginLeft="@dimen/d15"
-                        android:textColor="@color/gray_Overall_hint"
+                        android:layout_marginLeft="@dimen/d30"
+                        android:textColor="@color/font_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
+                <TextView
+                    android:layout_width="0.1dp"
+                    android:layout_toRightOf="@+id/login_password_icon"
+                    android:layout_marginTop="@dimen/d10"
+                    android:layout_marginBottom="@dimen/d10"
+                    android:background="@color/font_black"
+                    android:layout_height="match_parent" />
                 <RelativeLayout
                     android:layout_weight="1"
 
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                    <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                         android:id="@+id/usernameEditText"
                         android:paddingLeft="@dimen/d5"
                         android:maxLength="11"
@@ -60,8 +113,7 @@
                         android:background="@null"
                         android:layout_marginLeft="@dimen/d15"
                         android:hint="@string/Please_write_User_Phone"
-                        android:textColorHint="@color/edittext_hintcolor"
-                        android:textSize="@dimen/f12"
+                        android:textSize="@dimen/f11"
                         android:layout_marginRight="15dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -83,29 +135,42 @@
 
 
             </LinearLayout>
-            <View
-                android:background="@color/gray_Overall_hint"
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"></View>
+
             <LinearLayout
                 android:layout_weight="1"
+                android:background="@drawable/login_edittext_radio"
+                android:layout_marginTop="@dimen/d5"
+
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <RelativeLayout
-                    android:layout_weight="4"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/find_luck"
+                        android:layout_marginLeft="@dimen/d10"
+                        android:layout_marginTop="@dimen/d1"
+                        android:layout_width="@dimen/d15"
+                        android:layout_height="@dimen/d15" />
                     <TextView
                         android:text="@string/Password"
-                        android:layout_centerVertical="true"
                         android:textSize="@dimen/f12"
-                        android:layout_marginLeft="@dimen/d15"
-                        android:textColor="@color/gray_Overall_hint"
+                        android:layout_marginLeft="@dimen/d30"
+                        android:textColor="@color/font_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
-                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                <TextView
+                    android:layout_width="0.1dp"
+                    android:layout_toRightOf="@+id/login_password_icon"
+                    android:layout_marginTop="@dimen/d10"
+                    android:layout_marginBottom="@dimen/d10"
+                    android:background="@color/font_black"
+                    android:layout_height="match_parent" />
+                <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                     android:layout_weight="1"
                     android:inputType="textPassword"
 
@@ -117,35 +182,47 @@
                     android:background="@null"
                     android:layout_marginLeft="@dimen/d15"
                     android:hint="@string/Please_write_Password"
-                    android:textColorHint="@color/edittext_hintcolor"
-                    android:textSize="@dimen/f12"
+                    android:textSize="@dimen/f11"
                     android:layout_marginRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>
-            <View
-                android:background="@color/gray_Overall_hint"
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"></View>
+
             <LinearLayout
                 android:layout_weight="1"
+                android:background="@drawable/login_edittext_radio"
+                android:layout_marginTop="@dimen/d5"
+
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <RelativeLayout
-                    android:layout_weight="4"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/find_iphone"
+                        android:layout_marginLeft="@dimen/d10"
+                        android:layout_marginTop="@dimen/d1"
+                        android:layout_width="@dimen/d15"
+                        android:layout_height="@dimen/d15" />
                     <TextView
-                        android:text="@string/Phone_Number"
-                        android:layout_centerVertical="true"
+                        android:text="手机号码"
                         android:textSize="@dimen/f12"
-                        android:layout_marginLeft="@dimen/d15"
-                        android:textColor="@color/gray_Overall_hint"
+                        android:layout_marginLeft="@dimen/d30"
+                        android:textColor="@color/font_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
-                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                <TextView
+                    android:layout_width="0.1dp"
+                    android:layout_toRightOf="@+id/login_password_icon"
+                    android:layout_marginTop="@dimen/d10"
+                    android:layout_marginBottom="@dimen/d10"
+                    android:background="@color/font_black"
+                    android:layout_height="match_parent" />
+                <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                     android:inputType="number"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/d5"
@@ -156,40 +233,52 @@
                     android:background="@null"
                     android:layout_marginLeft="@dimen/d15"
                     android:hint="@string/Please_Phone_Number"
-                    android:textColorHint="@color/edittext_hintcolor"
-                    android:textSize="@dimen/f12"
+                    android:textSize="@dimen/f11"
                     android:layout_marginRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>
-            <View
-                android:background="@color/gray_Overall_hint"
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"></View>
+
             <LinearLayout
                 android:layout_weight="1"
+                android:background="@drawable/login_edittext_radio"
+                android:layout_marginTop="@dimen/d5"
+
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <RelativeLayout
-                    android:layout_weight="4"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/find_yanzheng"
+                        android:layout_marginLeft="@dimen/d10"
+                        android:layout_marginTop="@dimen/d1"
+                        android:layout_width="@dimen/d15"
+                        android:layout_height="@dimen/d15" />
                     <TextView
                         android:text="@string/Message_yanzheng"
-                        android:layout_centerVertical="true"
                         android:textSize="@dimen/f12"
-                        android:layout_marginLeft="@dimen/d15"
-                        android:textColor="@color/gray_Overall_hint"
+                        android:layout_marginLeft="@dimen/d30"
+                        android:textColor="@color/font_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
+                <TextView
+                    android:layout_width="0.1dp"
+                    android:layout_toRightOf="@+id/login_password_icon"
+                    android:layout_marginTop="@dimen/d10"
+                    android:layout_marginBottom="@dimen/d10"
+                    android:background="@color/font_black"
+                    android:layout_height="match_parent" />
                 <RelativeLayout
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                    <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                         android:inputType="number"
                         android:layout_weight="1"
                         android:paddingLeft="@dimen/d5"
@@ -200,8 +289,7 @@
                         android:background="@null"
                         android:layout_marginLeft="@dimen/d15"
                         android:hint="@string/Please_Write_Message"
-                        android:textColorHint="@color/edittext_hintcolor"
-                        android:textSize="@dimen/f12"
+                        android:textSize="@dimen/f11"
                         android:layout_marginRight="15dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -213,7 +301,7 @@
                         android:layout_width="80dp"
                         android:text="@string/Obtain_Message"
                         android:enabled="true"
-                        android:textSize="@dimen/f12"
+                        android:textSize="@dimen/f11"
                         android:textColor="@color/white"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
@@ -223,29 +311,41 @@
                 </RelativeLayout>
 
             </LinearLayout>
-            <View
-                android:background="@color/gray_Overall_hint"
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"></View>
+
             <LinearLayout
                 android:layout_weight="1"
+                android:background="@drawable/login_edittext_radio"
+                android:layout_marginTop="@dimen/d5"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <RelativeLayout
-                    android:layout_weight="4"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/resign_newpass"
+                        android:layout_marginLeft="@dimen/d10"
+                        android:layout_marginTop="@dimen/d1"
+                        android:layout_width="@dimen/d15"
+                        android:layout_height="@dimen/d15" />
                     <TextView
                         android:text="@string/yaoqing_Number"
-                        android:layout_centerVertical="true"
                         android:textSize="@dimen/f12"
-                        android:layout_marginLeft="@dimen/d15"
-                        android:textColor="@color/gray_Overall_hint"
+                        android:layout_marginLeft="@dimen/d30"
+                        android:textColor="@color/font_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
-                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                <TextView
+                    android:layout_width="0.1dp"
+                    android:layout_toRightOf="@+id/login_password_icon"
+                    android:layout_marginTop="@dimen/d10"
+                    android:layout_marginBottom="@dimen/d10"
+                    android:background="@color/font_black"
+                    android:layout_height="match_parent" />
+                <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                     android:inputType="number"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/d5"
@@ -256,8 +356,7 @@
                     android:background="@null"
                     android:layout_marginLeft="@dimen/d15"
                     android:hint="@string/Please_write_yaoqing_number"
-                    android:textColorHint="@color/edittext_hintcolor"
-                    android:textSize="@dimen/f12"
+                    android:textSize="@dimen/f11"
                     android:layout_marginRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -267,50 +366,17 @@
 
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="@dimen/d20"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_weight="2"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <CheckBox
-                    android:visibility="gone"
-                    android:background="@drawable/selector_xieyi"
-                    android:button="@null"
-                    android:id="@+id/check_xieyi"
-                    android:layout_marginLeft="@dimen/d15"
-                    android:layout_marginTop="@dimen/d15"
-                    android:layout_width="@dimen/d10"
-                    android:layout_height="@dimen/d10" />
-                    <TextView
-                        android:visibility="gone"
-                        android:text="@string/agreen"
-                        android:textColor="@color/gray_Overall_hint"
-                        android:textSize="@dimen/f10"
-                        android:layout_marginLeft="@dimen/d4"
-                        android:layout_marginTop="@dimen/d10"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:visibility="gone"
-                        android:text="@string/User_xieyi"
-                        android:layout_marginTop="@dimen/d10"
-                        android:textSize="@dimen/f10"
-                        android:textColor="@color/edittext_hintcolor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-            </LinearLayout>
 
             <RelativeLayout
                 android:layout_weight="1"
+                android:layout_marginLeft="@dimen/d30"
+                android:layout_marginRight="@dimen/d30"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -322,7 +388,7 @@
                     android:enabled="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/f12"
-                    android:layout_width="280dp"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp" />
             </RelativeLayout>
         </LinearLayout>

@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.example.yuzishun.newdeom.my.custom.XCRoundImageView
+                <com.example.yuzishun.deomlottery.my.custom.XCRoundImageView
                     android:id="@+id/icon_profit"
                     android:src="@mipmap/gray_icon"
                     android:layout_width="@dimen/d40"

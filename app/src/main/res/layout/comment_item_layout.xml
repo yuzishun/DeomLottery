@@ -10,7 +10,7 @@
         android:layout_marginTop="12dp"
         android:orientation="horizontal"
         android:gravity="center_vertical">
-        <com.example.yuzishun.newdeom.my.custom.XCRoundImageView
+        <com.example.yuzishun.deomlottery.my.custom.XCRoundImageView
             android:id="@+id/comment_item_logo"
             android:layout_width="40dp"
             android:layout_height="40dp"

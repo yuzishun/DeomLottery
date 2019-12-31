@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.my.activity.RechargeActivity">
+    tools:context="com.example.yuzishun.deomlottery.my.activity.RechargeActivity">
 
     <include layout="@layout/title_text"></include>
 
@@ -94,7 +94,7 @@
                             android:textColor="@color/font_black"
                             android:textSize="@dimen/f13" />
 
-                        <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                        <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                             android:id="@+id/money_edit"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

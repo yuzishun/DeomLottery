@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.yuzishun.newdeom.documentary.activity.SeachActivity">
+    tools:context="com.example.yuzishun.deomlottery.documentary.activity.SeachActivity">
 
 </android.support.constraint.ConstraintLayout>

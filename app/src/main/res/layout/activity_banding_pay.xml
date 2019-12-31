@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.my.activity.BandingPayActivity">
+    tools:context="com.example.yuzishun.deomlottery.my.activity.BandingPayActivity">
 
     <include layout="@layout/title_text"></include>
     <View
@@ -50,7 +50,7 @@
                         android:textColor="@color/font_black"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
-                    <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                    <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                         android:inputType="numberDecimal"
                         android:id="@+id/pay_phone"
                         android:maxLines="1"
@@ -153,7 +153,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
-                        <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                        <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                             android:id="@+id/money_edit"
                             android:maxLines="1"
                             android:inputType="numberDecimal"

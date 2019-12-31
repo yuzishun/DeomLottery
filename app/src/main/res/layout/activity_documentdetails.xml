@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/white"
 
-    tools:context="com.example.yuzishun.newdeom.documentary.activity.DocumentdetailsActivity">
+    tools:context="com.example.yuzishun.deomlottery.documentary.activity.DocumentdetailsActivity">
 
 
     <RelativeLayout
@@ -107,7 +107,7 @@
                         android:gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                        <com.example.yuzishun.newdeom.my.custom.XCRoundImageView
+                        <com.example.yuzishun.deomlottery.my.custom.XCRoundImageView
                             android:id="@+id/usericon"
                             android:src="@mipmap/gray_icon"
                             android:layout_width="wrap_content"
@@ -727,7 +727,7 @@
                 android:textSize="@dimen/f12"
                 android:layout_height="wrap_content" />
 
-            <com.example.yuzishun.newdeom.documentary.custom.AmountView
+            <com.example.yuzishun.deomlottery.documentary.custom.AmountView
                 android:id="@+id/amountView"
                 android:layout_marginLeft="@dimen/d7"
                 android:layout_toRightOf="@+id/tou"
@@ -735,7 +735,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-            </com.example.yuzishun.newdeom.documentary.custom.AmountView>
+            </com.example.yuzishun.deomlottery.documentary.custom.AmountView>
             <TextView
                 android:text="倍"
                 android:layout_toRightOf="@+id/amountView"

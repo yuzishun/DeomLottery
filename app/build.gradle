@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.yuzishun.newdeom"
+        applicationId "com.example.yuzishun.deomlottery"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 16

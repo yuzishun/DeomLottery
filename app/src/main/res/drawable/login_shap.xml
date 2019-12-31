@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--设置按下的状态，暂时先去掉-->
-    <corners android:radius="@dimen/d20"></corners>
+    <corners android:radius="@dimen/d2"></corners>
     <solid android:color="@color/login_red"></solid>
 
     <!--设置渐变-->

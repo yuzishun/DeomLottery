@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.my.activity.ReflectActivity">
+    tools:context="com.example.yuzishun.deomlottery.my.activity.ReflectActivity">
     <include layout="@layout/title_text"></include>
 
     <View
@@ -124,7 +124,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
-                        <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                        <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                             android:id="@+id/money_edittext"
                             android:inputType="numberDecimal"
                             android:paddingLeft="@dimen/d5"

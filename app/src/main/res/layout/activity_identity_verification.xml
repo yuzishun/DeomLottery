@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.my.activity.IdentityVerificationActivity">
+    tools:context="com.example.yuzishun.deomlottery.my.activity.IdentityVerificationActivity">
     <include layout="@layout/title_text"></include>
 
 
@@ -64,7 +64,7 @@
                 android:layout_weight="0.5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                     android:id="@+id/name_edittext"
                     android:maxLines="1"
                     android:paddingLeft="@dimen/d5"
@@ -126,7 +126,7 @@
                 android:layout_weight="0.5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                     android:id="@+id/id_edittext"
                     android:maxLines="1"
                     android:paddingLeft="@dimen/d5"

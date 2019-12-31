@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.SplachActivity">
+    tools:context="com.example.yuzishun.deomlottery.SplachActivity">
     <ImageView
         android:background="@mipmap/splach"
         android:id="@+id/Splach_id"

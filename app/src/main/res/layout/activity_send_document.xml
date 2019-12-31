@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.my.activity.SendDocumentActivity">
+    tools:context="com.example.yuzishun.deomlottery.my.activity.SendDocumentActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/login_red"
@@ -248,7 +248,7 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                <com.example.yuzishun.deomlottery.login.custom.ClearEditText
 
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/d10"

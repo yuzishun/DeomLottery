@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.documentary.activity.SearchActivity">
+    tools:context="com.example.yuzishun.deomlottery.documentary.activity.SearchActivity">
 
 
     <RelativeLayout
@@ -16,7 +16,7 @@
             android:id="@+id/layout_title_bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <com.example.yuzishun.newdeom.login.custom.ClearEditText
+            <com.example.yuzishun.deomlottery.login.custom.ClearEditText
 
                 android:id="@+id/title_text"
                 android:hint="搜索用户名"

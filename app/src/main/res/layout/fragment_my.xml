@@ -2,30 +2,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
 
-    tools:context="com.example.yuzishun.newdeom.my.activity.MyFragment">
+    tools:context="com.example.yuzishun.deomlottery.my.activity.MyFragment">
+
+    <LinearLayout
+        android:background="@drawable/login_shape"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:visibility="gone"
+        android:visibility="visible"
+        android:layout_marginLeft="@dimen/d10"
+        android:layout_marginRight="@dimen/d10"
+        android:layout_marginBottom="@dimen/d10"
         android:id="@+id/Home_Refresh"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ScrollView
-        android:visibility="gone"
+        <ScrollView
+
+        android:visibility="visible"
         android:id="@+id/layout_scroll"
         android:fillViewport="true"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
+
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <RelativeLayout
+
                 android:background="@color/white"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -36,74 +50,114 @@
                 <RelativeLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="250dp">
+                    android:layout_height="155dp">
 
                     <ImageView
                         android:background="@mipmap/mybackground_new"
 
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="115dp" />
+                    <com.example.yuzishun.deomlottery.my.custom.XCRoundImageView
+                        android:id="@+id/icon"
+                        android:src="@mipmap/icon"
 
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="@dimen/d60"
+                        android:layout_height="@dimen/d60" />
                     <LinearLayout
                         android:layout_marginTop="75dp"
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="60dp">
+                        android:orientation="vertical"
+                        android:layout_height="110dp">
 
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_weight="1"
-                            android:gravity="center_vertical"
+                            android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <com.example.yuzishun.newdeom.my.custom.XCRoundImageView
-                                android:id="@+id/icon"
-                                android:src="@mipmap/icon"
 
-                                android:layout_marginLeft="@dimen/d25"
-
-                                android:layout_width="44dp"
-                                android:layout_height="44dp" />
 
                             <TextView
                                 android:id="@+id/Username"
                                 android:text="请登陆"
-                                android:textColor="@color/white"
-                                android:layout_marginLeft="@dimen/d5"
+                                android:layout_centerHorizontal="true"
+                                android:layout_alignParentBottom="true"
+                                android:textColor="@color/font_black"
                                 android:textSize="@dimen/f13"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
-                        </LinearLayout>
+                        </RelativeLayout>
 
 
                         <LinearLayout
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:gravity="center"
-                            android:layout_marginLeft="@dimen/d25"
 
+                            android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <TextView
-                                android:id="@+id/fans"
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:gravity="right"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:text="粉丝"
+                                    android:layout_gravity="center_vertical"
+                                    android:textSize="@dimen/f11"
+                                    android:layout_marginRight="@dimen/d2"
+                                    android:textColor="@color/gray_Overall_hint"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:id="@+id/fans"
+                                    android:layout_gravity="center_vertical"
 
-                                android:gravity="center"
-                                android:text="粉丝\n13545"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/f11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                    android:gravity="center"
+                                    android:text="13545"
+                                    android:layout_marginRight="@dimen/d5"
+                                    android:textColor="@color/font_black"
+                                    android:textSize="@dimen/f11"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
                             <TextView
-                                android:id="@+id/follow"
+                                android:layout_width="0.1dp"
+                                android:layout_toRightOf="@+id/login_password_icon"
+                                android:layout_marginTop="@dimen/d5"
+                                android:layout_marginBottom="@dimen/d5"
+                                android:background="@color/gray_Overall_hint"
+                                android:layout_height="match_parent" />
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:text="关注"
+                                    android:textSize="@dimen/f11"
+                                    android:layout_marginLeft="@dimen/d5"
 
-                                android:gravity="center"
-                                android:text="关注\n3"
-                                android:textColor="@color/white"
-                                android:layout_marginLeft="@dimen/d15"
-                                android:textSize="@dimen/f11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                    android:textColor="@color/gray_Overall_hint"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:id="@+id/follow"
+
+                                    android:gravity="center"
+                                    android:text="3"
+                                    android:textColor="@color/font_black"
+                                    android:layout_marginLeft="@dimen/d2"
+                                    android:textSize="@dimen/f11"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+
 
 
                         </LinearLayout>
@@ -206,7 +260,7 @@
 
                 <LinearLayout
                     android:layout_above="@+id/money_layout"
-                    android:background="@drawable/layer_shadow"
+                    android:background="@drawable/layer_shadow_main"
                     android:orientation="vertical"
                     android:layout_marginBottom="-30dp"
                     android:layout_marginLeft="@dimen/d25"
@@ -742,7 +796,6 @@
 
                 </View>
                 <View
-                    android:background="@color/empt_color"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"></View>
             </LinearLayout>
@@ -753,6 +806,8 @@
         </LinearLayout>
     </ScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
 
     <TextView
         android:visibility="visible"

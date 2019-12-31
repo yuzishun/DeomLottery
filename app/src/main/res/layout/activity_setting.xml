@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.my.activity.SettingActivity">
+    tools:context="com.example.yuzishun.deomlottery.my.activity.SettingActivity">
     <include layout="@layout/title_text"></include>
     <View
         android:background="@color/empt_color"

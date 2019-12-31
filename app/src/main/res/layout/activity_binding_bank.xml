@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.my.activity.BindingBankActivity">
+    tools:context="com.example.yuzishun.deomlottery.my.activity.BindingBankActivity">
     <include layout="@layout/title_text"></include>
     <LinearLayout
         android:orientation="vertical"
@@ -104,7 +104,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                        <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                             android:layout_weight="1"
                             android:id="@+id/Edittext_bannumber"
                             android:paddingLeft="@dimen/d5"
@@ -154,7 +154,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                        <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                             android:inputType="number"
                             android:layout_weight="1"
                             android:paddingLeft="@dimen/d5"
@@ -205,7 +205,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                        <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                             android:inputType="number"
                             android:layout_weight="1"
                             android:paddingLeft="@dimen/d5"

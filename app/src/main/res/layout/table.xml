@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+    <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
         android:id="@+id/list_1_1"
         android:layout_width="80dp"
         android:layout_height="40dp"
@@ -12,7 +12,7 @@
         android:textColor="#000"
         android:textSize="10sp" />
 
-    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+    <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
         android:id="@+id/list_1_2"
         android:layout_width="80dp"
         android:layout_height="40dp"
@@ -21,7 +21,7 @@
         android:textColor="#000"
         android:textSize="10sp" />
 
-    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+    <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
         android:id="@+id/list_1_3"
         android:layout_width="80dp"
         android:layout_height="40dp"
@@ -32,7 +32,7 @@
         android:textColor="#000"
         android:textSize="10sp" />
 
-    <com.example.yuzishun.newdeom.my.custom.MyTableTextView
+    <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
         android:id="@+id/list_1_4"
         android:layout_width="80dp"
         android:layout_height="40dp"

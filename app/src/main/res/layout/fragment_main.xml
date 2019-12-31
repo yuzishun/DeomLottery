@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.example.yuzishun.newdeom.main.activity.MainFragment">
+    tools:context="com.example.yuzishun.deomlottery.main.activity.MainFragment">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -66,8 +66,51 @@
 
 
                </RelativeLayout>
+
+               <RelativeLayout
+                   android:id="@+id/layout_gong"
+                   android:layout_marginLeft="@dimen/d30"
+                   android:layout_marginRight="@dimen/d30"
+
+                   android:background="@drawable/layer_shadow_main"
+                   android:layout_below="@+id/layout_flag"
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp">
+
+                   <ImageView
+                       android:background="@mipmap/gonggao"
+                       android:id="@+id/image"
+                       android:layout_centerVertical="true"
+                       android:layout_marginLeft="@dimen/d15"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" />
+
+                   <TextView
+
+                       android:id="@+id/te"
+                       android:layout_width="0.1dp"
+                       android:layout_toRightOf="@+id/image"
+                       android:layout_marginTop="@dimen/d4"
+                       android:layout_marginBottom="@dimen/d4"
+                       android:layout_marginLeft="@dimen/d10"
+                       android:background="@color/edittext_hintcolor"
+                       android:layout_height="match_parent" />
+                   <com.paradoxie.autoscrolltextview.VerticalTextview
+                       android:id="@+id/VerticaTextView"
+                       android:layout_width="wrap_content"
+
+                       android:layout_toRightOf="@+id/te"
+                       android:layout_centerVertical="true"
+                       android:layout_marginLeft="@dimen/d10"
+                       android:layout_height="wrap_content">
+
+                   </com.paradoxie.autoscrolltextview.VerticalTextview>
+
+
+               </RelativeLayout>
+
                 <LinearLayout
-                    android:layout_below="@+id/layout_flag"
+                    android:layout_below="@+id/layout_gong"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -75,9 +118,10 @@
                     <LinearLayout
                         android:id="@+id/layout"
                         android:background="@color/transparent"
-                        android:gravity="center"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/d20"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp">
+                        android:layout_height="40dp">
                         <ImageView
                             android:background="@mipmap/hot"
 
@@ -273,43 +317,7 @@
 
            </RelativeLayout>
            
-           <RelativeLayout
-               android:background="#F7F7F7"
-               android:layout_width="match_parent"
-               android:layout_height="30dp">
 
-               <ImageView
-                   android:background="@mipmap/gonggao"
-                   android:id="@+id/image"
-                    android:layout_centerVertical="true"
-                   android:layout_marginLeft="@dimen/d25"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content" />
-               <TextView
-                   android:text="@string/Notice"
-                   android:id="@+id/te"
-                   android:textSize="@dimen/f12"
-                   android:layout_toRightOf="@+id/image"
-                   android:layout_centerVertical="true"
-                   android:layout_marginLeft="@dimen/d10"
-                   android:textColor="@color/login_red"
-
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content" />
-
-              <com.paradoxie.autoscrolltextview.VerticalTextview
-                  android:id="@+id/VerticaTextView"
-                  android:layout_width="wrap_content"
-
-                  android:layout_toRightOf="@+id/te"
-                  android:layout_centerVertical="true"
-                  android:layout_marginLeft="@dimen/d10"
-                  android:layout_height="wrap_content">
-
-              </com.paradoxie.autoscrolltextview.VerticalTextview>
-
-
-           </RelativeLayout>
             <LinearLayout
 
                 android:id="@+id/dan_layout"
@@ -621,7 +629,7 @@
                         android:layout_weight="1.1"
                         android:orientation="horizontal">
 
-                        <com.example.yuzishun.newdeom.login.custom.ClearEditText
+                        <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                             android:id="@+id/Multiple_Money"
                             android:layout_marginLeft="@dimen/d20"
                             android:inputType="number"
@@ -660,6 +668,54 @@
             </LinearLayout>
 
 
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:orientation="vertical"
+               android:layout_height="wrap_content">
+               <LinearLayout
+                   android:gravity="center_vertical"
+                   android:layout_width="match_parent"
+                   android:layout_marginLeft="@dimen/d20"
+                   android:layout_height="@dimen/d40">
+                   <ImageView
+                       android:background="@mipmap/fame"
+
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" />
+                   <TextView
+                       android:text="一单成名"
+
+                       android:textColor="@color/login_red"
+                       android:textSize="13sp"
+                       android:layout_marginLeft="@dimen/d5"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" />
+
+               </LinearLayout>
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_marginLeft="@dimen/d20"
+                   android:layout_height="wrap_content"
+                   android:descendantFocusability="blocksDescendants">
+                   <android.support.v7.widget.RecyclerView
+
+                       android:id="@+id/recyclerView_fame"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+
+
+                   </android.support.v7.widget.RecyclerView>
+               </RelativeLayout>
+               <TextView
+                   android:id="@+id/fame_empt"
+                   android:text="暂无数据"
+                   android:visibility="gone"
+                   android:layout_width="match_parent"
+                   android:gravity="center"
+                   android:layout_height="@dimen/d80" />
+
+           </LinearLayout>
+
 
            <LinearLayout
                android:id="@+id/Layout_Fourteen"
@@ -672,52 +728,6 @@
                    android:background="@mipmap/huodong"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content" />
-
-           </LinearLayout>
-
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:orientation="vertical"
-               android:layout_height="wrap_content">
-                <LinearLayout
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/d40">
-                    <ImageView
-                        android:background="@mipmap/fame"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:text="一单成名"
-
-                        android:textColor="@color/login_red"
-                        android:textSize="13sp"
-                        android:layout_marginLeft="@dimen/d5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-               <RelativeLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:descendantFocusability="blocksDescendants">
-               <android.support.v7.widget.RecyclerView
-
-                    android:id="@+id/recyclerView_fame"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
-
-
-               </android.support.v7.widget.RecyclerView>
-               </RelativeLayout>
-               <TextView
-                   android:id="@+id/fame_empt"
-                   android:text="暂无数据"
-                   android:visibility="gone"
-                   android:layout_width="match_parent"
-                   android:gravity="center"
-                   android:layout_height="@dimen/d80" />
 
            </LinearLayout>
 

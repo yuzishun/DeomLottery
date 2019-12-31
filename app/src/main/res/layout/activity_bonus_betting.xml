@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.main.betting.BonusBettingActivity">
+    tools:context="com.example.yuzishun.deomlottery.main.betting.BonusBettingActivity">
     <include layout="@layout/title_text"></include>
 
     <RelativeLayout

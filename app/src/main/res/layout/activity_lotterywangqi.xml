@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yuzishun.newdeom.main.activity.LotterywangqiActivity">
+    tools:context="com.example.yuzishun.deomlottery.main.activity.LotterywangqiActivity">
     <include layout="@layout/title_text"></include>
     <android.support.v7.widget.RecyclerView
         android:focusableInTouchMode="true"
@@ -16,5 +16,15 @@
 
 
     </android.support.v7.widget.RecyclerView>
+    <LinearLayout
+        android:id="@+id/layout_empt"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="暂无数据"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </LinearLayout>

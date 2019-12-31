@@ -40,7 +40,21 @@
                 android:layout_height="wrap_content">
 
             </android.support.v7.widget.RecyclerView>
+            <View
+                android:id="@+id/view"
+                android:layout_marginTop="@dimen/d5"
+                android:layout_below="@+id/ModeRecyclerView"
+                android:background="@color/edittext_hintcolor"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"></View>
+            <android.support.v7.widget.RecyclerView
+                android:layout_below="@+id/view"
+                android:id="@+id/ModeRecyclerViewMN"
+                android:layout_marginBottom="@dimen/d10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+            </android.support.v7.widget.RecyclerView>
         </RelativeLayout>
 
         <View
