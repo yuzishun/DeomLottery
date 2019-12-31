@@ -6,7 +6,7 @@
     android:orientation="vertical"
 
     tools:context="com.example.yuzishun.deomlottery.my.activity.MyFragment">
-
+    //测试
     <LinearLayout
         android:background="@drawable/login_shape"
         android:layout_width="match_parent"
