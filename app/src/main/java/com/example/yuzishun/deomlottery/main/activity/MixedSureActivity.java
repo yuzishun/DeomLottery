@@ -1435,7 +1435,17 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
 
         return returenlength;
     }
+    /**
+     * 改变背景颜色
+     */
+    private void darkenBackground(Float bgcolor) {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = bgcolor;
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        getWindow().setAttributes(lp);
+
+    }
     private void popwindnow() {
         //加载弹出框的布局
         contentView = LayoutInflater.from(MixedSureActivity.this).inflate(
@@ -1457,8 +1467,8 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
         // 按下android回退物理键 PopipWindow消失解决
         popupWindow.showAtLocation(contentView, Gravity.BOTTOM, 0, 0);
 
-        TextView Text_cancle =  contentView.findViewById(R.id.Text_cancle);
-        TextView Text_sure =  contentView.findViewById(R.id.Text_sure);
+        Button Text_cancle =  contentView.findViewById(R.id.Text_cancle);
+        Button Text_sure =  contentView.findViewById(R.id.Text_sure);
         final TextView text_mode = contentView.findViewById(R.id.text_mode);
         RecyclerView recyclerView = contentView.findViewById(R.id.ModeRecyclerView);
         RecyclerView ModeRecyclerViewMN = contentView.findViewById(R.id.ModeRecyclerViewMN);
@@ -1466,7 +1476,18 @@ public class MixedSureActivity extends BaseActivity implements View.OnClickListe
         ModeRecyclerViewMN.setLayoutManager(new GridLayoutManager(this,4));
         ModeRecyclerViewMN.setAdapter(modeRecyclerViewMN);
 
+        darkenBackground(0.5f);
 
+        //popwindow消失的时候设置屏幕变亮
+
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+
+                darkenBackground(1f);
+
+            }
+        });
 
         recyclerView.setLayoutManager(new GridLayoutManager(this,4));
         text_mode.setText(list_stbMixListBean.size()+"场比赛过关方式");

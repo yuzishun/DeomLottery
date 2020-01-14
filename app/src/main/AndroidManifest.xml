@@ -4,9 +4,7 @@
     xmlns:uses-permissionandroid="http://schemas.android.com/apk/res-auto"
     package="com.example.yuzishun.deomlottery">
 
-    <uses-permission
-        android:name="android.permission.INJECT_EVENTS"
-        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.INJECT_EVENTS" tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 允许程序打开网络套接字 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -30,16 +28,13 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
-
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <!-- 用于android 8.0不自动跳转安装 -->
-
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
     <!-- <uses-sdk tools:overrideLibrary="com.qiangxi.checkupdatelibrary:checkupdatelibrary:1.0.2"/> -->
     <application
         android:name="com.example.yuzishun.deomlottery.base.MyApplication"
@@ -55,7 +50,6 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-
         <!-- 屏幕适配 -->
         <meta-data
             android:name="design_width_in_dp"
@@ -63,7 +57,6 @@
         <meta-data
             android:name="design_height_in_dp"
             android:value="640" />
-
         <activity android:name="com.example.yuzishun.deomlottery.MainActivity" />
         <!-- 登陆界面 -->
         <activity android:name="com.example.yuzishun.deomlottery.login.activity.LoginActivity" />
@@ -72,12 +65,10 @@
             android:name="com.example.yuzishun.deomlottery.login.activity.ResignActivity"
             android:screenOrientation="portrait" />
         <!-- 密码找回界面 -->
-
         <activity
             android:name="com.example.yuzishun.deomlottery.login.activity.FindPasswordActivity"
             android:screenOrientation="portrait" />
         <!-- 银行卡管理界面 -->
-
         <activity android:name="com.example.yuzishun.deomlottery.SplachActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -86,7 +77,6 @@
             </intent-filter>
         </activity>
         <!-- 启动页面 -->
-
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -97,6 +87,7 @@
         <activity
             android:name="com.example.yuzishun.deomlottery.my.activity.BankCradManagementActivity"
             android:screenOrientation="portrait" />
+        <!-- 支付宝绑定页面-->
         <activity android:name="com.example.yuzishun.deomlottery.my.activity.BandingPayActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.my.activity.PersonalInformationActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.WebViewCustomerActivity" />
@@ -113,17 +104,13 @@
         <activity android:name="com.example.yuzishun.deomlottery.my.activity.Details_mingxiActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.my.activity.IdentityVerificationActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.my.activity.BindingBankActivity" />
-        <activity android:name=".my.activity.LineMoneyActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.my.activity.SendDocumentActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.main.activity.MixedSureActivity" />
-        <activity android:name=".main.activity.BettingActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.main.activity.BasketBallMixedActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.main.baskball.BasketballSureActivity" />
-        <activity android:name=".documentary.activity.Documentdetails_main_Activity" />
         <activity android:name="com.example.yuzishun.deomlottery.main.activity.Play_MessageActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.my.activity.WebViewPayActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.my.activity.ReflectActivity" />
-
         <provider
             android:name="com.example.yuzishun.deomlottery.utils.FileProviderUtil"
             android:authorities="com.example.yuzishun.deomlottery"
@@ -133,11 +120,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
         <activity android:name="com.example.yuzishun.deomlottery.main.activity.InfomationWebViewActivity" />
-        <activity android:name="com.example.yuzishun.deomlottery.documentary.activity.SeachActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.main.single.SingleSureActivity" />
-        <activity android:name=".main.activity.SingleActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.documentary.activity.SearchActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.main.activity.AnalysisActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.main.betting.BettingfootActivity" />
@@ -147,7 +131,6 @@
         <activity android:name="com.example.yuzishun.deomlottery.sunsheet.activity.ProgrammeActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.main.betting.BonusBettingActivity" />
         <activity android:name="com.example.yuzishun.deomlottery.documentary.activity.BonusdetailsActivity" />
-        <activity android:name=".main.baskballbetting.BasketBettingActivity"></activity>
     </application>
 
 </manifest>

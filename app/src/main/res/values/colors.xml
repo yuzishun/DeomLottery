@@ -23,4 +23,9 @@
     <color name="c3">#FFFFFFFF</color>
     <color name="login_edit">#999999</color>
     <color name="bonus_color">#AAA6A8</color>
+    <color name="login_Gradual_start">#FC3A3A</color>
+    <color name="login_Gradual_end">#FD6A6A</color>
+    <color name="button_Gradual_start">#FD5150</color>
+    <color name="button_Gradual_end">#FE8383</color>
+    
 </resources>

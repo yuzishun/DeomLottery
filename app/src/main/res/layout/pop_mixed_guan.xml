@@ -63,32 +63,30 @@
             android:layout_height="0.1dp"></View>
 
         <LinearLayout
-
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="@dimen/d45">
 
 
-            <TextView
-                android:layout_weight="1"
+            <Button
                 android:text="取消"
                 android:id="@+id/Text_cancle"
-
+                android:background="@drawable/login_change"
                 android:gravity="center"
                 android:textColor="@color/font_black"
                 android:textSize="@dimen/f11"
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-            <TextView
-                android:layout_weight="1"
+                android:layout_width="@dimen/d130"
+                android:layout_height="@dimen/d30" />
+            <Button
                 android:text="确定"
+                android:layout_marginLeft="@dimen/d30"
                 android:id="@+id/Text_sure"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/f11"
-                android:background="@color/login_red"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:background="@drawable/login_select"
+                android:layout_width="@dimen/d130"
+                android:layout_height="@dimen/d30" />
         </LinearLayout>
 
     </LinearLayout>

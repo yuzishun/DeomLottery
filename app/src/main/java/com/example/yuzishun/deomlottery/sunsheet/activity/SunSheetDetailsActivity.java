@@ -73,7 +73,7 @@ public class SunSheetDetailsActivity extends BaseActivity implements View.OnClic
     @BindView(R.id.list_2_4)
     TextView list_2_4;
     @BindView(R.id.follow_button)
-    Button follow_button;
+    ImageView follow_button;
     @BindView(R.id.commet_count)
     TextView commet_count;
     @BindView(R.id.lisk_count)
@@ -93,6 +93,7 @@ public class SunSheetDetailsActivity extends BaseActivity implements View.OnClic
     private List<CommentsListBean.DataBean> commentsList;
     private String user_id,order_id;
     private String bask_id;
+    private int isfans;
     @Override
     public int intiLayout() {
         return R.layout.activity_sun_sheet_details;
@@ -111,11 +112,11 @@ public class SunSheetDetailsActivity extends BaseActivity implements View.OnClic
         follow_button.setOnClickListener(new CustomClickListener() {
             @Override
             protected void onSingleClick() {
-                if(follow_button.getText().equals("取消关注")){
-
-                    Cancelfollow();
-                }else {
+                if(isfans==0){
                     follow();
+
+                }else {
+                    Cancelfollow();
 
                 }
             }
@@ -490,13 +491,14 @@ public class SunSheetDetailsActivity extends BaseActivity implements View.OnClic
                                 Glide.with(SunSheetDetailsActivity.this).load(sunSheetDetailsBean.getData().getImg_head()).asBitmap().centerCrop().into(usericon);
                                 username.setText(sunSheetDetailsBean.getData().getUname());
                                 usedr_id.setText(sunSheetDetailsBean.getData().getUser_id()+"");
+                                isfans = sunSheetDetailsBean.getData().getIs_fans();
                                 if(sunSheetDetailsBean.getData().getIs_fans()==0){
+                                    Glide.with(SunSheetDetailsActivity.this).load(R.mipmap.okami_att_ture).asBitmap().into(follow_button);
 
-                                    follow_button.setText("关注");
-                                    follow_button.setBackground(getResources().getDrawable(R.drawable.login_shap));
+
                                 }else {
-                                    follow_button.setText("取消关注");
-                                    follow_button.setBackground(getResources().getDrawable(R.drawable.login_change));
+
+                                    Glide.with(SunSheetDetailsActivity.this).load(R.mipmap.okami_att_false).asBitmap().into(follow_button);
 
                                 }
                                 text_dec.setText(sunSheetDetailsBean.getData().getManifesto());
@@ -607,8 +609,8 @@ public class SunSheetDetailsActivity extends BaseActivity implements View.OnClic
                             if(code==10000){
 
                                 ToastUtil.showToast1(SunSheetDetailsActivity.this,msg);
-                                follow_button.setText("取消关注");
-                                follow_button.setBackground(getResources().getDrawable(R.drawable.login_change));
+                                Glide.with(SunSheetDetailsActivity.this).load(R.mipmap.okami_att_false).asBitmap().into(follow_button);
+
 
                             }else {
                                 ToastUtil.showToast1(SunSheetDetailsActivity.this,msg);
@@ -714,8 +716,8 @@ public class SunSheetDetailsActivity extends BaseActivity implements View.OnClic
                             if(code==10000){
 
                                 ToastUtil.showToast1(SunSheetDetailsActivity.this,msg);
-                                follow_button.setText("关注");
-                                follow_button.setBackground(getResources().getDrawable(R.drawable.login_shap));
+
+                                Glide.with(SunSheetDetailsActivity.this).load(R.mipmap.okami_att_ture).asBitmap().into(follow_button);
 
                             }else {
                                 ToastUtil.showToast1(SunSheetDetailsActivity.this,msg);

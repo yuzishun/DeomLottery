@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -165,7 +166,7 @@ public class BettingFootballListAdapter extends BaseMultiItemQuickAdapter<MultiI
 
 
                 }
-                final TextView text_low = helper.getView(R.id.text_low);
+                final Button text_low = helper.getView(R.id.text_low);
                 int ii=0;
                 for (int i = 0; i < item2.list_one.size(); i++) {
                     if(item2.list_one.get(i).isselect){
@@ -206,11 +207,13 @@ public class BettingFootballListAdapter extends BaseMultiItemQuickAdapter<MultiI
                 if(item2.desc.equals("展开更多选项")){
                     text_low.setText(item2.desc+"");
 
-                    text_low.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.edittext_hintcolor));
+                    text_low.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.login_red));
+                    text_low.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_false));
 
                 }else {
                     text_low.setText(item2.desc+"");
-                    text_low.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.login_red));
+                    text_low.setTextColor(helper.itemView.getContext().getResources().getColor(R.color.white));
+                    text_low.setBackground(helper.itemView.getContext().getResources().getDrawable(R.drawable.dialog_mixed_true));
 
                 }
 
@@ -229,7 +232,7 @@ public class BettingFootballListAdapter extends BaseMultiItemQuickAdapter<MultiI
 
 
 
-                helper.getView(R.id.layout_low).setOnClickListener(new View.OnClickListener() {
+                helper.getView(R.id.text_low).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog_m(item2,helper.itemView.getContext(),helper.getLayoutPosition());

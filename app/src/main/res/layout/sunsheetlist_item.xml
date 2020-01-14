@@ -83,19 +83,31 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_marginLeft="@dimen/d20"
-        android:layout_marginRight="@dimen/d20"
+        android:layout_marginLeft="@dimen/d10"
+        android:layout_marginRight="@dimen/d10"
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="140dp">
+        <ImageView
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/layer_shadow_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/layout_one"
+            android:layout_marginLeft="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
+            android:layout_marginRight="@dimen/d5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_1"
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:text="竞猜类型"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_2"
@@ -108,7 +120,8 @@
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:text="方案金额"
                 android:id="@+id/list_1_2"
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_toRightOf="@+id/list_1_1"
                 android:gravity="center"
@@ -118,7 +131,8 @@
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_3"
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="中奖金额"
                 android:layout_alignBottom="@+id/list_1_2"
@@ -131,7 +145,8 @@
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_4"
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:text="倍数"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_3"
@@ -145,11 +160,15 @@
 
         <LinearLayout
             android:layout_below="@+id/layout_one"
+            android:layout_marginLeft="@dimen/d5"
+            android:layout_marginRight="@dimen/d5"
+            android:layout_marginBottom="@dimen/d5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_1"
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_2"
                 android:layout_alignTop="@+id/list_1_2"
@@ -161,7 +180,8 @@
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_2"
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_toRightOf="@+id/list_1_1"
                 android:gravity="center"
@@ -172,7 +192,8 @@
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_3"
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_2"
                 android:layout_alignTop="@+id/list_1_2"
@@ -186,7 +207,8 @@
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_4"
 
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_3"
                 android:layout_alignTop="@+id/list_1_3"
@@ -198,6 +220,7 @@
                 android:textSize="10sp" />
         </LinearLayout>
 
+        </LinearLayout>
 
 
         <LinearLayout

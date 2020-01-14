@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">常红彩店2号</string>
+    <string name="app_name">彩红</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -29,7 +29,7 @@
     <string name="documentary">跟单</string>
     <string name="score">比分</string>
     <string name="my">个人中心</string>
-    <string name="seticon">设置头像</string>
+    <string name="seticon">头像</string>
     <string name="setname">名称</string>
     <string name="RealName">真实姓名</string>
     <string name="Id_NumBer">证件号码</string>

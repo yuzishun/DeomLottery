@@ -17,7 +17,7 @@
                 android:id="@+id/image_single"
                 android:visibility="gone"
                 android:background="@mipmap/single"
-                android:layout_width="35dp"
+                android:layout_width="30dp"
                 android:layout_height="35dp" />
             <TextView
                 android:text="澳超"
@@ -136,6 +136,7 @@
 
         </LinearLayout>
         <LinearLayout
+            android:layout_marginRight="@dimen/d10"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -245,9 +246,11 @@
     </LinearLayout>
 
     <View
-        android:background="@color/empt_color"
+        android:layout_marginRight="@dimen/d20"
+        android:layout_marginLeft="@dimen/d20"
+        android:background="@color/edittext_hintcolor"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d10">
+        android:layout_height="0.1dp">
 
 
     </View>

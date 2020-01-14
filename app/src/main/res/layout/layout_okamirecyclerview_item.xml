@@ -2,12 +2,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_marginLeft="@dimen/d20"
-    android:layout_marginRight="@dimen/d20"
+
+    android:background="@drawable/layer_shadow_main"
     android:layout_height="200dp">
 
     <LinearLayout
         android:layout_weight="3"
+        android:layout_marginLeft="@dimen/d10"
+        android:layout_marginRight="@dimen/d10"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -60,6 +62,8 @@
 
     </LinearLayout>
     <RelativeLayout
+        android:layout_marginLeft="@dimen/d10"
+        android:layout_marginRight="@dimen/d10"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -69,10 +73,12 @@
             android:id="@+id/layout_one"
             android:layout_marginTop="@dimen/d10"
             android:layout_width="match_parent"
+            android:orientation="horizontal"
             android:layout_height="wrap_content">
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_1"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_2"
                 android:layout_alignTop="@+id/list_1_2"
@@ -83,7 +89,9 @@
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_2"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+
                 android:layout_height="40dp"
                 android:layout_toRightOf="@+id/list_1_1"
                 android:gravity="center"
@@ -93,7 +101,8 @@
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_3"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_2"
                 android:layout_alignTop="@+id/list_1_2"
@@ -105,7 +114,8 @@
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_4"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_3"
                 android:layout_alignTop="@+id/list_1_3"
@@ -118,11 +128,13 @@
 
         <LinearLayout
             android:layout_below="@+id/layout_one"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_1"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_2"
                 android:layout_alignTop="@+id/list_1_2"
@@ -133,7 +145,8 @@
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_2"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_toRightOf="@+id/list_1_1"
                 android:gravity="center"
@@ -143,7 +156,8 @@
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_3"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_2"
                 android:layout_alignTop="@+id/list_1_2"
@@ -156,7 +170,8 @@
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_4"
 
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_3"
                 android:layout_alignTop="@+id/list_1_3"
@@ -166,7 +181,7 @@
                 android:textSize="10sp" />
         </LinearLayout>
         <Button
-            android:background="@drawable/login_shap"
+            android:background="@drawable/login_select"
             android:layout_width="70dp"
             android:text="评论"
             android:id="@+id/Button_Okami_ping"
@@ -192,23 +207,24 @@
             android:id="@+id/jiang_state"
             android:src="@mipmap/readyjiang"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/d20"
-            android:layout_marginRight="@dimen/d50"
+            android:layout_marginTop="@dimen/d30"
+            android:layout_marginRight="@dimen/d70"
             android:layout_width="@dimen/d30"
             android:layout_height="@dimen/d30" />
         <TextView
-            android:id="@+id/text_sunsheet"
-            android:text="已晒单"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/d25"
+            android:id="@+id/text_type"
+            android:text="竞彩类型: 足球"
             android:textSize="@dimen/f12"
-            android:layout_above="@+id/text_type"
             android:textColor="@color/login_red"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/text_type"
-            android:text="竞彩类型: 足球"
+            android:id="@+id/text_sunsheet"
+            android:text="已晒单"
             android:textSize="@dimen/f12"
-            android:layout_marginBottom="@dimen/d15"
+            android:layout_marginBottom="@dimen/d10"
 
             android:layout_alignParentBottom="true"
             android:textColor="@color/login_red"

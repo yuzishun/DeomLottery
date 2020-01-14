@@ -10,7 +10,7 @@
 
     <RelativeLayout
        android:layout_width="match_parent"
-        android:background="@color/login_red"
+        android:background="@drawable/left_shape"
         android:layout_height="@dimen/d40">
         <LinearLayout
             android:id="@+id/layout_title_bar"
@@ -27,7 +27,7 @@
                 android:layout_marginLeft="@dimen/d40"
                 android:layout_marginRight="@dimen/d40"
                 android:textColor="@color/white"
-                android:textSize="@dimen/f14"
+                android:textSize="@dimen/f12"
                 android:layout_marginBottom="@dimen/d5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

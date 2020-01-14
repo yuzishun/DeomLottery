@@ -2,20 +2,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="100dp">
-
-    <View
-        android:background="@color/empt_color"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d10">
+    android:layout_height="60dp">
 
 
-    </View>
     <LinearLayout
         android:background="@color/white"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="59dp">
 
         <LinearLayout
             android:layout_weight="1"
@@ -64,7 +58,7 @@
                     android:text="一拳超人"
                     android:id="@+id/text_name"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginTop="@dimen/d20"
+                    android:layout_marginTop="@dimen/d10"
                     android:textColor="@color/font_black_shen"
                     android:textSize="@dimen/f12"
                     android:layout_width="wrap_content"
@@ -73,7 +67,7 @@
                     android:text="推单"
                     android:id="@+id/Text_tui"
                     android:layout_below="@+id/text_name"
-                    android:layout_marginTop="@dimen/d15"
+                    android:layout_marginTop="@dimen/d10"
                     android:layout_alignParentLeft="true"
                     android:textColor="@color/font_black_shen"
                     android:textSize="@dimen/f11"
@@ -85,7 +79,7 @@
                     android:layout_toRightOf="@+id/Text_tui"
                     android:layout_below="@+id/text_name"
                     android:layout_marginLeft="@dimen/d5"
-                    android:layout_marginTop="@dimen/d15"
+                    android:layout_marginTop="@dimen/d10"
                     android:textColor="@color/login_red"
                     android:textSize="@dimen/f11"
                     android:layout_width="wrap_content"
@@ -104,7 +98,7 @@
                 android:id="@+id/text_lilv"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/d20"
-                android:layout_marginTop="@dimen/d20"
+                android:layout_marginTop="@dimen/d10"
                 android:textColor="@color/login_red"
                 android:textSize="@dimen/f12"
                 android:layout_width="wrap_content"
@@ -114,7 +108,7 @@
                 android:id="@+id/text_wen"
                 android:layout_below="@+id/text_lilv"
                 android:layout_marginRight="@dimen/d20"
-                android:layout_marginTop="@dimen/d15"
+                android:layout_marginTop="@dimen/d10"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/font_black_shen"
                 android:textSize="@dimen/f11"
@@ -124,5 +118,10 @@
         </RelativeLayout>
 
     </LinearLayout>
-
+    <View
+        android:background="@color/edittext_hintcolor"
+        android:layout_marginRight="@dimen/d20"
+        android:layout_marginLeft="@dimen/d20"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"></View>
 </LinearLayout>

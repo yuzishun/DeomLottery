@@ -26,7 +26,7 @@
             <LinearLayout
                 android:id="@+id/layout_bind"
                 android:orientation="vertical"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -36,35 +36,41 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <LinearLayout
+                <RelativeLayout
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
+                        android:id="@+id/pay"
                         android:text="@string/Pay_User_Phone"
                         android:gravity="center_vertical"
                         android:layout_marginLeft="@dimen/d40"
                         android:layout_weight="1.5"
-                        android:textSize="@dimen/f13"
+                        android:textSize="@dimen/f12"
+
                         android:textColor="@color/font_black"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
+
                     <com.example.yuzishun.deomlottery.login.custom.ClearEditText
                         android:inputType="numberDecimal"
                         android:id="@+id/pay_phone"
                         android:maxLines="1"
+                        android:layout_marginLeft="@dimen/d20"
+                        android:layout_toRightOf="@+id/pay"
                         android:layout_weight="1"
                         android:maxLength="11"
                         android:background="@null"
                         android:hint="@string/Please_Writer_Pay_Phone"
                         android:textColorHint="@color/edittext_hintcolor"
-                        android:textSize="@dimen/f12"
+                        android:textSize="@dimen/f11"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
 
-                </LinearLayout>
+                </RelativeLayout>
 
 
             </LinearLayout>

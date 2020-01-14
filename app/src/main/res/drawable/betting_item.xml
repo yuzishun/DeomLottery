@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_enabled="true" android:drawable="@drawable/dialog_mixed_true">
+    <item android:state_enabled="true" android:drawable="@drawable/login_radios_border_sure_red">
 
     </item>
     <item android:state_enabled="false" android:drawable="@drawable/dialog_mixed_false">

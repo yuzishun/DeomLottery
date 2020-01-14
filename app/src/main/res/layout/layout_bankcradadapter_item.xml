@@ -3,16 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    android:layout_height="80dp">
+    android:layout_height="60dp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_height="80dp">
+        android:layout_height="60dp">
 
         <LinearLayout
-            android:layout_weight="3"
+            android:layout_weight="5"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -20,10 +20,10 @@
                 android:id="@+id/image_bank"
                 android:src="@mipmap/jianhang"
 
-                android:layout_width="@dimen/d30"
-                android:layout_height="@dimen/d30" />
+                android:layout_width="@dimen/d20"
+                android:layout_height="@dimen/d20" />
         </LinearLayout>
-        <LinearLayout
+        <RelativeLayout
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center_vertical"
@@ -40,22 +40,25 @@
             <TextView
                 android:id="@+id/Text_card_no"
                 android:text="@string/weihao"
-                android:layout_marginTop="@dimen/d15"
-                android:textColor="@color/font_black"
-                android:textSize="@dimen/f13"
+
+                android:layout_marginTop="@dimen/d20"
+                android:textColor="@color/font_gray"
+                android:textSize="@dimen/f11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
-
 
     <View
         android:layout_alignParentBottom="true"
         android:background="@color/edittext_hintcolor"
         android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/d20"
+        android:layout_marginRight="@dimen/d20"
         android:layout_height="0.1dp">
 
     </View>
+
 
 </RelativeLayout>

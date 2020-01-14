@@ -4,15 +4,14 @@
     android:orientation="vertical"
 
     android:background="@color/white"
-    android:layout_height="250dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_weight="1.1"
         android:layout_marginLeft="@dimen/d20"
         android:layout_marginRight="@dimen/d20"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
 
@@ -21,7 +20,7 @@
         <RelativeLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="@dimen/d60">
             <com.example.yuzishun.deomlottery.my.custom.XCRoundImageView
                 android:src="@mipmap/gray_icon"
                 android:id="@+id/icon"
@@ -51,10 +50,9 @@
                 android:layout_height="wrap_content" />
         </RelativeLayout>
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/text_dec"
@@ -72,59 +70,74 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_weight="1"
-        android:layout_marginLeft="@dimen/d20"
-        android:layout_marginRight="@dimen/d20"
+        android:layout_marginLeft="@dimen/d10"
+        android:layout_marginRight="@dimen/d10"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="150dp">
 
+        <LinearLayout
+            android:background="@drawable/layer_shadow_main"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/layout_one"
+            android:layout_marginRight="@dimen/d5"
+            android:layout_marginLeft="@dimen/d5"
+            android:layout_marginTop="@dimen/d5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_1"
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:textColor="@color/font_black"
+
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_2"
                 android:layout_alignTop="@+id/list_1_2"
                 android:gravity="center"
-                android:textColor="@color/font_gray"
 
                 android:textSize="10sp" />
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_2"
-                android:layout_width="80dp"
+
                 android:layout_height="40dp"
                 android:layout_toRightOf="@+id/list_1_1"
                 android:gravity="center"
-                android:textColor="@color/font_gray"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:textColor="@color/font_black"
 
                 android:textSize="10sp" />
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_3"
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:textColor="@color/font_black"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_2"
                 android:layout_alignTop="@+id/list_1_2"
                 android:layout_toRightOf="@+id/list_1_2"
                 android:gravity="center"
-                android:textColor="@color/font_gray"
+
 
                 android:textSize="10sp" />
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_1_4"
-                android:layout_width="80dp"
+
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_3"
                 android:layout_alignTop="@+id/list_1_3"
                 android:layout_toRightOf="@+id/list_1_3"
                 android:gravity="center"
-                android:textColor="@color/font_gray"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:textColor="@color/font_black"
 
                 android:textSize="10sp" />
         </LinearLayout>
@@ -132,77 +145,93 @@
         <LinearLayout
             android:layout_below="@+id/layout_one"
             android:layout_width="match_parent"
+            android:layout_marginRight="@dimen/d5"
+            android:layout_marginLeft="@dimen/d5"
+            android:layout_marginBottom="@dimen/d5"
             android:layout_height="wrap_content">
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_1"
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:textColor="@color/font_black"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_2"
                 android:layout_alignTop="@+id/list_1_2"
                 android:gravity="center"
-                android:textColor="@color/font_gray"
+
 
                 android:textSize="10sp" />
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_2"
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:textColor="@color/font_black"
                 android:layout_height="40dp"
                 android:layout_toRightOf="@+id/list_1_1"
                 android:gravity="center"
-                android:textColor="@color/font_gray"
+
 
                 android:textSize="10sp" />
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_3"
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:textColor="@color/font_black"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_2"
                 android:layout_alignTop="@+id/list_1_2"
                 android:layout_toRightOf="@+id/list_1_2"
                 android:gravity="center"
-                android:textColor="@color/font_gray"
+
 
                 android:textSize="10sp" />
 
             <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
                 android:id="@+id/list_2_4"
 
-                android:layout_width="80dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:textColor="@color/font_black"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/list_1_3"
                 android:layout_alignTop="@+id/list_1_3"
                 android:layout_toRightOf="@+id/list_1_3"
                 android:gravity="center"
-                android:textColor="@color/font_gray"
+
                 android:textSize="10sp" />
         </LinearLayout>
+        </LinearLayout>
+
         <TextView
             android:id="@+id/text_type"
             android:text="竞彩类型: 足球"
             android:textSize="@dimen/f12"
             android:layout_marginBottom="@dimen/d15"
-
+            android:layout_marginLeft="@dimen/d10"
             android:layout_alignParentBottom="true"
-            android:textColor="@color/font_gray"
+            android:textColor="@color/font_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button
             android:background="@drawable/login_shap"
-            android:layout_width="70dp"
+            android:layout_width="90dp"
             android:text="跟单"
             android:id="@+id/document_shou_button_"
             android:textColor="@color/white"
             android:textSize="@dimen/f10"
             android:layout_marginBottom="@dimen/d10"
+            android:layout_marginRight="@dimen/d10"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_height="30dp" />
 
     </RelativeLayout>
     <View
-        android:background="@color/empt_color"
+        android:background="@color/edittext_hintcolor"
+        android:layout_marginLeft="@dimen/d20"
+        android:layout_marginRight="@dimen/d20"
         android:layout_width="match_parent"
         android:layout_height="0.1dp">
 

@@ -143,22 +143,22 @@
 
                 <Button
                     android:id="@+id/button_cancle"
-                    android:background="@drawable/document_copy_edittext_shape_white"
+                    android:background="@drawable/document_copy_edittext_shape_gray"
                     android:text="取消"
                     android:enabled="true"
-                    android:textColor="@color/edittext_hintcolor"
+                    android:textColor="@color/font_black"
                     android:textSize="@dimen/f10"
-                    android:layout_width="55dp"
+                    android:layout_width="85dp"
                     android:layout_height="25dp" />
                 <Button
-                    android:background="@drawable/recharge_item_button"
+                    android:background="@drawable/login_select"
                     android:text="确定"
                     android:id="@+id/submit_order"
                     android:layout_marginLeft="@dimen/d40"
                     android:enabled="true"
-                    android:textColor="@color/login_red"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/f10"
-                    android:layout_width="55dp"
+                    android:layout_width="85dp"
                     android:layout_height="25dp" />
 
             </LinearLayout>

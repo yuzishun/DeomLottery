@@ -62,9 +62,9 @@ public class QuickAdapter_football extends BaseQuickAdapter<ItemPoint,BaseViewHo
             layout_relat.setBackgroundResource(R.drawable.dialog_mixed_true);
         }else {
             item_name.setTextColor(MyApplication.getContext().getResources().getColor(R.color.font_black));
-            item_right_name.setTextColor(MyApplication.getContext().getResources().getColor(R.color.font_black));
+            item_right_name.setTextColor(MyApplication.getContext().getResources().getColor(R.color.gray_Overall_hint));
 
-            layout_relat.setBackgroundResource(R.drawable.dialog_mixed_false);
+            layout_relat.setBackgroundResource(R.drawable.dialog_mixed_false_t);
 
         }
 

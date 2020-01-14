@@ -75,7 +75,7 @@ public class ReflectActivity extends BaseActivity implements View.OnClickListene
         image_back.setOnClickListener(this);
         pick_view.setOnClickListener(this);
         button_t.setOnClickListener(this);
-        Text_ke.setText("可提现余额"+available_balance+"元");
+        Text_ke.setText(""+available_balance+"");
         card_id = Content.list_bank.get(0).getId();
         Text_card_no.setText("尾号"+Content.list_bank.get(0).getCard_no().substring(Content.list_bank.get(0).getCard_no().length()-4,Content.list_bank.get(0).getCard_no().length())+"的储蓄卡");
         Text_card_bank.setText(Content.list_bank.get(0).getCard_bank());

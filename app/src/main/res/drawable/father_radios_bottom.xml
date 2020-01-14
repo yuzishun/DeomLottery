@@ -5,5 +5,5 @@
 
     </corners>
     <stroke android:color="@color/white"></stroke>
-    <solid android:color="@color/Yellow"></solid>
+    <solid android:color="@color/white"></solid>
 </shape>

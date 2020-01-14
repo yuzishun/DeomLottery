@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
    >
     <gradient
-        android:angle="90"
+        android:angle="180"
         android:endColor="@color/login_Gradual_end"
         android:startColor="@color/login_Gradual_start" />
 

@@ -298,7 +298,7 @@
                     android:enabled="true"
                     android:textColor="@color/white"
                     android:textSize="@dimen/f13"
-                    android:layout_width="@dimen/d60"
+                    android:layout_width="@dimen/d100"
                     android:layout_height="26dp" />
             </LinearLayout>
         </LinearLayout>

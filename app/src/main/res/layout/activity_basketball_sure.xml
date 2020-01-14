@@ -163,7 +163,7 @@
 
                 </RelativeLayout>
                 <LinearLayout
-                    android:layout_weight="4"
+                    android:layout_weight="1.4"
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -174,7 +174,7 @@
                         android:enabled="true"
                         android:textColor="@color/white"
                         android:textSize="@dimen/f13"
-                        android:layout_width="@dimen/d60"
+                        android:layout_width="@dimen/d130"
                         android:layout_height="26dp" />
                 </LinearLayout>
             </LinearLayout>

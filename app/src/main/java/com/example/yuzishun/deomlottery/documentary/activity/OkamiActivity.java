@@ -62,7 +62,7 @@ public class OkamiActivity extends BaseActivity implements View.OnClickListener 
     @BindView(R.id.Okami_Winning)
     TextView Okami_Winning;
     @BindView(R.id.button_sure)
-    Button button_sure;
+    ImageView button_sure;
     @BindView(R.id.state_one)
     ImageView state_one;
     @BindView(R.id.state_two)
@@ -81,6 +81,9 @@ public class OkamiActivity extends BaseActivity implements View.OnClickListener 
     TextView state_three_heng;
     @BindView(R.id.state_four_heng)
     TextView state_four_heng;
+    @BindView(R.id.Okami_att)
+    TextView Okami_att;
+    private int Attention=0;
     @Override
     public int intiLayout() {
         return R.layout.activity_okami;
@@ -101,11 +104,18 @@ public class OkamiActivity extends BaseActivity implements View.OnClickListener 
         button_sure.setOnClickListener(new CustomClickListener() {
             @Override
             protected void onSingleClick() {
-                if(button_sure.getText().equals("取消关注")){
-
-                    Cancelfollow();
-                }else {
+//                if(button_sure.getText().equals("取消关注")){
+//
+//                    Cancelfollow();
+//                }else {
+//                    follow();
+//
+//                }
+                if(Attention==0){
                     follow();
+
+                }else {
+                    Cancelfollow();
 
                 }
             }
@@ -210,12 +220,13 @@ public class OkamiActivity extends BaseActivity implements View.OnClickListener 
 
                                 OkamiBean okamiBean = JSON.parseObject(result,OkamiBean.class);
                                 Okami_Name.setText(okamiBean.getData().getUname());
-                                Okami_Fans.setText("粉丝："+okamiBean.getData().getFans()+"   关注："+okamiBean.getData().getIcon());
+                                Okami_Fans.setText(okamiBean.getData().getFans()+"");
+                                Okami_att.setText(okamiBean.getData().getIcon()+"");
+                                Attention = okamiBean.getData().getAttention();
                                 if(okamiBean.getData().getAttention()==0){
-
-                                    button_sure.setText("关注");
+                                    Glide.with(OkamiActivity.this).load(R.mipmap.okami_att_ture).asBitmap().into(button_sure);
                                 }else {
-                                    button_sure.setText("取消关注");
+                                    Glide.with(OkamiActivity.this).load(R.mipmap.okami_att_false).asBitmap().into(button_sure);
 
                                 }
                                 Glide.with(OkamiActivity.this).load(okamiBean.getData().getImg_head()).asBitmap().centerCrop().into(Okami_icon);
@@ -497,7 +508,8 @@ public class OkamiActivity extends BaseActivity implements View.OnClickListener 
                             if(code==10000){
 
                                 ToastUtil.showToast1(OkamiActivity.this,msg);
-                                button_sure.setText("取消关注");
+                                Glide.with(OkamiActivity.this).load(R.mipmap.okami_att_false).asBitmap().into(button_sure);
+                                Attention=1;
                             }else {
                                 ToastUtil.showToast1(OkamiActivity.this,msg);
                             }
@@ -540,7 +552,8 @@ public class OkamiActivity extends BaseActivity implements View.OnClickListener 
                             if(code==10000){
 
                                 ToastUtil.showToast1(OkamiActivity.this,msg);
-                                button_sure.setText("关注");
+                                Glide.with(OkamiActivity.this).load(R.mipmap.okami_att_ture).asBitmap().into(button_sure);
+                                Attention=0;
 
                             }else {
                                 ToastUtil.showToast1(OkamiActivity.this,msg);

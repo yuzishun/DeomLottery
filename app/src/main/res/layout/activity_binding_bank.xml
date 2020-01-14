@@ -15,6 +15,7 @@
         <RelativeLayout
             android:background="@color/login_red"
             android:layout_weight="2"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
@@ -26,10 +27,10 @@
 
         </RelativeLayout>
         <RelativeLayout
-            android:layout_weight="2.5"
+            android:layout_weight="10"
             android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <TextView
                 android:text="即可享受安全便捷的移动支付体验"
                 android:layout_centerHorizontal="true"
@@ -61,7 +62,7 @@
             android:layout_height="match_parent">
             <LinearLayout
                 android:background="@color/white"
-                android:layout_weight="4"
+                android:layout_weight="7"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -93,9 +94,9 @@
                             android:text="@string/Bank_number"
 
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f11"
+                            android:textSize="@dimen/f12"
                             android:layout_marginLeft="@dimen/d30"
-                            android:textColor="@color/gray_Overall_hint"
+                            android:textColor="@color/font_black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </RelativeLayout>
@@ -129,7 +130,9 @@
 
 
                 <View
-                    android:background="@color/empt_color"
+                    android:background="@color/edittext_hintcolor"
+                    android:layout_marginLeft="@dimen/d20"
+                    android:layout_marginRight="@dimen/d20"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"></View>
                 <LinearLayout
@@ -141,11 +144,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <TextView
-                            android:text="@string/Phone_Number"
+                            android:text="手机号码"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f11"
+                            android:textSize="@dimen/f12"
                             android:layout_marginLeft="@dimen/d30"
-                            android:textColor="@color/gray_Overall_hint"
+                            android:textColor="@color/font_black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </RelativeLayout>
@@ -178,7 +181,9 @@
 
                 </LinearLayout>
                 <View
-                    android:background="@color/empt_color"
+                    android:background="@color/edittext_hintcolor"
+                    android:layout_marginLeft="@dimen/d20"
+                    android:layout_marginRight="@dimen/d20"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"></View>
                 <LinearLayout
@@ -194,9 +199,9 @@
                         <TextView
                             android:text="@string/Message_yanzheng"
                             android:layout_centerVertical="true"
-                            android:textSize="@dimen/f11"
+                            android:textSize="@dimen/f12"
                             android:layout_marginLeft="@dimen/d30"
-                            android:textColor="@color/gray_Overall_hint"
+                            android:textColor="@color/font_black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </RelativeLayout>
@@ -231,12 +236,13 @@
                             android:textColor="@color/white"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/d10"
-                            android:layout_height="30dp" />
+                            android:layout_marginRight="@dimen/d20"
+                            android:layout_height="25dp" />
 
                     </RelativeLayout>
 
                 </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -253,7 +259,9 @@
                     android:enabled="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/f12"
-                    android:layout_width="280dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="@dimen/d20"
+                    android:layout_marginLeft="@dimen/d20"
                     android:layout_height="40dp" />
             </LinearLayout>
         </LinearLayout>

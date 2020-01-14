@@ -527,8 +527,8 @@ public class BasketBallMixedActivity extends BaseActivity implements View.OnClic
         View contentView = LayoutInflater.from(view.getContext()).inflate(R.layout.bettingfoot_pop_layout,null);
         PopupWindow popup = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
         //popwindow开始的时候设置屏幕变暗
-        darkenBackground(0.5f);
         popup.showAsDropDown(view);
+        darkenBackground(0.5f);
 
         //popwindow消失的时候设置屏幕变亮
 

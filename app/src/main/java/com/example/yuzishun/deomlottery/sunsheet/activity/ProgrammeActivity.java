@@ -279,7 +279,7 @@ public class ProgrammeActivity extends BaseActivity implements View.OnClickListe
 
         //初始化内容
         for (int i = 0; i < order_odds_info.size(); i++) {
-            RelativeLayout relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.programme_details, null);
+            LinearLayout relativeLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.programme_details, null);
             MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
             txt.setText(order_odds_info.get(i).getGame_begin_time()+"");
             txt.setTextColor(context.getResources().getColor(R.color.font_gray));

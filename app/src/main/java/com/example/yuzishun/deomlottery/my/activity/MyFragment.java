@@ -57,6 +57,7 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
     private SwipeRefreshLayout Home_Refresh;
     private TextView text_yue,text_caijin,fans,follow;
     private RelativeLayout layout_tixian;
+    private LinearLayout layout_viss;
     private int authentication;
     private String available_balance,balance,alipay="";
 
@@ -169,6 +170,7 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
 
     private void initView() {
         fans = (TextView) findViewById(R.id.fans);
+        layout_viss = (LinearLayout) findViewById(R.id.layout_viss);
         layout_Sunsheet= (LinearLayout) findViewById(R.id.layout_Sunsheet);
         follow  = (TextView) findViewById(R.id.follow);
         layout_tixian = (RelativeLayout) findViewById(R.id.layout_tixian);
@@ -281,11 +283,13 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
                     startActivity(intent);
 
                 }else {
-                    Intent intent = new Intent(getContext(),BandingPayActivity.class);
-                    intent.putExtra("flag",1);
-                    intent.putExtra("available_balance",available_balance);
+                    ToastUtil.showToast1(getActivity(),"已经绑定过支付宝账号了");
 
-                    startActivity(intent);
+//                    Intent intent = new Intent(getContext(),BandingPayActivity.class);
+//                    intent.putExtra("flag",1);
+//                    intent.putExtra("available_balance",available_balance);
+//
+//                    startActivity(intent);
                 }
 
                 break;
@@ -339,7 +343,7 @@ public class MyFragment extends LazyFragment implements View.OnClickListener, Sw
         @Override
         public void handleMessage(android.os.Message msg) {
             Text_loading.setVisibility(View.GONE);
-
+            layout_viss.setVisibility(View.VISIBLE);
             Home_Refresh.setVisibility(View.VISIBLE);
             layout_scroll.setVisibility(View.VISIBLE);
         }

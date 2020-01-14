@@ -65,7 +65,7 @@ public class GridView_Adapter extends BaseAdapter {
 
             viewHolder.name.setEnabled(true);
         }else {
-            viewHolder.name.setTextColor(convertView.getResources().getColor(R.color.gray_Overall_hint));
+            viewHolder.name.setTextColor(convertView.getResources().getColor(R.color.font_black));
 
             viewHolder.name.setEnabled(false);
         }

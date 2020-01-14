@@ -26,11 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:background="@mipmap/horn"
-                    android:layout_marginTop="@dimen/d5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+
                 <TextView
                     android:text="晒单宣言"
                     android:textColor="@color/font_black"
@@ -69,13 +65,15 @@
 
                 <Button
                     android:background="@drawable/login_select"
-                    android:text="立即晒单"
+                    android:text="确认"
                     android:id="@+id/Sendsunsheet"
                     android:layout_centerHorizontal="true"
                     android:enabled="true"
                     android:textColor="@color/white"
                     android:textSize="@dimen/f12"
-                    android:layout_width="280dp"
+                    android:layout_marginLeft="@dimen/d30"
+                    android:layout_marginRight="@dimen/d30"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp" />
             </LinearLayout>
 

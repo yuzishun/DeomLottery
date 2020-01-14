@@ -42,10 +42,10 @@
                <RelativeLayout
                    android:layout_width="match_parent"
                    android:layout_height="@dimen/d200">
-                   <ImageView
-                       android:background="@mipmap/mainbackground"
+                   <LinearLayout
+                       android:background="@drawable/left_shape"
                        android:layout_width="match_parent"
-                       android:layout_height="wrap_content" />
+                       android:layout_height="120dp" />
 
 
                </RelativeLayout>

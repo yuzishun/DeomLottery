@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:gravity="center_horizontal"
-    android:layout_height="match_parent">
+    android:gravity="center"
+    android:layout_height="70dp">
     <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
         android:id="@+id/list_1_1"
-        android:layout_width="80dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/empt_color"
         android:layout_alignBottom="@+id/list_1_2"
         android:layout_alignTop="@+id/list_1_2"
         android:gravity="center"
-        android:singleLine="false"
         android:textColor="#000"
         android:textSize="10sp" />
 
     <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
         android:id="@+id/list_1_2"
-        android:layout_width="80dp"
-        android:singleLine="false"
 
+        android:layout_weight="1"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/empt_color"
 
@@ -30,9 +30,9 @@
 
     <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
         android:id="@+id/list_1_3"
-        android:layout_width="80dp"
-        android:singleLine="false"
 
+        android:layout_weight="1"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/empt_color"
 
@@ -45,10 +45,10 @@
 
     <com.example.yuzishun.deomlottery.my.custom.MyTableTextView
         android:id="@+id/list_1_4"
-        android:layout_width="80dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/empt_color"
-        android:singleLine="false"
         android:scrollbars="vertical"
         android:scrollbarStyle="outsideOverlay"
         android:layout_alignBottom="@+id/list_1_3"
@@ -61,4 +61,4 @@
 
 
 
-</RelativeLayout>
+</LinearLayout>

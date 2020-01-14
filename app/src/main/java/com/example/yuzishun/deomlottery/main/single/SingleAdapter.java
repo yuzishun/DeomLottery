@@ -61,7 +61,7 @@ public class SingleAdapter extends BaseQuickAdapter<ItemPoint,BaseViewHolder> {
             item_name.setTextColor(MyApplication.getContext().getResources().getColor(R.color.font_black));
             item_right_name.setTextColor(MyApplication.getContext().getResources().getColor(R.color.font_black));
 
-            layout_relat.setBackgroundResource(R.drawable.dialog_mixed_false);
+            layout_relat.setBackgroundResource(R.drawable.dialog_mixed_false_t);
 
         }
 

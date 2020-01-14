@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <corners android:radius="@dimen/d2"></corners>
-    <solid android:color="@color/login_red"></solid>
 
+    <!--设置渐变-->
+    <gradient android:endColor="@color/button_Gradual_end"
+    android:startColor="@color/button_Gradual_start"
+    android:angle="180"/>
+    <!--angle控制渐变的方向-->
+    <!-- 设置按钮的四个角为弧形 -->
+    <!-- android:radius 弧形的半径 -->
+    <corners android:radius="5dp" />
 </shape>

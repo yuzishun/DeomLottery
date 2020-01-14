@@ -386,7 +386,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
                                             View_genv.setVisibility(View.VISIBLE);
 
                                             multiple_pric.setText("单倍金额:"+footBallOrderBean.getData().getMultiple_price());
-                                            plan_profits.setText("方案提成:%"+Double.parseDouble(footBallOrderBean.getData().getOrder_plan().getPlan_profits())*100);
+                                            plan_profits.setText("方案提成:"+Double.parseDouble(footBallOrderBean.getData().getOrder_plan().getPlan_profits())*100+"%");
                                             gendan_bumber.setText("跟单人数（"+footBallOrderBean.getData().getOrder_plan().getPlan_follow_person()+"，共"+footBallOrderBean.getData().getOrder_plan().getPlan_follow_price()+"元）");
                                             gendan_price.setText("佣金:"+footBallOrderBean.getData().getOrder_plan().getPlan_profit_price());
                                             text_dec.setText(""+footBallOrderBean.getData().getOrder_plan().getPlan_desc());
@@ -591,7 +591,7 @@ public class DocumentdetailsActivity extends BaseActivity implements View.OnClic
 
         //初始化内容
         for (int i = 0; i < order_odds_info.size(); i++) {
-            RelativeLayout relativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.programme_details, null);
+            LinearLayout relativeLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.programme_details, null);
             MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
             txt.setText(order_odds_info.get(i).getGame_begin_time()+"");
             txt.setTextColor(context.getResources().getColor(R.color.font_gray));
